@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edeler Döner Schwetzingen · 100% Halal Döner, Pizza & Burger</title>
+<meta name="description" content="Edeler Döner in Schwetzingen – 100% Halal Kalb- & Hähnchendöner, frische Pizza, Burger und Falafel. Kurfürstenstraße 18. Vor Ort, zum Mitnehmen oder liefern lassen.">
+<meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Pizza Schwetzingen, Kurfürstenstraße, Yufka, Lahmacun">
+<meta property="og:title" content="Edeler Döner Schwetzingen">
+<meta property="og:description" content="100% Halal Döner, frische Pizza, Burger & Falafel – mitten in Schwetzingen.">
+<meta property="og:type" content="restaurant">
+<meta property="og:locale" content="de_DE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf5ec;
+    --black:#161210;
+    --red:#e03a2b;
+    --red-deep:#b52a1e;
+    --yellow:#ffc93c;
+    --green:#2f7d3b;
+    --grey:#5f574d;
+    --line:3px solid var(--black);
+    --pop:6px 6px 0 var(--black);
+    --pop-sm:4px 4px 0 var(--black);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--paper);color:var(--black);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.5px}
+  .script{font-family:'Caveat',cursive;text-transform:none}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .mark{background:var(--yellow);padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .red{color:var(--red)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:700;
+    padding:14px 24px;border:var(--line);box-shadow:var(--pop);font-size:.95rem;cursor:pointer;
+    text-transform:uppercase;letter-spacing:.5px;transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--black)}
+  .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--black)}
+  .btn.alt{background:var(--yellow);color:var(--black)}
+  .btn.plain{background:#fff;color:var(--black)}
+
+  /* header */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--paper);border-bottom:var(--line);padding:12px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:48px;height:48px;flex:none;background:var(--yellow);border:var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;box-shadow:var(--pop-sm)}
+  .brand .logo svg{width:60%;height:70%}
+  .brand b{font-family:'Archivo Black';font-size:1.15rem;letter-spacing:.5px;line-height:1;display:block;text-transform:uppercase}
+  .brand span{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:block;font-weight:700}
+  .menu{display:flex;gap:6px;align-items:center}
+  .menu a{font-weight:600;font-size:.92rem;padding:8px 12px;border:3px solid transparent;transition:.15s}
+  .menu a:not(.btn):hover{background:var(--yellow);border-color:var(--black)}
+  .menu .btn{padding:10px 18px;box-shadow:var(--pop-sm)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:var(--yellow);border:var(--line);padding:10px 9px;box-shadow:var(--pop-sm)}
+  .burger span{width:24px;height:3px;background:var(--black);transition:.3s}
+
+  /* hero */
+  .hero{padding:150px 0 70px;position:relative;
+    background-image:radial-gradient(rgba(22,18,16,.07) 1.5px,transparent 1.5px);background-size:26px 26px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:var(--line);box-shadow:var(--pop-sm);
+    padding:8px 14px;font-weight:700;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:26px}
+  .chip .dot{width:10px;height:10px;background:var(--green);border:2px solid var(--black);border-radius:50%}
+  .hero h1{font-size:clamp(2.9rem,7vw,5.4rem)}
+  .hero h1 span{display:block}
+  .hero h1 .l2{color:var(--red)}
+  .hero h1 .l3{color:var(--black)}
+  @supports ((-webkit-text-stroke:1px black)){
+    .hero h1 .l3{color:var(--paper);-webkit-text-stroke:3px var(--black)}
+  }
+  .hero .lead{font-size:1.15rem;color:var(--grey);max-width:470px;margin:22px 0 30px;font-weight:500}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-tags{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+  .hero-tags span{background:#fff;border:var(--line);padding:8px 14px;font-weight:700;font-size:.85rem;box-shadow:var(--pop-sm)}
+  .hero-tags .halal{background:var(--green);color:#fff}
+
+  .frame{position:relative;border:4px solid var(--black);box-shadow:10px 10px 0 var(--black);background:var(--red);
+    aspect-ratio:1/1.05;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .frame::before{content:"";position:absolute;inset:-60%;
+    background:repeating-conic-gradient(var(--red) 0deg 14deg,var(--red-deep) 14deg 28deg);
+    animation:spin 50s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .frame .doner-big{position:relative;width:52%;filter:drop-shadow(8px 10px 0 rgba(0,0,0,.35))}
+  .sticker{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    font-family:'Archivo Black';border:var(--line);box-shadow:var(--pop-sm);z-index:3}
+  .sticker.halal{top:6%;right:6%;width:110px;height:110px;border-radius:50%;background:var(--green);color:#fff;transform:rotate(10deg)}
+  .sticker.halal b{font-size:1.25rem}
+  .sticker.halal small{font-family:'Space Grotesk';font-weight:700;font-size:.62rem;letter-spacing:1px}
+  .sticker.price{bottom:7%;left:-14px;background:var(--yellow);padding:10px 18px;transform:rotate(-6deg);font-size:1.05rem}
+  .sticker.price small{font-family:'Space Grotesk';font-weight:700;font-size:.68rem;display:block;letter-spacing:1px}
+
+  /* checkerboard divider */
+  .checker{height:30px;border-top:var(--line);border-bottom:var(--line);
+    background:repeating-conic-gradient(var(--black) 0% 25%,var(--yellow) 0% 50%) 0 0/30px 30px}
+
+  /* sections */
+  section{padding:90px 0}
+  .eyebrow{display:inline-block;background:var(--black);color:var(--yellow);font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;font-size:.75rem;padding:6px 14px;margin-bottom:16px}
+  .sec-title{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:16px}
+  .sec-intro{max-width:620px;color:var(--grey);font-size:1.05rem;font-weight:500}
+  .center{text-align:center}
+  .center .sec-intro{margin:0 auto}
+
+  /* about / features */
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+  .feat{background:#fff;border:var(--line);box-shadow:var(--pop);padding:28px 24px;position:relative}
+  .feat .num{position:absolute;top:-18px;right:16px;background:var(--yellow);border:var(--line);
+    font-family:'Archivo Black';padding:4px 12px;font-size:1rem}
+  .feat .ico{width:56px;height:56px;border:var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .feat .ico svg{width:60%;height:60%}
+  .feat h3{font-size:1.05rem;margin-bottom:8px}
+  .feat p{color:var(--grey);font-size:.94rem;font-weight:500}
+  .about-quote{margin-top:50px;background:var(--yellow);border:var(--line);box-shadow:var(--pop);
+    padding:26px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between}
+  .about-quote p{font-size:1.65rem;line-height:1.2}
+  .about-quote .btn{flex:none}
+
+  /* menu board */
+  .board{background:#fff;border:4px solid var(--black);box-shadow:12px 12px 0 var(--black);margin-top:50px;padding:40px}
+  .board-head{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:var(--line);padding-bottom:18px;margin-bottom:30px;flex-wrap:wrap}
+  .board-head h3{font-size:1.6rem}
+  .board-head .tag{background:var(--red);color:#fff;border:var(--line);padding:6px 14px;font-weight:700;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;box-shadow:var(--pop-sm)}
+  .cats{display:grid;grid-template-columns:1fr 1fr;gap:34px 44px}
+  .cat{break-inside:avoid}
+  .cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .cat-head .cico{width:44px;height:44px;border:var(--line);background:var(--yellow);display:flex;align-items:center;justify-content:center;flex:none}
+  .cat-head .cico svg{width:62%;height:62%}
+  .cat-head h4{font-family:'Archivo Black';font-size:1.05rem;text-transform:uppercase;flex:1}
+  .cat-head .range{font-weight:700;color:var(--red);white-space:nowrap;font-size:1rem}
+  .cat-head .badge{font-size:.62rem;font-weight:700;letter-spacing:1px;padding:3px 8px;border:2px solid var(--black);text-transform:uppercase}
+  .cat-head .badge.hal{background:var(--green);color:#fff}
+  .cat-head .badge.veg{background:#d9efd0}
+  .row{display:flex;align-items:baseline;gap:10px;padding:7px 0;font-weight:500}
+  .row .dots{flex:1;border-bottom:3px dotted rgba(22,18,16,.28);transform:translateY(-4px)}
+  .row .p{font-weight:700;color:var(--red);white-space:nowrap}
+  .items{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .items span{background:var(--paper);border:2px solid var(--black);padding:5px 12px;font-weight:600;font-size:.88rem}
+  .board-foot{margin-top:34px;padding-top:20px;border-top:var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--grey);font-weight:500;font-size:.92rem}
+  .board-foot a{font-weight:700;color:var(--black);background:var(--yellow);border:2px solid var(--black);padding:4px 10px}
+
+  /* order band */
+  .order{background:var(--red);border-top:4px solid var(--black);border-bottom:4px solid var(--black);text-align:center;color:#fff;
+    background-image:radial-gradient(rgba(0,0,0,.14) 1.5px,transparent 1.5px);background-size:22px 22px}
+  .order h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;text-shadow:4px 4px 0 var(--black)}
+  .order p{max-width:520px;margin:16px auto 30px;font-size:1.12rem;font-weight:500}
+  .order-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+
+  /* gallery polaroids */
+  .polas{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:50px}
+  .pola{background:#fff;border:var(--line);box-shadow:var(--pop);padding:14px 14px 18px;width:230px;transition:transform .2s}
+  .pola:nth-child(odd){transform:rotate(-2.5deg)}
+  .pola:nth-child(even){transform:rotate(2deg)}
+  .pola:hover{transform:rotate(0) scale(1.04);z-index:2}
+  .pola .ph{aspect-ratio:1;border:var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .pola .ph svg{width:52%}
+  .pola .cap{font-family:'Caveat',cursive;font-size:1.35rem;text-align:center;line-height:1}
+  .p1 .ph{background:linear-gradient(140deg,#ffd98a,var(--yellow))}
+  .p2 .ph{background:linear-gradient(140deg,#f4a08e,#e8664f)}
+  .p3 .ph{background:linear-gradient(140deg,#cfe8c4,#9cc98b)}
+  .p4 .ph{background:linear-gradient(140deg,#efe3d1,#dcc9a8)}
+  .gal-note{text-align:center;margin-top:36px;color:var(--grey);font-weight:500;font-size:.9rem}
+
+  /* visit */
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;margin-top:50px}
+  .card{background:#fff;border:var(--line);box-shadow:var(--pop);padding:34px}
+  .info-row{display:flex;gap:16px;padding:16px 0;border-bottom:3px dotted rgba(22,18,16,.2)}
+  .info-row:last-child{border-bottom:none}
+  .info-row .ico{flex:none;width:46px;height:46px;border:var(--line);background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .info-row h4{font-family:'Archivo Black';font-size:.95rem;text-transform:uppercase;margin-bottom:4px}
+  .info-row p{color:var(--grey);font-size:.94rem;font-weight:500}
+  .info-row p a{font-weight:700;color:var(--red);text-decoration:underline}
+  .hours-table{width:100%;margin-top:4px}
+  .hours-table td{padding:4px 0;color:var(--grey);font-size:.94rem;font-weight:500}
+  .hours-table td:last-child{text-align:right;color:var(--black);font-weight:700}
+  .hours-table tr.today td{color:var(--red)}
+  .small-note{color:var(--grey);font-size:.78rem;margin-top:8px;font-weight:500}
+  .map-card{padding:0;overflow:hidden;min-height:420px;display:flex}
+  .map-card iframe{width:100%;min-height:420px;border:0;flex:1}
+
+  /* footer */
+  footer{background:var(--black);color:#cfc6ba;padding:56px 0 28px;border-top:4px solid var(--black)}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  footer .brand b{color:#fff}
+  footer .brand span{color:var(--yellow)}
+  footer .brand .logo{box-shadow:4px 4px 0 rgba(255,201,60,.4)}
+  footer h5{color:#fff;font-family:'Archivo Black';margin-bottom:16px;font-size:.9rem;text-transform:uppercase;letter-spacing:1px}
+  footer ul{list-style:none;display:grid;gap:9px}
+  footer a{color:#cfc6ba;transition:.15s;font-size:.94rem;font-weight:500}
+  footer a:hover{color:var(--yellow)}
+  .foot-bottom{border-top:2px solid rgba(255,255,255,.15);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.85rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:.6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .pola.reveal.in:nth-child(odd){transform:rotate(-2.5deg)}
+  .pola.reveal.in:nth-child(even){transform:rotate(2deg)}
+  .pola.reveal.in:hover{transform:rotate(0) scale(1.04)}
+
+  @media(max-width:900px){
+    .hero-grid,.visit-grid{grid-template-columns:1fr}
+    .feats{grid-template-columns:1fr}
+    .cats{grid-template-columns:1fr}
+    .frame{max-width:440px;margin:0 auto}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .menu{position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);background:var(--paper);border-left:var(--line);
+      flex-direction:column;justify-content:center;gap:18px;transform:translateX(105%);transition:.3s;z-index:60}
+    .menu.open{transform:none}
+    .menu a{font-size:1.05rem}
+    .burger{display:flex;z-index:61}
+    .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .burger.open span:nth-child(2){opacity:0}
+    .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  }
+  @media(max-width:560px){
+    .board{padding:24px 18px}
+    .foot-grid{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .hero{padding-top:130px}
+    .about-quote p{font-size:1.35rem}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="doner" viewBox="0 0 120 200">
+    <path fill="#8a8378" d="M58 6h4v150h-4z"/>
+    <path fill="#c8912a" d="M60 14c-20 0-34 12-34 30v70c0 20 14 34 34 34s34-14 34-34V44c0-18-14-30-34-30z"/>
+    <path fill="#e0663a" d="M60 20c-17 0-29 10-29 26v66c0 18 12 30 29 30s29-12 29-30V46c0-16-12-26-29-26z" opacity=".85"/>
+    <path fill="#ffd98a" d="M60 26c-15 0-25 8-25 22 4-3 12-6 25-6s21 3 25 6c0-14-10-22-25-22z"/>
+    <path fill="#a8442a" d="M35 74c8 4 16 6 25 6s17-2 25-6v14c-8 4-16 6-25 6s-17-2-25-6z" opacity=".8"/>
+    <path fill="#ffd98a" d="M35 108c8 4 16 6 25 6s17-2 25-6v10c-8 4-16 6-25 6s-17-2-25-6z" opacity=".75"/>
+    <circle cx="60" cy="182" r="7" fill="#6b6152"/>
+  </symbol>
+  <symbol id="wrap" viewBox="0 0 100 100">
+    <path fill="#e0aa5f" d="M30 12l44 8c6 1 10 7 9 13L74 84c-1 6-7 10-13 9L20 82c-6-1-9-7-8-12z"/>
+    <path fill="#ffd98a" d="M34 22l36 7-8 44-32-6z"/>
+    <circle cx="46" cy="40" r="4" fill="#2f7d3b"/><circle cx="56" cy="52" r="4" fill="#e03a2b"/><circle cx="44" cy="56" r="3" fill="#c8912a"/>
+  </symbol>
+  <symbol id="pizza" viewBox="0 0 100 100">
+    <path fill="#e0aa5f" d="M50 8L92 82c2 4-1 9-6 8L50 84 14 90c-5 1-8-4-6-8z"/>
+    <path fill="#ffd98a" d="M50 20l30 52-30 5-30-5z"/>
+    <circle cx="44" cy="52" r="5" fill="#e03a2b"/><circle cx="60" cy="60" r="5" fill="#e03a2b"/><circle cx="50" cy="72" r="4" fill="#2f7d3b"/>
+  </symbol>
+  <symbol id="burger" viewBox="0 0 100 100">
+    <path fill="#e0aa5f" d="M14 34c0-14 16-24 36-24s36 10 36 24z"/>
+    <rect x="12" y="40" width="76" height="10" rx="5" fill="#2f7d3b"/>
+    <rect x="12" y="52" width="76" height="12" rx="4" fill="#a8442a"/>
+    <path fill="#e0aa5f" d="M14 66h72c0 12-16 20-36 20S14 78 14 66z"/>
+  </symbol>
+  <symbol id="falafel" viewBox="0 0 100 100">
+    <path fill="#e0aa5f" d="M22 46c0-8 6-14 14-14h28c8 0 14 6 14 14 0 22-14 40-28 40S22 68 22 46z"/>
+    <ellipse cx="50" cy="34" rx="28" ry="8" fill="#2f7d3b"/>
+    <circle cx="42" cy="52" r="6" fill="#8a5a2a"/><circle cx="58" cy="56" r="6" fill="#8a5a2a"/><circle cx="50" cy="66" r="5" fill="#8a5a2a"/>
+  </symbol>
+  <symbol id="drink" viewBox="0 0 100 100">
+    <path fill="#e03a2b" d="M28 24h44l-5 60c-.4 5-4 8-9 8H42c-5 0-8-3-9-8z"/>
+    <rect x="24" y="16" width="52" height="10" rx="5" fill="#ffd98a"/>
+    <rect x="56" y="2" width="5" height="22" rx="2" fill="#ffd98a"/>
+  </symbol>
+  <symbol id="fries" viewBox="0 0 100 100">
+    <path fill="#ffd98a" d="M34 12l6 30h-10zM46 8l4 34h-8zM58 10l-2 32h8zM68 16l-8 26h12z"/>
+    <path fill="#e03a2b" d="M24 40h52l-8 46c-1 5-5 8-10 8H42c-5 0-9-3-10-8z"/>
+    <path fill="#fff" d="M40 56h20v8H40z" opacity=".85"/>
+  </symbol>
+</svg>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="logo"><svg><use href="#doner"/></svg></span>
+      <span><b>Edeler Döner</b><span>Schwetzingen</span></span>
+    </a>
+    <nav class="menu" id="navmenu">
+      <a href="#about">Über uns</a>
+      <a href="#menu">Speisekarte</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#visit">Finden</a>
+      <a href="#order" class="btn">Bestellen</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding-bottom:80px">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="chip"><span class="dot"></span> 100% Halal · Kurfürstenstraße 18</span>
+      <h1><span>Saftig.</span><span class="l2">Würzig.</span><span class="l3">Edel.</span></h1>
+      <p class="lead">Kalb- &amp; Hähnchendöner, Pizza aus dem Ofen, Burger und knusprige Falafel – ehrlich gemacht, fair bepreist, mitten in Schwetzingen.</p>
+      <div class="hero-cta">
+        <a href="#order" class="btn">Jetzt bestellen</a>
+        <a href="#menu" class="btn alt">Zur Speisekarte</a>
+      </div>
+      <div class="hero-tags">
+        <span class="halal">✓ 100% Halal</span>
+        <span>Döner ab €6</span>
+        <span>Auch vegetarisch</span>
+      </div>
+    </div>
+    <div>
+      <div class="frame">
+        <svg class="doner-big" viewBox="0 0 120 200"><use href="#doner"/></svg>
+        <div class="sticker halal"><b>HALAL</b><small>KALB &amp; HÄHNCHEN</small></div>
+        <div class="sticker price">AB €6,00<small>DÖNER KLASSIK</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="eyebrow">Über uns</span>
+    <h2 class="sec-title">Ehrliches Essen, <span class="mark">keine Kompromisse</span></h2>
+    <p class="sec-intro">Bei Edeler Döner bekommst du echtes Handwerk statt Fließband: 100% Halal-Fleisch vom Kalb und Hähnchen, frische Beilagen und eine Karte, auf der jeder etwas findet.</p>
+    <div class="feats">
+      <div class="feat reveal">
+        <span class="num">01</span>
+        <div class="ico"><svg><use href="#doner"/></svg></div>
+        <h3>100% Halal</h3>
+        <p>Kalb- und Hähnchendöner, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p>
+      </div>
+      <div class="feat reveal">
+        <span class="num">02</span>
+        <div class="ico"><svg><use href="#pizza"/></svg></div>
+        <h3>Riesige Auswahl</h3>
+        <p>Döner, Yufka, Lahmacun, Pizza, Burger, Falafel – plus vegetarische Optionen.</p>
+      </div>
+      <div class="feat reveal">
+        <span class="num">03</span>
+        <div class="ico"><svg><use href="#wrap"/></svg></div>
+        <h3>Vor Ort &amp; Lieferung</h3>
+        <p>Abholen in der Kurfürstenstraße 18 oder bequem nach Hause bestellen.</p>
+      </div>
+    </div>
+    <div class="about-quote reveal">
+      <p class="script">„Guter Döner ist kein Fast Food – es ist Handwerk."</p>
+      <a href="#menu" class="btn plain">Was gibt's? →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU BOARD -->
+<section id="menu" style="padding-top:40px">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Speisekarte</span>
+      <h2 class="sec-title">Das gibt's <span class="mark">bei uns</span></h2>
+      <p class="sec-intro">Ein Auszug aus der Karte – frisch zubereitet und fair bepreist.</p>
+    </div>
+    <div class="board reveal">
+      <div class="board-head">
+        <h3>— Unsere Karte —</h3>
+        <span class="tag">100% Halal</span>
+      </div>
+      <div class="cats">
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#doner"/></svg></span>
+            <h4>Döner &amp; Co. <span class="badge hal">Halal</span></h4>
+            <span class="range">€6,00–12,00</span>
+          </div>
+          <div class="items">
+            <span>Döner</span><span>Dönerteller</span><span>Dönerbox</span><span>Yufka</span><span>Lahmacun</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#pizza"/></svg></span>
+            <h4>Pizza</h4>
+          </div>
+          <div class="row"><span>Margherita</span><span class="dots"></span><span class="p">€9,00</span></div>
+          <div class="row"><span>Salami / Sucuk / Funghi / Thunfisch</span><span class="dots"></span><span class="p">€10,50</span></div>
+          <div class="row"><span>Sommer Pizza</span><span class="dots"></span><span class="p">€11,00</span></div>
+          <div class="row"><span>Hähnchen</span><span class="dots"></span><span class="p">€11,50</span></div>
+          <div class="row"><span>Kalb</span><span class="dots"></span><span class="p">€12,50</span></div>
+        </div>
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#burger"/></svg></span>
+            <h4>Burger &amp; Snacks</h4>
+            <span class="range">€5,00–6,50</span>
+          </div>
+          <div class="items">
+            <span>Hamburger</span><span>Cheeseburger</span><span>Chicken Burger</span><span>Chicken Nuggets</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#falafel"/></svg></span>
+            <h4>Vegetarisch <span class="badge veg">Vegi</span></h4>
+            <span class="range">€6,00–9,00</span>
+          </div>
+          <div class="items">
+            <span>Falafel</span><span>Falafel-Teller</span><span>Vegi-Yufka</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#fries"/></svg></span>
+            <h4>Beilagen</h4>
+            <span class="range">€2,00–5,00</span>
+          </div>
+          <div class="items">
+            <span>Pommes</span><span>Reis</span><span>Salat</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head">
+            <span class="cico"><svg><use href="#drink"/></svg></span>
+            <h4>Getränke</h4>
+            <span class="range">ab €2,00</span>
+          </div>
+          <div class="items">
+            <span>Softdrinks</span><span>Wasser</span><span>Ayran</span>
+          </div>
+        </div>
+      </div>
+      <div class="board-foot">
+        <span>Komplette Karte mit allen Gerichten &amp; Preisen online:</span>
+        <span><a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener">edeler-doner-schwetzingen.de</a> &nbsp; <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener">Lieferando</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER BAND -->
+<section class="order" id="order">
+  <div class="wrap">
+    <h2>Hunger? Läuft bei uns.</h2>
+    <p>Komm vorbei in der Kurfürstenstraße 18, nimm's mit – oder lass liefern.</p>
+    <div class="order-btns">
+      <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener" class="btn alt">Bei Lieferando bestellen</a>
+      <a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener" class="btn plain">Online-Speisekarte</a>
+      <a href="#visit" class="btn plain">Abholen kommen</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap center">
+    <span class="eyebrow">Galerie</span>
+    <h2 class="sec-title">Guten <span class="mark">Appetit</span></h2>
+    <p class="sec-intro">Ein Vorgeschmack auf das, was dich bei Edeler Döner erwartet.</p>
+    <div class="polas">
+      <div class="pola p1 reveal"><div class="ph"><svg><use href="#doner"/></svg></div><span class="cap">Frisch vom Spieß</span></div>
+      <div class="pola p2 reveal"><div class="ph"><svg><use href="#pizza"/></svg></div><span class="cap">Pizza aus dem Ofen</span></div>
+      <div class="pola p3 reveal"><div class="ph"><svg><use href="#falafel"/></svg></div><span class="cap">Knusprige Falafel</span></div>
+      <div class="pola p4 reveal"><div class="ph"><svg><use href="#wrap"/></svg></div><span class="cap">Yufka &amp; Lahmacun</span></div>
+    </div>
+    <p class="gal-note">📸 Bildplatzhalter – hier kommen echte Fotos der Gerichte rein.</p>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Besuch uns</span>
+      <h2 class="sec-title">Finden &amp; <span class="mark">Öffnungszeiten</span></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="card reveal">
+        <div class="info-row">
+          <div class="ico">📍</div>
+          <div><h4>Adresse</h4><p>Kurfürstenstraße 18<br>68723 Schwetzingen<br><a href="https://www.google.com/maps/search/?api=1&query=Edeler+Döner+Kurfürstenstraße+18+Schwetzingen" target="_blank" rel="noopener">Route planen →</a></p></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">🕒</div>
+          <div style="flex:1"><h4>Öffnungszeiten</h4>
+            <table class="hours-table" id="hours">
+              <tr data-day="1"><td>Montag</td><td>11:00 – 22:00 *</td></tr>
+              <tr data-day="2"><td>Dienstag</td><td>11:00 – 22:00 *</td></tr>
+              <tr data-day="3"><td>Mittwoch</td><td>11:00 – 22:00 *</td></tr>
+              <tr data-day="4"><td>Donnerstag</td><td>11:00 – 22:00 *</td></tr>
+              <tr data-day="5"><td>Freitag</td><td>11:00 – 23:00 *</td></tr>
+              <tr data-day="6"><td>Samstag</td><td>ab 11:00</td></tr>
+              <tr data-day="0"><td>Sonntag</td><td>12:00 – 22:00 *</td></tr>
+            </table>
+            <p class="small-note">* Zeiten als Platzhalter – bitte bestätigen.</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ico">🛵</div>
+          <div><h4>Lieferung &amp; Abholung</h4><p>Bestellbar über <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener">Lieferando</a> &amp; die <a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener">eigene Online-Karte</a></p></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">📞</div>
+          <div><h4>Kontakt</h4><p>Telefonnummer hier einfügen · E-Mail auf Anfrage</p></div>
+        </div>
+      </div>
+      <div class="card map-card reveal">
+        <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom:16px;display:inline-flex">
+          <span class="logo"><svg><use href="#doner"/></svg></span>
+          <span><b>Edeler Döner</b><span>Schwetzingen</span></span>
+        </a>
+        <p style="max-width:320px;margin-top:12px">100% Halal Döner, frische Pizza, Burger &amp; Falafel – ehrliches Essen mitten in Schwetzingen.</p>
+      </div>
+      <div>
+        <h5>Entdecken</h5>
+        <ul>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#menu">Speisekarte</a></li>
+          <li><a href="#gallery">Galerie</a></li>
+          <li><a href="#visit">Öffnungszeiten</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li>Kurfürstenstraße 18</li>
+          <li>68723 Schwetzingen</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+Döner+Kurfürstenstraße+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Edeler Döner Schwetzingen</span>
+      <span>Mit 🌶️ gemacht · Website-Entwurf</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger=document.getElementById('burger'),navmenu=document.getElementById('navmenu');
+  burger.addEventListener('click',()=>{burger.classList.toggle('open');navmenu.classList.toggle('open')});
+  navmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navmenu.classList.remove('open')}));
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const today=new Date().getDay();
+  const row=document.querySelector('#hours tr[data-day="'+today+'"]');
+  if(row){row.classList.add('today');row.querySelector('td:last-child').innerHTML+=' · Heute';}
+</script>
+</body>
+</html>
