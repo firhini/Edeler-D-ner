@@ -3,559 +3,1282 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edeler Döner Schwetzingen · 100% Halal Döner, Pizza & Burger</title>
-<meta name="description" content="Edeler Döner in Schwetzingen – 100% Halal Kalb- & Hähnchendöner, frische Pizza, Burger und Falafel. Kurfürstenstraße 18. Vor Ort, zum Mitnehmen oder liefern lassen.">
-<meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Pizza Schwetzingen, Kurfürstenstraße, Yufka, Lahmacun">
-<meta property="og:title" content="Edeler Döner Schwetzingen">
-<meta property="og:description" content="100% Halal Döner, frische Pizza, Burger & Falafel – mitten in Schwetzingen.">
-<meta property="og:type" content="restaurant">
+<meta name="theme-color" content="#0b0b0d">
+<title>Edeler Döner Schwetzingen · Premium Halal Döner, Pizza & Burger</title>
+<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza & Burger. Online zusammenstellen und in Sekunden per WhatsApp bestellen.">
+<meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Dürüm, Lahmacun, Pizza Schwetzingen, Burger, WhatsApp Bestellung, Kurfürstenstraße">
+<meta name="author" content="Edeler Döner Schwetzingen">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.edeler-doner-schwetzingen.de/">
+<meta property="og:title" content="Edeler Döner Schwetzingen · Premium Halal">
+<meta property="og:description" content="100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza & Burger – online zusammenstellen und per WhatsApp bestellen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.edeler-doner-schwetzingen.de/">
 <meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Edeler Döner Schwetzingen">
+<!-- Social-Share-Bild: hier ein echtes 1200×630 Foto hinterlegen (z. B. angerichteter Döner) -->
+<meta property="og:image" content="https://www.edeler-doner-schwetzingen.de/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.edeler-doner-schwetzingen.de/og-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap"></noscript>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0b0d'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' text-anchor='middle' fill='%23d6b25e'%3EE%3C/text%3E%3C/svg%3E">
 <style>
-  :root{
-    --paper:#faf5ec;
-    --black:#161210;
-    --red:#e03a2b;
-    --red-deep:#b52a1e;
-    --yellow:#ffc93c;
-    --green:#2f7d3b;
-    --grey:#5f574d;
-    --line:3px solid var(--black);
-    --pop:6px 6px 0 var(--black);
-    --pop-sm:4px 4px 0 var(--black);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--paper);color:var(--black);line-height:1.6;overflow-x:hidden}
-  h1,h2,h3{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.5px}
-  .script{font-family:'Caveat',cursive;text-transform:none}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
-  .mark{background:var(--yellow);padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  .red{color:var(--red)}
+/* ============================================================
+   EDELER DÖNER · PREMIUM DESIGN SYSTEM (Black / Gold)
+   ============================================================ */
+:root{
+  /* Surfaces */
+  --bg:#0b0b0d;
+  --bg-1:#0f0f12;
+  --bg-2:#131317;
+  --surface:#16161b;
+  --surface-2:#1c1c22;
+  --surface-3:#232329;
+  /* Gold */
+  --gold:#d6b25e;
+  --gold-2:#c69b3d;
+  --gold-hi:#f3dc9a;
+  --gold-deep:#a67c2e;
+  --gold-grad:linear-gradient(135deg,#f3dc9a 0%,#d6b25e 42%,#a67c2e 100%);
+  /* Text */
+  --ink:#f6f1e7;
+  --text:#d8d3c8;
+  --muted:#9c968b;
+  --faint:#8a857b;
+  --on-gold:#191308;
+  /* Lines */
+  --line:rgba(214,178,94,.16);
+  --line-2:rgba(255,255,255,.07);
+  /* Accents */
+  --wa:#25d366;
+  --wa-2:#1faa52;
+  --veg:#7bb661;
+  --hot:#e0552f;
+  /* Metrics */
+  --container:1200px;
+  --r-sm:10px;
+  --r:16px;
+  --r-lg:24px;
+  --r-xl:32px;
+  --pill:999px;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.85);
+  --shadow-sm:0 10px 30px -16px rgba(0,0,0,.8);
+  --shadow-gold:0 18px 46px -18px rgba(214,178,94,.4);
+  --ease:cubic-bezier(.22,.7,.25,1);
+  --header-h:74px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px);-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;
+  font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+/* Ambient glow as a single composited fixed layer (no scroll-repaint jank) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(60vw 40vh at 78% 4%, rgba(214,178,94,.08), transparent 60%),
+             radial-gradient(50vw 40vh at 0% 20%, rgba(214,178,94,.05), transparent 55%)}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.08;font-weight:700;letter-spacing:-.01em}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit;font-size:1rem}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+::selection{background:rgba(214,178,94,.28);color:#fff}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 24px;width:100%}
+.gold-text{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
 
-  /* buttons */
-  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:700;
-    padding:14px 24px;border:var(--line);box-shadow:var(--pop);font-size:.95rem;cursor:pointer;
-    text-transform:uppercase;letter-spacing:.5px;transition:transform .15s,box-shadow .15s}
-  .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--black)}
-  .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--black)}
-  .btn.alt{background:var(--yellow);color:var(--black)}
-  .btn.plain{background:#fff;color:var(--black)}
+/* Skip link */
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#111;padding:10px 16px;font-weight:700;z-index:200;border-radius:0 0 8px 0}
+.skip:focus{left:0}
 
-  /* header */
-  header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--paper);border-bottom:var(--line);padding:12px 0}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand .logo{width:48px;height:48px;flex:none;background:var(--yellow);border:var(--line);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;box-shadow:var(--pop-sm)}
-  .brand .logo svg{width:60%;height:70%}
-  .brand b{font-family:'Archivo Black';font-size:1.15rem;letter-spacing:.5px;line-height:1;display:block;text-transform:uppercase}
-  .brand span{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:block;font-weight:700}
-  .menu{display:flex;gap:6px;align-items:center}
-  .menu a{font-weight:600;font-size:.92rem;padding:8px 12px;border:3px solid transparent;transition:.15s}
-  .menu a:not(.btn):hover{background:var(--yellow);border-color:var(--black)}
-  .menu .btn{padding:10px 18px;box-shadow:var(--pop-sm)}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:var(--yellow);border:var(--line);padding:10px 9px;box-shadow:var(--pop-sm)}
-  .burger span{width:24px;height:3px;background:var(--black);transition:.3s}
+/* --- Buttons --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:.95rem;
+  padding:14px 26px;border-radius:var(--pill);border:1px solid transparent;cursor:pointer;letter-spacing:.2px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),color .25s,border-color .25s;
+  white-space:nowrap;line-height:1}
+.btn svg{width:19px;height:19px;flex:none}
+.btn-gold{background:var(--gold-grad);color:#191308;box-shadow:var(--shadow-gold);font-weight:700}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 24px 54px -16px rgba(214,178,94,.55)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.btn-dark{background:var(--surface-2);color:var(--ink);border-color:var(--line-2)}
+.btn-dark:hover{background:var(--surface-3);transform:translateY(-3px)}
+.btn-wa{background:var(--wa);color:#04231a;font-weight:700;box-shadow:0 18px 40px -16px rgba(37,211,102,.6)}
+.btn-wa:hover{background:#2ee06f;transform:translateY(-3px);box-shadow:0 22px 50px -14px rgba(37,211,102,.7)}
+.btn:active{transform:translateY(-1px) scale(.99)}
+.btn-lg{padding:17px 34px;font-size:1.02rem}
+.btn-block{width:100%}
 
-  /* hero */
-  .hero{padding:150px 0 70px;position:relative;
-    background-image:radial-gradient(rgba(22,18,16,.07) 1.5px,transparent 1.5px);background-size:26px 26px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-  .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:var(--line);box-shadow:var(--pop-sm);
-    padding:8px 14px;font-weight:700;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:26px}
-  .chip .dot{width:10px;height:10px;background:var(--green);border:2px solid var(--black);border-radius:50%}
-  .hero h1{font-size:clamp(2.9rem,7vw,5.4rem)}
-  .hero h1 span{display:block}
-  .hero h1 .l2{color:var(--red)}
-  .hero h1 .l3{color:var(--black)}
-  @supports ((-webkit-text-stroke:1px black)){
-    .hero h1 .l3{color:var(--paper);-webkit-text-stroke:3px var(--black)}
-  }
-  .hero .lead{font-size:1.15rem;color:var(--grey);max-width:470px;margin:22px 0 30px;font-weight:500}
-  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-  .hero-tags{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
-  .hero-tags span{background:#fff;border:var(--line);padding:8px 14px;font-weight:700;font-size:.85rem;box-shadow:var(--pop-sm)}
-  .hero-tags .halal{background:var(--green);color:#fff}
+/* --- Icons --- */
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic-fill{fill:currentColor;stroke:none}
 
-  .frame{position:relative;border:4px solid var(--black);box-shadow:10px 10px 0 var(--black);background:var(--red);
-    aspect-ratio:1/1.05;overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .frame::before{content:"";position:absolute;inset:-60%;
-    background:repeating-conic-gradient(var(--red) 0deg 14deg,var(--red-deep) 14deg 28deg);
-    animation:spin 50s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .frame .doner-big{position:relative;width:52%;filter:drop-shadow(8px 10px 0 rgba(0,0,0,.35))}
-  .sticker{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    font-family:'Archivo Black';border:var(--line);box-shadow:var(--pop-sm);z-index:3}
-  .sticker.halal{top:6%;right:6%;width:110px;height:110px;border-radius:50%;background:var(--green);color:#fff;transform:rotate(10deg)}
-  .sticker.halal b{font-size:1.25rem}
-  .sticker.halal small{font-family:'Space Grotesk';font-weight:700;font-size:.62rem;letter-spacing:1px}
-  .sticker.price{bottom:7%;left:-14px;background:var(--yellow);padding:10px 18px;transform:rotate(-6deg);font-size:1.05rem}
-  .sticker.price small{font-family:'Space Grotesk';font-weight:700;font-size:.68rem;display:block;letter-spacing:1px}
+/* --- Eyebrow / section heads --- */
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font-family:'Inter',sans-serif;
+  font-weight:600;font-size:.72rem;letter-spacing:3.5px;text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
+.eyebrow.center::after{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
+.sec-title{font-size:clamp(2rem,4.6vw,3.3rem);margin-bottom:18px;font-weight:800}
+.sec-intro{max-width:640px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.12rem)}
+.sec-head{margin-bottom:52px}
+.sec-head.center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.sec-head.center .sec-intro{margin:0 auto}
+section{padding:clamp(70px,9vw,120px) 0;position:relative}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--gold) 50%,var(--line) 80%,transparent);opacity:.6}
 
-  /* checkerboard divider */
-  .checker{height:30px;border-top:var(--line);border-bottom:var(--line);
-    background:repeating-conic-gradient(var(--black) 0% 25%,var(--yellow) 0% 50%) 0 0/30px 30px}
+/* ============ HEADER ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);display:flex;align-items:center;
+  transition:background .4s,backdrop-filter .4s,border-color .4s,box-shadow .4s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(11,11,13,.94);
+  border-bottom-color:var(--line);box-shadow:0 10px 30px -20px rgba(0,0,0,.9)}
+/* Frosted blur only on desktop: on mobile the header must NOT create a containing block
+   for the fixed off-canvas nav (backdrop-filter would collapse it to header height). */
+@media(min-width:721px){header.scrolled{background:rgba(11,11,13,.82);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2)}}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:radial-gradient(circle at 35% 28%,#1e1e24,#0e0e11);border:1.5px solid var(--gold);box-shadow:0 0 0 4px rgba(214,178,94,.08),inset 0 0 12px rgba(214,178,94,.15)}
+.logo .ic{width:24px;height:26px;color:var(--gold)}
+.brand-name{display:flex;flex-direction:column;line-height:1}
+.brand-name b{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:800;color:var(--ink);letter-spacing:.3px}
+.brand-name span{font-size:.6rem;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:3px}
+.navlinks{display:flex;align-items:center;gap:4px}
+.navlinks a{position:relative;padding:9px 14px;font-size:.92rem;font-weight:500;color:var(--text);border-radius:8px;transition:color .2s}
+.navlinks a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.navlinks a:hover,.navlinks a.active{color:var(--gold)}
+.navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.cart-btn{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);
+  color:var(--ink);padding:10px 16px;border-radius:var(--pill);font-weight:600;font-size:.9rem;transition:.25s}
+.cart-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cart-btn .ic{width:20px;height:20px}
+.cart-count{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;padding:0 5px;background:var(--gold-grad);color:#1a1206;
+  font-size:.72rem;font-weight:800;border-radius:var(--pill);display:none;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.5)}
+.cart-count.show{display:flex}
+.burger{display:none;position:relative;z-index:106;width:44px;height:44px;border:1px solid var(--line);background:var(--surface-2);border-radius:12px;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* Scrim sits BELOW the header (z-index:100) so the header's burger/close control and the
+   off-canvas panel — both in the header's stacking context — stay tappable above it. */
+.nav-scrim{position:fixed;inset:0;background:rgba(5,5,7,.6);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);z-index:99;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.nav-scrim.open{opacity:1;visibility:visible}
+@media(min-width:721px){.nav-scrim{display:none}}
 
-  /* sections */
-  section{padding:90px 0}
-  .eyebrow{display:inline-block;background:var(--black);color:var(--yellow);font-weight:700;letter-spacing:3px;
-    text-transform:uppercase;font-size:.75rem;padding:6px 14px;margin-bottom:16px}
-  .sec-title{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:16px}
-  .sec-intro{max-width:620px;color:var(--grey);font-size:1.05rem;font-weight:500}
-  .center{text-align:center}
-  .center .sec-intro{margin:0 auto}
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:calc(var(--header-h) + 40px);padding-bottom:60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(70vw 60vh at 82% 20%,rgba(214,178,94,.14),transparent 55%),
+             radial-gradient(50vw 50vh at 10% 90%,rgba(166,124,46,.1),transparent 55%)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;width:100%}
+.chip{display:inline-flex;align-items:center;gap:10px;background:rgba(214,178,94,.08);border:1px solid var(--line);
+  padding:8px 16px;border-radius:var(--pill);font-size:.76rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:28px}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px rgba(37,211,102,.18);animation:pulse-dot 2.4s infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 0 0 6px rgba(37,211,102,0)}}
+.hero h1{font-size:clamp(2.9rem,7.4vw,5.6rem);font-weight:900;letter-spacing:-.5px}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 em{font-style:italic;font-weight:700}
+.hero .lead{font-size:clamp(1.05rem,1.8vw,1.22rem);color:var(--muted);max-width:480px;margin:26px 0 34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-trust{display:flex;gap:26px;margin-top:40px;flex-wrap:wrap}
+.hero-trust .t{display:flex;flex-direction:column;gap:2px}
+.hero-trust .t b{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-weight:800;line-height:1}
+.hero-trust .t span{font-size:.78rem;color:var(--muted);letter-spacing:.5px}
+.hero-trust .t .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
 
-  /* about / features */
-  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
-  .feat{background:#fff;border:var(--line);box-shadow:var(--pop);padding:28px 24px;position:relative}
-  .feat .num{position:absolute;top:-18px;right:16px;background:var(--yellow);border:var(--line);
-    font-family:'Archivo Black';padding:4px 12px;font-size:1rem}
-  .feat .ico{width:56px;height:56px;border:var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .feat .ico svg{width:60%;height:60%}
-  .feat h3{font-size:1.05rem;margin-bottom:8px}
-  .feat p{color:var(--grey);font-size:.94rem;font-weight:500}
-  .about-quote{margin-top:50px;background:var(--yellow);border:var(--line);box-shadow:var(--pop);
-    padding:26px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between}
-  .about-quote p{font-size:1.65rem;line-height:1.2}
-  .about-quote .btn{flex:none}
+/* Hero visual */
+.hero-visual{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:520px;margin-inline:auto;width:100%}
+.hv-ring{position:absolute;inset:6%;border-radius:50%;border:1px solid var(--line)}
+.hv-ring.r2{inset:16%;border-color:rgba(214,178,94,.28)}
+.hv-ring.r3{inset:26%;border-style:dashed;border-color:rgba(214,178,94,.2);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hv-disc{position:relative;width:66%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 34% 26%,#20201a,#0d0d0f 70%);border:1px solid var(--line);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.7),0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(214,178,94,.12)}
+.hv-disc .ic{width:52%;height:52%;color:var(--gold);filter:drop-shadow(0 8px 20px rgba(214,178,94,.35))}
+.hv-glow{position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(214,178,94,.35),transparent 70%);filter:blur(24px);z-index:-1}
+.float-card{position:absolute;background:rgba(18,18,22,.92);
+  border:1px solid var(--line);border-radius:14px;padding:12px 15px;display:flex;align-items:center;gap:11px;box-shadow:var(--shadow-sm);animation:floaty 5s ease-in-out infinite}
+.float-card .fc-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(214,178,94,.12);color:var(--gold);flex:none}
+.float-card .fc-ic .ic{width:20px;height:20px}
+.float-card b{display:block;font-family:'Playfair Display',serif;font-size:1rem;color:var(--ink);line-height:1.1}
+.float-card span{font-size:.72rem;color:var(--muted)}
+.fc-1{top:4%;right:-2%;animation-delay:0s}
+.fc-2{bottom:12%;left:-6%;animation-delay:-1.6s}
+.fc-3{bottom:-2%;right:8%;animation-delay:-3.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--faint);font-size:.68rem;letter-spacing:2px;text-transform:uppercase}
+.scroll-cue .mouse{width:22px;height:34px;border:1.5px solid var(--line);border-radius:12px;position:relative}
+.scroll-cue .mouse::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:var(--gold);border-radius:2px;animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
 
-  /* menu board */
-  .board{background:#fff;border:4px solid var(--black);box-shadow:12px 12px 0 var(--black);margin-top:50px;padding:40px}
-  .board-head{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:var(--line);padding-bottom:18px;margin-bottom:30px;flex-wrap:wrap}
-  .board-head h3{font-size:1.6rem}
-  .board-head .tag{background:var(--red);color:#fff;border:var(--line);padding:6px 14px;font-weight:700;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;box-shadow:var(--pop-sm)}
-  .cats{display:grid;grid-template-columns:1fr 1fr;gap:34px 44px}
-  .cat{break-inside:avoid}
-  .cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .cat-head .cico{width:44px;height:44px;border:var(--line);background:var(--yellow);display:flex;align-items:center;justify-content:center;flex:none}
-  .cat-head .cico svg{width:62%;height:62%}
-  .cat-head h4{font-family:'Archivo Black';font-size:1.05rem;text-transform:uppercase;flex:1}
-  .cat-head .range{font-weight:700;color:var(--red);white-space:nowrap;font-size:1rem}
-  .cat-head .badge{font-size:.62rem;font-weight:700;letter-spacing:1px;padding:3px 8px;border:2px solid var(--black);text-transform:uppercase}
-  .cat-head .badge.hal{background:var(--green);color:#fff}
-  .cat-head .badge.veg{background:#d9efd0}
-  .row{display:flex;align-items:baseline;gap:10px;padding:7px 0;font-weight:500}
-  .row .dots{flex:1;border-bottom:3px dotted rgba(22,18,16,.28);transform:translateY(-4px)}
-  .row .p{font-weight:700;color:var(--red);white-space:nowrap}
-  .items{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-  .items span{background:var(--paper);border:2px solid var(--black);padding:5px 12px;font-weight:600;font-size:.88rem}
-  .board-foot{margin-top:34px;padding-top:20px;border-top:var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--grey);font-weight:500;font-size:.92rem}
-  .board-foot a{font-weight:700;color:var(--black);background:var(--yellow);border:2px solid var(--black);padding:4px 10px}
+/* ============ HIGHLIGHTS ============ */
+.highlights{background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.hl{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r);padding:30px 26px;transition:.4s var(--ease);position:relative;overflow:hidden}
+.hl::after{content:"";position:absolute;inset:0;border-radius:var(--r);border:1px solid transparent;background:var(--gold-grad) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
+.hl:hover{transform:translateY(-6px);background:var(--surface-2)}
+.hl:hover::after{opacity:.5}
+.hl .hl-ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(214,178,94,.1);color:var(--gold);margin-bottom:20px}
+.hl .hl-ic .ic{width:28px;height:28px}
+.hl h3{font-size:1.16rem;margin-bottom:9px}
+.hl p{font-size:.92rem;color:var(--muted)}
 
-  /* order band */
-  .order{background:var(--red);border-top:4px solid var(--black);border-bottom:4px solid var(--black);text-align:center;color:#fff;
-    background-image:radial-gradient(rgba(0,0,0,.14) 1.5px,transparent 1.5px);background-size:22px 22px}
-  .order h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;text-shadow:4px 4px 0 var(--black)}
-  .order p{max-width:520px;margin:16px auto 30px;font-size:1.12rem;font-weight:500}
-  .order-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+/* ============ PRODUCT CARDS ============ */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.p-card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+.p-card:hover{transform:translateY(-7px);border-color:var(--line);box-shadow:var(--shadow)}
+.p-media{position:relative;aspect-ratio:16/11;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 20%,#27271f 0%,#16160f 46%,#0d0d0f 100%);border-bottom:1px solid var(--line-2)}
+.p-media::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(58% 54% at 50% 42%,rgba(214,178,94,.20),transparent 62%),
+  radial-gradient(150% 90% at 50% 122%,rgba(166,124,46,.16),transparent 60%)}
+.p-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.045) 50%,transparent 60%)}
+.p-media .ic{width:40%;height:40%;color:var(--gold);opacity:.95;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55));position:relative;transition:transform .5s var(--ease)}
+.p-card:hover .p-media .ic{transform:scale(1.08) rotate(-3deg)}
+.p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
+.badge{font-size:.64rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:var(--pill);display:inline-flex;align-items:center;gap:4px;backdrop-filter:blur(4px)}
+.badge .ic{width:12px;height:12px;stroke-width:2}
+.badge-halal{background:rgba(214,178,94,.16);color:var(--gold-hi);border:1px solid rgba(214,178,94,.35)}
+.badge-veg{background:rgba(123,182,97,.16);color:#a7d68f;border:1px solid rgba(123,182,97,.35)}
+.badge-hot{background:rgba(224,85,47,.16);color:#f0a58c;border:1px solid rgba(224,85,47,.35)}
+.badge-pop{background:rgba(20,20,24,.7);color:var(--gold);border:1px solid var(--line)}
+.p-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.p-body h3{font-size:1.14rem;margin-bottom:7px;line-height:1.2}
+.p-body p{font-size:.86rem;color:var(--muted);flex:1;margin-bottom:18px}
+.p-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.price{font-family:'Playfair Display',serif;font-size:1.42rem;font-weight:800;color:var(--gold)}
+.add-btn{display:inline-flex;align-items:center;gap:7px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink);
+  padding:10px 16px;border-radius:var(--pill);font-weight:600;font-size:.85rem;transition:.25s}
+.add-btn .ic{width:17px;height:17px}
+.add-btn:hover{background:var(--gold-grad);color:#191308;border-color:transparent;transform:translateY(-2px)}
+.add-btn.added{background:var(--wa);color:#04231a;border-color:transparent}
 
-  /* gallery polaroids */
-  .polas{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:50px}
-  .pola{background:#fff;border:var(--line);box-shadow:var(--pop);padding:14px 14px 18px;width:230px;transition:transform .2s}
-  .pola:nth-child(odd){transform:rotate(-2.5deg)}
-  .pola:nth-child(even){transform:rotate(2deg)}
-  .pola:hover{transform:rotate(0) scale(1.04);z-index:2}
-  .pola .ph{aspect-ratio:1;border:var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-  .pola .ph svg{width:52%}
-  .pola .cap{font-family:'Caveat',cursive;font-size:1.35rem;text-align:center;line-height:1}
-  .p1 .ph{background:linear-gradient(140deg,#ffd98a,var(--yellow))}
-  .p2 .ph{background:linear-gradient(140deg,#f4a08e,#e8664f)}
-  .p3 .ph{background:linear-gradient(140deg,#cfe8c4,#9cc98b)}
-  .p4 .ph{background:linear-gradient(140deg,#efe3d1,#dcc9a8)}
-  .gal-note{text-align:center;margin-top:36px;color:var(--grey);font-weight:500;font-size:.9rem}
+/* ============ MENU (filter) ============ */
+.menu-filter{position:sticky;top:var(--header-h);z-index:40;padding:16px 0;margin-bottom:14px;
+  background:linear-gradient(to bottom,var(--bg) 60%,transparent);backdrop-filter:blur(6px)}
+.filter-scroll{display:flex;gap:10px;overflow-x:auto;padding:4px 2px;scrollbar-width:none;-ms-overflow-style:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.filter-pill{flex:none;display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line-2);
+  color:var(--text);padding:10px 18px;border-radius:var(--pill);font-weight:600;font-size:.9rem;transition:.25s;white-space:nowrap}
+.filter-pill .ic{width:17px;height:17px;color:var(--gold)}
+.filter-pill:hover{border-color:var(--line)}
+.filter-pill.active{background:var(--gold-grad);color:#191308;border-color:transparent;box-shadow:var(--shadow-gold)}
+.filter-pill.active .ic{color:#191308}
+.cat-heading{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin:24px 0 4px}
+.cat-heading:first-child{margin-top:0}
+.cat-heading h3{font-size:1.5rem;display:flex;align-items:center;gap:12px}
+.cat-heading h3 .ic{width:24px;height:24px;color:var(--gold)}
+.cat-heading .cline{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.p-card.hide{display:none}
 
-  /* visit */
-  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;margin-top:50px}
-  .card{background:#fff;border:var(--line);box-shadow:var(--pop);padding:34px}
-  .info-row{display:flex;gap:16px;padding:16px 0;border-bottom:3px dotted rgba(22,18,16,.2)}
-  .info-row:last-child{border-bottom:none}
-  .info-row .ico{flex:none;width:46px;height:46px;border:var(--line);background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-  .info-row h4{font-family:'Archivo Black';font-size:.95rem;text-transform:uppercase;margin-bottom:4px}
-  .info-row p{color:var(--grey);font-size:.94rem;font-weight:500}
-  .info-row p a{font-weight:700;color:var(--red);text-decoration:underline}
-  .hours-table{width:100%;margin-top:4px}
-  .hours-table td{padding:4px 0;color:var(--grey);font-size:.94rem;font-weight:500}
-  .hours-table td:last-child{text-align:right;color:var(--black);font-weight:700}
-  .hours-table tr.today td{color:var(--red)}
-  .small-note{color:var(--grey);font-size:.78rem;margin-top:8px;font-weight:500}
-  .map-card{padding:0;overflow:hidden;min-height:420px;display:flex}
-  .map-card iframe{width:100%;min-height:420px;border:0;flex:1}
+/* ============ ORDER BAND ============ */
+.order-band{background:linear-gradient(135deg,#131310,#0d0d0f);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.order-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50vw 50vh at 80% 50%,rgba(214,178,94,.12),transparent 60%)}
+.order-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.order-steps{display:grid;gap:18px;margin-top:6px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .n{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(214,178,94,.1);border:1px solid var(--line);color:var(--gold);font-family:'Playfair Display',serif;font-weight:800}
+.step h3{font-size:1.05rem;margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:700;color:var(--ink)}
+.step p{font-size:.9rem;color:var(--muted)}
+.order-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;box-shadow:var(--shadow)}
+.order-card .oc-ic{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:rgba(37,211,102,.12);color:var(--wa);margin-bottom:18px}
+.order-card .oc-ic .ic{width:32px;height:32px}
+.order-card h3{font-size:1.5rem;margin-bottom:10px}
+.order-card p{color:var(--muted);font-size:.94rem;margin-bottom:22px}
 
-  /* footer */
-  footer{background:var(--black);color:#cfc6ba;padding:56px 0 28px;border-top:4px solid var(--black)}
-  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
-  footer .brand b{color:#fff}
-  footer .brand span{color:var(--yellow)}
-  footer .brand .logo{box-shadow:4px 4px 0 rgba(255,201,60,.4)}
-  footer h5{color:#fff;font-family:'Archivo Black';margin-bottom:16px;font-size:.9rem;text-transform:uppercase;letter-spacing:1px}
-  footer ul{list-style:none;display:grid;gap:9px}
-  footer a{color:#cfc6ba;transition:.15s;font-size:.94rem;font-weight:500}
-  footer a:hover{color:var(--yellow)}
-  .foot-bottom{border-top:2px solid rgba(255,255,255,.15);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.85rem}
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-visual{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--line);
+  background:radial-gradient(circle at 50% 30%,#23231d,#0d0d0f 75%);display:grid;place-items:center;box-shadow:var(--shadow)}
+.about-visual .ic{width:34%;height:34%;color:var(--gold);opacity:.9}
+.about-visual .av-tag{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(12,12,14,.7);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ink)}
+.about-body p{color:var(--text);margin-bottom:18px}
+.about-body p.lead-p{font-size:1.14rem;color:var(--ink)}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.about-stats .s{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r);padding:20px 16px;text-align:center}
+.about-stats .s b{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-weight:800}
+.about-stats .s span{font-size:.78rem;color:var(--muted);letter-spacing:.4px}
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(26px);transition:.6s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-  .pola.reveal.in:nth-child(odd){transform:rotate(-2.5deg)}
-  .pola.reveal.in:nth-child(even){transform:rotate(2deg)}
-  .pola.reveal.in:hover{transform:rotate(0) scale(1.04)}
+/* ============ REVIEWS ============ */
+.reviews{background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.rev-top{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:44px}
+.rev-top .big{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800;color:var(--gold)}
+.rev-top .stars{color:var(--gold);font-size:1.15rem;letter-spacing:2px}
+.rev-top small{color:var(--muted);font-size:.85rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:28px;position:relative}
+.rev .q{position:absolute;top:20px;right:24px;color:rgba(214,178,94,.18)}
+.rev .q .ic{width:40px;height:40px}
+.rev .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem;margin-bottom:14px}
+.rev p{color:var(--text);font-size:.95rem;margin-bottom:20px;position:relative;z-index:1}
+.rev .who{display:flex;align-items:center;gap:12px}
+.rev .av{width:42px;height:42px;border-radius:50%;background:var(--gold-grad);color:#191308;display:grid;place-items:center;font-weight:800;font-family:'Playfair Display',serif;flex:none}
+.rev .who b{font-size:.94rem;color:var(--ink);display:block;font-family:'Inter',sans-serif}
+.rev .who span{font-size:.78rem;color:var(--muted)}
 
-  @media(max-width:900px){
-    .hero-grid,.visit-grid{grid-template-columns:1fr}
-    .feats{grid-template-columns:1fr}
-    .cats{grid-template-columns:1fr}
-    .frame{max-width:440px;margin:0 auto}
-    .foot-grid{grid-template-columns:1fr 1fr}
-    .menu{position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);background:var(--paper);border-left:var(--line);
-      flex-direction:column;justify-content:center;gap:18px;transform:translateX(105%);transition:.3s;z-index:60}
-    .menu.open{transform:none}
-    .menu a{font-size:1.05rem}
-    .burger{display:flex;z-index:61}
-    .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
-    .burger.open span:nth-child(2){opacity:0}
-    .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
-  }
-  @media(max-width:560px){
-    .board{padding:24px 18px}
-    .foot-grid{grid-template-columns:1fr}
-    section{padding:64px 0}
-    .hero{padding-top:130px}
-    .about-quote p{font-size:1.35rem}
-  }
+/* ============ CONTACT / VISIT ============ */
+.visit-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:stretch}
+.info-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;display:flex;flex-direction:column;gap:6px}
+.info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-2)}
+.info-row:last-child{border-bottom:none;padding-bottom:0}
+.info-row .ir-ic{width:46px;height:46px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(214,178,94,.1);color:var(--gold)}
+.info-row .ir-ic .ic{width:22px;height:22px}
+.info-row h3{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600}
+.info-row p{color:var(--text);font-size:.96rem;line-height:1.55}
+.info-row a.link{color:var(--gold);font-weight:600}
+.info-row a.link:hover{text-decoration:underline}
+.contact-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.hours-table{width:100%;border-collapse:collapse;margin-top:4px}
+.hours-table td{padding:6px 0;font-size:.92rem;color:var(--text)}
+.hours-table td:last-child{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.hours-table tr.today td{color:var(--gold);font-weight:700}
+.hours-table tr.today td:last-child{color:var(--gold)}
+.open-now{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;padding:5px 12px;border-radius:var(--pill);margin-top:14px}
+.open-now.yes{background:rgba(37,211,102,.14);color:#5be08c;border:1px solid rgba(37,211,102,.3)}
+.open-now.no{background:rgba(224,85,47,.14);color:#f0a58c;border:1px solid rgba(224,85,47,.3)}
+.open-now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.map-card{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;min-height:460px;display:flex;background:var(--surface)}
+.map-card iframe{width:100%;min-height:460px;border:0;flex:1;filter:grayscale(.3) contrast(1.05)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--bg-1);border-top:1px solid var(--line);padding:64px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:44px}
+.foot-brand p{color:var(--muted);font-size:.92rem;margin:16px 0 20px;max-width:300px}
+.foot-social{display:flex;gap:10px}
+.foot-social a{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);transition:.25s}
+.foot-social a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-3px)}
+.foot-social a .ic{width:20px;height:20px}
+footer h5{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
+footer ul{list-style:none;display:grid;gap:11px}
+footer ul a,footer ul li{color:var(--muted);font-size:.92rem;transition:.2s}
+footer ul a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid var(--line-2);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--faint);font-size:.82rem}
+.foot-bottom a{color:var(--faint)}
+.foot-bottom a:hover{color:var(--gold)}
+
+/* ============ CART DRAWER ============ */
+.cart-fab{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;align-items:center;gap:10px;background:var(--gold-grad);
+  color:#191308;border:none;padding:15px 20px;border-radius:var(--pill);font-weight:700;box-shadow:var(--shadow-gold);
+  transform:translateY(120px);transition:transform .45s var(--ease),box-shadow .3s}
+.cart-fab.show{transform:translateY(0)}
+.cart-fab:hover{box-shadow:0 24px 54px -14px rgba(214,178,94,.6)}
+.cart-fab .ic{width:22px;height:22px}
+.cart-fab .fab-count{background:#191308;color:var(--gold-hi);border-radius:var(--pill);min-width:22px;height:22px;padding:0 6px;display:grid;place-items:center;font-size:.78rem;font-weight:800}
+.overlay{position:fixed;inset:0;background:rgba(5,5,7,.68);backdrop-filter:blur(3px);z-index:110;opacity:0;visibility:hidden;transition:.35s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:var(--bg-1);border-left:1px solid var(--line);z-index:120;
+  display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:-30px 0 80px -30px rgba(0,0,0,.9)}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line-2)}
+.drawer-head h3{font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.drawer-head h3 .ic{width:22px;height:22px;color:var(--gold)}
+.drawer-close{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink);display:grid;place-items:center;transition:.25s}
+.drawer-close:hover{border-color:var(--gold);color:var(--gold)}
+.drawer-body{flex:1;overflow-y:auto;padding:18px 24px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.cart-empty .ce-ic{width:70px;height:70px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;margin:0 auto 18px;color:var(--faint)}
+.cart-empty .ce-ic .ic{width:32px;height:32px}
+.cart-empty h4{color:var(--ink);font-size:1.2rem;margin-bottom:8px}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-2)}
+.cart-item .ci-media{width:60px;height:60px;flex:none;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#22221d,#101012);border:1px solid var(--line-2);color:var(--gold)}
+.cart-item .ci-media .ic{width:28px;height:28px}
+.cart-item .ci-main{flex:1;min-width:0}
+.cart-item .ci-main h4{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:2px}
+.cart-item .ci-main .ci-price{font-size:.82rem;color:var(--muted)}
+.cart-item .ci-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px}
+.cart-item .ci-line{font-family:'Playfair Display',serif;font-weight:800;color:var(--gold);white-space:nowrap}
+.stepper{display:flex;align-items:center;gap:2px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--pill);padding:3px}
+.stepper button{width:34px;height:34px;border:none;background:transparent;color:var(--ink);border-radius:50%;display:grid;place-items:center;transition:.2s}
+.stepper button:hover{background:var(--gold);color:#191308}
+.stepper button .ic{width:15px;height:15px;stroke-width:2}
+.stepper span{min-width:24px;text-align:center;font-weight:700;font-size:.9rem;color:var(--ink)}
+.ci-remove{background:none;border:none;color:var(--faint);font-size:.76rem;display:inline-flex;align-items:center;gap:4px;transition:.2s}
+.ci-remove:hover{color:var(--hot)}
+.ci-remove .ic{width:14px;height:14px}
+.drawer-foot{border-top:1px solid var(--line-2);padding:20px 24px 24px;background:var(--bg-2)}
+.fulfil{display:flex;gap:8px;margin-bottom:16px;background:var(--surface-2);padding:5px;border-radius:var(--pill);border:1px solid var(--line-2)}
+.fulfil label{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;border-radius:var(--pill);font-size:.88rem;font-weight:600;color:var(--muted);cursor:pointer;transition:.25s}
+.fulfil label .ic{width:17px;height:17px}
+.fulfil input{position:absolute;opacity:0;pointer-events:none}
+.fulfil input:checked + label{background:var(--gold-grad);color:var(--on-gold)}
+.fulfil input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.cart-fields{display:grid;gap:10px;margin-bottom:16px}
+.cart-fields input,.cart-fields textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;
+  padding:12px 14px;color:var(--ink);resize:none;transition:border-color .2s}
+.cart-fields input::placeholder,.cart-fields textarea::placeholder{color:var(--faint)}
+.cart-fields input:focus,.cart-fields textarea:focus{outline:none;border-color:var(--gold)}
+.cart-fields .field-addr{transition:.3s;overflow:hidden}
+.cart-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cart-summary .sum-label{color:var(--muted);font-size:.9rem}
+.cart-summary .sum-total{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--gold)}
+.cart-note{font-size:.74rem;color:var(--faint);text-align:center;margin-top:12px;line-height:1.5}
+.clear-cart{display:block;margin:14px auto 0;background:none;border:none;color:var(--faint);font-size:.8rem;text-decoration:underline;transition:.2s}
+.clear-cart:hover{color:var(--hot)}
+
+/* ============ TOAST ============ */
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none}
+.toast{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--gold);color:var(--ink);
+  padding:12px 20px;border-radius:var(--pill);font-weight:600;font-size:.9rem;box-shadow:var(--shadow);
+  transform:translateY(20px);opacity:0;transition:.35s var(--ease)}
+.toast.show{transform:none;opacity:1}
+.toast .ic{width:18px;height:18px;color:var(--wa)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:20px;text-align:center}
+  .hero .lead{margin-inline:auto}
+  .hero-cta,.hero-trust,.eyebrow{justify-content:center}
+  .hero-visual{max-width:400px;order:-1;margin-bottom:10px}
+  .hero{min-height:auto;padding-top:calc(var(--header-h) + 48px)}
+  .scroll-cue{display:none}
+  .hl-grid{grid-template-columns:1fr 1fr}
+  .order-inner{grid-template-columns:1fr;gap:36px}
+  .about-grid{grid-template-columns:1fr;gap:36px}
+  .about-visual{max-width:420px;margin-inline:auto;aspect-ratio:3/2}
+  .rev-grid{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:720px){
+  .navlinks{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--bg-1);border-left:1px solid var(--line);
+    flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateX(105%);visibility:hidden;
+    transition:transform .4s var(--ease),visibility .4s;z-index:105}
+  .navlinks.open{transform:none;visibility:visible}
+  .navlinks a{font-size:1.1rem;padding:12px}
+  .navlinks a::after{display:none}
+  .burger{display:flex}
+  .cart-btn span.cart-label{display:none}
+  .nav-actions .navcta{display:none}
+  .add-btn{padding:12px 18px}
+  .filter-pill{padding:12px 18px}
+  .drawer-close{width:44px;height:44px}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  .hl-grid{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-trust{gap:20px}
+  .grid-cards{grid-template-columns:1fr;gap:18px}
+  .rev-top{flex-direction:column;gap:6px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+<a href="#menu" class="skip">Zur Speisekarte springen</a>
 
-<svg width="0" height="0" style="position:absolute">
-  <symbol id="doner" viewBox="0 0 120 200">
-    <path fill="#8a8378" d="M58 6h4v150h-4z"/>
-    <path fill="#c8912a" d="M60 14c-20 0-34 12-34 30v70c0 20 14 34 34 34s34-14 34-34V44c0-18-14-30-34-30z"/>
-    <path fill="#e0663a" d="M60 20c-17 0-29 10-29 26v66c0 18 12 30 29 30s29-12 29-30V46c0-16-12-26-29-26z" opacity=".85"/>
-    <path fill="#ffd98a" d="M60 26c-15 0-25 8-25 22 4-3 12-6 25-6s21 3 25 6c0-14-10-22-25-22z"/>
-    <path fill="#a8442a" d="M35 74c8 4 16 6 25 6s17-2 25-6v14c-8 4-16 6-25 6s-17-2-25-6z" opacity=".8"/>
-    <path fill="#ffd98a" d="M35 108c8 4 16 6 25 6s17-2 25-6v10c-8 4-16 6-25 6s-17-2-25-6z" opacity=".75"/>
-    <circle cx="60" cy="182" r="7" fill="#6b6152"/>
-  </symbol>
-  <symbol id="wrap" viewBox="0 0 100 100">
-    <path fill="#e0aa5f" d="M30 12l44 8c6 1 10 7 9 13L74 84c-1 6-7 10-13 9L20 82c-6-1-9-7-8-12z"/>
-    <path fill="#ffd98a" d="M34 22l36 7-8 44-32-6z"/>
-    <circle cx="46" cy="40" r="4" fill="#2f7d3b"/><circle cx="56" cy="52" r="4" fill="#e03a2b"/><circle cx="44" cy="56" r="3" fill="#c8912a"/>
-  </symbol>
-  <symbol id="pizza" viewBox="0 0 100 100">
-    <path fill="#e0aa5f" d="M50 8L92 82c2 4-1 9-6 8L50 84 14 90c-5 1-8-4-6-8z"/>
-    <path fill="#ffd98a" d="M50 20l30 52-30 5-30-5z"/>
-    <circle cx="44" cy="52" r="5" fill="#e03a2b"/><circle cx="60" cy="60" r="5" fill="#e03a2b"/><circle cx="50" cy="72" r="4" fill="#2f7d3b"/>
-  </symbol>
-  <symbol id="burger" viewBox="0 0 100 100">
-    <path fill="#e0aa5f" d="M14 34c0-14 16-24 36-24s36 10 36 24z"/>
-    <rect x="12" y="40" width="76" height="10" rx="5" fill="#2f7d3b"/>
-    <rect x="12" y="52" width="76" height="12" rx="4" fill="#a8442a"/>
-    <path fill="#e0aa5f" d="M14 66h72c0 12-16 20-36 20S14 78 14 66z"/>
-  </symbol>
-  <symbol id="falafel" viewBox="0 0 100 100">
-    <path fill="#e0aa5f" d="M22 46c0-8 6-14 14-14h28c8 0 14 6 14 14 0 22-14 40-28 40S22 68 22 46z"/>
-    <ellipse cx="50" cy="34" rx="28" ry="8" fill="#2f7d3b"/>
-    <circle cx="42" cy="52" r="6" fill="#8a5a2a"/><circle cx="58" cy="56" r="6" fill="#8a5a2a"/><circle cx="50" cy="66" r="5" fill="#8a5a2a"/>
-  </symbol>
-  <symbol id="drink" viewBox="0 0 100 100">
-    <path fill="#e03a2b" d="M28 24h44l-5 60c-.4 5-4 8-9 8H42c-5 0-8-3-9-8z"/>
-    <rect x="24" y="16" width="52" height="10" rx="5" fill="#ffd98a"/>
-    <rect x="56" y="2" width="5" height="22" rx="2" fill="#ffd98a"/>
-  </symbol>
-  <symbol id="fries" viewBox="0 0 100 100">
-    <path fill="#ffd98a" d="M34 12l6 30h-10zM46 8l4 34h-8zM58 10l-2 32h8zM68 16l-8 26h12z"/>
-    <path fill="#e03a2b" d="M24 40h52l-8 46c-1 5-5 8-10 8H42c-5 0-9-3-10-8z"/>
-    <path fill="#fff" d="M40 56h20v8H40z" opacity=".85"/>
-  </symbol>
+<!-- ============ ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ic-doner" viewBox="0 0 24 24"><path d="M12 2.4v19.2"/><path d="M8.6 13.6c-.5-3 0-6.1 1-9.3C10 3 11 2.4 12 2.4s2 .6 2.4 1.9c1 3.2 1.5 6.3 1 9.3-.4 2.5-1.9 3.9-3.4 3.9s-3-1.4-3.4-3.9Z"/><path d="M9 8.2c1.8-.9 4.2-.9 6 0M8.7 12c1.9-.9 4.7-.9 6.6 0"/></symbol>
+  <symbol id="ic-durum" viewBox="0 0 24 24"><path d="M6.4 5.7 16 3.6a2 2 0 0 1 2.4 1.5l1.9 8.6a2 2 0 0 1-1.5 2.4L9.1 18.4"/><path d="M6.4 5.7A2 2 0 0 0 4.9 8.1l1.9 8.6a2 2 0 0 0 2.3 1.7"/><path d="m10 7-1 9M13.6 6.3l-1 9.4"/></symbol>
+  <symbol id="ic-lahmacun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9 9.3c.9.7 2 .7 3 0M13.4 12.8c.9.6 2 .5 2.8-.3M8.6 14.4c.7.5 1.6.4 2.2-.3"/></symbol>
+  <symbol id="ic-pizza" viewBox="0 0 24 24"><path d="M12 3.2 20 18a1 1 0 0 1-1.3 1.4L12 17.3l-6.7 2.1A1 1 0 0 1 4 18Z"/><path d="M6.2 8.5c3.6-1.8 8-1.8 11.6 0"/><circle cx="10.6" cy="11.2" r="1"/><circle cx="13.6" cy="13" r="1"/><circle cx="10.8" cy="15" r="1"/></symbol>
+  <symbol id="ic-burger" viewBox="0 0 24 24"><path d="M4 9.6C4 6.9 7.6 5 12 5s8 1.9 8 4.6"/><path d="M4 9.6h16"/><path d="M4.4 13.2c1.2.9 2.5.9 3.7 0s2.5-.9 3.7 0 2.5.9 3.7 0 2.5-.9 3.8 0"/><path d="M5 16.6h14c0 2-3.1 3.6-7 3.6s-7-1.6-7-3.6Z"/></symbol>
+  <symbol id="ic-side" viewBox="0 0 24 24"><path d="M7 8.8 6.1 5.4M10 8.4V4.5M13.9 8.4l1-3.7M17 8.8l1-3.4"/><path d="M5.4 8.8h13.2l-1.2 8.7a2 2 0 0 1-2 1.7H8.6a2 2 0 0 1-2-1.7Z"/><path d="M8.5 12.5h7"/></symbol>
+  <symbol id="ic-drink" viewBox="0 0 24 24"><path d="M6.4 7.5h11.2l-1.1 11a2 2 0 0 1-2 1.8H9.5a2 2 0 0 1-2-1.8Z"/><path d="M5.5 7.5h13"/><path d="M9.2 4h5.6l-.5 3.5H9.7Z"/><path d="M8.8 12h6.4"/></symbol>
+  <symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M4 20C4 11 11 4 20 4c0 9-7 16-16 16Z"/><path d="M5 19C8 13.5 12.6 9.4 18 6.8"/></symbol>
+  <symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-1.4.6-2.7 1.5-3.7C9.2 10 10 11 10.7 11 10 8 11 5 12 3Z"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 3.4 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8Z"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3 2"/></symbol>
+  <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M6.5 4h3l1.5 4-2 1.4a11 11 0 0 0 5 5l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z"/></symbol>
+  <symbol id="ic-wa" viewBox="0 0 24 24"><path class="ic-fill" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-1.99 1.4-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.62-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.21-1.6-1.21-3.06 0-1.45.76-2.17 1.03-2.46.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.07.92 2.22.08.15.12.32.02.52-.1.2-.15.32-.3.5l-.44.51c-.15.15-.3.31-.13.61.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.71-.18 1.4Z"/></symbol>
+  <symbol id="ic-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12.2H7Z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="ic-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24"><path d="M4 7h16M9.5 7V5h5v2M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="ic-quote" viewBox="0 0 24 24"><path class="ic-fill" d="M9.4 6C6.6 7.2 5 9.7 5 12.8V18h5.4v-5.6H7.6c.2-2 1.2-3.4 3-4.2Zm9 0c-2.8 1.2-4.4 3.7-4.4 6.8V18h5.4v-5.6H16.6c.2-2 1.2-3.4 3-4.2Z"/></symbol>
+  <symbol id="ic-spark" viewBox="0 0 24 24"><path d="M12 3c.6 3.9 2.1 5.4 6 6-3.9.6-5.4 2.1-6 6-.6-3.9-2.1-5.4-6-6 3.9-.6 5.4-2.1 6-6Z"/></symbol>
+  <symbol id="ic-truck" viewBox="0 0 24 24"><path d="M3 6.5h11v9H3zM14 9.5h3.5L21 12.5v3h-7z"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="17" cy="17.5" r="1.7"/></symbol>
+  <symbol id="ic-medal" viewBox="0 0 24 24"><circle cx="12" cy="14.5" r="5"/><path d="M9 10 7 3.5M15 10l2-6.5M10.5 3.5h3M11 14l1-1v3"/></symbol>
+  <symbol id="ic-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r="1" class="ic-fill"/></symbol>
+  <symbol id="ic-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5M14 8.5V7a2 2 0 0 1 2-2h.5M14 8.5v12M14 12h3"/></symbol>
+  <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="ic-award" viewBox="0 0 24 24"><path d="M12 3l2.3 2 3-.4L18 7.6l2 2.3-1.6 2.6.5 3-3 .6L14 18.5 12 17l-2 1.5-1.9-2.4-3-.6.5-3L4 9.9l1.7-2.3-.3-3 3 .4Z"/><path d="m9.5 11.5 1.8 1.8 3.2-3.6"/></symbol>
 </svg>
 
+<!-- ============ HEADER ============ -->
 <header id="header">
   <div class="wrap nav">
-    <a href="#top" class="brand">
-      <span class="logo"><svg><use href="#doner"/></svg></span>
-      <span><b>Edeler Döner</b><span>Schwetzingen</span></span>
+    <a href="#top" class="brand" aria-label="Edeler Döner Startseite">
+      <span class="logo"><svg class="ic"><use href="#ic-doner"/></svg></span>
+      <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
     </a>
-    <nav class="menu" id="navmenu">
-      <a href="#about">Über uns</a>
+    <nav class="navlinks" id="navlinks" aria-label="Hauptnavigation">
+      <a href="#top">Start</a>
       <a href="#menu">Speisekarte</a>
-      <a href="#gallery">Galerie</a>
-      <a href="#visit">Finden</a>
-      <a href="#order" class="btn">Bestellen</a>
+      <a href="#about">Über uns</a>
+      <a href="#reviews">Bewertungen</a>
+      <a href="#visit">Kontakt</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtnTop" aria-label="Warenkorb öffnen">
+        <svg class="ic"><use href="#ic-bag"/></svg>
+        <span class="cart-label">Warenkorb</span>
+        <span class="cart-count" id="cartCountTop">0</span>
+      </button>
+      <a href="#menu" class="btn btn-gold navcta">Jetzt bestellen</a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="navlinks" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
+<div class="nav-scrim" id="navScrim"></div>
 
-<!-- HERO -->
-<section class="hero" id="top" style="padding-bottom:80px">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
   <div class="wrap hero-grid">
-    <div>
-      <span class="chip"><span class="dot"></span> 100% Halal · Kurfürstenstraße 18</span>
-      <h1><span>Saftig.</span><span class="l2">Würzig.</span><span class="l3">Edel.</span></h1>
-      <p class="lead">Kalb- &amp; Hähnchendöner, Pizza aus dem Ofen, Burger und knusprige Falafel – ehrlich gemacht, fair bepreist, mitten in Schwetzingen.</p>
+    <div class="hero-copy">
+      <span class="chip"><span class="dot"></span> 100% Halal · Frisch · Handgemacht</span>
+      <h1>
+        <span class="line">Döner, wie er</span>
+        <span class="line"><em class="gold-text">sein soll.</em></span>
+      </h1>
+      <p class="lead">Saftiges Kalb- &amp; Hähnchenfleisch vom Spieß, Steinofen-Pizza, Dürüm, Lahmacun und Burger – ehrliches Handwerk mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
       <div class="hero-cta">
-        <a href="#order" class="btn">Jetzt bestellen</a>
-        <a href="#menu" class="btn alt">Zur Speisekarte</a>
+        <a href="#menu" class="btn btn-gold btn-lg">Jetzt bestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
+        <a href="#menu" class="btn btn-ghost btn-lg">Speisekarte ansehen</a>
       </div>
-      <div class="hero-tags">
-        <span class="halal">✓ 100% Halal</span>
-        <span>Döner ab €6</span>
-        <span>Auch vegetarisch</span>
+      <div class="hero-trust">
+        <div class="t"><span class="stars">★★★★★</span><span>4,8 · über 600 Gäste</span></div>
+        <div class="t"><b>100%</b><span>Halal-zertifiziert</span></div>
+        <div class="t"><b>ab 6€</b><span>Döner Klassik</span></div>
       </div>
     </div>
+    <div class="hero-visual" aria-hidden="true">
+      <span class="hv-ring"></span><span class="hv-ring r2"></span><span class="hv-ring r3"></span>
+      <span class="hv-glow"></span>
+      <!-- Echtes Foto? Ersetze die .hv-disc einfach durch <img src="..." alt="Döner"> -->
+      <div class="hv-disc"><svg class="ic"><use href="#ic-doner"/></svg></div>
+      <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-star"/></svg></span><div><b>4,8 / 5</b><span>Google Bewertungen</span></div></div>
+      <div class="float-card fc-2"><span class="fc-ic"><svg class="ic"><use href="#ic-medal"/></svg></span><div><b>100% Halal</b><span>Kalb &amp; Hähnchen</span></div></div>
+      <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-truck"/></svg></span><div><b>Abholung</b><span>&amp; Lieferung</span></div></div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Entdecken</div>
+</section>
+
+<!-- ============ HIGHLIGHTS ============ -->
+<section class="highlights" id="highlights">
+  <div class="wrap">
+    <h2 class="visually-hidden">Warum Edeler Döner</h2>
+    <div class="hl-grid">
+      <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p></div>
+      <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Täglich frische Beilagen, hausgemachte Soßen und Teig aus dem Steinofen.</p></div>
+      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-truck"/></svg></div><h3>Abholung &amp; Lieferung</h3><p>Vor Ort abholen in der Kurfürstenstraße 18 oder bequem liefern lassen.</p></div>
+      <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Karte zusammenstellen, ein Klick – deine Bestellung landet direkt bei uns.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POPULAR ============ -->
+<section id="popular">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow center">Beliebt bei unseren Gästen</span>
+      <h2 class="sec-title">Die Lieblinge <span class="gold-text">vom Spieß</span></h2>
+      <p class="sec-intro">Diese Gerichte bestellen unsere Stammgäste immer wieder. Direkt in den Warenkorb legen.</p>
+    </div>
+    <div class="grid-cards" id="popularGrid"></div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow center">Speisekarte</span>
+      <h2 class="sec-title">Unsere <span class="gold-text">digitale Karte</span></h2>
+      <p class="sec-intro">Alles frisch zubereitet und fair bepreist. Wähle deine Kategorie, leg Produkte in den Warenkorb und bestelle in Sekunden.</p>
+    </div>
+  </div>
+  <div class="menu-filter">
+    <div class="wrap">
+      <div class="filter-scroll" id="filterScroll" role="group" aria-label="Speisekarte nach Kategorie filtern"></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="grid-cards" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- ============ ORDER BAND ============ -->
+<section class="order-band" id="order">
+  <div class="wrap order-inner">
     <div>
-      <div class="frame">
-        <svg class="doner-big" viewBox="0 0 120 200"><use href="#doner"/></svg>
-        <div class="sticker halal"><b>HALAL</b><small>KALB &amp; HÄHNCHEN</small></div>
-        <div class="sticker price">AB €6,00<small>DÖNER KLASSIK</small></div>
+      <span class="eyebrow">So einfach geht's</span>
+      <h2 class="sec-title">In 3 Schritten <span class="gold-text">bestellt</span></h2>
+      <p class="sec-intro" style="margin-bottom:8px">Kein Konto, keine App, keine Wartezeit in der Leitung. Du stellst dir deine Bestellung zusammen und schickst sie mit einem Tipp per WhatsApp direkt an unsere Theke.</p>
+      <div class="order-steps">
+        <div class="step reveal"><span class="n">1</span><div><h3>Gerichte auswählen</h3><p>Stöbere durch die Karte und leg deine Favoriten in den Warenkorb.</p></div></div>
+        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen, Name &amp; ggf. Lieferadresse eintragen.</p></div></div>
+        <div class="step reveal" data-d="2"><span class="n">3</span><div><h3>Per WhatsApp senden</h3><p>Ein Klick öffnet WhatsApp mit deiner fertigen Bestellung – wir bestätigen dir alles direkt.</p></div></div>
       </div>
+    </div>
+    <div class="order-card reveal">
+      <div class="oc-ic"><svg class="ic"><use href="#ic-wa"/></svg></div>
+      <h3>Direkt bestellen</h3>
+      <p>Öffne deinen Warenkorb und sende die Bestellung in wenigen Sekunden per WhatsApp an Edeler Döner.</p>
+      <button class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
+      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Bezahlung bei Abholung oder Lieferung. Keine Online-Zahlung nötig.</p>
     </div>
   </div>
 </section>
 
-<div class="checker"></div>
-
-<!-- ABOUT -->
+<!-- ============ ABOUT ============ -->
 <section id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal" aria-hidden="true">
+      <svg class="ic"><use href="#ic-doner"/></svg>
+      <div class="av-tag">„Guter Döner ist kein Fast Food – es ist Handwerk."</div>
+    </div>
+    <div class="about-body">
+      <span class="eyebrow">Über uns</span>
+      <h2 class="sec-title">Ehrliches Essen, <span class="gold-text">keine Kompromisse</span></h2>
+      <p class="lead-p">Edeler Döner steht in Schwetzingen für echtes Handwerk statt Fließband. Bei uns kommt zusammen, was zusammengehört: bestes Halal-Fleisch, frische Zutaten und die Zeit, die guter Geschmack braucht.</p>
+      <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, unsere Soßen machen wir selbst, und unser Pizzateig kommt frisch aus dem Steinofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
+      <p>Ob schnell zum Mitnehmen, gemütlich vor Ort oder bequem geliefert – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
+      <div class="about-stats">
+        <div class="s reveal"><b>100%</b><span>Halal-Qualität</span></div>
+        <div class="s reveal" data-d="1"><b>30+</b><span>Gerichte auf der Karte</span></div>
+        <div class="s reveal" data-d="2"><b>4,8★</b><span>Gäste-Bewertung</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" id="reviews">
   <div class="wrap">
-    <span class="eyebrow">Über uns</span>
-    <h2 class="sec-title">Ehrliches Essen, <span class="mark">keine Kompromisse</span></h2>
-    <p class="sec-intro">Bei Edeler Döner bekommst du echtes Handwerk statt Fließband: 100% Halal-Fleisch vom Kalb und Hähnchen, frische Beilagen und eine Karte, auf der jeder etwas findet.</p>
-    <div class="feats">
-      <div class="feat reveal">
-        <span class="num">01</span>
-        <div class="ico"><svg><use href="#doner"/></svg></div>
-        <h3>100% Halal</h3>
-        <p>Kalb- und Hähnchendöner, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p>
-      </div>
-      <div class="feat reveal">
-        <span class="num">02</span>
-        <div class="ico"><svg><use href="#pizza"/></svg></div>
-        <h3>Riesige Auswahl</h3>
-        <p>Döner, Yufka, Lahmacun, Pizza, Burger, Falafel – plus vegetarische Optionen.</p>
-      </div>
-      <div class="feat reveal">
-        <span class="num">03</span>
-        <div class="ico"><svg><use href="#wrap"/></svg></div>
-        <h3>Vor Ort &amp; Lieferung</h3>
-        <p>Abholen in der Kurfürstenstraße 18 oder bequem nach Hause bestellen.</p>
-      </div>
+    <div class="sec-head center">
+      <span class="eyebrow center">Bewertungen</span>
+      <h2 class="sec-title">Das sagen <span class="gold-text">unsere Gäste</span></h2>
     </div>
-    <div class="about-quote reveal">
-      <p class="script">„Guter Döner ist kein Fast Food – es ist Handwerk."</p>
-      <a href="#menu" class="btn plain">Was gibt's? →</a>
+    <div class="rev-top">
+      <span class="big">4,8</span>
+      <div style="text-align:left"><div class="stars">★★★★★</div><small>Basierend auf über 600 Bewertungen</small></div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Bester Döner in Schwetzingen! Das Fleisch ist immer saftig, die Soßen hausgemacht und das Team super freundlich. Bestelle fast jede Woche.</p><div class="who"><span class="av">M</span><div><b>Murat K.</b><span>Stammgast</span></div></div></div>
+      <div class="rev reveal" data-d="1"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Endlich ein Laden, bei dem 100% Halal wirklich ernst genommen wird. Die Pizza aus dem Steinofen ist ein Traum und die Portionen sind riesig.</p><div class="who"><span class="av">S</span><div><b>Sarah L.</b><span>Google Bewertung</span></div></div></div>
+      <div class="rev reveal" data-d="2"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Bestellung per WhatsApp ging blitzschnell und alles war heiß und pünktlich da. Preis-Leistung top. Klare Empfehlung für ganz Schwetzingen!</p><div class="who"><span class="av">D</span><div><b>Daniel R.</b><span>Lieferung</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- MENU BOARD -->
-<section id="menu" style="padding-top:40px">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Speisekarte</span>
-      <h2 class="sec-title">Das gibt's <span class="mark">bei uns</span></h2>
-      <p class="sec-intro">Ein Auszug aus der Karte – frisch zubereitet und fair bepreist.</p>
-    </div>
-    <div class="board reveal">
-      <div class="board-head">
-        <h3>— Unsere Karte —</h3>
-        <span class="tag">100% Halal</span>
-      </div>
-      <div class="cats">
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#doner"/></svg></span>
-            <h4>Döner &amp; Co. <span class="badge hal">Halal</span></h4>
-            <span class="range">€6,00–12,00</span>
-          </div>
-          <div class="items">
-            <span>Döner</span><span>Dönerteller</span><span>Dönerbox</span><span>Yufka</span><span>Lahmacun</span>
-          </div>
-        </div>
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#pizza"/></svg></span>
-            <h4>Pizza</h4>
-          </div>
-          <div class="row"><span>Margherita</span><span class="dots"></span><span class="p">€9,00</span></div>
-          <div class="row"><span>Salami / Sucuk / Funghi / Thunfisch</span><span class="dots"></span><span class="p">€10,50</span></div>
-          <div class="row"><span>Sommer Pizza</span><span class="dots"></span><span class="p">€11,00</span></div>
-          <div class="row"><span>Hähnchen</span><span class="dots"></span><span class="p">€11,50</span></div>
-          <div class="row"><span>Kalb</span><span class="dots"></span><span class="p">€12,50</span></div>
-        </div>
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#burger"/></svg></span>
-            <h4>Burger &amp; Snacks</h4>
-            <span class="range">€5,00–6,50</span>
-          </div>
-          <div class="items">
-            <span>Hamburger</span><span>Cheeseburger</span><span>Chicken Burger</span><span>Chicken Nuggets</span>
-          </div>
-        </div>
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#falafel"/></svg></span>
-            <h4>Vegetarisch <span class="badge veg">Vegi</span></h4>
-            <span class="range">€6,00–9,00</span>
-          </div>
-          <div class="items">
-            <span>Falafel</span><span>Falafel-Teller</span><span>Vegi-Yufka</span>
-          </div>
-        </div>
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#fries"/></svg></span>
-            <h4>Beilagen</h4>
-            <span class="range">€2,00–5,00</span>
-          </div>
-          <div class="items">
-            <span>Pommes</span><span>Reis</span><span>Salat</span>
-          </div>
-        </div>
-        <div class="cat">
-          <div class="cat-head">
-            <span class="cico"><svg><use href="#drink"/></svg></span>
-            <h4>Getränke</h4>
-            <span class="range">ab €2,00</span>
-          </div>
-          <div class="items">
-            <span>Softdrinks</span><span>Wasser</span><span>Ayran</span>
-          </div>
-        </div>
-      </div>
-      <div class="board-foot">
-        <span>Komplette Karte mit allen Gerichten &amp; Preisen online:</span>
-        <span><a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener">edeler-doner-schwetzingen.de</a> &nbsp; <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener">Lieferando</a></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER BAND -->
-<section class="order" id="order">
-  <div class="wrap">
-    <h2>Hunger? Läuft bei uns.</h2>
-    <p>Komm vorbei in der Kurfürstenstraße 18, nimm's mit – oder lass liefern.</p>
-    <div class="order-btns">
-      <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener" class="btn alt">Bei Lieferando bestellen</a>
-      <a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener" class="btn plain">Online-Speisekarte</a>
-      <a href="#visit" class="btn plain">Abholen kommen</a>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="wrap center">
-    <span class="eyebrow">Galerie</span>
-    <h2 class="sec-title">Guten <span class="mark">Appetit</span></h2>
-    <p class="sec-intro">Ein Vorgeschmack auf das, was dich bei Edeler Döner erwartet.</p>
-    <div class="polas">
-      <div class="pola p1 reveal"><div class="ph"><svg><use href="#doner"/></svg></div><span class="cap">Frisch vom Spieß</span></div>
-      <div class="pola p2 reveal"><div class="ph"><svg><use href="#pizza"/></svg></div><span class="cap">Pizza aus dem Ofen</span></div>
-      <div class="pola p3 reveal"><div class="ph"><svg><use href="#falafel"/></svg></div><span class="cap">Knusprige Falafel</span></div>
-      <div class="pola p4 reveal"><div class="ph"><svg><use href="#wrap"/></svg></div><span class="cap">Yufka &amp; Lahmacun</span></div>
-    </div>
-    <p class="gal-note">📸 Bildplatzhalter – hier kommen echte Fotos der Gerichte rein.</p>
-  </div>
-</section>
-
-<div class="checker"></div>
-
-<!-- VISIT -->
+<!-- ============ VISIT / CONTACT ============ -->
 <section id="visit">
   <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Besuch uns</span>
-      <h2 class="sec-title">Finden &amp; <span class="mark">Öffnungszeiten</span></h2>
+    <div class="sec-head center">
+      <span class="eyebrow center">Kontakt &amp; Standort</span>
+      <h2 class="sec-title">Besuch uns in <span class="gold-text">Schwetzingen</span></h2>
+      <p class="sec-intro">Mitten in der Kurfürstenstraße – zum Abholen, Vorbeischauen oder Anrufen.</p>
     </div>
     <div class="visit-grid">
-      <div class="card reveal">
+      <div class="info-card reveal">
         <div class="info-row">
-          <div class="ico">📍</div>
-          <div><h4>Adresse</h4><p>Kurfürstenstraße 18<br>68723 Schwetzingen<br><a href="https://www.google.com/maps/search/?api=1&query=Edeler+Döner+Kurfürstenstraße+18+Schwetzingen" target="_blank" rel="noopener">Route planen →</a></p></div>
+          <div class="ir-ic"><svg class="ic"><use href="#ic-pin"/></svg></div>
+          <div><h3>Adresse</h3><p>Kurfürstenstraße 18<br>68723 Schwetzingen<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Route planen →</a></p></div>
         </div>
         <div class="info-row">
-          <div class="ico">🕒</div>
-          <div style="flex:1"><h4>Öffnungszeiten</h4>
+          <div class="ir-ic"><svg class="ic"><use href="#ic-clock"/></svg></div>
+          <div style="flex:1"><h3>Öffnungszeiten</h3>
             <table class="hours-table" id="hours">
-              <tr data-day="1"><td>Montag</td><td>11:00 – 22:00 *</td></tr>
-              <tr data-day="2"><td>Dienstag</td><td>11:00 – 22:00 *</td></tr>
-              <tr data-day="3"><td>Mittwoch</td><td>11:00 – 22:00 *</td></tr>
-              <tr data-day="4"><td>Donnerstag</td><td>11:00 – 22:00 *</td></tr>
-              <tr data-day="5"><td>Freitag</td><td>11:00 – 23:00 *</td></tr>
-              <tr data-day="6"><td>Samstag</td><td>ab 11:00</td></tr>
-              <tr data-day="0"><td>Sonntag</td><td>12:00 – 22:00 *</td></tr>
+              <tr data-day="1"><td>Montag</td><td>11:00 – 22:00</td></tr>
+              <tr data-day="2"><td>Dienstag</td><td>11:00 – 22:00</td></tr>
+              <tr data-day="3"><td>Mittwoch</td><td>11:00 – 22:00</td></tr>
+              <tr data-day="4"><td>Donnerstag</td><td>11:00 – 22:00</td></tr>
+              <tr data-day="5"><td>Freitag</td><td>11:00 – 23:00</td></tr>
+              <tr data-day="6"><td>Samstag</td><td>11:00 – 23:00</td></tr>
+              <tr data-day="0"><td>Sonntag</td><td>12:00 – 22:00</td></tr>
             </table>
-            <p class="small-note">* Zeiten als Platzhalter – bitte bestätigen.</p>
+            <div class="open-now" id="openNow"><span class="dot"></span><span id="openNowText">–</span></div>
           </div>
         </div>
         <div class="info-row">
-          <div class="ico">🛵</div>
-          <div><h4>Lieferung &amp; Abholung</h4><p>Bestellbar über <a href="https://www.lieferando.de/speisekarte/edeler-doner-schwetzingen" target="_blank" rel="noopener">Lieferando</a> &amp; die <a href="https://www.edeler-doner-schwetzingen.de/" target="_blank" rel="noopener">eigene Online-Karte</a></p></div>
+          <div class="ir-ic"><svg class="ic"><use href="#ic-phone"/></svg></div>
+          <div><h3>Telefon &amp; WhatsApp</h3><p><a class="link" id="telLink" href="#">Nummer wird geladen …</a><br><span style="color:var(--muted);font-size:.86rem">Bestellungen am liebsten per WhatsApp</span></p></div>
         </div>
-        <div class="info-row">
-          <div class="ico">📞</div>
-          <div><h4>Kontakt</h4><p>Telefonnummer hier einfügen · E-Mail auf Anfrage</p></div>
+        <div class="contact-btns">
+          <a class="btn btn-wa" id="waContactBtn" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-wa"/></svg> WhatsApp schreiben</a>
+          <a class="btn btn-ghost" id="callBtn" href="#"><svg class="ic"><use href="#ic-phone"/></svg> Anrufen</a>
         </div>
       </div>
-      <div class="card map-card reveal">
-        <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen"></iframe>
+      <div class="map-card reveal">
+        <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen auf Google Maps"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div>
-        <a href="#top" class="brand" style="margin-bottom:16px;display:inline-flex">
-          <span class="logo"><svg><use href="#doner"/></svg></span>
-          <span><b>Edeler Döner</b><span>Schwetzingen</span></span>
+      <div class="foot-brand">
+        <a href="#top" class="brand" aria-label="Edeler Döner Startseite">
+          <span class="logo"><svg class="ic"><use href="#ic-doner"/></svg></span>
+          <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
         </a>
-        <p style="max-width:320px;margin-top:12px">100% Halal Döner, frische Pizza, Burger &amp; Falafel – ehrliches Essen mitten in Schwetzingen.</p>
+        <p>100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza &amp; Burger – ehrliches Essen mitten in Schwetzingen.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><svg class="ic"><use href="#ic-instagram"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg class="ic"><use href="#ic-facebook"/></svg></a>
+          <a href="#" id="footWa" aria-label="WhatsApp"><svg class="ic"><use href="#ic-wa"/></svg></a>
+        </div>
       </div>
       <div>
         <h5>Entdecken</h5>
         <ul>
-          <li><a href="#about">Über uns</a></li>
           <li><a href="#menu">Speisekarte</a></li>
-          <li><a href="#gallery">Galerie</a></li>
-          <li><a href="#visit">Öffnungszeiten</a></li>
+          <li><a href="#popular">Beliebte Gerichte</a></li>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#reviews">Bewertungen</a></li>
+          <li><a href="#visit">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Öffnungszeiten</h5>
+        <ul>
+          <li>Mo – Do&nbsp;&nbsp;11 – 22 Uhr</li>
+          <li>Fr – Sa&nbsp;&nbsp;11 – 23 Uhr</li>
+          <li>Sonntag&nbsp;&nbsp;12 – 22 Uhr</li>
         </ul>
       </div>
       <div>
         <h5>Kontakt</h5>
         <ul>
-          <li>Kurfürstenstraße 18</li>
+          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-pin"/></svg> Kurfürstenstraße 18</li>
           <li>68723 Schwetzingen</li>
-          <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+Döner+Kurfürstenstraße+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Edeler Döner Schwetzingen</span>
-      <span>Mit 🌶️ gemacht · Website-Entwurf</span>
+      <span>© <span id="year">2026</span> Edeler Döner Schwetzingen · Alle Rechte vorbehalten</span>
+      <span><a href="#top">Nach oben ↑</a> · Impressum · Datenschutz</span>
     </div>
   </div>
 </footer>
 
+<!-- ============ CART FAB ============ -->
+<button class="cart-fab" id="cartFab" aria-label="Warenkorb öffnen">
+  <svg class="ic"><use href="#ic-bag"/></svg>
+  <span>Warenkorb</span>
+  <span class="fab-count" id="fabCount">0</span>
+</button>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" inert aria-label="Warenkorb" role="dialog" aria-modal="true">
+  <div class="drawer-head">
+    <h3><svg class="ic"><use href="#ic-bag"/></svg> Dein Warenkorb</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Warenkorb schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot" hidden>
+    <div class="fulfil" role="radiogroup" aria-label="Abholung oder Lieferung">
+      <input type="radio" name="fulfil" id="fAbholung" value="Abholung" checked>
+      <label for="fAbholung"><svg class="ic"><use href="#ic-bag"/></svg> Abholung</label>
+      <input type="radio" name="fulfil" id="fLieferung" value="Lieferung">
+      <label for="fLieferung"><svg class="ic"><use href="#ic-truck"/></svg> Lieferung</label>
+    </div>
+    <div class="cart-fields">
+      <input type="text" id="custName" placeholder="Dein Name" aria-label="Dein Name" autocomplete="name">
+      <div class="field-addr" id="addrWrap" hidden><input type="text" id="custAddr" placeholder="Lieferadresse (Straße, Nr., PLZ)" aria-label="Lieferadresse" autocomplete="street-address"></div>
+      <textarea id="custNote" rows="2" placeholder="Anmerkung (optional) – z. B. ohne Zwiebeln" aria-label="Anmerkung zur Bestellung"></textarea>
+    </div>
+    <div class="cart-summary">
+      <span class="sum-label">Zwischensumme</span>
+      <span class="sum-total" id="cartTotal">0,00 €</span>
+    </div>
+    <button class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
+    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet. Bezahlung bei Abholung/Lieferung – keine Online-Zahlung.</p>
+    <button class="clear-cart" id="clearCart">Warenkorb leeren</button>
+  </div>
+</aside>
+
+<!-- ============ TOAST ============ -->
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<!-- ============ JSON-LD (SEO) ============ -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Edeler Döner Schwetzingen",
+  "url":"https://www.edeler-doner-schwetzingen.de/",
+  "image":"https://www.edeler-doner-schwetzingen.de/og-cover.jpg",
+  "hasMap":"https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen",
+  "servesCuisine":["Döner","Türkisch","Pizza","Burger","Halal"],
+  "priceRange":"€",
+  "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"600"},
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"11:00","closes":"22:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"11:00","closes":"23:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"12:00","closes":"22:00"}
+  ]
+}
+</script>
+
 <script>
-  const burger=document.getElementById('burger'),navmenu=document.getElementById('navmenu');
-  burger.addEventListener('click',()=>{burger.classList.toggle('open');navmenu.classList.toggle('open')});
-  navmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navmenu.classList.remove('open')}));
-  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const today=new Date().getDay();
-  const row=document.querySelector('#hours tr[data-day="'+today+'"]');
-  if(row){row.classList.add('today');row.querySelector('td:last-child').innerHTML+=' · Heute';}
+/* ============================================================
+   EDELER DÖNER · APP LOGIC
+   ============================================================ */
+
+/* --------------------------------------------------------------
+   ⚙️  KONFIGURATION – hier bei Bedarf anpassen
+   -------------------------------------------------------------- */
+// 👉 WICHTIG: Echte WhatsApp-Nummer hier eintragen!
+//    Format: Ländervorwahl OHNE "+" und OHNE führende 0.
+//    Beispiel Deutschland: aus 0176 12345678  →  "4917612345678"
+const WHATSAPP_NUMBER = "4917612345678";   // ← PLATZHALTER – bitte ersetzen
+const RESTAURANT_NAME = "Edeler Döner";
+/* -------------------------------------------------------------- */
+
+/* Kategorien (Reihenfolge = Anzeige-Reihenfolge) */
+const CATEGORIES = [
+  {key:"doener",    label:"Döner",     icon:"ic-doner",    emoji:"🌯"},
+  {key:"duerum",    label:"Dürüm",     icon:"ic-durum",    emoji:"🌯"},
+  {key:"lahmacun",  label:"Lahmacun",  icon:"ic-lahmacun", emoji:"🫓"},
+  {key:"pizza",     label:"Pizza",     icon:"ic-pizza",    emoji:"🍕"},
+  {key:"burger",    label:"Burger",    icon:"ic-burger",   emoji:"🍔"},
+  {key:"beilagen",  label:"Beilagen",  icon:"ic-side",     emoji:"🍟"},
+  {key:"getraenke", label:"Getränke",  icon:"ic-drink",    emoji:"🥤"}
+];
+
+/* Produkte. tags: "halal" | "vegetarisch" | "scharf". popular: in Beliebt-Sektion */
+const MENU = [
+  // DÖNER
+  {id:"doener-klassik", cat:"doener", name:"Döner Klassik", desc:"Kalb- oder Hähnchenfleisch vom Spieß, frischer Salat und hausgemachte Soßen im ofenwarmen Fladenbrot.", price:6.00, tags:["halal"]},
+  {id:"doener-spezial", cat:"doener", name:"Döner Spezial", desc:"Extra Fleisch, mit Käse überbacken und geröstetem Fladenbrot – für den großen Hunger.", price:7.50, tags:["halal"], popular:true},
+  {id:"doener-teller",  cat:"doener", name:"Dönerteller",   desc:"Großzügige Fleischportion mit Pommes oder Reis, Salat und Soße nach Wahl.", price:11.00, tags:["halal"], popular:true},
+  {id:"doener-box",     cat:"doener", name:"Dönerbox",      desc:"Zartes Dönerfleisch auf knusprigen Pommes mit Soße – handlich für unterwegs.", price:8.00, tags:["halal"]},
+  // DÜRÜM
+  {id:"duerum-klassik", cat:"duerum", name:"Dürüm Klassik", desc:"Dünnes Yufka-Fladenbrot, gefüllt mit Fleisch, Salat und Soße, fest gerollt.", price:7.00, tags:["halal"]},
+  {id:"duerum-spezial", cat:"duerum", name:"Dürüm Spezial", desc:"Mit extra Käse und mehr Fleisch – die herzhafte XL-Rolle.", price:8.50, tags:["halal"], popular:true},
+  {id:"duerum-vegi",    cat:"duerum", name:"Vegi-Dürüm",    desc:"Hausgemachte Falafel, Hummus, frischer Salat und Soße – rein pflanzlich.", price:6.50, tags:["vegetarisch"]},
+  // LAHMACUN
+  {id:"lahmacun-pur",    cat:"lahmacun", name:"Lahmacun pur",       desc:"Dünn ausgerollter Teig, würzig belegt und knusprig gebacken.", price:4.00, tags:["halal"]},
+  {id:"lahmacun-doener", cat:"lahmacun", name:"Lahmacun mit Döner", desc:"Gefüllt mit Dönerfleisch, Salat und Soße, frisch zusammengerollt.", price:7.50, tags:["halal"], popular:true},
+  {id:"lahmacun-kaese",  cat:"lahmacun", name:"Lahmacun mit Käse",  desc:"Mit Salat, Käse und Soße verfeinert und gerollt.", price:6.00, tags:["vegetarisch"]},
+  // PIZZA
+  {id:"pizza-margherita", cat:"pizza", name:"Pizza Margherita", desc:"Tomatensauce, Mozzarella und Basilikum – der Klassiker aus dem Steinofen.", price:9.00, tags:["vegetarisch"]},
+  {id:"pizza-salami",     cat:"pizza", name:"Pizza Salami",     desc:"Tomatensauce, Käse und würzige Rindersalami.", price:10.50, tags:["halal"]},
+  {id:"pizza-sucuk",      cat:"pizza", name:"Pizza Sucuk",      desc:"Mit pikanter türkischer Knoblauchwurst und Käse.", price:10.50, tags:["halal","scharf"], popular:true},
+  {id:"pizza-funghi",     cat:"pizza", name:"Pizza Funghi",     desc:"Mit frischen Champignons und reichlich Mozzarella.", price:10.50, tags:["vegetarisch"]},
+  {id:"pizza-thunfisch",  cat:"pizza", name:"Pizza Thunfisch",  desc:"Thunfisch, Zwiebeln und Käse auf knusprigem Boden.", price:10.50, tags:[]},
+  {id:"pizza-haehnchen",  cat:"pizza", name:"Pizza Hähnchen",   desc:"Zartes Hähnchenfleisch, Paprika und Käse.", price:11.50, tags:["halal"]},
+  {id:"pizza-kalb",       cat:"pizza", name:"Pizza Kalb",       desc:"Reichlich zartes Kalbfleisch, Käse und frisches Gemüse.", price:12.50, tags:["halal"], popular:true},
+  // BURGER
+  {id:"hamburger",     cat:"burger", name:"Hamburger",           desc:"Saftiges Rindfleisch-Patty, Salat, Zwiebeln und Hausdressing im Bun.", price:5.00, tags:["halal"]},
+  {id:"cheeseburger",  cat:"burger", name:"Cheeseburger",        desc:"Wie der Klassiker – mit geschmolzenem Cheddar.", price:5.50, tags:["halal"]},
+  {id:"chickenburger", cat:"burger", name:"Chicken Burger",      desc:"Knuspriges Hähnchenfilet, Salat und Soße.", price:6.00, tags:["halal"]},
+  {id:"edeler-burger", cat:"burger", name:"Edeler Burger",       desc:"Doppel-Patty, doppelt Käse, Röstzwiebeln und Spezialsoße.", price:8.50, tags:["halal"], popular:true},
+  {id:"nuggets",       cat:"burger", name:"Chicken Nuggets (6 St.)", desc:"Knusprige Nuggets mit Dip nach Wahl.", price:5.00, tags:["halal"]},
+  // BEILAGEN
+  {id:"pommes",         cat:"beilagen", name:"Pommes",          desc:"Goldgelb frittiert, mit Ketchup oder Mayo.", price:3.00, tags:["vegetarisch"]},
+  {id:"pommes-spezial", cat:"beilagen", name:"Pommes Spezial",  desc:"Mit Käse überbacken und Soße verfeinert.", price:4.50, tags:["vegetarisch"]},
+  {id:"reis",           cat:"beilagen", name:"Reis",            desc:"Lockerer, aromatischer Beilagenreis.", price:3.00, tags:["vegetarisch"]},
+  {id:"salat",          cat:"beilagen", name:"Gemischter Salat", desc:"Frische Blattsalate, Tomate, Gurke und Hausdressing.", price:4.00, tags:["vegetarisch"]},
+  {id:"falafel",        cat:"beilagen", name:"Falafel (5 St.)",  desc:"Hausgemacht, außen knusprig, innen fluffig.", price:4.50, tags:["vegetarisch"]},
+  // GETRÄNKE
+  {id:"softdrink", cat:"getraenke", name:"Softdrink 0,33 l", desc:"Cola, Fanta oder Sprite – eisgekühlt.", price:2.00, tags:[]},
+  {id:"ayran",     cat:"getraenke", name:"Ayran 0,25 l",     desc:"Erfrischendes türkisches Joghurtgetränk.", price:1.50, tags:["vegetarisch"]},
+  {id:"wasser",    cat:"getraenke", name:"Wasser 0,5 l",     desc:"Still oder mit Kohlensäure.", price:2.00, tags:[]},
+  {id:"uludag",    cat:"getraenke", name:"Uludağ 0,33 l",    desc:"Türkische Limonade, spritzig-süß.", price:2.50, tags:[]},
+  {id:"redbull",   cat:"getraenke", name:"Red Bull 0,25 l",  desc:"Energy für zwischendurch.", price:3.00, tags:[]}
+];
+
+/* --------- Helpers --------- */
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const byId = id => MENU.find(m => m.id === id);
+const catOf = key => CATEGORIES.find(c => c.key === key);
+const fmt = n => n.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+const TAG_META = {
+  halal:       {cls:"badge-halal", icon:"ic-medal", label:"Halal"},
+  vegetarisch: {cls:"badge-veg",   icon:"ic-leaf",  label:"Vegetarisch"},
+  scharf:      {cls:"badge-hot",   icon:"ic-flame", label:"Scharf"}
+};
+
+/* --------- Cart state (localStorage) --------- */
+const STORE_KEY = "edelerdoener_cart_v1";
+let cart = loadCart();
+function loadCart(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(STORE_KEY));
+    if(!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
+    // Prune stale/invalid entries (e.g. a menu item removed in a later deploy)
+    const clean = {};
+    for(const [id,q] of Object.entries(raw)){
+      const n = Math.floor(Number(q));
+      if(byId(id) && Number.isFinite(n) && n > 0) clean[id] = n;
+    }
+    return clean;
+  }catch(e){ return {}; }
+}
+function saveCart(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(cart)); }catch(e){} }
+function cartCount(){ return Object.entries(cart).reduce((n,[id,q])=> n + (byId(id) ? q : 0), 0); }
+function cartTotal(){ return Object.entries(cart).reduce((sum,[id,q])=>{ const p=byId(id); return sum + (p ? p.price*q : 0); },0); }
+
+/* --------- Render product card --------- */
+function badgesHtml(tags, popular){
+  let html = "";
+  if(popular) html += `<span class="badge badge-pop"><svg class="ic"><use href="#ic-star"/></svg>Beliebt</span>`;
+  (tags||[]).forEach(t=>{ const m=TAG_META[t]; if(m) html += `<span class="badge ${m.cls}"><svg class="ic"><use href="#${m.icon}"/></svg>${m.label}</span>`; });
+  return html;
+}
+function cardHtml(p){
+  const c = catOf(p.cat);
+  return `<article class="p-card reveal" data-cat="${p.cat}">
+    <div class="p-media">
+      <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
+      <svg class="ic"><use href="#${c.icon}"/></svg>
+    </div>
+    <div class="p-body">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="p-foot">
+        <span class="price">${fmt(p.price)}</span>
+        <button class="add-btn" data-add="${p.id}" aria-label="${p.name} in den Warenkorb"><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+/* --------- Build menu + popular + filters --------- */
+function renderMenu(){
+  $("#menuGrid").innerHTML = MENU.map(cardHtml).join("");
+  $("#popularGrid").innerHTML = MENU.filter(p=>p.popular).slice(0,4).map(cardHtml).join("");
+  // filters
+  const pills = [`<button class="filter-pill active" data-filter="all" aria-pressed="true"><svg class="ic"><use href="#ic-spark"/></svg> Alle</button>`]
+    .concat(CATEGORIES.map(c=>`<button class="filter-pill" data-filter="${c.key}" aria-pressed="false"><svg class="ic"><use href="#${c.icon}"/></svg> ${c.label}</button>`));
+  $("#filterScroll").innerHTML = pills.join("");
+  decorateIcons();
+  observeReveals();
+}
+
+/* Hide decorative inline icons from assistive tech (idempotent) */
+function decorateIcons(root){
+  (root||document).querySelectorAll("svg.ic:not([aria-hidden])").forEach(s=>{
+    s.setAttribute("aria-hidden","true"); s.setAttribute("focusable","false");
+  });
+}
+
+/* --------- Filter --------- */
+function applyFilter(key, btn){
+  $$("#filterScroll .filter-pill").forEach(b=>{ const on = b===btn; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
+  $$("#menuGrid .p-card").forEach(card=>{
+    const show = key==="all" || card.dataset.cat===key;
+    card.classList.toggle("hide", !show);
+  });
+}
+
+/* --------- Cart operations --------- */
+function addToCart(id){
+  if(!byId(id)) return;
+  cart[id] = (cart[id]||0) + 1;
+  saveCart(); updateCartUI();
+  toast(`${byId(id).name} hinzugefügt`);
+  pulseFab();
+}
+function setQty(id, qty){
+  if(qty<=0){ delete cart[id]; } else { cart[id]=qty; }
+  saveCart(); updateCartUI();
+}
+function clearCart(){ cart={}; saveCart(); updateCartUI(); }
+
+/* --------- Render cart --------- */
+function renderCart(){
+  const body = $("#drawerBody"), foot = $("#drawerFoot");
+  const ids = Object.keys(cart);
+  if(ids.length===0){
+    body.innerHTML = `<div class="cart-empty">
+      <div class="ce-ic"><svg class="ic"><use href="#ic-bag"/></svg></div>
+      <h4>Noch nichts drin</h4>
+      <p>Stöbere durch die Speisekarte und leg deine Favoriten in den Warenkorb.</p>
+    </div>`;
+    foot.hidden = true;
+    decorateIcons(body);
+    return;
+  }
+  foot.hidden = false;
+  body.innerHTML = ids.map(id=>{
+    const p = byId(id); if(!p) return "";           // guard against stale ids
+    const q = cart[id], c = catOf(p.cat);
+    return `<div class="cart-item">
+      <div class="ci-media"><svg class="ic"><use href="#${c.icon}"/></svg></div>
+      <div class="ci-main">
+        <h4>${p.name}</h4>
+        <div class="ci-price">${fmt(p.price)} / Stück</div>
+        <div class="stepper" style="margin-top:8px;width:max-content">
+          <button data-dec="${id}" aria-label="Weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
+          <span>${q}</span>
+          <button data-inc="${id}" aria-label="Mehr"><svg class="ic"><use href="#ic-plus"/></svg></button>
+        </div>
+      </div>
+      <div class="ci-right">
+        <span class="ci-line">${fmt(p.price*q)}</span>
+        <button class="ci-remove" data-rm="${id}"><svg class="ic"><use href="#ic-trash"/></svg> Entfernen</button>
+      </div>
+    </div>`;
+  }).join("");
+  $("#cartTotal").textContent = fmt(cartTotal());
+  decorateIcons(body);
+}
+
+/* --------- Update all cart-count UI --------- */
+function updateCartUI(){
+  const n = cartCount();
+  ["#cartCountTop","#fabCount"].forEach(sel=>{ const el=$(sel); if(el) el.textContent = n; });
+  $("#cartCountTop").classList.toggle("show", n>0);
+  $("#cartFab").classList.toggle("show", n>0);
+  renderCart();
+}
+
+/* --------- Drawer open/close --------- */
+let lastFocus = null;
+const BG_SEL = "header, section, footer, .cart-fab";   // made inert while the dialog is open
+function openDrawer(){
+  lastFocus = document.activeElement;
+  const d = $("#drawer");
+  document.querySelectorAll(BG_SEL).forEach(el=>el.setAttribute("inert",""));
+  d.removeAttribute("inert");
+  $("#overlay").classList.add("open");
+  d.classList.add("open");
+  d.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+  $("#drawerClose").focus();
+}
+function closeDrawer(){
+  const d = $("#drawer");
+  $("#overlay").classList.remove("open");
+  d.classList.remove("open");
+  d.setAttribute("aria-hidden","true");
+  d.setAttribute("inert","");
+  document.querySelectorAll(BG_SEL).forEach(el=>el.removeAttribute("inert"));
+  document.body.style.overflow = "";
+  if(lastFocus) lastFocus.focus();
+}
+
+/* --------- Build WhatsApp message --------- */
+function buildOrderMessage(){
+  const lines = Object.entries(cart).map(([id,q])=>{
+    const p = byId(id); if(!p) return null;         // guard against stale ids
+    const c = catOf(p.cat);
+    return `${c.emoji} ${q}x ${p.name} – ${fmt(p.price*q)}`;
+  }).filter(Boolean);
+  const fulfil = (document.querySelector('input[name="fulfil"]:checked')||{}).value || "Abholung";
+  const name = $("#custName").value.trim();
+  const addr = $("#custAddr").value.trim();
+  const note = $("#custNote").value.trim();
+
+  let msg = `Hallo ${RESTAURANT_NAME} 👋\n\n`;
+  msg += `Ich möchte folgende Bestellung aufgeben:\n\n`;
+  msg += lines.join("\n") + "\n\n";
+  msg += `Gesamt: ${fmt(cartTotal())}\n\n`;
+  msg += `Art: ${fulfil}\n`;
+  msg += `Name: ${name}\n`;
+  if(fulfil === "Lieferung") msg += `Adresse: ${addr}\n`;
+  if(note) msg += `Anmerkung: ${note}\n`;
+  return msg;
+}
+function sendWhatsAppOrder(){
+  if(cartCount()===0){ toast("Dein Warenkorb ist noch leer"); return; }
+  if(!$("#custName").value.trim()){ $("#custName").focus(); toast("Bitte gib deinen Namen an"); return; }
+  const fulfil = (document.querySelector('input[name="fulfil"]:checked')||{}).value;
+  if(fulfil==="Lieferung" && !$("#custAddr").value.trim()){
+    $("#custAddr").focus();
+    toast("Bitte Lieferadresse angeben");
+    return;
+  }
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderMessage())}`;
+  window.open(url, "_blank", "noopener");
+}
+
+/* --------- Toast --------- */
+let toastTimer;
+function toast(text){
+  const wrap = $("#toastWrap");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = `<svg class="ic"><use href="#ic-check"/></svg> ${text}`;
+  wrap.appendChild(el);
+  decorateIcons(el);
+  requestAnimationFrame(()=> el.classList.add("show"));
+  setTimeout(()=>{ el.classList.remove("show"); setTimeout(()=>el.remove(),400); }, 2200);
+}
+function pulseFab(){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const fab = $("#cartFab");
+  fab.animate([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:340,easing:'ease-out'});
+}
+
+/* --------- Contact number wiring --------- */
+function wireContact(){
+  const digits = WHATSAPP_NUMBER.replace(/\D/g,"");
+  const disp = "+" + digits.replace(/^(\d{2})(\d{3,4})(\d+)/, "$1 $2 $3");
+  const waMsg = encodeURIComponent(`Hallo ${RESTAURANT_NAME} 👋, ich habe eine Frage:`);
+  const waUrl = `https://wa.me/${digits}?text=${waMsg}`;
+  const tel = "tel:+" + digits;
+  const set = (sel,href,txt)=>{ const el=$(sel); if(el){ el.href=href; if(txt) el.textContent=txt; } };
+  set("#telLink", tel, disp);
+  set("#callBtn", tel);
+  set("#waContactBtn", waUrl);
+  set("#footWa", waUrl);
+}
+
+/* --------- Opening hours: highlight + open now --------- */
+const HOURS = {1:[11,22],2:[11,22],3:[11,22],4:[11,22],5:[11,23],6:[11,23],0:[12,22]};
+function updateHours(){
+  const now = new Date();
+  const day = now.getDay();
+  const row = document.querySelector(`#hours tr[data-day="${day}"]`);
+  if(row) row.classList.add("today");
+  const [o,c] = HOURS[day];
+  const h = now.getHours() + now.getMinutes()/60;
+  const isOpen = h>=o && h<c;
+  const box = $("#openNow"), txt = $("#openNowText");
+  if(box && txt){
+    box.classList.add(isOpen ? "yes" : "no");
+    txt.textContent = isOpen ? `Jetzt geöffnet · bis ${c}:00 Uhr` : "Gerade geschlossen";
+  }
+}
+
+/* --------- Reveal on scroll --------- */
+let revealObserver;
+function observeReveals(){
+  if(!revealObserver){
+    revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); revealObserver.unobserve(e.target); } });
+    },{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+  }
+  $$(".reveal:not(.in)").forEach(el=>revealObserver.observe(el));
+}
+
+/* --------- Scroll spy + header state --------- */
+function initScroll(){
+  const header = $("#header");
+  const sections = ["top","menu","about","reviews","visit"].map(id=>document.getElementById(id)).filter(Boolean);
+  const links = $$(".navlinks a");
+  const onScroll = ()=>{
+    header.classList.toggle("scrolled", window.scrollY>20);
+    let cur = "top";
+    const y = window.scrollY + 120;
+    sections.forEach(s=>{ if(s.offsetTop<=y) cur = s.id; });
+    links.forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+cur));
+  };
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+}
+
+/* --------- Mobile nav --------- */
+function initNav(){
+  const burger = $("#burger"), nav = $("#navlinks"), scrim = $("#navScrim");
+  function openNav(){
+    nav.classList.add("open"); burger.classList.add("open"); scrim.classList.add("open");
+    burger.setAttribute("aria-expanded","true"); burger.setAttribute("aria-label","Menü schließen");
+    document.body.style.overflow = "hidden";
+  }
+  function closeNav(){
+    nav.classList.remove("open"); burger.classList.remove("open"); scrim.classList.remove("open");
+    burger.setAttribute("aria-expanded","false"); burger.setAttribute("aria-label","Menü öffnen");
+    if(!$("#drawer").classList.contains("open")) document.body.style.overflow = "";
+  }
+  burger.addEventListener("click", ()=> nav.classList.contains("open") ? closeNav() : openNav());
+  scrim.addEventListener("click", closeNav);
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeNav));
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && nav.classList.contains("open")) closeNav(); });
+}
+
+/* --------- Event wiring --------- */
+function initEvents(){
+  // add-to-cart (delegated)
+  document.addEventListener("click", e=>{
+    const add = e.target.closest("[data-add]");
+    if(add){
+      addToCart(add.dataset.add);
+      if(add.classList.contains("added")) return;   // already showing confirmation → don't re-capture label
+      const orig = add.innerHTML;
+      add.classList.add("added");
+      add.innerHTML = `<svg class="ic"><use href="#ic-check"/></svg> Hinzugefügt`;
+      decorateIcons(add);
+      setTimeout(()=>{ add.classList.remove("added"); add.innerHTML = orig; }, 1100);
+      return;
+    }
+    const inc = e.target.closest("[data-inc]"); if(inc){ setQty(inc.dataset.inc, (cart[inc.dataset.inc]||0)+1); return; }
+    const dec = e.target.closest("[data-dec]"); if(dec){ setQty(dec.dataset.dec, (cart[dec.dataset.dec]||0)-1); return; }
+    const rm  = e.target.closest("[data-rm]");  if(rm){ setQty(rm.dataset.rm, 0); return; }
+    const flt = e.target.closest("[data-filter]"); if(flt){ applyFilter(flt.dataset.filter, flt); return; }
+  });
+  // cart open/close
+  $("#cartBtnTop").addEventListener("click", openDrawer);
+  $("#cartFab").addEventListener("click", openDrawer);
+  $("#orderBandBtn").addEventListener("click", openDrawer);
+  $("#drawerClose").addEventListener("click", closeDrawer);
+  $("#overlay").addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && $("#drawer").classList.contains("open")) closeDrawer(); });
+  // Focus trap inside the cart dialog
+  $("#drawer").addEventListener("keydown", e=>{
+    if(e.key !== "Tab") return;
+    const foc = Array.from($("#drawer").querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'))
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    if(!foc.length) return;
+    const first = foc[0], last = foc[foc.length-1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+  // order + clear
+  $("#waOrderBtn").addEventListener("click", sendWhatsAppOrder);
+  $("#clearCart").addEventListener("click", clearCart);
+  // fulfil toggle -> show address
+  document.querySelectorAll('input[name="fulfil"]').forEach(r=>r.addEventListener("change", ()=>{
+    $("#addrWrap").hidden = document.querySelector('input[name="fulfil"]:checked').value !== "Lieferung";
+  }));
+}
+
+/* --------- Init --------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  $("#year").textContent = new Date().getFullYear();
+  renderMenu();
+  updateCartUI();
+  wireContact();
+  updateHours();
+  initScroll();
+  initNav();
+  initEvents();
+  decorateIcons();   // hide all remaining static decorative icons from AT
+});
 </script>
 </body>
 </html>
