@@ -861,7 +861,7 @@ footer ul a:hover{color:var(--gold)}
 // 👉 WICHTIG: Echte WhatsApp-Nummer hier eintragen!
 //    Format: Ländervorwahl OHNE "+" und OHNE führende 0.
 //    Beispiel Deutschland: aus 0176 12345678  →  "4917612345678"
-const WHATSAPP_NUMBER = "4917612345678";   // ← PLATZHALTER – bitte ersetzen
+const WHATSAPP_NUMBER = "4917620951091";   // +49 176 20951091
 const RESTAURANT_NAME = "Edeler Döner";
 /* -------------------------------------------------------------- */
 
@@ -1147,7 +1147,7 @@ function pulseFab(){
 /* --------- Contact number wiring --------- */
 function wireContact(){
   const digits = WHATSAPP_NUMBER.replace(/\D/g,"");
-  const disp = "+" + digits.replace(/^(\d{2})(\d{3,4})(\d+)/, "$1 $2 $3");
+  const disp = "+" + digits.replace(/^(\d{2})(\d{3})(\d+)/, "$1 $2 $3");
   const waMsg = encodeURIComponent(`Hallo ${RESTAURANT_NAME} 👋, ich habe eine Frage:`);
   const waUrl = `https://wa.me/${digits}?text=${waMsg}`;
   const tel = "tel:+" + digits;
