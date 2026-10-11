@@ -255,14 +255,13 @@ header.scrolled{background:rgba(11,11,13,.94);
     radial-gradient(130% 120% at 50% 126%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 62%),
     linear-gradient(180deg,#191920,#0b0b0f);
   border-bottom:2px solid color-mix(in srgb, var(--acc) 48%, var(--line-2))}
-.p-media::before{content:"";position:absolute;width:60%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle, color-mix(in srgb, var(--acc) 24%, transparent), transparent 68%);
-  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--acc) 32%, transparent)}
+.p-media::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%)}
 .p-media::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.06) 50%,transparent 62%)}
-.p-media>.ic{width:42%;height:42%;color:var(--gold-hi);opacity:.98;position:relative;z-index:1;transition:transform .5s var(--ease);
-  filter:drop-shadow(0 0 22px color-mix(in srgb, var(--acc) 72%, transparent)) drop-shadow(0 12px 22px rgba(0,0,0,.6))}
-.p-card:hover .p-media>.ic{transform:scale(1.08) rotate(-3deg)}
+.p-illu{position:relative;z-index:1;width:92%;height:92%;transition:transform .5s var(--ease);
+  filter:drop-shadow(0 14px 16px rgba(0,0,0,.42))}
+.p-card:hover .p-illu{transform:scale(1.05) rotate(-1.5deg)}
 .p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .p-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
 .badge{font-size:.64rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:var(--pill);display:inline-flex;align-items:center;gap:4px;backdrop-filter:blur(4px)}
@@ -544,8 +543,8 @@ footer ul a:hover{color:var(--gold)}
   .hero-cta{flex-direction:column}
   .hero-cta .btn{width:100%}
   .grid-cards{grid-template-columns:1fr;gap:18px}
-  .p-media{aspect-ratio:16/9}
-  .p-media>.ic{width:36%;height:36%}
+  .p-media{aspect-ratio:16/10}
+  .p-illu{width:100%;height:100%}
   .order-steps{gap:14px}
   .rev-top{flex-direction:column;gap:6px}
 }
@@ -590,6 +589,106 @@ footer ul a:hover{color:var(--gold)}
   <symbol id="ic-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5M14 8.5V7a2 2 0 0 1 2-2h.5M14 8.5v12M14 12h3"/></symbol>
   <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
   <symbol id="ic-award" viewBox="0 0 24 24"><path d="M12 3l2.3 2 3-.4L18 7.6l2 2.3-1.6 2.6.5 3-3 .6L14 18.5 12 17l-2 1.5-1.9-2.4-3-.6.5-3L4 9.9l1.7-2.3-.3-3 3 .4Z"/><path d="m9.5 11.5 1.8 1.8 3.2-3.6"/></symbol>
+  <!-- ====== FOOD ILLUSTRATIONS (farbig, Vektor) ====== -->
+  <defs>
+    <radialGradient id="ilShadow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ilBread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d79a"/><stop offset="1" stop-color="#d89f54"/></linearGradient>
+    <linearGradient id="ilBreadD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d7a152"/><stop offset="1" stop-color="#b17731"/></linearGradient>
+    <linearGradient id="ilMeat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9683a"/><stop offset="1" stop-color="#6f3c1c"/></linearGradient>
+    <linearGradient id="ilCheese" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd872"/><stop offset="1" stop-color="#f1a93a"/></linearGradient>
+    <linearGradient id="ilTomato" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2594a"/><stop offset="1" stop-color="#c62f22"/></linearGradient>
+    <linearGradient id="ilGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93d46e"/><stop offset="1" stop-color="#4f9e3a"/></linearGradient>
+    <linearGradient id="ilCola" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a3417"/><stop offset="1" stop-color="#2b1407"/></linearGradient>
+    <linearGradient id="ilFalafel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5833f"/><stop offset="1" stop-color="#7c5420"/></linearGradient>
+    <linearGradient id="ilGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".30"/><stop offset="1" stop-color="#ffffff" stop-opacity=".08"/></linearGradient>
+  </defs>
+  <symbol id="il-doener" viewBox="0 0 160 120">
+    <ellipse cx="80" cy="103" rx="52" ry="9" fill="url(#ilShadow)"/>
+    <ellipse cx="80" cy="80" rx="56" ry="19" fill="#d9d2c2"/>
+    <ellipse cx="80" cy="78" rx="56" ry="19" fill="#fbf7ee"/>
+    <ellipse cx="80" cy="76" rx="46" ry="14" fill="#ece3d0"/>
+    <g stroke="#c88a3e" stroke-width="1">
+      <rect x="99" y="54" width="5.5" height="24" rx="2.5" fill="url(#ilBread)" transform="rotate(6 102 66)"/>
+      <rect x="104" y="56" width="5.5" height="24" rx="2.5" fill="url(#ilBread)" transform="rotate(14 107 68)"/>
+      <rect x="110" y="58" width="5.5" height="22" rx="2.5" fill="url(#ilBreadD)" transform="rotate(22 113 69)"/>
+    </g>
+    <path d="M50 72 q-10 -12 4 -18 q9 9 -1 20Z" fill="url(#ilGreen)"/>
+    <circle cx="54" cy="72" r="5.5" fill="url(#ilTomato)"/>
+    <path d="M52 74 q2 -18 28 -18 q26 0 28 17 q-6 9 -28 10 q-22 -1 -28 -9Z" fill="url(#ilMeat)"/>
+    <g stroke="#60351a" stroke-width="1.3" opacity=".55" fill="none">
+      <path d="M58 68 q10 -6 22 -5"/><path d="M62 72 q12 -5 24 -4"/><path d="M70 64 q8 -4 18 -3"/><path d="M60 64 q6 -3 12 -3"/>
+    </g>
+    <g stroke="#cf9456" stroke-width="1" opacity=".55" fill="none">
+      <path d="M58 70 q12 -5 24 -4"/><path d="M66 66 q10 -4 20 -3"/>
+    </g>
+    <path d="M56 68 q12 6 24 2 q11 6 24 1" fill="none" stroke="#fff6e8" stroke-width="2.4" stroke-linecap="round" opacity=".92"/>
+    <path d="M60 72 q12 5 24 1 q6 -1 10 -2" fill="none" stroke="#e8553a" stroke-width="1.7" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="il-lahmacun" viewBox="0 0 160 120">
+    <ellipse cx="82" cy="106" rx="44" ry="7" fill="url(#ilShadow)"/>
+    <path d="M40 92 L96 40 q10 -9 20 1 q10 10 1 20 L61 113 q-10 9 -20 -1 q-10 -10 -1 -20Z" fill="url(#ilBread)" stroke="#c88a3e" stroke-width="1.4" stroke-linejoin="round"/>
+    <ellipse cx="108" cy="51" rx="11" ry="11" fill="url(#ilBreadD)"/>
+    <path d="M108 51 m-7 0 a7 7 0 1 0 14 0 a4.5 4.5 0 1 0 -9 0 a2 2 0 1 0 4 0" fill="none" stroke="#8c4a24" stroke-width="2"/>
+    <circle cx="106" cy="49" r="3.5" fill="url(#ilTomato)"/>
+    <circle cx="112" cy="54" r="2.4" fill="url(#ilGreen)"/>
+    <path d="M44 96 q-8 2 -10 10 q8 -1 12 -5Z" fill="url(#ilGreen)"/>
+    <path d="M50 101 q8 4 4 12 q-6 -2 -8 -8Z" fill="url(#ilTomato)"/>
+    <path d="M58 86 L104 44" stroke="#fff" stroke-width="2" opacity=".22" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="il-pizza" viewBox="0 0 160 120">
+    <ellipse cx="80" cy="108" rx="40" ry="6.5" fill="url(#ilShadow)"/>
+    <path d="M44 34 H116 L80 104 Z" fill="url(#ilCheese)" stroke="#d98f33" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M40 30 q40 -13 80 0 l-5 11 q-35 -11 -70 0 Z" fill="url(#ilBread)" stroke="#c88a3e" stroke-width="1.4"/>
+    <path d="M52 42 H108 L80 95 Z" fill="none" stroke="#e0552f" stroke-width="2.4" opacity=".45"/>
+    <circle cx="66" cy="54" r="6.5" fill="url(#ilTomato)" stroke="#9f2516" stroke-width="1.3"/>
+    <circle cx="92" cy="58" r="6" fill="url(#ilTomato)" stroke="#9f2516" stroke-width="1.3"/>
+    <circle cx="78" cy="78" r="5.5" fill="url(#ilTomato)" stroke="#9f2516" stroke-width="1.3"/>
+    <path d="M82 46 q6 -5 11 -1 q-4 7 -11 3Z" fill="#4f9a3e"/>
+    <path d="M66 70 q6 -5 11 -1 q-4 7 -11 3Z" fill="#59ad46"/>
+    <circle cx="72" cy="46" r="2.2" fill="#fff" opacity=".4"/>
+  </symbol>
+  <symbol id="il-falafel" viewBox="0 0 160 120">
+    <ellipse cx="80" cy="104" rx="46" ry="8" fill="url(#ilShadow)"/>
+    <ellipse cx="80" cy="84" rx="50" ry="17" fill="#201f26"/>
+    <ellipse cx="80" cy="82" rx="50" ry="17" fill="#2b2a33"/>
+    <ellipse cx="80" cy="80" rx="42" ry="13" fill="#17161c"/>
+    <path d="M52 76 q-6 -12 8 -16 q8 8 -2 18Z" fill="url(#ilGreen)"/>
+    <path d="M104 74 q8 -12 -6 -17 q-8 9 2 19Z" fill="url(#ilGreen)"/>
+    <circle cx="96" cy="74" r="5" fill="url(#ilTomato)"/>
+    <circle cx="66" cy="74" r="12" fill="url(#ilFalafel)"/>
+    <circle cx="86" cy="76" r="12.5" fill="url(#ilFalafel)"/>
+    <circle cx="76" cy="66" r="11" fill="url(#ilFalafel)"/>
+    <g fill="#5f3c15" opacity=".55"><circle cx="63" cy="72" r="1.3"/><circle cx="69" cy="76" r="1.3"/><circle cx="84" cy="74" r="1.3"/><circle cx="89" cy="78" r="1.3"/><circle cx="74" cy="64" r="1.3"/><circle cx="79" cy="68" r="1.3"/></g>
+    <g fill="#d8a85c" opacity=".5"><circle cx="62" cy="70" r="2"/><circle cx="72" cy="63" r="2"/><circle cx="82" cy="72" r="2"/></g>
+    <path d="M70 60 q6 -7 12 0 q-6 6 -12 0Z" fill="#fff3df"/>
+  </symbol>
+  <symbol id="il-fries" viewBox="0 0 160 120">
+    <ellipse cx="80" cy="108" rx="38" ry="6.5" fill="url(#ilShadow)"/>
+    <g stroke="#c88a3e" stroke-width="1.2">
+      <rect x="60" y="30" width="7" height="52" rx="3" fill="url(#ilBread)" transform="rotate(-9 63 56)"/>
+      <rect x="70" y="24" width="7" height="58" rx="3" fill="url(#ilBread)" transform="rotate(-2 73 53)"/>
+      <rect x="80" y="26" width="7" height="56" rx="3" fill="url(#ilBread)" transform="rotate(5 83 54)"/>
+      <rect x="90" y="30" width="7" height="52" rx="3" fill="url(#ilBread)" transform="rotate(11 93 56)"/>
+      <rect x="66" y="34" width="7" height="48" rx="3" fill="url(#ilBreadD)" transform="rotate(2 69 58)"/>
+      <rect x="84" y="32" width="7" height="50" rx="3" fill="url(#ilBreadD)" transform="rotate(-5 87 57)"/>
+    </g>
+    <path d="M52 70 h56 l-8 40 q-1 4 -5 4 H65 q-4 0 -5 -4 Z" fill="url(#ilTomato)"/>
+    <path d="M52 70 h56 l-1.6 8 H53.6 Z" fill="#fff"/>
+    <path d="M60 86 q20 5 40 0" fill="none" stroke="#fff" stroke-width="2" opacity=".35"/>
+    <circle cx="80" cy="98" r="7" fill="#fff" opacity=".12"/>
+  </symbol>
+  <symbol id="il-drink" viewBox="0 0 160 120">
+    <ellipse cx="80" cy="110" rx="30" ry="6" fill="url(#ilShadow)"/>
+    <path d="M58 40 H102 L96 104 q-1 6 -7 6 H71 q-6 0 -7 -6 Z" fill="url(#ilCola)"/>
+    <path d="M58 40 H102 L96 104 q-1 6 -7 6 H71 q-6 0 -7 -6 Z" fill="url(#ilGlass)"/>
+    <ellipse cx="80" cy="40" rx="22" ry="5" fill="#b9793a"/>
+    <ellipse cx="80" cy="39" rx="22" ry="5" fill="url(#ilCola)"/>
+    <rect x="68" y="48" width="14" height="14" rx="3" fill="#fff" opacity=".28" transform="rotate(12 75 55)"/>
+    <rect x="82" y="56" width="12" height="12" rx="3" fill="#fff" opacity=".22" transform="rotate(-10 88 62)"/>
+    <g fill="#fff" opacity=".35"><circle cx="72" cy="78" r="2"/><circle cx="84" cy="84" r="1.6"/><circle cx="78" cy="90" r="1.4"/><circle cx="88" cy="74" r="1.5"/></g>
+    <rect x="86" y="24" width="6" height="64" rx="3" fill="#ff5a2c" transform="rotate(12 89 56)"/>
+    <path d="M64 46 L60 98" stroke="#fff" stroke-width="3" opacity=".18" stroke-linecap="round"/>
+  </symbol>
 </svg>
 
 <!-- ============ HEADER ============ -->
@@ -963,12 +1062,12 @@ const RESTAURANT_NAME = "Edeler Döner";
 
 /* Kategorien (Reihenfolge = Anzeige-Reihenfolge). acc = Akzentfarbe (wie Menütafel). */
 const CATEGORIES = [
-  {key:"doener",      label:"Döner",       icon:"ic-doner",    emoji:"🌯", acc:"var(--c-doener)"},
-  {key:"lahmacun",    label:"Lahmacun",    icon:"ic-lahmacun", emoji:"🫓", acc:"var(--c-lahmacun)"},
-  {key:"pizza",       label:"Pizza",       icon:"ic-pizza",    emoji:"🍕", acc:"var(--c-pizza)"},
-  {key:"vegetarisch", label:"Vegetarisch", icon:"ic-leaf",     emoji:"🥗", acc:"var(--c-vegetarisch)"},
-  {key:"fingerfood",  label:"Fingerfood",  icon:"ic-side",     emoji:"🍟", acc:"var(--c-fingerfood)"},
-  {key:"getraenke",   label:"Getränke",    icon:"ic-drink",    emoji:"🥤", acc:"var(--c-getraenke)"}
+  {key:"doener",      label:"Döner",       icon:"ic-doner",    illu:"il-doener",   emoji:"🌯", acc:"var(--c-doener)"},
+  {key:"lahmacun",    label:"Lahmacun",    icon:"ic-lahmacun", illu:"il-lahmacun", emoji:"🫓", acc:"var(--c-lahmacun)"},
+  {key:"pizza",       label:"Pizza",       icon:"ic-pizza",    illu:"il-pizza",    emoji:"🍕", acc:"var(--c-pizza)"},
+  {key:"vegetarisch", label:"Vegetarisch", icon:"ic-leaf",     illu:"il-falafel",  emoji:"🥗", acc:"var(--c-vegetarisch)"},
+  {key:"fingerfood",  label:"Fingerfood",  icon:"ic-side",     illu:"il-fries",    emoji:"🍟", acc:"var(--c-fingerfood)"},
+  {key:"getraenke",   label:"Getränke",    icon:"ic-drink",    illu:"il-drink",    emoji:"🥤", acc:"var(--c-getraenke)"}
 ];
 
 /* Produkte (exakt von der Menütafel). Produkte mit "variants" haben Hähnchen/Kalb-Auswahl.
@@ -1080,7 +1179,7 @@ function cardHtml(p){
   return `<article class="p-card reveal" data-cat="${p.cat}">
     <div class="p-media" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
-      <svg class="ic"><use href="#${c.icon}"/></svg>
+      <svg class="p-illu" aria-hidden="true" focusable="false"><use href="#${c.illu}"/></svg>
     </div>
     <div class="p-body">
       <h3>${p.name}</h3>
@@ -1093,7 +1192,10 @@ function cardHtml(p){
 /* --------- Build menu + popular + filters --------- */
 function renderMenu(){
   $("#menuGrid").innerHTML = MENU.map(cardHtml).join("");
-  $("#popularGrid").innerHTML = MENU.filter(p=>p.popular).slice(0,4).map(cardHtml).join("");
+  // Bestseller: one per category for visual variety
+  const seenCat = new Set(), pop = [];
+  MENU.filter(p=>p.popular).forEach(p=>{ if(!seenCat.has(p.cat)){ seenCat.add(p.cat); pop.push(p); } });
+  $("#popularGrid").innerHTML = pop.slice(0,4).map(cardHtml).join("");
   // filters
   const pills = [`<button class="filter-pill active" data-filter="all" aria-pressed="true"><svg class="ic"><use href="#ic-spark"/></svg> Alle</button>`]
     .concat(CATEGORIES.map(c=>`<button class="filter-pill" data-filter="${c.key}" aria-pressed="false"><svg class="ic"><use href="#${c.icon}"/></svg> ${c.label}</button>`));
