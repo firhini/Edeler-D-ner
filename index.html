@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b0b0d">
-<title>Edeler Döner Schwetzingen · Premium Halal Döner, Pizza & Burger</title>
-<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza & Burger. Online zusammenstellen und in Sekunden per WhatsApp bestellen.">
+<title>Edeler Döner Schwetzingen · Premium Halal Döner, Pizza & Falafel</title>
+<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Steinofen-Pizza, Falafel, Yufka & mehr. Online zusammenstellen und in Sekunden per WhatsApp bestellen (Abholung).">
 <meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Dürüm, Lahmacun, Pizza Schwetzingen, Burger, WhatsApp Bestellung, Kurfürstenstraße">
 <meta name="author" content="Edeler Döner Schwetzingen">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.edeler-doner-schwetzingen.de/">
 <meta property="og:title" content="Edeler Döner Schwetzingen · Premium Halal">
-<meta property="og:description" content="100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza & Burger – online zusammenstellen und per WhatsApp bestellen.">
+<meta property="og:description" content="100% Halal Döner, Steinofen-Pizza, Falafel & mehr – online zusammenstellen und per WhatsApp bestellen.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.edeler-doner-schwetzingen.de/">
 <meta property="og:locale" content="de_DE">
@@ -32,33 +32,40 @@
    EDELER DÖNER · PREMIUM DESIGN SYSTEM (Black / Gold)
    ============================================================ */
 :root{
-  /* Surfaces */
-  --bg:#0b0b0d;
-  --bg-1:#0f0f12;
-  --bg-2:#131317;
-  --surface:#16161b;
-  --surface-2:#1c1c22;
-  --surface-3:#232329;
-  /* Gold */
-  --gold:#d6b25e;
-  --gold-2:#c69b3d;
-  --gold-hi:#f3dc9a;
-  --gold-deep:#a67c2e;
-  --gold-grad:linear-gradient(135deg,#f3dc9a 0%,#d6b25e 42%,#a67c2e 100%);
+  /* Surfaces — deeper, richer black */
+  --bg:#08080a;
+  --bg-1:#0c0c0f;
+  --bg-2:#111115;
+  --surface:#15151b;
+  --surface-2:#1d1d25;
+  --surface-3:#28282f;
+  /* Gold — brighter & more luminous */
+  --gold:#e7bf63;
+  --gold-2:#cda244;
+  --gold-hi:#ffe9a6;
+  --gold-deep:#9d7220;
+  --gold-grad:linear-gradient(135deg,#fff0c4 0%,#e7bf63 44%,#b4852c 100%);
+  --gold-glow:rgba(231,191,99,.45);
   /* Text */
-  --ink:#f6f1e7;
-  --text:#d8d3c8;
-  --muted:#9c968b;
-  --faint:#8a857b;
-  --on-gold:#191308;
+  --ink:#f9f4ea;
+  --text:#dad5ca;
+  --muted:#a29c90;
+  --faint:#8d887e;
+  --on-gold:#17110a;
   /* Lines */
-  --line:rgba(214,178,94,.16);
+  --line:rgba(231,191,99,.18);
   --line-2:rgba(255,255,255,.07);
   /* Accents */
   --wa:#25d366;
   --wa-2:#1faa52;
-  --veg:#7bb661;
-  --hot:#e0552f;
+  --ember:#ff5a2c;
+  --veg:#8fd06a;
+  --hot:#ff5a2c;
+  /* Category accents — mirror the menu boards (Pizza=rot, Veg=grün, Fingerfood=amber, Drinks=blau) */
+  --c-pizza:#ff4d4d;
+  --c-vegetarisch:#52c56c;
+  --c-fingerfood:#ffb224;
+  --c-getraenke:#3aa6ff;
   /* Metrics */
   --container:1200px;
   --r-sm:10px;
@@ -66,9 +73,9 @@
   --r-lg:24px;
   --r-xl:32px;
   --pill:999px;
-  --shadow:0 24px 60px -28px rgba(0,0,0,.85);
-  --shadow-sm:0 10px 30px -16px rgba(0,0,0,.8);
-  --shadow-gold:0 18px 46px -18px rgba(214,178,94,.4);
+  --shadow:0 30px 72px -30px rgba(0,0,0,.92);
+  --shadow-sm:0 12px 34px -18px rgba(0,0,0,.85);
+  --shadow-gold:0 22px 52px -18px rgba(231,191,99,.48);
   --ease:cubic-bezier(.22,.7,.25,1);
   --header-h:74px;
 }
@@ -81,8 +88,9 @@ body{
 }
 /* Ambient glow as a single composited fixed layer (no scroll-repaint jank) */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(60vw 40vh at 78% 4%, rgba(214,178,94,.08), transparent 60%),
-             radial-gradient(50vw 40vh at 0% 20%, rgba(214,178,94,.05), transparent 55%)}
+  background:radial-gradient(55vw 42vh at 80% 2%, rgba(231,191,99,.10), transparent 60%),
+             radial-gradient(45vw 40vh at 2% 16%, rgba(255,90,44,.05), transparent 58%),
+             radial-gradient(60vw 50vh at 50% 112%, rgba(231,191,99,.05), transparent 60%)}
 h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.08;font-weight:700;letter-spacing:-.01em}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 a{color:inherit;text-decoration:none}
@@ -177,8 +185,9 @@ header.scrolled{background:rgba(11,11,13,.94);
 /* ============ HERO ============ */
 .hero{min-height:100svh;display:flex;align-items:center;padding-top:calc(var(--header-h) + 40px);padding-bottom:60px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(70vw 60vh at 82% 20%,rgba(214,178,94,.14),transparent 55%),
-             radial-gradient(50vw 50vh at 10% 90%,rgba(166,124,46,.1),transparent 55%)}
+  background:radial-gradient(60vw 62vh at 84% 14%,rgba(231,191,99,.20),transparent 56%),
+             radial-gradient(44vw 48vh at 8% 86%,rgba(255,90,44,.12),transparent 56%),
+             radial-gradient(40vw 40vh at 50% 50%,rgba(231,191,99,.06),transparent 60%)}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;width:100%}
 .chip{display:inline-flex;align-items:center;gap:10px;background:rgba(214,178,94,.08);border:1px solid var(--line);
   padding:8px 16px;border-radius:var(--pill);font-size:.76rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:28px}
@@ -238,14 +247,19 @@ header.scrolled{background:rgba(11,11,13,.94);
 .p-card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;
   transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
 .p-card:hover{transform:translateY(-7px);border-color:var(--line);box-shadow:var(--shadow)}
-.p-media{position:relative;aspect-ratio:16/11;display:grid;place-items:center;overflow:hidden;
-  background:radial-gradient(120% 120% at 50% 20%,#27271f 0%,#16160f 46%,#0d0d0f 100%);border-bottom:1px solid var(--line-2)}
-.p-media::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(58% 54% at 50% 42%,rgba(214,178,94,.20),transparent 62%),
-  radial-gradient(150% 90% at 50% 122%,rgba(166,124,46,.16),transparent 60%)}
+.p-media{--acc:var(--gold);position:relative;aspect-ratio:16/11;display:grid;place-items:center;overflow:hidden;
+  background:
+    radial-gradient(85% 78% at 50% 16%, color-mix(in srgb, var(--acc) 42%, transparent), transparent 70%),
+    radial-gradient(130% 120% at 50% 126%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 62%),
+    linear-gradient(180deg,#191920,#0b0b0f);
+  border-bottom:2px solid color-mix(in srgb, var(--acc) 48%, var(--line-2))}
+.p-media::before{content:"";position:absolute;width:60%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--acc) 24%, transparent), transparent 68%);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--acc) 32%, transparent)}
 .p-media::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.045) 50%,transparent 60%)}
-.p-media .ic{width:40%;height:40%;color:var(--gold);opacity:.95;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55));position:relative;transition:transform .5s var(--ease)}
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.06) 50%,transparent 62%)}
+.p-media .ic{width:42%;height:42%;color:var(--gold-hi);opacity:.98;position:relative;z-index:1;transition:transform .5s var(--ease);
+  filter:drop-shadow(0 0 22px color-mix(in srgb, var(--acc) 72%, transparent)) drop-shadow(0 12px 22px rgba(0,0,0,.6))}
 .p-card:hover .p-media .ic{transform:scale(1.08) rotate(-3deg)}
 .p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .p-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
@@ -410,18 +424,19 @@ footer ul a:hover{color:var(--gold)}
 .ci-remove:hover{color:var(--hot)}
 .ci-remove .ic{width:14px;height:14px}
 .drawer-foot{border-top:1px solid var(--line-2);padding:20px 24px 24px;background:var(--bg-2)}
-.fulfil{display:flex;gap:8px;margin-bottom:16px;background:var(--surface-2);padding:5px;border-radius:var(--pill);border:1px solid var(--line-2)}
-.fulfil label{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;border-radius:var(--pill);font-size:.88rem;font-weight:600;color:var(--muted);cursor:pointer;transition:.25s}
-.fulfil label .ic{width:17px;height:17px}
-.fulfil input{position:absolute;opacity:0;pointer-events:none}
-.fulfil input:checked + label{background:var(--gold-grad);color:var(--on-gold)}
-.fulfil input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.pickup-only{display:flex;align-items:center;gap:12px;margin-bottom:16px;background:var(--surface-2);padding:12px 14px;border-radius:14px;border:1px solid var(--line-2)}
+.pickup-only .po-ic{width:40px;height:40px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--gold-grad);color:var(--on-gold)}
+.pickup-only .po-ic .ic{width:21px;height:21px}
+.pickup-only .po-text{flex:1;min-width:0}
+.pickup-only .po-text b{display:block;font-family:'Inter',sans-serif;font-size:.95rem;color:var(--ink)}
+.pickup-only .po-text span{font-size:.76rem;color:var(--muted)}
+.pickup-only .po-badge{display:inline-flex;align-items:center;gap:5px;flex:none;font-size:.68rem;font-weight:700;letter-spacing:.3px;color:var(--c-getraenke);background:color-mix(in srgb,var(--c-getraenke) 15%,transparent);border:1px solid color-mix(in srgb,var(--c-getraenke) 35%,transparent);padding:5px 9px;border-radius:var(--pill)}
+.pickup-only .po-badge .ic{width:13px;height:13px;stroke-width:2}
 .cart-fields{display:grid;gap:10px;margin-bottom:16px}
 .cart-fields input,.cart-fields textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;
   padding:12px 14px;color:var(--ink);resize:none;transition:border-color .2s}
 .cart-fields input::placeholder,.cart-fields textarea::placeholder{color:var(--faint)}
 .cart-fields input:focus,.cart-fields textarea:focus{outline:none;border-color:var(--gold)}
-.cart-fields .field-addr{transition:.3s;overflow:hidden}
 .cart-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .cart-summary .sum-label{color:var(--muted);font-size:.9rem}
 .cart-summary .sum-total{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--gold)}
@@ -443,6 +458,30 @@ footer ul a:hover{color:var(--gold)}
 .reveal[data-d="1"]{transition-delay:.08s}
 .reveal[data-d="2"]{transition-delay:.16s}
 .reveal[data-d="3"]{transition-delay:.24s}
+
+/* ============ TRUST STRIP ============ */
+.trust-strip{border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);background:var(--bg-1);overflow:hidden}
+.trust-track{display:flex;align-items:center;white-space:nowrap;width:max-content;animation:marquee 34s linear infinite}
+.trust-strip:hover .trust-track{animation-play-state:paused}
+.ts-item{display:inline-flex;align-items:center;gap:11px;padding:17px 26px;color:var(--ink);font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:700;letter-spacing:.2px}
+.ts-item .ic{width:17px;height:17px;color:var(--gold)}
+.ts-sep{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.55}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ============ DELIVERY NOTICE ============ */
+.delivery-note{display:flex;align-items:center;gap:14px;max-width:780px;margin:0 auto;background:color-mix(in srgb,var(--c-getraenke) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c-getraenke) 30%,transparent);border-radius:var(--r);padding:15px 20px}
+.delivery-note .dn-ic{width:42px;height:42px;flex:none;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--c-getraenke) 18%,transparent);color:var(--c-getraenke)}
+.delivery-note .dn-ic .ic{width:22px;height:22px}
+.delivery-note b{color:var(--ink);font-family:'Inter',sans-serif;font-size:.95rem}
+.delivery-note span{display:block;color:var(--muted);font-size:.86rem;margin-top:1px}
+
+/* ============ EXTRAS ============ */
+.extras{margin-top:36px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:24px 26px}
+.extras h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.extras h3 .ic{width:20px;height:20px;color:var(--gold)}
+.extras-list{display:flex;flex-wrap:wrap;gap:10px}
+.extras-list .ex{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--pill);padding:8px 14px;font-size:.88rem;color:var(--text)}
+.extras-list .ex b{color:var(--gold);font-weight:700}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:980px){
@@ -562,7 +601,7 @@ footer ul a:hover{color:var(--gold)}
         <span class="line">Döner, wie er</span>
         <span class="line"><em class="gold-text">sein soll.</em></span>
       </h1>
-      <p class="lead">Saftiges Kalb- &amp; Hähnchenfleisch vom Spieß, Steinofen-Pizza, Dürüm, Lahmacun und Burger – ehrliches Handwerk mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
+      <p class="lead">Knusprige Steinofen-Pizza, hausgemachte Falafel, Yufka &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
       <div class="hero-cta">
         <a href="#menu" class="btn btn-gold btn-lg">Jetzt bestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
         <a href="#menu" class="btn btn-ghost btn-lg">Speisekarte ansehen</a>
@@ -570,7 +609,7 @@ footer ul a:hover{color:var(--gold)}
       <div class="hero-trust">
         <div class="t"><span class="stars">★★★★★</span><span>4,8 · über 600 Gäste</span></div>
         <div class="t"><b>100%</b><span>Halal-zertifiziert</span></div>
-        <div class="t"><b>ab 6€</b><span>Döner Klassik</span></div>
+        <div class="t"><b>ab 8,50€</b><span>Steinofen-Pizza</span></div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -580,11 +619,27 @@ footer ul a:hover{color:var(--gold)}
       <div class="hv-disc"><svg class="ic"><use href="#ic-doner"/></svg></div>
       <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-star"/></svg></span><div><b>4,8 / 5</b><span>Google Bewertungen</span></div></div>
       <div class="float-card fc-2"><span class="fc-ic"><svg class="ic"><use href="#ic-medal"/></svg></span><div><b>100% Halal</b><span>Kalb &amp; Hähnchen</span></div></div>
-      <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-truck"/></svg></span><div><b>Abholung</b><span>&amp; Lieferung</span></div></div>
+      <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-bag"/></svg></span><div><b>Abholung</b><span>Lieferung bald</span></div></div>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Entdecken</div>
 </section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust-strip" aria-hidden="true">
+  <div class="trust-track">
+    <span class="ts-item"><svg class="ic"><use href="#ic-leaf"/></svg> Frische Zutaten</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-spark"/></svg> Frisch gegrillt</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-leaf"/></svg> Frische Zutaten</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-spark"/></svg> Frisch gegrillt</span><span class="ts-sep"></span>
+    <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
+  </div>
+</div>
 
 <!-- ============ HIGHLIGHTS ============ -->
 <section class="highlights" id="highlights">
@@ -593,7 +648,7 @@ footer ul a:hover{color:var(--gold)}
     <div class="hl-grid">
       <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p></div>
       <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Täglich frische Beilagen, hausgemachte Soßen und Teig aus dem Steinofen.</p></div>
-      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-truck"/></svg></div><h3>Abholung &amp; Lieferung</h3><p>Vor Ort abholen in der Kurfürstenstraße 18 oder bequem liefern lassen.</p></div>
+      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3>Abholung vor Ort</h3><p>Frisch zubereitet und direkt bei uns abgeholt – Lieferung ist bald wieder für euch da.</p></div>
       <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Karte zusammenstellen, ein Klick – deine Bestellung landet direkt bei uns.</p></div>
     </div>
   </div>
@@ -604,7 +659,7 @@ footer ul a:hover{color:var(--gold)}
   <div class="wrap">
     <div class="sec-head center">
       <span class="eyebrow center">Beliebt bei unseren Gästen</span>
-      <h2 class="sec-title">Die Lieblinge <span class="gold-text">vom Spieß</span></h2>
+      <h2 class="sec-title">Unsere <span class="gold-text">Bestseller</span></h2>
       <p class="sec-intro">Diese Gerichte bestellen unsere Stammgäste immer wieder. Direkt in den Warenkorb legen.</p>
     </div>
     <div class="grid-cards" id="popularGrid"></div>
@@ -617,7 +672,11 @@ footer ul a:hover{color:var(--gold)}
     <div class="sec-head center">
       <span class="eyebrow center">Speisekarte</span>
       <h2 class="sec-title">Unsere <span class="gold-text">digitale Karte</span></h2>
-      <p class="sec-intro">Alles frisch zubereitet und fair bepreist. Wähle deine Kategorie, leg Produkte in den Warenkorb und bestelle in Sekunden.</p>
+      <p class="sec-intro">Alles frisch zubereitet und fair bepreist. Wähle deine Kategorie, leg Produkte in den Warenkorb und bestelle in Sekunden per WhatsApp.</p>
+    </div>
+    <div class="delivery-note">
+      <span class="dn-ic"><svg class="ic"><use href="#ic-truck"/></svg></span>
+      <div><b>Lieferung ist aktuell pausiert</b><span>Momentan nur Abholung – wir sind bald wieder mit Lieferung für euch da! 🛵</span></div>
     </div>
   </div>
   <div class="menu-filter">
@@ -627,6 +686,17 @@ footer ul a:hover{color:var(--gold)}
   </div>
   <div class="wrap">
     <div class="grid-cards" id="menuGrid"></div>
+    <div class="extras reveal">
+      <h3><svg class="ic"><use href="#ic-plus"/></svg> Extras &amp; Beläge</h3>
+      <div class="extras-list">
+        <span class="ex">Käse <b>+1,00 €</b></span>
+        <span class="ex">Extra Soße <b>+0,50 €</b></span>
+        <span class="ex">Kalbfleisch <b>+2,00 €</b></span>
+        <span class="ex">Hähnchenfleisch <b>+1,50 €</b></span>
+        <span class="ex">Jede weitere Zutat <b>+1,00 €</b></span>
+      </div>
+      <p style="margin-top:14px;font-size:.82rem;color:var(--faint)">Extras bitte bei der Bestellung im Anmerkungsfeld oder per WhatsApp angeben.</p>
+    </div>
   </div>
 </section>
 
@@ -639,7 +709,7 @@ footer ul a:hover{color:var(--gold)}
       <p class="sec-intro" style="margin-bottom:8px">Kein Konto, keine App, keine Wartezeit in der Leitung. Du stellst dir deine Bestellung zusammen und schickst sie mit einem Tipp per WhatsApp direkt an unsere Theke.</p>
       <div class="order-steps">
         <div class="step reveal"><span class="n">1</span><div><h3>Gerichte auswählen</h3><p>Stöbere durch die Karte und leg deine Favoriten in den Warenkorb.</p></div></div>
-        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen, Name &amp; ggf. Lieferadresse eintragen.</p></div></div>
+        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen und deinen Namen für die Abholung eintragen.</p></div></div>
         <div class="step reveal" data-d="2"><span class="n">3</span><div><h3>Per WhatsApp senden</h3><p>Ein Klick öffnet WhatsApp mit deiner fertigen Bestellung – wir bestätigen dir alles direkt.</p></div></div>
       </div>
     </div>
@@ -648,7 +718,7 @@ footer ul a:hover{color:var(--gold)}
       <h3>Direkt bestellen</h3>
       <p>Öffne deinen Warenkorb und sende die Bestellung in wenigen Sekunden per WhatsApp an Edeler Döner.</p>
       <button class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
-      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Bezahlung bei Abholung oder Lieferung. Keine Online-Zahlung nötig.</p>
+      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Zahlung bei Abholung – keine Online-Zahlung nötig. Lieferung aktuell pausiert.</p>
     </div>
   </div>
 </section>
@@ -665,10 +735,10 @@ footer ul a:hover{color:var(--gold)}
       <h2 class="sec-title">Ehrliches Essen, <span class="gold-text">keine Kompromisse</span></h2>
       <p class="lead-p">Edeler Döner steht in Schwetzingen für echtes Handwerk statt Fließband. Bei uns kommt zusammen, was zusammengehört: bestes Halal-Fleisch, frische Zutaten und die Zeit, die guter Geschmack braucht.</p>
       <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, unsere Soßen machen wir selbst, und unser Pizzateig kommt frisch aus dem Steinofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
-      <p>Ob schnell zum Mitnehmen, gemütlich vor Ort oder bequem geliefert – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
+      <p>Ob schnell zum Mitnehmen oder gemütlich vor Ort – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
       <div class="about-stats">
         <div class="s reveal"><b>100%</b><span>Halal-Qualität</span></div>
-        <div class="s reveal" data-d="1"><b>30+</b><span>Gerichte auf der Karte</span></div>
+        <div class="s reveal" data-d="1"><b>20+</b><span>Gerichte auf der Karte</span></div>
         <div class="s reveal" data-d="2"><b>4,8★</b><span>Gäste-Bewertung</span></div>
       </div>
     </div>
@@ -689,7 +759,7 @@ footer ul a:hover{color:var(--gold)}
     <div class="rev-grid">
       <div class="rev reveal"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Bester Döner in Schwetzingen! Das Fleisch ist immer saftig, die Soßen hausgemacht und das Team super freundlich. Bestelle fast jede Woche.</p><div class="who"><span class="av">M</span><div><b>Murat K.</b><span>Stammgast</span></div></div></div>
       <div class="rev reveal" data-d="1"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Endlich ein Laden, bei dem 100% Halal wirklich ernst genommen wird. Die Pizza aus dem Steinofen ist ein Traum und die Portionen sind riesig.</p><div class="who"><span class="av">S</span><div><b>Sarah L.</b><span>Google Bewertung</span></div></div></div>
-      <div class="rev reveal" data-d="2"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Bestellung per WhatsApp ging blitzschnell und alles war heiß und pünktlich da. Preis-Leistung top. Klare Empfehlung für ganz Schwetzingen!</p><div class="who"><span class="av">D</span><div><b>Daniel R.</b><span>Lieferung</span></div></div></div>
+      <div class="rev reveal" data-d="2"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Per WhatsApp vorbestellt, 10 Minuten später abgeholt – alles frisch und heiß. Preis-Leistung top. Klare Empfehlung für ganz Schwetzingen!</p><div class="who"><span class="av">D</span><div><b>Daniel R.</b><span>Abholung</span></div></div></div>
     </div>
   </div>
 </section>
@@ -748,7 +818,7 @@ footer ul a:hover{color:var(--gold)}
           <span class="logo"><svg class="ic"><use href="#ic-doner"/></svg></span>
           <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
         </a>
-        <p>100% Halal Döner, Dürüm, Lahmacun, Steinofen-Pizza &amp; Burger – ehrliches Essen mitten in Schwetzingen.</p>
+        <p>100% Halal – Döner, Steinofen-Pizza, Falafel &amp; mehr, frisch gemacht mitten in Schwetzingen.</p>
         <div class="foot-social">
           <a href="#" aria-label="Instagram"><svg class="ic"><use href="#ic-instagram"/></svg></a>
           <a href="#" aria-label="Facebook"><svg class="ic"><use href="#ic-facebook"/></svg></a>
@@ -805,15 +875,14 @@ footer ul a:hover{color:var(--gold)}
   </div>
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-foot" id="drawerFoot" hidden>
-    <div class="fulfil" role="radiogroup" aria-label="Abholung oder Lieferung">
-      <input type="radio" name="fulfil" id="fAbholung" value="Abholung" checked>
-      <label for="fAbholung"><svg class="ic"><use href="#ic-bag"/></svg> Abholung</label>
-      <input type="radio" name="fulfil" id="fLieferung" value="Lieferung">
-      <label for="fLieferung"><svg class="ic"><use href="#ic-truck"/></svg> Lieferung</label>
+    <div class="pickup-only">
+      <span class="po-ic"><svg class="ic"><use href="#ic-bag"/></svg></span>
+      <div class="po-text"><b>Abholung</b><span>Kurfürstenstraße 18 · frisch &amp; warm für dich</span></div>
+      <span class="po-badge"><svg class="ic"><use href="#ic-truck"/></svg> Lieferung bald</span>
     </div>
+    <input type="radio" name="fulfil" id="fAbholung" value="Abholung" checked hidden>
     <div class="cart-fields">
       <input type="text" id="custName" placeholder="Dein Name" aria-label="Dein Name" autocomplete="name">
-      <div class="field-addr" id="addrWrap" hidden><input type="text" id="custAddr" placeholder="Lieferadresse (Straße, Nr., PLZ)" aria-label="Lieferadresse" autocomplete="street-address"></div>
       <textarea id="custNote" rows="2" placeholder="Anmerkung (optional) – z. B. ohne Zwiebeln" aria-label="Anmerkung zur Bestellung"></textarea>
     </div>
     <div class="cart-summary">
@@ -821,7 +890,7 @@ footer ul a:hover{color:var(--gold)}
       <span class="sum-total" id="cartTotal">0,00 €</span>
     </div>
     <button class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
-    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet. Bezahlung bei Abholung/Lieferung – keine Online-Zahlung.</p>
+    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet. Zahlung bei Abholung – keine Online-Zahlung. 🛵 Lieferung aktuell pausiert.</p>
     <button class="clear-cart" id="clearCart">Warenkorb leeren</button>
   </div>
 </aside>
@@ -838,7 +907,7 @@ footer ul a:hover{color:var(--gold)}
   "url":"https://www.edeler-doner-schwetzingen.de/",
   "image":"https://www.edeler-doner-schwetzingen.de/og-cover.jpg",
   "hasMap":"https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen",
-  "servesCuisine":["Döner","Türkisch","Pizza","Burger","Halal"],
+  "servesCuisine":["Döner","Türkisch","Pizza","Falafel","Halal"],
   "priceRange":"€",
   "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
   "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"600"},
@@ -865,58 +934,44 @@ const WHATSAPP_NUMBER = "4917620951091";   // +49 176 20951091
 const RESTAURANT_NAME = "Edeler Döner";
 /* -------------------------------------------------------------- */
 
-/* Kategorien (Reihenfolge = Anzeige-Reihenfolge) */
+/* Kategorien (Reihenfolge = Anzeige-Reihenfolge). acc = Akzentfarbe (wie Menütafel).
+   Hinweis: Klassische Döner/Dürüm/Lahmacun werden ergänzt, sobald das Foto der 2. Tafel da ist. */
 const CATEGORIES = [
-  {key:"doener",    label:"Döner",     icon:"ic-doner",    emoji:"🌯"},
-  {key:"duerum",    label:"Dürüm",     icon:"ic-durum",    emoji:"🌯"},
-  {key:"lahmacun",  label:"Lahmacun",  icon:"ic-lahmacun", emoji:"🫓"},
-  {key:"pizza",     label:"Pizza",     icon:"ic-pizza",    emoji:"🍕"},
-  {key:"burger",    label:"Burger",    icon:"ic-burger",   emoji:"🍔"},
-  {key:"beilagen",  label:"Beilagen",  icon:"ic-side",     emoji:"🍟"},
-  {key:"getraenke", label:"Getränke",  icon:"ic-drink",    emoji:"🥤"}
+  {key:"pizza",       label:"Pizza",       icon:"ic-pizza", emoji:"🍕", acc:"var(--c-pizza)"},
+  {key:"vegetarisch", label:"Vegetarisch", icon:"ic-leaf",  emoji:"🥗", acc:"var(--c-vegetarisch)"},
+  {key:"fingerfood",  label:"Fingerfood",  icon:"ic-side",  emoji:"🍟", acc:"var(--c-fingerfood)"},
+  {key:"getraenke",   label:"Getränke",    icon:"ic-drink", emoji:"🥤", acc:"var(--c-getraenke)"}
 ];
 
-/* Produkte. tags: "halal" | "vegetarisch" | "scharf". popular: in Beliebt-Sektion */
+/* Produkte (exakt von der Menütafel). tags: "halal" | "vegetarisch" | "scharf". popular: Bestseller-Sektion */
 const MENU = [
-  // DÖNER
-  {id:"doener-klassik", cat:"doener", name:"Döner Klassik", desc:"Kalb- oder Hähnchenfleisch vom Spieß, frischer Salat und hausgemachte Soßen im ofenwarmen Fladenbrot.", price:6.00, tags:["halal"]},
-  {id:"doener-spezial", cat:"doener", name:"Döner Spezial", desc:"Extra Fleisch, mit Käse überbacken und geröstetem Fladenbrot – für den großen Hunger.", price:7.50, tags:["halal"], popular:true},
-  {id:"doener-teller",  cat:"doener", name:"Dönerteller",   desc:"Großzügige Fleischportion mit Pommes oder Reis, Salat und Soße nach Wahl.", price:11.00, tags:["halal"], popular:true},
-  {id:"doener-box",     cat:"doener", name:"Dönerbox",      desc:"Zartes Dönerfleisch auf knusprigen Pommes mit Soße – handlich für unterwegs.", price:8.00, tags:["halal"]},
-  // DÜRÜM
-  {id:"duerum-klassik", cat:"duerum", name:"Dürüm Klassik", desc:"Dünnes Yufka-Fladenbrot, gefüllt mit Fleisch, Salat und Soße, fest gerollt.", price:7.00, tags:["halal"]},
-  {id:"duerum-spezial", cat:"duerum", name:"Dürüm Spezial", desc:"Mit extra Käse und mehr Fleisch – die herzhafte XL-Rolle.", price:8.50, tags:["halal"], popular:true},
-  {id:"duerum-vegi",    cat:"duerum", name:"Vegi-Dürüm",    desc:"Hausgemachte Falafel, Hummus, frischer Salat und Soße – rein pflanzlich.", price:6.50, tags:["vegetarisch"]},
-  // LAHMACUN
-  {id:"lahmacun-pur",    cat:"lahmacun", name:"Lahmacun pur",       desc:"Dünn ausgerollter Teig, würzig belegt und knusprig gebacken.", price:4.00, tags:["halal"]},
-  {id:"lahmacun-doener", cat:"lahmacun", name:"Lahmacun mit Döner", desc:"Gefüllt mit Dönerfleisch, Salat und Soße, frisch zusammengerollt.", price:7.50, tags:["halal"], popular:true},
-  {id:"lahmacun-kaese",  cat:"lahmacun", name:"Lahmacun mit Käse",  desc:"Mit Salat, Käse und Soße verfeinert und gerollt.", price:6.00, tags:["vegetarisch"]},
   // PIZZA
-  {id:"pizza-margherita", cat:"pizza", name:"Pizza Margherita", desc:"Tomatensauce, Mozzarella und Basilikum – der Klassiker aus dem Steinofen.", price:9.00, tags:["vegetarisch"]},
-  {id:"pizza-salami",     cat:"pizza", name:"Pizza Salami",     desc:"Tomatensauce, Käse und würzige Rindersalami.", price:10.50, tags:["halal"]},
-  {id:"pizza-sucuk",      cat:"pizza", name:"Pizza Sucuk",      desc:"Mit pikanter türkischer Knoblauchwurst und Käse.", price:10.50, tags:["halal","scharf"], popular:true},
-  {id:"pizza-funghi",     cat:"pizza", name:"Pizza Funghi",     desc:"Mit frischen Champignons und reichlich Mozzarella.", price:10.50, tags:["vegetarisch"]},
-  {id:"pizza-thunfisch",  cat:"pizza", name:"Pizza Thunfisch",  desc:"Thunfisch, Zwiebeln und Käse auf knusprigem Boden.", price:10.50, tags:[]},
-  {id:"pizza-haehnchen",  cat:"pizza", name:"Pizza Hähnchen",   desc:"Zartes Hähnchenfleisch, Paprika und Käse.", price:11.50, tags:["halal"]},
-  {id:"pizza-kalb",       cat:"pizza", name:"Pizza Kalb",       desc:"Reichlich zartes Kalbfleisch, Käse und frisches Gemüse.", price:12.50, tags:["halal"], popular:true},
-  // BURGER
-  {id:"hamburger",     cat:"burger", name:"Hamburger",           desc:"Saftiges Rindfleisch-Patty, Salat, Zwiebeln und Hausdressing im Bun.", price:5.00, tags:["halal"]},
-  {id:"cheeseburger",  cat:"burger", name:"Cheeseburger",        desc:"Wie der Klassiker – mit geschmolzenem Cheddar.", price:5.50, tags:["halal"]},
-  {id:"chickenburger", cat:"burger", name:"Chicken Burger",      desc:"Knuspriges Hähnchenfilet, Salat und Soße.", price:6.00, tags:["halal"]},
-  {id:"edeler-burger", cat:"burger", name:"Edeler Burger",       desc:"Doppel-Patty, doppelt Käse, Röstzwiebeln und Spezialsoße.", price:8.50, tags:["halal"], popular:true},
-  {id:"nuggets",       cat:"burger", name:"Chicken Nuggets (6 St.)", desc:"Knusprige Nuggets mit Dip nach Wahl.", price:5.00, tags:["halal"]},
-  // BEILAGEN
-  {id:"pommes",         cat:"beilagen", name:"Pommes",          desc:"Goldgelb frittiert, mit Ketchup oder Mayo.", price:3.00, tags:["vegetarisch"]},
-  {id:"pommes-spezial", cat:"beilagen", name:"Pommes Spezial",  desc:"Mit Käse überbacken und Soße verfeinert.", price:4.50, tags:["vegetarisch"]},
-  {id:"reis",           cat:"beilagen", name:"Reis",            desc:"Lockerer, aromatischer Beilagenreis.", price:3.00, tags:["vegetarisch"]},
-  {id:"salat",          cat:"beilagen", name:"Gemischter Salat", desc:"Frische Blattsalate, Tomate, Gurke und Hausdressing.", price:4.00, tags:["vegetarisch"]},
-  {id:"falafel",        cat:"beilagen", name:"Falafel (5 St.)",  desc:"Hausgemacht, außen knusprig, innen fluffig.", price:4.50, tags:["vegetarisch"]},
+  {id:"pizza-margherita",  cat:"pizza", name:"Pizza Margherita",  desc:"Tomatensauce, Mozzarella und Basilikum – frisch aus dem Ofen.", price:8.50, tags:["vegetarisch"]},
+  {id:"pizza-salami",      cat:"pizza", name:"Pizza Salami",      desc:"Tomatensauce, Käse und würzige Salami.", price:9.50, tags:["halal"]},
+  {id:"pizza-sucuk",       cat:"pizza", name:"Pizza Sucuk",       desc:"Mit pikanter türkischer Knoblauchwurst und Käse.", price:9.50, tags:["halal","scharf"], popular:true},
+  {id:"pizza-thunfisch",   cat:"pizza", name:"Pizza Thunfisch",   desc:"Thunfisch, Zwiebeln und Käse auf knusprigem Boden.", price:9.50, tags:[]},
+  {id:"pizza-vegetarisch", cat:"pizza", name:"Pizza Vegetarisch", desc:"Tomaten, Zwiebeln, Paprika, Pilze und Oliven.", price:10.00, tags:["vegetarisch"]},
+  {id:"pizza-funghi",      cat:"pizza", name:"Pizza Funghi",      desc:"Mit frischen Champignons und reichlich Mozzarella.", price:9.50, tags:["vegetarisch"]},
+  {id:"pizza-karisik",     cat:"pizza", name:"Karışık Pizza",     desc:"Salami, Sucuk, Paprika, Pilze, Zwiebeln und Oliven – die volle Ladung.", price:12.00, tags:["halal","scharf"], popular:true},
+  {id:"pizza-haehnchen",   cat:"pizza", name:"Hähnchenpizza",     desc:"Zartes Hähnchenfleisch, Käse und Gemüse.", price:11.00, tags:["halal"]},
+  {id:"pizza-kalb",        cat:"pizza", name:"Kalbpizza",         desc:"Reichlich zartes Kalbfleisch mit Käse.", price:13.00, tags:["halal"], popular:true},
+  // VEGETARISCH
+  {id:"veggie-yufka",   cat:"vegetarisch", name:"Veggie Yufka",   desc:"Dünnes Yufka-Fladenbrot mit frischem Salat und Soße, gerollt.", price:6.50, tags:["vegetarisch"]},
+  {id:"falafel-yufka",  cat:"vegetarisch", name:"Falafel Yufka",  desc:"Hausgemachte Falafel mit Salat und Soße im Yufka gerollt.", price:7.00, tags:["vegetarisch"], popular:true},
+  {id:"falafel-box",    cat:"vegetarisch", name:"Falafel Box",    desc:"Knusprige Falafel auf Pommes mit Soße – handlich für unterwegs.", price:6.00, tags:["vegetarisch"]},
+  {id:"falafel-teller", cat:"vegetarisch", name:"Falafel Teller", desc:"Große Portion Falafel mit Salat, Beilage und Soße.", price:9.50, tags:["vegetarisch"], popular:true},
+  {id:"falafel-doener", cat:"vegetarisch", name:"Falafel Döner",  desc:"Fladenbrot gefüllt mit Falafel, frischem Salat und Soße.", price:6.50, tags:["vegetarisch"]},
+  {id:"veggi-doener",   cat:"vegetarisch", name:"Veggi Döner",    desc:"Vegetarischer Döner mit Gemüse, Salat und Soße.", price:6.00, tags:["vegetarisch"]},
+  // FINGERFOOD
+  {id:"nuggets-pommes", cat:"fingerfood", name:"Nuggets & Pommes", desc:"Knusprige Chicken Nuggets mit goldgelben Pommes und Dip.", price:7.00, tags:["halal"], popular:true},
+  {id:"pommes-klein",   cat:"fingerfood", name:"Pommes klein",     desc:"Goldgelb frittiert, mit Ketchup oder Mayo.", price:3.50, tags:["vegetarisch"]},
+  {id:"pommes-gross",   cat:"fingerfood", name:"Pommes groß",      desc:"Die große Portion knusprige Pommes.", price:4.50, tags:["vegetarisch"]},
   // GETRÄNKE
-  {id:"softdrink", cat:"getraenke", name:"Softdrink 0,33 l", desc:"Cola, Fanta oder Sprite – eisgekühlt.", price:2.00, tags:[]},
-  {id:"ayran",     cat:"getraenke", name:"Ayran 0,25 l",     desc:"Erfrischendes türkisches Joghurtgetränk.", price:1.50, tags:["vegetarisch"]},
-  {id:"wasser",    cat:"getraenke", name:"Wasser 0,5 l",     desc:"Still oder mit Kohlensäure.", price:2.00, tags:[]},
-  {id:"uludag",    cat:"getraenke", name:"Uludağ 0,33 l",    desc:"Türkische Limonade, spritzig-süß.", price:2.50, tags:[]},
-  {id:"redbull",   cat:"getraenke", name:"Red Bull 0,25 l",  desc:"Energy für zwischendurch.", price:3.00, tags:[]}
+  {id:"fritz-kola",    cat:"getraenke", name:"Fritz-Kola 0,33 l",   desc:"Koffeinstarke Kult-Limonade in der Flasche.", price:2.50, tags:[]},
+  {id:"wasser",        cat:"getraenke", name:"Wasser 0,5 l",        desc:"Still oder mit Kohlensäure.", price:1.50, tags:[]},
+  {id:"ayran",         cat:"getraenke", name:"Ayran 0,25 l",        desc:"Erfrischendes türkisches Joghurtgetränk.", price:1.50, tags:["vegetarisch"]},
+  {id:"dosengetraenk", cat:"getraenke", name:"Dosengetränk 0,33 l", desc:"Hot Blood & Softdrinks – eisgekühlt in der Dose.", price:2.00, tags:[]},
+  {id:"redbull",       cat:"getraenke", name:"Red Bull 0,25 l",     desc:"Energy für zwischendurch.", price:2.50, tags:[]}
 ];
 
 /* --------- Helpers --------- */
@@ -932,7 +987,7 @@ const TAG_META = {
 };
 
 /* --------- Cart state (localStorage) --------- */
-const STORE_KEY = "edelerdoener_cart_v1";
+const STORE_KEY = "edelerdoener_cart_v2";
 let cart = loadCart();
 function loadCart(){
   try{
@@ -961,7 +1016,7 @@ function badgesHtml(tags, popular){
 function cardHtml(p){
   const c = catOf(p.cat);
   return `<article class="p-card reveal" data-cat="${p.cat}">
-    <div class="p-media">
+    <div class="p-media" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
       <svg class="ic"><use href="#${c.icon}"/></svg>
     </div>
@@ -1098,30 +1153,21 @@ function buildOrderMessage(){
     const c = catOf(p.cat);
     return `${c.emoji} ${q}x ${p.name} – ${fmt(p.price*q)}`;
   }).filter(Boolean);
-  const fulfil = (document.querySelector('input[name="fulfil"]:checked')||{}).value || "Abholung";
   const name = $("#custName").value.trim();
-  const addr = $("#custAddr").value.trim();
   const note = $("#custNote").value.trim();
 
   let msg = `Hallo ${RESTAURANT_NAME} 👋\n\n`;
   msg += `Ich möchte folgende Bestellung aufgeben:\n\n`;
   msg += lines.join("\n") + "\n\n";
   msg += `Gesamt: ${fmt(cartTotal())}\n\n`;
-  msg += `Art: ${fulfil}\n`;
+  msg += `Art: Abholung\n`;
   msg += `Name: ${name}\n`;
-  if(fulfil === "Lieferung") msg += `Adresse: ${addr}\n`;
   if(note) msg += `Anmerkung: ${note}\n`;
   return msg;
 }
 function sendWhatsAppOrder(){
   if(cartCount()===0){ toast("Dein Warenkorb ist noch leer"); return; }
   if(!$("#custName").value.trim()){ $("#custName").focus(); toast("Bitte gib deinen Namen an"); return; }
-  const fulfil = (document.querySelector('input[name="fulfil"]:checked')||{}).value;
-  if(fulfil==="Lieferung" && !$("#custAddr").value.trim()){
-    $("#custAddr").focus();
-    toast("Bitte Lieferadresse angeben");
-    return;
-  }
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderMessage())}`;
   window.open(url, "_blank", "noopener");
 }
@@ -1261,10 +1307,6 @@ function initEvents(){
   // order + clear
   $("#waOrderBtn").addEventListener("click", sendWhatsAppOrder);
   $("#clearCart").addEventListener("click", clearCart);
-  // fulfil toggle -> show address
-  document.querySelectorAll('input[name="fulfil"]').forEach(r=>r.addEventListener("change", ()=>{
-    $("#addrWrap").hidden = document.querySelector('input[name="fulfil"]:checked').value !== "Lieferung";
-  }));
 }
 
 /* --------- Init --------- */
