@@ -61,7 +61,9 @@
   --ember:#ff5a2c;
   --veg:#8fd06a;
   --hot:#ff5a2c;
-  /* Category accents — mirror the menu boards (Pizza=rot, Veg=grün, Fingerfood=amber, Drinks=blau) */
+  /* Category accents — mirror the menu boards */
+  --c-doener:#f0913a;
+  --c-lahmacun:#e2673a;
   --c-pizza:#ff4d4d;
   --c-vegetarisch:#52c56c;
   --c-fingerfood:#ffb224;
@@ -279,6 +281,12 @@ header.scrolled{background:rgba(11,11,13,.94);
 .add-btn .ic{width:17px;height:17px}
 .add-btn:hover{background:var(--gold-grad);color:#191308;border-color:transparent;transform:translateY(-2px)}
 .add-btn.added{background:var(--wa);color:#04231a;border-color:transparent}
+.p-foot-variants{display:grid;gap:8px}
+.add-variant{width:100%;display:flex;align-items:center;gap:10px;padding:11px 15px}
+.add-variant .v-label{font-weight:600}
+.add-variant .v-price{margin-left:auto;font-family:'Playfair Display',serif;font-weight:800;font-size:1.08rem;color:var(--gold)}
+.add-variant .ic{width:16px;height:16px}
+.add-variant:hover .v-price,.add-variant.added .v-price{color:inherit}
 
 /* ============ MENU (filter) ============ */
 .menu-filter{position:sticky;top:var(--header-h);z-index:40;padding:16px 0;margin-bottom:14px;
@@ -601,7 +609,7 @@ footer ul a:hover{color:var(--gold)}
         <span class="line">Döner, wie er</span>
         <span class="line"><em class="gold-text">sein soll.</em></span>
       </h1>
-      <p class="lead">Knusprige Steinofen-Pizza, hausgemachte Falafel, Yufka &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
+      <p class="lead">Saftiger Döner vom Spieß, knusprige Steinofen-Pizza, hausgemachte Falafel &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
       <div class="hero-cta">
         <a href="#menu" class="btn btn-gold btn-lg">Jetzt bestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
         <a href="#menu" class="btn btn-ghost btn-lg">Speisekarte ansehen</a>
@@ -609,7 +617,7 @@ footer ul a:hover{color:var(--gold)}
       <div class="hero-trust">
         <div class="t"><span class="stars">★★★★★</span><span>4,8 · über 600 Gäste</span></div>
         <div class="t"><b>100%</b><span>Halal-zertifiziert</span></div>
-        <div class="t"><b>ab 8,50€</b><span>Steinofen-Pizza</span></div>
+        <div class="t"><b>ab 5,00€</b><span>Döner im Brot</span></div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -738,7 +746,7 @@ footer ul a:hover{color:var(--gold)}
       <p>Ob schnell zum Mitnehmen oder gemütlich vor Ort – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
       <div class="about-stats">
         <div class="s reveal"><b>100%</b><span>Halal-Qualität</span></div>
-        <div class="s reveal" data-d="1"><b>20+</b><span>Gerichte auf der Karte</span></div>
+        <div class="s reveal" data-d="1"><b>30+</b><span>Gerichte auf der Karte</span></div>
         <div class="s reveal" data-d="2"><b>4,8★</b><span>Gäste-Bewertung</span></div>
       </div>
     </div>
@@ -934,17 +942,36 @@ const WHATSAPP_NUMBER = "4917620951091";   // +49 176 20951091
 const RESTAURANT_NAME = "Edeler Döner";
 /* -------------------------------------------------------------- */
 
-/* Kategorien (Reihenfolge = Anzeige-Reihenfolge). acc = Akzentfarbe (wie Menütafel).
-   Hinweis: Klassische Döner/Dürüm/Lahmacun werden ergänzt, sobald das Foto der 2. Tafel da ist. */
+/* Kategorien (Reihenfolge = Anzeige-Reihenfolge). acc = Akzentfarbe (wie Menütafel). */
 const CATEGORIES = [
-  {key:"pizza",       label:"Pizza",       icon:"ic-pizza", emoji:"🍕", acc:"var(--c-pizza)"},
-  {key:"vegetarisch", label:"Vegetarisch", icon:"ic-leaf",  emoji:"🥗", acc:"var(--c-vegetarisch)"},
-  {key:"fingerfood",  label:"Fingerfood",  icon:"ic-side",  emoji:"🍟", acc:"var(--c-fingerfood)"},
-  {key:"getraenke",   label:"Getränke",    icon:"ic-drink", emoji:"🥤", acc:"var(--c-getraenke)"}
+  {key:"doener",      label:"Döner",       icon:"ic-doner",    emoji:"🌯", acc:"var(--c-doener)"},
+  {key:"lahmacun",    label:"Lahmacun",    icon:"ic-lahmacun", emoji:"🫓", acc:"var(--c-lahmacun)"},
+  {key:"pizza",       label:"Pizza",       icon:"ic-pizza",    emoji:"🍕", acc:"var(--c-pizza)"},
+  {key:"vegetarisch", label:"Vegetarisch", icon:"ic-leaf",     emoji:"🥗", acc:"var(--c-vegetarisch)"},
+  {key:"fingerfood",  label:"Fingerfood",  icon:"ic-side",     emoji:"🍟", acc:"var(--c-fingerfood)"},
+  {key:"getraenke",   label:"Getränke",    icon:"ic-drink",    emoji:"🥤", acc:"var(--c-getraenke)"}
 ];
 
-/* Produkte (exakt von der Menütafel). tags: "halal" | "vegetarisch" | "scharf". popular: Bestseller-Sektion */
+/* Produkte (exakt von der Menütafel). Produkte mit "variants" haben Hähnchen/Kalb-Auswahl.
+   tags: "halal" | "vegetarisch" | "scharf". popular: Bestseller-Sektion */
 const MENU = [
+  // DÖNER (Hähnchen / Kalb)
+  {id:"doener-gross",       cat:"doener", name:"Döner Groß im Brot", desc:"Großes Fladenbrot, reichlich Fleisch vom Spieß, frischer Salat und hausgemachte Soßen.", tags:["halal"], popular:true,
+    variants:[{id:"doener-gross-h",label:"Hähnchen",price:6.00},{id:"doener-gross-k",label:"Kalb",price:7.50}]},
+  {id:"doener-klein",       cat:"doener", name:"Döner Klein im Brot", desc:"Die handliche Variante im Fladenbrot mit Salat und Soße.", tags:["halal"],
+    variants:[{id:"doener-klein-h",label:"Hähnchen",price:5.00},{id:"doener-klein-k",label:"Kalb",price:6.50}]},
+  {id:"doener-box",         cat:"doener", name:"Dönerbox", desc:"Zartes Fleisch auf Pommes oder Reis mit Salat und Soße – handlich für unterwegs.", tags:["halal"],
+    variants:[{id:"doener-box-h",label:"Hähnchen",price:6.00},{id:"doener-box-k",label:"Kalb",price:8.00}]},
+  {id:"doener-yufka",       cat:"doener", name:"Döner Yufka (Dürüm)", desc:"Dünnes Yufka-Fladenbrot mit Fleisch, frischem Salat und Soße, fest gerollt.", tags:["halal"], popular:true,
+    variants:[{id:"doener-yufka-h",label:"Hähnchen",price:8.00},{id:"doener-yufka-k",label:"Kalb",price:9.00}]},
+  {id:"doener-ueberbacken", cat:"doener", name:"Döner Überbacken", desc:"Mit Käse überbacken und knusprig gebacken – herzhaft und heiß.", tags:["halal"],
+    variants:[{id:"doener-ueberbacken-h",label:"Hähnchen",price:10.00},{id:"doener-ueberbacken-k",label:"Kalb",price:12.50}]},
+  {id:"doener-teller",      cat:"doener", name:"Dönerteller", desc:"Große Portion Fleisch mit frischem Salat und Pommes oder Reis.", tags:["halal"], popular:true,
+    variants:[{id:"doener-teller-h",label:"Hähnchen",price:12.00},{id:"doener-teller-k",label:"Kalb",price:14.00}]},
+  // LAHMACUN
+  {id:"lahmacun",       cat:"lahmacun", name:"Lahmacun", desc:"Hauchdünn gebackener Teigfladen, gerollt mit Dönerfleisch, Salat und Soße.", tags:["halal"], popular:true,
+    variants:[{id:"lahmacun-h",label:"Hähnchen",price:9.00},{id:"lahmacun-k",label:"Kalb",price:10.00}]},
+  {id:"lahmacun-salat", cat:"lahmacun", name:"Lahmacun mit Salat", desc:"Lahmacun mit frischem Salat und Soße, frisch gerollt.", price:7.00, tags:["vegetarisch"]},
   // PIZZA
   {id:"pizza-margherita",  cat:"pizza", name:"Pizza Margherita",  desc:"Tomatensauce, Mozzarella und Basilikum – frisch aus dem Ofen.", price:8.50, tags:["vegetarisch"]},
   {id:"pizza-salami",      cat:"pizza", name:"Pizza Salami",      desc:"Tomatensauce, Käse und würzige Salami.", price:9.50, tags:["halal"]},
@@ -954,12 +981,12 @@ const MENU = [
   {id:"pizza-funghi",      cat:"pizza", name:"Pizza Funghi",      desc:"Mit frischen Champignons und reichlich Mozzarella.", price:9.50, tags:["vegetarisch"]},
   {id:"pizza-karisik",     cat:"pizza", name:"Karışık Pizza",     desc:"Salami, Sucuk, Paprika, Pilze, Zwiebeln und Oliven – die volle Ladung.", price:12.00, tags:["halal","scharf"], popular:true},
   {id:"pizza-haehnchen",   cat:"pizza", name:"Hähnchenpizza",     desc:"Zartes Hähnchenfleisch, Käse und Gemüse.", price:11.00, tags:["halal"]},
-  {id:"pizza-kalb",        cat:"pizza", name:"Kalbpizza",         desc:"Reichlich zartes Kalbfleisch mit Käse.", price:13.00, tags:["halal"], popular:true},
+  {id:"pizza-kalb",        cat:"pizza", name:"Kalbpizza",         desc:"Reichlich zartes Kalbfleisch mit Käse.", price:13.00, tags:["halal"]},
   // VEGETARISCH
   {id:"veggie-yufka",   cat:"vegetarisch", name:"Veggie Yufka",   desc:"Dünnes Yufka-Fladenbrot mit frischem Salat und Soße, gerollt.", price:6.50, tags:["vegetarisch"]},
   {id:"falafel-yufka",  cat:"vegetarisch", name:"Falafel Yufka",  desc:"Hausgemachte Falafel mit Salat und Soße im Yufka gerollt.", price:7.00, tags:["vegetarisch"], popular:true},
   {id:"falafel-box",    cat:"vegetarisch", name:"Falafel Box",    desc:"Knusprige Falafel auf Pommes mit Soße – handlich für unterwegs.", price:6.00, tags:["vegetarisch"]},
-  {id:"falafel-teller", cat:"vegetarisch", name:"Falafel Teller", desc:"Große Portion Falafel mit Salat, Beilage und Soße.", price:9.50, tags:["vegetarisch"], popular:true},
+  {id:"falafel-teller", cat:"vegetarisch", name:"Falafel Teller", desc:"Große Portion Falafel mit Salat, Beilage und Soße.", price:9.50, tags:["vegetarisch"]},
   {id:"falafel-doener", cat:"vegetarisch", name:"Falafel Döner",  desc:"Fladenbrot gefüllt mit Falafel, frischem Salat und Soße.", price:6.50, tags:["vegetarisch"]},
   {id:"veggi-doener",   cat:"vegetarisch", name:"Veggi Döner",    desc:"Vegetarischer Döner mit Gemüse, Salat und Soße.", price:6.00, tags:["vegetarisch"]},
   // FINGERFOOD
@@ -974,10 +1001,17 @@ const MENU = [
   {id:"redbull",       cat:"getraenke", name:"Red Bull 0,25 l",     desc:"Energy für zwischendurch.", price:2.50, tags:[]}
 ];
 
+/* Flache Liste aller bestellbaren Einheiten (Varianten werden einzeln bestellbar) */
+const ITEMS = [];
+MENU.forEach(p=>{
+  if(p.variants) p.variants.forEach(v=> ITEMS.push({id:v.id, cat:p.cat, name:`${p.name} – ${v.label}`, price:v.price}));
+  else ITEMS.push({id:p.id, cat:p.cat, name:p.name, price:p.price});
+});
+
 /* --------- Helpers --------- */
 const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
-const byId = id => MENU.find(m => m.id === id);
+const byId = id => ITEMS.find(m => m.id === id);
 const catOf = key => CATEGORIES.find(c => c.key === key);
 const fmt = n => n.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
 const TAG_META = {
@@ -1015,6 +1049,15 @@ function badgesHtml(tags, popular){
 }
 function cardHtml(p){
   const c = catOf(p.cat);
+  let foot;
+  if(p.variants){
+    foot = `<div class="p-foot p-foot-variants">` + p.variants.map(v=>
+      `<button class="add-btn add-variant" data-add="${v.id}" aria-label="${p.name} ${v.label} in den Warenkorb"><span class="v-label">${v.label}</span><span class="v-price">${fmt(v.price)}</span><svg class="ic"><use href="#ic-plus"/></svg></button>`
+    ).join("") + `</div>`;
+  } else {
+    foot = `<div class="p-foot"><span class="price">${fmt(p.price)}</span>`+
+      `<button class="add-btn" data-add="${p.id}" aria-label="${p.name} in den Warenkorb"><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
+  }
   return `<article class="p-card reveal" data-cat="${p.cat}">
     <div class="p-media" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
@@ -1023,10 +1066,7 @@ function cardHtml(p){
     <div class="p-body">
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
-      <div class="p-foot">
-        <span class="price">${fmt(p.price)}</span>
-        <button class="add-btn" data-add="${p.id}" aria-label="${p.name} in den Warenkorb"><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button>
-      </div>
+      ${foot}
     </div>
   </article>`;
 }
