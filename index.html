@@ -349,13 +349,14 @@ header.scrolled{background:rgba(11,11,13,.94);
 #gallery{padding-top:0}
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .gal-item{position:relative;margin:0;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-2);background:var(--surface)}
-.gal-item.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+/* Hochformat-Kachel: 1 Spalte breit, 2 Reihen hoch (Desktop: links, daneben 3×2 Kacheln) */
+.gal-item.tall{grid-row:span 2;aspect-ratio:auto}
 .gal-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .gal-item:hover img{transform:scale(1.05)}
 .gal-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(8,8,10,.88));color:var(--ink);font-size:.92rem;font-weight:600;line-height:1.3}
 .gal-item figcaption small{display:block;color:var(--gold);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:3px}
-.gal-item.big figcaption{padding:60px 22px 20px;font-family:'Playfair Display',serif;font-size:1.35rem}
-.gal-item.big figcaption small{font-family:'Inter',sans-serif}
+.gal-item.tall figcaption{padding:60px 20px 18px;font-family:'Playfair Display',serif;font-size:1.3rem}
+.gal-item.tall figcaption small{font-family:'Inter',sans-serif}
 
 /* ============ REVIEWS ============ */
 .reviews{background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
@@ -528,7 +529,6 @@ footer ul a:hover{color:var(--gold)}
   .about-grid{grid-template-columns:1fr;gap:36px}
   .about-visual{max-width:560px;width:100%;margin-inline:auto;aspect-ratio:3/2}
   .gal-grid{grid-template-columns:1fr 1fr}
-  .gal-item.big{grid-row:auto;aspect-ratio:4/3}
   .rev-grid{grid-template-columns:1fr}
   .visit-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -584,7 +584,7 @@ footer ul a:hover{color:var(--gold)}
   .gal-item{border-radius:var(--r)}
   .gal-item figcaption{padding:28px 11px 10px;font-size:.8rem}
   .gal-item figcaption small{font-size:.58rem;letter-spacing:1px}
-  .gal-item.big figcaption{padding:44px 16px 14px;font-size:1.12rem}
+  .gal-item.tall figcaption{padding:44px 12px 12px;font-size:1.02rem}
   .order-steps{gap:14px}
   .rev-top{flex-direction:column;gap:6px}
 }
@@ -922,11 +922,13 @@ footer ul a:hover{color:var(--gold)}
       <p class="sec-intro">Echte Gerichte, echtes Handwerk – so sieht es bei uns jeden Tag aus.</p>
     </div>
     <div class="gal-grid">
-      <figure class="gal-item big reveal"><img src="img/gal-doener.webp" alt="Döner im Fladenbrot mit Fleisch, Salat und Rotkohl" width="1100" height="825" loading="lazy" decoding="async"><figcaption><small>Unser Klassiker</small>Döner im frischen Fladenbrot</figcaption></figure>
+      <figure class="gal-item tall reveal"><img src="img/gal-theke.webp" alt="Döner im gegrillten Fladenbrot vor der Salattheke von Edeler Döner" width="720" height="1080" loading="lazy" decoding="async"><figcaption><small>Von unserer Theke</small>Döner im knusprigen Fladenbrot</figcaption></figure>
       <figure class="gal-item reveal" data-d="1"><img src="img/gal-yufka.webp" alt="Yufka wird an der Theke mit Fleisch und Salat belegt" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Handgemacht</small>Frisch vor deinen Augen belegt</figcaption></figure>
       <figure class="gal-item reveal" data-d="2"><img src="img/gal-brot.webp" alt="Gestapelte, frisch gebackene Fladenbrote mit Sesam" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Jeden Tag</small>Frisch gebackenes Fladenbrot</figcaption></figure>
-      <figure class="gal-item reveal" data-d="1"><img src="img/gal-lahmacun.webp" alt="Lahmacun mit Petersilie und Zitrone auf einem Holzbrett" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Hauchdünn</small>Lahmacun aus dem Ofen</figcaption></figure>
-      <figure class="gal-item reveal" data-d="2"><img src="img/gal-pizza.webp" alt="Pizza mit Kalbfleisch, Käse und Joghurtsoße im Karton" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Ofenfrisch</small>Pizza mit Dönerfleisch</figcaption></figure>
+      <figure class="gal-item reveal" data-d="3"><img src="img/gal-yufkabrot.webp" alt="Gestapelte, dünne Yufka-Teigfladen" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Hauchdünn</small>Yufka-Teig für deinen Dürüm</figcaption></figure>
+      <figure class="gal-item reveal" data-d="1"><img src="img/gal-teller.webp" alt="Dönerteller mit Fleisch, Salat und Pommes" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Große Portion</small>Dönerteller mit Pommes</figcaption></figure>
+      <figure class="gal-item reveal" data-d="2"><img src="img/gal-lahmacun.webp" alt="Lahmacun mit Petersilie und Zitrone auf einem Holzbrett" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Knusprig</small>Lahmacun aus dem Ofen</figcaption></figure>
+      <figure class="gal-item reveal" data-d="3"><img src="img/gal-pizza.webp" alt="Pizza mit Kalbfleisch, Käse und Joghurtsoße im Karton" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Ofenfrisch</small>Pizza mit Dönerfleisch</figcaption></figure>
     </div>
   </div>
 </section>
