@@ -41,7 +41,7 @@ strong{color:var(--ink)}
 .small{font-size:.86rem;color:var(--muted)}
 /* Noch zu ergänzende Pflichtangaben */
 .todo{background:rgba(255,122,92,.14);color:#ffb3a1;border:1px dashed rgba(255,122,92,.6);border-radius:6px;padding:0 6px;font-weight:600}
-.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:.9rem;padding:11px 18px;border-radius:var(--pill);border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:inherit;font-weight:600;font-size:.9rem;padding:11px 18px;border-radius:var(--pill);border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
 .btn:hover{border-color:var(--gold);color:var(--gold)}
 
 .l-foot{border-top:1px solid var(--line);background:var(--bg-1);padding:26px 0;font-size:.84rem;color:var(--faint)}
