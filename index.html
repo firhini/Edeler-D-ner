@@ -908,13 +908,13 @@ footer ul a:hover{color:var(--gold)}
           <div class="ir-ic"><svg class="ic"><use href="#ic-clock"/></svg></div>
           <div style="flex:1"><h3>Öffnungszeiten</h3>
             <table class="hours-table" id="hours">
-              <tr data-day="1"><td>Montag</td><td>11:00 – 22:00</td></tr>
-              <tr data-day="2"><td>Dienstag</td><td>11:00 – 22:00</td></tr>
-              <tr data-day="3"><td>Mittwoch</td><td>11:00 – 22:00</td></tr>
-              <tr data-day="4"><td>Donnerstag</td><td>11:00 – 22:00</td></tr>
-              <tr data-day="5"><td>Freitag</td><td>11:00 – 23:00</td></tr>
-              <tr data-day="6"><td>Samstag</td><td>11:00 – 23:00</td></tr>
-              <tr data-day="0"><td>Sonntag</td><td>12:00 – 22:00</td></tr>
+              <tr data-day="1"><td>Montag</td><td>Ruhetag</td></tr>
+              <tr data-day="2"><td>Dienstag</td><td>11:00 – 21:00</td></tr>
+              <tr data-day="3"><td>Mittwoch</td><td>11:00 – 21:00</td></tr>
+              <tr data-day="4"><td>Donnerstag</td><td>11:00 – 21:00</td></tr>
+              <tr data-day="5"><td>Freitag</td><td>11:00 – 21:00</td></tr>
+              <tr data-day="6"><td>Samstag</td><td>11:00 – 21:00</td></tr>
+              <tr data-day="0"><td>Sonntag</td><td>11:00 – 21:00</td></tr>
             </table>
             <div class="open-now" id="openNow"><span class="dot"></span><span id="openNowText">–</span></div>
           </div>
@@ -964,9 +964,8 @@ footer ul a:hover{color:var(--gold)}
       <div>
         <h5>Öffnungszeiten</h5>
         <ul>
-          <li>Mo – Do&nbsp;&nbsp;11 – 22 Uhr</li>
-          <li>Fr – Sa&nbsp;&nbsp;11 – 23 Uhr</li>
-          <li>Sonntag&nbsp;&nbsp;12 – 22 Uhr</li>
+          <li>Di – So&nbsp;&nbsp;11 – 21 Uhr</li>
+          <li>Montag&nbsp;&nbsp;Ruhetag</li>
         </ul>
       </div>
       <div>
@@ -974,6 +973,7 @@ footer ul a:hover{color:var(--gold)}
         <ul>
           <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-pin"/></svg> Kurfürstenstraße 18</li>
           <li>68723 Schwetzingen</li>
+          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-phone"/></svg> Tel: <a id="footTel" href="#">06202 9546059</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
         </ul>
       </div>
@@ -1033,14 +1033,13 @@ footer ul a:hover{color:var(--gold)}
   "url":"https://www.edeler-doner-schwetzingen.de/",
   "image":"https://www.edeler-doner-schwetzingen.de/og-cover.jpg",
   "hasMap":"https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen",
+  "telephone":"+49 6202 9546059",
   "servesCuisine":["Döner","Türkisch","Pizza","Falafel","Halal"],
   "priceRange":"€",
   "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
   "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"600"},
   "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"11:00","closes":"22:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"11:00","closes":"23:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"12:00","closes":"22:00"}
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"21:00"}
   ]
 }
 </script>
@@ -1056,7 +1055,8 @@ footer ul a:hover{color:var(--gold)}
 // 👉 WICHTIG: Echte WhatsApp-Nummer hier eintragen!
 //    Format: Ländervorwahl OHNE "+" und OHNE führende 0.
 //    Beispiel Deutschland: aus 0176 12345678  →  "4917612345678"
-const WHATSAPP_NUMBER = "4917620951091";   // +49 176 20951091
+const WHATSAPP_NUMBER = "4917620951091";   // Mobil für WhatsApp-Bestellungen (+49 176 20951091)
+const PHONE_NUMBER    = "062029546059";    // Festnetz zum Anrufen (06202 9546059)
 const RESTAURANT_NAME = "Edeler Döner";
 /* -------------------------------------------------------------- */
 
@@ -1353,32 +1353,35 @@ function pulseFab(){
 
 /* --------- Contact number wiring --------- */
 function wireContact(){
-  const digits = WHATSAPP_NUMBER.replace(/\D/g,"");
-  const disp = "+" + digits.replace(/^(\d{2})(\d{3})(\d+)/, "$1 $2 $3");
+  const wa = WHATSAPP_NUMBER.replace(/\D/g,"");
   const waMsg = encodeURIComponent(`Hallo ${RESTAURANT_NAME} 👋, ich habe eine Frage:`);
-  const waUrl = `https://wa.me/${digits}?text=${waMsg}`;
-  const tel = "tel:+" + digits;
+  const waUrl = `https://wa.me/${wa}?text=${waMsg}`;
+  // Festnetz: national anzeigen (06202 9546059), tel-Link international (+4962029546059)
+  const phoneNat  = PHONE_NUMBER.replace(/\D/g,"");
+  const phoneDisp = phoneNat.replace(/^(\d{5})(\d+)/, "$1 $2");
+  const phoneTel  = "tel:+49" + phoneNat.replace(/^0/, "");
   const set = (sel,href,txt)=>{ const el=$(sel); if(el){ el.href=href; if(txt) el.textContent=txt; } };
-  set("#telLink", tel, disp);
-  set("#callBtn", tel);
+  set("#telLink", phoneTel, phoneDisp);
+  set("#callBtn", phoneTel);
+  set("#footTel", phoneTel, phoneDisp);
   set("#waContactBtn", waUrl);
   set("#footWa", waUrl);
 }
 
 /* --------- Opening hours: highlight + open now --------- */
-const HOURS = {1:[11,22],2:[11,22],3:[11,22],4:[11,22],5:[11,23],6:[11,23],0:[12,22]};
+const HOURS = {1:null,2:[11,21],3:[11,21],4:[11,21],5:[11,21],6:[11,21],0:[11,21]}; // Mo = Ruhetag
 function updateHours(){
   const now = new Date();
   const day = now.getDay();
   const row = document.querySelector(`#hours tr[data-day="${day}"]`);
   if(row) row.classList.add("today");
-  const [o,c] = HOURS[day];
+  const hrs = HOURS[day];
   const h = now.getHours() + now.getMinutes()/60;
-  const isOpen = h>=o && h<c;
+  const isOpen = !!hrs && h>=hrs[0] && h<hrs[1];
   const box = $("#openNow"), txt = $("#openNowText");
   if(box && txt){
     box.classList.add(isOpen ? "yes" : "no");
-    txt.textContent = isOpen ? `Jetzt geöffnet · bis ${c}:00 Uhr` : "Gerade geschlossen";
+    txt.textContent = isOpen ? `Jetzt geöffnet · bis ${hrs[1]}:00 Uhr` : (hrs ? "Gerade geschlossen" : "Heute Ruhetag");
   }
 }
 
