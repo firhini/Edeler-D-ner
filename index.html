@@ -26,7 +26,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap"></noscript>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0b0d'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' text-anchor='middle' fill='%23d6b25e'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <style>
 /* ============================================================
    EDELER DÖNER · PREMIUM DESIGN SYSTEM (Black / Gold)
@@ -153,9 +155,9 @@ header.scrolled{background:rgba(11,11,13,.94);
 @media(min-width:721px){header.scrolled{background:rgba(11,11,13,.82);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2)}}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
 .brand{display:flex;align-items:center;gap:13px}
-.logo{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;
-  background:radial-gradient(circle at 35% 28%,#1e1e24,#0e0e11);border:1.5px solid var(--gold);box-shadow:0 0 0 4px rgba(214,178,94,.08),inset 0 0 12px rgba(214,178,94,.15)}
-.logo .ic{width:24px;height:26px;color:var(--gold)}
+.logo-mark{height:52px;width:auto;flex:none;filter:drop-shadow(0 2px 12px rgba(214,178,94,.22))}
+.foot-logo{display:inline-block}
+.foot-logo img{width:200px;height:auto;display:block}
 .brand-name{display:flex;flex-direction:column;line-height:1}
 .brand-name b{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:800;color:var(--ink);letter-spacing:.3px}
 .brand-name span{font-size:.6rem;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:3px}
@@ -398,6 +400,13 @@ header.scrolled{background:rgba(11,11,13,.94);
 .open-now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
 .map-card{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;min-height:460px;display:flex;background:var(--surface)}
 .map-card iframe{width:100%;min-height:460px;border:0;flex:1;filter:grayscale(.3) contrast(1.05)}
+.visit-side{display:flex;flex-direction:column;gap:20px}
+.visit-side .map-card,.visit-side .map-card iframe{min-height:300px}
+.visit-side .map-card{flex:1}
+.shop-photo{position:relative;margin:0;aspect-ratio:16/10;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.shop-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shop-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 14px;background:linear-gradient(transparent,rgba(8,8,10,.88));color:var(--ink);font-weight:600;font-size:.95rem}
+.shop-photo figcaption small{display:block;color:var(--gold);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:3px}
 
 /* ============ FOOTER ============ */
 footer{background:var(--bg-1);border-top:1px solid var(--line);padding:64px 0 30px}
@@ -735,7 +744,7 @@ footer ul a:hover{color:var(--gold)}
 <header id="header">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Edeler Döner Startseite">
-      <span class="logo"><svg class="ic"><use href="#ic-doner"/></svg></span>
+      <img class="logo-mark" src="img/logo-mark.webp" alt="" width="226" height="240" decoding="async">
       <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
     </a>
     <nav class="navlinks" id="navlinks" aria-label="Hauptnavigation">
@@ -893,8 +902,8 @@ footer ul a:hover{color:var(--gold)}
   <div class="wrap about-grid">
     <div class="about-visual reveal">
       <picture>
-        <source media="(max-width:980px)" srcset="img/about-wide.webp" width="1200" height="800">
-        <img src="img/about-tall.webp" alt="Dürüm in Alufolie und Cola Turka vor dem Edeler-Döner-Logo" width="960" height="1200" loading="lazy" decoding="async">
+        <source media="(max-width:980px)" srcset="img/laden-nacht-wide.webp" width="1200" height="800">
+        <img src="img/laden-nacht-tall.webp" alt="Der Edeler-Döner-Laden am Abend mit beleuchtetem Schild" width="800" height="1000" loading="lazy" decoding="async">
       </picture>
     </div>
     <div class="about-body">
@@ -990,8 +999,14 @@ footer ul a:hover{color:var(--gold)}
           <a class="btn btn-ghost" id="callBtn" href="#"><svg class="ic"><use href="#ic-phone"/></svg> Anrufen</a>
         </div>
       </div>
-      <div class="map-card reveal">
-        <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen auf Google Maps"></iframe>
+      <div class="visit-side">
+        <figure class="shop-photo reveal">
+          <img src="img/laden-terrasse.webp" alt="Ladenfront von Edeler Döner mit Tischen draußen" width="1200" height="750" loading="lazy" decoding="async">
+          <figcaption><small>So findest du uns</small>Kurfürstenstraße 18 – mit Plätzen draußen</figcaption>
+        </figure>
+        <div class="map-card reveal">
+          <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen auf Google Maps"></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -1002,9 +1017,8 @@ footer ul a:hover{color:var(--gold)}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="#top" class="brand" aria-label="Edeler Döner Startseite">
-          <span class="logo"><svg class="ic"><use href="#ic-doner"/></svg></span>
-          <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
+        <a href="#top" class="foot-logo" aria-label="Edeler Döner – nach oben">
+          <img src="img/logo.webp" alt="Edeler Döner Logo" width="720" height="584" loading="lazy" decoding="async">
         </a>
         <p>100% Halal – Döner, Steinofen-Pizza, Falafel &amp; mehr, frisch gemacht mitten in Schwetzingen.</p>
         <div class="foot-social">
@@ -1096,6 +1110,7 @@ footer ul a:hover{color:var(--gold)}
   "url":"https://edeler-doener.de/",
   "image":"https://edeler-doener.de/og-cover.jpg",
   "hasMap":"https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen",
+  "logo":"https://edeler-doener.de/img/logo.png",
   "telephone":"+49 6202 9546059",
   "servesCuisine":["Döner","Türkisch","Pizza","Falafel","Halal"],
   "priceRange":"€",
