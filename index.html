@@ -439,12 +439,13 @@ footer ul a:hover{color:var(--gold)}
 /* ============ CART DRAWER ============ */
 .cart-fab{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;align-items:center;gap:10px;background:var(--gold-grad);
   color:#191308;border:none;padding:15px 20px;border-radius:var(--pill);font-weight:700;box-shadow:var(--shadow-gold);
-  transform:translateY(120px);transition:transform .45s var(--ease),box-shadow .3s}
+  transform:translateY(calc(100% + 140px));transition:transform .45s var(--ease),box-shadow .3s}
 .cart-fab.show{transform:translateY(0)}
 /* Blendet Netlify unten rechts sein „Powered by"-Badge ein, rückt der Warenkorb-Button darüber (sonst verdeckt) */
 body:has(#nl-badge-frame) .cart-fab{bottom:96px}
 body:has(#nl-badge-frame) .toast-wrap{bottom:170px}
 body:has(#nl-badge-frame) .drawer-foot{padding-bottom:100px}
+body:has(#nl-badge-frame) footer{padding-bottom:100px}
 body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 170px),900px)}
 .cart-fab:hover{box-shadow:0 24px 54px -14px rgba(214,178,94,.6)}
 .cart-fab .ic{width:22px;height:22px}
