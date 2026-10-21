@@ -1050,7 +1050,7 @@ footer ul a:hover{color:var(--gold)}
         <ul>
           <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-pin"/></svg> Kurfürstenstraße 18</li>
           <li>68723 Schwetzingen</li>
-          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-phone"/></svg> Tel: <a id="footTel" href="#">06202 9546059</a></li>
+          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-phone"/></svg> Tel: <a id="footTel" href="tel:+491781804021">0178 1804021</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
         </ul>
       </div>
@@ -1111,7 +1111,7 @@ footer ul a:hover{color:var(--gold)}
   "image":"https://edeler-doener.de/og-cover.jpg",
   "hasMap":"https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen",
   "logo":"https://edeler-doener.de/img/logo.png",
-  "telephone":"+49 6202 9546059",
+  "telephone":"+49 178 1804021",
   "servesCuisine":["Döner","Türkisch","Pizza","Falafel","Halal"],
   "priceRange":"€",
   "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
@@ -1133,8 +1133,9 @@ footer ul a:hover{color:var(--gold)}
 // 👉 WICHTIG: Echte WhatsApp-Nummer hier eintragen!
 //    Format: Ländervorwahl OHNE "+" und OHNE führende 0.
 //    Beispiel Deutschland: aus 0176 12345678  →  "4917612345678"
-const WHATSAPP_NUMBER = "4917620951091";   // Mobil für WhatsApp-Bestellungen (+49 176 20951091)
-const PHONE_NUMBER    = "062029546059";    // Festnetz zum Anrufen (06202 9546059)
+// Eine Nummer für alles – Anrufen UND WhatsApp: +49 178 1804021
+const WHATSAPP_NUMBER = "491781804021";    // WhatsApp-Bestellungen & -Fragen
+const PHONE_NUMBER    = "01781804021";     // Anrufen (gleiche Handynummer)
 const RESTAURANT_NAME = "Edeler Döner";
 /* -------------------------------------------------------------- */
 
@@ -1449,9 +1450,9 @@ function wireContact(){
   const wa = WHATSAPP_NUMBER.replace(/\D/g,"");
   const waMsg = encodeURIComponent(`Hallo ${RESTAURANT_NAME} 👋, ich habe eine Frage:`);
   const waUrl = `https://wa.me/${wa}?text=${waMsg}`;
-  // Festnetz: national anzeigen (06202 9546059), tel-Link international (+4962029546059)
+  // National anzeigen (0178 1804021), tel-Link international (+491781804021)
   const phoneNat  = PHONE_NUMBER.replace(/\D/g,"");
-  const phoneDisp = phoneNat.replace(/^(\d{5})(\d+)/, "$1 $2");
+  const phoneDisp = phoneNat.replace(/^(01\d{2}|0\d{4})(\d+)$/, "$1 $2");   // Handy: 4-stellige Vorwahl, Festnetz: 5-stellig
   const phoneTel  = "tel:+49" + phoneNat.replace(/^0/, "");
   const set = (sel,href,txt)=>{ const el=$(sel); if(el){ el.href=href; if(txt) el.textContent=txt; } };
   set("#telLink", phoneTel, phoneDisp);
