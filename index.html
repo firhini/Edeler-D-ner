@@ -212,10 +212,12 @@ header.scrolled{background:rgba(11,11,13,.94);
 .hv-ring.r2{inset:16%;border-color:rgba(214,178,94,.28)}
 .hv-ring.r3{inset:26%;border-style:dashed;border-color:rgba(214,178,94,.2);animation:spin 60s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hv-disc{position:relative;width:66%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
-  background:radial-gradient(circle at 34% 26%,#20201a,#0d0d0f 70%);border:1px solid var(--line);
-  box-shadow:inset 0 0 60px rgba(0,0,0,.7),0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(214,178,94,.12)}
-.hv-disc .ic{width:52%;height:52%;color:var(--gold);filter:drop-shadow(0 8px 20px rgba(214,178,94,.35))}
+.hv-disc{position:relative;width:70%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  background:#0d0d0f;border:2px solid rgba(214,178,94,.55);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 8px rgba(214,178,94,.08),0 0 60px -10px rgba(214,178,94,.35)}
+.hv-disc img{width:100%;height:100%;object-fit:cover;display:block}
+.hv-disc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  box-shadow:inset 0 0 50px rgba(0,0,0,.55);background:linear-gradient(160deg,rgba(255,255,255,.08),transparent 40%)}
 .hv-glow{position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(214,178,94,.35),transparent 70%);filter:blur(24px);z-index:-1}
 .float-card{position:absolute;background:rgba(18,18,22,.92);
   border:1px solid var(--line);border-radius:14px;padding:12px 15px;display:flex;align-items:center;gap:11px;box-shadow:var(--shadow-sm);animation:floaty 5s ease-in-out infinite}
@@ -262,7 +264,14 @@ header.scrolled{background:rgba(11,11,13,.94);
 .p-illu{position:relative;z-index:1;width:92%;height:92%;transition:transform .5s var(--ease);
   filter:drop-shadow(0 14px 16px rgba(0,0,0,.42))}
 .p-card:hover .p-illu{transform:scale(1.05) rotate(-1.5deg)}
-.p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.p-card:hover .p-media img{transform:scale(1.06)}
+/* Echtes Foto: Spot & Glanz aus, dafür dezenter Verlauf, damit die Badges lesbar bleiben */
+.p-media.has-img{background:#0b0b0f}
+.p-media.has-img::after{display:none}
+.p-media.has-img::before{inset:0;width:auto;aspect-ratio:auto;border-radius:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.42),transparent 34%,transparent 74%,rgba(0,0,0,.3))}
+.p-media.has-img .badge{background-color:rgba(12,12,14,.78)}
 .p-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
 .badge{font-size:.64rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:var(--pill);display:inline-flex;align-items:center;gap:4px;backdrop-filter:blur(4px)}
 .badge .ic{width:12px;height:12px;stroke-width:2}
@@ -325,16 +334,28 @@ header.scrolled{background:rgba(11,11,13,.94);
 /* ============ ABOUT ============ */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .about-visual{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--line);
-  background:radial-gradient(circle at 50% 30%,#23231d,#0d0d0f 75%);display:grid;place-items:center;box-shadow:var(--shadow)}
-.about-visual .ic{width:34%;height:34%;color:var(--gold);opacity:.9}
-.about-visual .av-tag{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(12,12,14,.7);backdrop-filter:blur(10px);
-  border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ink)}
+  background:#0d0d0f;box-shadow:var(--shadow)}
+.about-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about-quote{margin:0 0 22px;padding:4px 0 4px 18px;border-left:3px solid var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--ink)}
+.about-quote small{display:block;margin-top:4px;font-family:'Inter',sans-serif;font-style:normal;font-size:.8rem;color:var(--muted);letter-spacing:.3px}
 .about-body p{color:var(--text);margin-bottom:18px}
 .about-body p.lead-p{font-size:1.14rem;color:var(--ink)}
 .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
 .about-stats .s{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r);padding:20px 16px;text-align:center}
 .about-stats .s b{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-weight:800}
 .about-stats .s span{font-size:.78rem;color:var(--muted);letter-spacing:.4px}
+
+/* ============ GALLERY ============ */
+#gallery{padding-top:0}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gal-item{position:relative;margin:0;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-2);background:var(--surface)}
+.gal-item.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.gal-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(8,8,10,.88));color:var(--ink);font-size:.92rem;font-weight:600;line-height:1.3}
+.gal-item figcaption small{display:block;color:var(--gold);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.gal-item.big figcaption{padding:60px 22px 20px;font-family:'Playfair Display',serif;font-size:1.35rem}
+.gal-item.big figcaption small{font-family:'Inter',sans-serif}
 
 /* ============ REVIEWS ============ */
 .reviews{background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
@@ -419,6 +440,8 @@ footer ul a:hover{color:var(--gold)}
 .cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-2)}
 .cart-item .ci-media{width:60px;height:60px;flex:none;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#22221d,#101012);border:1px solid var(--line-2);color:var(--gold)}
 .cart-item .ci-media .ic{width:28px;height:28px}
+.cart-item .ci-media.has-img{overflow:hidden}
+.cart-item .ci-media img{width:100%;height:100%;object-fit:cover}
 .cart-item .ci-main{flex:1;min-width:0}
 .cart-item .ci-main h4{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:2px}
 .cart-item .ci-main .ci-price{font-size:.82rem;color:var(--muted)}
@@ -503,7 +526,9 @@ footer ul a:hover{color:var(--gold)}
   .hl-grid{grid-template-columns:1fr 1fr}
   .order-inner{grid-template-columns:1fr;gap:36px}
   .about-grid{grid-template-columns:1fr;gap:36px}
-  .about-visual{max-width:420px;margin-inline:auto;aspect-ratio:3/2}
+  .about-visual{max-width:560px;width:100%;margin-inline:auto;aspect-ratio:3/2}
+  .gal-grid{grid-template-columns:1fr 1fr}
+  .gal-item.big{grid-row:auto;aspect-ratio:4/3}
   .rev-grid{grid-template-columns:1fr}
   .visit-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -538,13 +563,28 @@ footer ul a:hover{color:var(--gold)}
   .about-stats{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr}
   .hero{padding-top:calc(var(--header-h) + 24px)}
-  .hero-visual{max-width:285px;margin-bottom:4px}
+  .hero-visual{max-width:300px;margin-bottom:4px}
+  .hv-disc{width:78%}
+  /* Kleinere Badges am Rand, damit das Foto frei bleibt */
+  .float-card{padding:7px 11px;gap:8px;border-radius:12px}
+  .float-card .fc-ic{width:28px;height:28px;border-radius:8px}
+  .float-card .fc-ic .ic{width:15px;height:15px}
+  .float-card b{font-size:.82rem}
+  .float-card span{font-size:.62rem}
+  .fc-1{top:0;right:-5%}
+  .fc-2{bottom:4%;left:-5%}
+  .fc-3{display:none}
   .hero-trust{gap:20px}
   .hero-cta{flex-direction:column}
   .hero-cta .btn{width:100%}
   .grid-cards{grid-template-columns:1fr;gap:18px}
   .p-media{aspect-ratio:16/10}
   .p-illu{width:100%;height:100%}
+  .gal-grid{gap:10px}
+  .gal-item{border-radius:var(--r)}
+  .gal-item figcaption{padding:28px 11px 10px;font-size:.8rem}
+  .gal-item figcaption small{font-size:.58rem;letter-spacing:1px}
+  .gal-item.big figcaption{padding:44px 16px 14px;font-size:1.12rem}
   .order-steps{gap:14px}
   .rev-top{flex-direction:column;gap:6px}
 }
@@ -741,8 +781,7 @@ footer ul a:hover{color:var(--gold)}
     <div class="hero-visual" aria-hidden="true">
       <span class="hv-ring"></span><span class="hv-ring r2"></span><span class="hv-ring r3"></span>
       <span class="hv-glow"></span>
-      <!-- Echtes Foto? Ersetze die .hv-disc einfach durch <img src="..." alt="Döner"> -->
-      <div class="hv-disc"><svg class="ic"><use href="#ic-doner"/></svg></div>
+      <div class="hv-disc"><img src="img/hero-doener.webp" alt="Döner im Fladenbrot mit Pommes vor der Edeler-Döner-Theke" width="900" height="900" fetchpriority="high" decoding="async"></div>
       <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-star"/></svg></span><div><b>4,8 / 5</b><span>Google Bewertungen</span></div></div>
       <div class="float-card fc-2"><span class="fc-ic"><svg class="ic"><use href="#ic-medal"/></svg></span><div><b>100% Halal</b><span>Kalb &amp; Hähnchen</span></div></div>
       <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-bag"/></svg></span><div><b>Abholung</b><span>Lieferung bald</span></div></div>
@@ -852,13 +891,16 @@ footer ul a:hover{color:var(--gold)}
 <!-- ============ ABOUT ============ -->
 <section id="about">
   <div class="wrap about-grid">
-    <div class="about-visual reveal" aria-hidden="true">
-      <svg class="ic"><use href="#ic-doner"/></svg>
-      <div class="av-tag">„Guter Döner ist kein Fast Food – es ist Handwerk."</div>
+    <div class="about-visual reveal">
+      <picture>
+        <source media="(max-width:980px)" srcset="img/about-wide.webp" width="1200" height="800">
+        <img src="img/about-tall.webp" alt="Dürüm in Alufolie und Cola Turka vor dem Edeler-Döner-Logo" width="960" height="1200" loading="lazy" decoding="async">
+      </picture>
     </div>
     <div class="about-body">
       <span class="eyebrow">Über uns</span>
       <h2 class="sec-title">Ehrliches Essen, <span class="gold-text">keine Kompromisse</span></h2>
+      <blockquote class="about-quote">„Kardeş eliyle – von Brüdern gemacht."<small>Unser Versprechen für Schwetzingen &amp; Umgebung</small></blockquote>
       <p class="lead-p">Edeler Döner steht in Schwetzingen für echtes Handwerk statt Fließband. Bei uns kommt zusammen, was zusammengehört: bestes Halal-Fleisch, frische Zutaten und die Zeit, die guter Geschmack braucht.</p>
       <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, unsere Soßen machen wir selbst, und unser Pizzateig kommt frisch aus dem Steinofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
       <p>Ob schnell zum Mitnehmen oder gemütlich vor Ort – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
@@ -867,6 +909,24 @@ footer ul a:hover{color:var(--gold)}
         <div class="s reveal" data-d="1"><b>30+</b><span>Gerichte auf der Karte</span></div>
         <div class="s reveal" data-d="2"><b>4,8★</b><span>Gäste-Bewertung</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow center">Einblicke</span>
+      <h2 class="sec-title">Frisch aus <span class="gold-text">unserer Küche</span></h2>
+      <p class="sec-intro">Echte Gerichte, echtes Handwerk – so sieht es bei uns jeden Tag aus.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="gal-item big reveal"><img src="img/gal-doener.webp" alt="Döner im Fladenbrot mit Fleisch, Salat und Rotkohl" width="1100" height="825" loading="lazy" decoding="async"><figcaption><small>Unser Klassiker</small>Döner im frischen Fladenbrot</figcaption></figure>
+      <figure class="gal-item reveal" data-d="1"><img src="img/gal-yufka.webp" alt="Yufka wird an der Theke mit Fleisch und Salat belegt" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Handgemacht</small>Frisch vor deinen Augen belegt</figcaption></figure>
+      <figure class="gal-item reveal" data-d="2"><img src="img/gal-brot.webp" alt="Gestapelte, frisch gebackene Fladenbrote mit Sesam" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Jeden Tag</small>Frisch gebackenes Fladenbrot</figcaption></figure>
+      <figure class="gal-item reveal" data-d="1"><img src="img/gal-lahmacun.webp" alt="Lahmacun mit Petersilie und Zitrone auf einem Holzbrett" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Hauchdünn</small>Lahmacun aus dem Ofen</figcaption></figure>
+      <figure class="gal-item reveal" data-d="2"><img src="img/gal-pizza.webp" alt="Pizza mit Kalbfleisch, Käse und Joghurtsoße im Karton" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Ofenfrisch</small>Pizza mit Dönerfleisch</figcaption></figure>
     </div>
   </div>
 </section>
@@ -957,6 +1017,7 @@ footer ul a:hover{color:var(--gold)}
           <li><a href="#menu">Speisekarte</a></li>
           <li><a href="#popular">Beliebte Gerichte</a></li>
           <li><a href="#about">Über uns</a></li>
+          <li><a href="#gallery">Galerie</a></li>
           <li><a href="#reviews">Bewertungen</a></li>
           <li><a href="#visit">Kontakt</a></li>
         </ul>
@@ -1119,11 +1180,21 @@ const MENU = [
   {id:"redbull",       cat:"getraenke", name:"Red Bull 0,25 l",     desc:"Energy für zwischendurch.", price:2.50, tags:[]}
 ];
 
+/* Echte Fotos (Ordner img/). Produkte ohne Foto zeigen die Kategorie-Illustration. */
+const PHOTOS = {
+  "doener-gross":"card-doener-brot", "doener-klein":"card-doener-klein", "doener-box":"card-doenerbox",
+  "doener-yufka":"card-doener-yufka", "doener-ueberbacken":"card-ueberbacken", "doener-teller":"card-doenerteller",
+  "lahmacun":"card-lahmacun", "lahmacun-salat":"card-lahmacun-salat",
+  "pizza-salami":"card-pizza-salami", "pizza-sucuk":"card-pizza-sucuk", "pizza-haehnchen":"card-pizza-haehnchen", "pizza-kalb":"card-pizza-kalb",
+  "nuggets-pommes":"card-nuggets", "pommes-klein":"card-pommes-klein", "pommes-gross":"card-pommes"
+};
+MENU.forEach(p=>{ if(PHOTOS[p.id]) p.img = `img/${PHOTOS[p.id]}.webp`; });
+
 /* Flache Liste aller bestellbaren Einheiten (Varianten werden einzeln bestellbar) */
 const ITEMS = [];
 MENU.forEach(p=>{
-  if(p.variants) p.variants.forEach(v=> ITEMS.push({id:v.id, cat:p.cat, name:`${p.name} – ${v.label}`, price:v.price}));
-  else ITEMS.push({id:p.id, cat:p.cat, name:p.name, price:p.price});
+  if(p.variants) p.variants.forEach(v=> ITEMS.push({id:v.id, cat:p.cat, name:`${p.name} – ${v.label}`, price:v.price, img:p.img}));
+  else ITEMS.push({id:p.id, cat:p.cat, name:p.name, price:p.price, img:p.img});
 });
 
 /* --------- Helpers --------- */
@@ -1177,9 +1248,11 @@ function cardHtml(p){
       `<button class="add-btn" data-add="${p.id}" aria-label="${p.name} in den Warenkorb"><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
   }
   return `<article class="p-card reveal" data-cat="${p.cat}">
-    <div class="p-media" style="--acc:${c.acc}">
+    <div class="p-media${p.img ? " has-img" : ""}" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
-      <svg class="p-illu" aria-hidden="true" focusable="false"><use href="#${c.illu}"/></svg>
+      ${p.img
+        ? `<img src="${p.img}" alt="${p.name}" width="800" height="550" loading="lazy" decoding="async">`
+        : `<svg class="p-illu" aria-hidden="true" focusable="false"><use href="#${c.illu}"/></svg>`}
     </div>
     <div class="p-body">
       <h3>${p.name}</h3>
@@ -1192,9 +1265,10 @@ function cardHtml(p){
 /* --------- Build menu + popular + filters --------- */
 function renderMenu(){
   $("#menuGrid").innerHTML = MENU.map(cardHtml).join("");
-  // Bestseller: one per category for visual variety
+  // Bestseller: one per category for visual variety, photo items first
   const seenCat = new Set(), pop = [];
-  MENU.filter(p=>p.popular).forEach(p=>{ if(!seenCat.has(p.cat)){ seenCat.add(p.cat); pop.push(p); } });
+  MENU.filter(p=>p.popular).sort((a,b)=>!!b.img - !!a.img)
+    .forEach(p=>{ if(!seenCat.has(p.cat)){ seenCat.add(p.cat); pop.push(p); } });
   $("#popularGrid").innerHTML = pop.slice(0,4).map(cardHtml).join("");
   // filters
   const pills = [`<button class="filter-pill active" data-filter="all" aria-pressed="true"><svg class="ic"><use href="#ic-spark"/></svg> Alle</button>`]
@@ -1253,7 +1327,9 @@ function renderCart(){
     const p = byId(id); if(!p) return "";           // guard against stale ids
     const q = cart[id], c = catOf(p.cat);
     return `<div class="cart-item">
-      <div class="ci-media"><svg class="ic"><use href="#${c.icon}"/></svg></div>
+      ${p.img
+        ? `<div class="ci-media has-img"><img src="${p.img}" alt="" width="60" height="60" loading="lazy"></div>`
+        : `<div class="ci-media"><svg class="ic"><use href="#${c.icon}"/></svg></div>`}
       <div class="ci-main">
         <h4>${p.name}</h4>
         <div class="ci-price">${fmt(p.price)} / Stück</div>
