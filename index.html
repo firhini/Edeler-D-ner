@@ -22,10 +22,10 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://edeler-doener.de/og-cover.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap"></noscript>
+<!-- Schriften lokal gehostet (DSGVO: keine Verbindung zu Google Fonts) -->
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -400,6 +400,18 @@ header.scrolled{background:rgba(11,11,13,.94);
 .open-now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
 .map-card{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;min-height:460px;display:flex;background:var(--surface)}
 .map-card iframe{width:100%;min-height:460px;border:0;flex:1;filter:grayscale(.3) contrast(1.05)}
+.map-consent{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:32px 26px;
+  background:
+    linear-gradient(rgba(231,191,99,.05) 1px,transparent 1px) 0 0/34px 34px,
+    linear-gradient(90deg,rgba(231,191,99,.05) 1px,transparent 1px) 0 0/34px 34px,
+    radial-gradient(circle at 50% 40%,#1c1c22,var(--surface) 70%)}
+.map-consent .mc-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(231,191,99,.12);color:var(--gold);border:1px solid var(--line)}
+.map-consent .mc-ic .ic{width:26px;height:26px}
+.map-consent h3{font-size:1.2rem}
+.map-consent p{font-size:.84rem;color:var(--muted);max-width:360px}
+.map-consent p a{color:var(--gold);text-decoration:underline}
+.mc-remember{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--faint);cursor:pointer}
+.mc-remember input{width:16px;height:16px;accent-color:var(--gold)}
 .visit-side{display:flex;flex-direction:column;gap:20px}
 .visit-side .map-card,.visit-side .map-card iframe{min-height:300px}
 .visit-side .map-card{flex:1}
@@ -437,12 +449,15 @@ footer ul a:hover{color:var(--gold)}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:var(--bg-1);border-left:1px solid var(--line);z-index:120;
   display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:-30px 0 80px -30px rgba(0,0,0,.9)}
 .drawer.open{transform:none}
-.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line-2)}
+/* Ein gemeinsamer Scrollbereich (Positionen + Bestellformular), Kopfzeile bleibt stehen */
+.drawer{overflow-y:auto;overscroll-behavior:contain}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line-2);
+  position:sticky;top:0;z-index:2;background:var(--bg-1)}
 .drawer-head h3{font-size:1.3rem;display:flex;align-items:center;gap:10px}
 .drawer-head h3 .ic{width:22px;height:22px;color:var(--gold)}
 .drawer-close{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink);display:grid;place-items:center;transition:.25s}
 .drawer-close:hover{border-color:var(--gold);color:var(--gold)}
-.drawer-body{flex:1;overflow-y:auto;padding:18px 24px}
+.drawer-body{flex:1 0 auto;padding:18px 24px}
 .cart-empty{text-align:center;padding:60px 20px;color:var(--muted)}
 .cart-empty .ce-ic{width:70px;height:70px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;margin:0 auto 18px;color:var(--faint)}
 .cart-empty .ce-ic .ic{width:32px;height:32px}
@@ -483,12 +498,103 @@ footer ul a:hover{color:var(--gold)}
 .cart-summary .sum-label{color:var(--muted);font-size:.9rem}
 .cart-summary .sum-total{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--gold)}
 .cart-note{font-size:.74rem;color:var(--faint);text-align:center;margin-top:12px;line-height:1.5}
+.cart-note a{color:var(--muted);text-decoration:underline}
 .clear-cart{display:block;margin:14px auto 0;background:none;border:none;color:var(--faint);font-size:.8rem;text-decoration:underline;transition:.2s}
 .clear-cart:hover{color:var(--hot)}
 
+/* Auswahl im Warenkorb */
+.ci-opts{list-style:none;margin:6px 0 0;display:grid;gap:3px;font-size:.78rem;color:var(--muted);line-height:1.4}
+.ci-opts li{position:relative;padding-left:11px;overflow-wrap:anywhere}
+.ci-opts li::before{content:"";position:absolute;left:1px;top:.58em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.75}
+.ci-opts li b{color:var(--gold);font-weight:600;white-space:nowrap}
+.ci-opts li.no{color:#ff9d84}
+.ci-opts li.no::before{background:#ff7a5c}
+.ci-opts li.chili{color:#ffc93c}
+.ci-opts li.wish{color:var(--text);font-style:italic}
+.ci-actions{display:flex;align-items:center;gap:14px;margin-top:9px;flex-wrap:wrap}
+.ci-edit{background:none;border:none;color:var(--gold);font-size:.8rem;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px 2px}
+.ci-edit:hover{color:var(--gold-hi)}
+/* Hinweis auf der Karte */
+.p-opt{display:grid;gap:3px;font-size:.76rem;font-weight:600;line-height:1.35;margin:-8px 0 14px}
+.p-opt > span{display:flex;align-items:flex-start;gap:6px;color:var(--gold)}
+.p-opt .ic{width:14px;height:14px;stroke-width:2.4;flex:none;margin-top:1px}
+.p-opt .p-opt-hot{color:#ffb35c}
+
+/* ============ KONFIGURATOR ============ */
+.cfg-overlay{position:fixed;inset:0;background:rgba(5,5,7,.74);backdrop-filter:blur(3px);z-index:130;opacity:0;visibility:hidden;transition:.3s}
+.cfg-overlay.open{opacity:1;visibility:visible}
+.cfg{position:fixed;left:50%;top:50%;z-index:140;width:min(600px,calc(100vw - 32px));max-height:min(90vh,900px);display:flex;flex-direction:column;
+  background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 40px 110px -30px rgba(0,0,0,.95);
+  transform:translate(-50%,-46%) scale(.97);opacity:0;visibility:hidden;transition:transform .35s var(--ease),opacity .3s,visibility .3s}
+.cfg.open{transform:translate(-50%,-50%);opacity:1;visibility:visible}
+.cfg-head{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line-2)}
+.cfg-thumb{width:56px;height:56px;flex:none;border-radius:12px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--gold)}
+.cfg-thumb img{width:100%;height:100%;object-fit:cover}
+.cfg-thumb .ic{width:28px;height:28px}
+.cfg-titles{flex:1;min-width:0}
+.cfg-titles h3{font-size:1.28rem;line-height:1.15}
+.cfg-titles p{font-size:.84rem;color:var(--gold);font-weight:600;margin-top:3px}
+.cfg-body{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:4px 20px 20px}
+.cfg-sec{border:0;margin:0;padding:18px 0 4px;min-width:0}
+.cfg-sec + .cfg-sec{border-top:1px solid var(--line-2)}
+.cfg-sec legend,.cfg-label{float:left;width:100%;font-family:'Inter',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--gold);margin-bottom:11px;padding:0}
+.cfg-sec legend small,.cfg-label small{display:block;text-transform:none;letter-spacing:0;font-weight:500;font-size:.8rem;color:var(--muted);margin-top:3px}
+.opt-row{clear:both;display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative;display:inline-flex;cursor:pointer;max-width:100%}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt-ui{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:9px 14px 9px 12px;border-radius:13px;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--text);font-size:.9rem;font-weight:600;line-height:1.25;transition:.18s;user-select:none;-webkit-tap-highlight-color:transparent}
+.opt-ui small{display:block;font-size:.72rem;font-weight:500;color:var(--muted)}
+.opt-ui em{font-style:normal;font-weight:700;font-size:.82rem;color:var(--gold)}
+.opt-ui::before{content:"";width:20px;height:20px;flex:none;border-radius:6px;border:1.5px solid var(--faint);background:transparent center/13px no-repeat;transition:.18s}
+.opt-radio .opt-ui::before{border-radius:50%}
+.opt:hover .opt-ui{border-color:var(--line)}
+.opt input:checked + .opt-ui{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 11%,var(--surface));color:var(--ink)}
+.opt input:checked + .opt-ui::before{border-color:var(--gold);background-color:var(--gold);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23191308' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.opt-radio input:checked + .opt-ui::before{background-image:radial-gradient(circle,#191308 0 3.5px,transparent 4.5px)}
+.opt input:focus-visible + .opt-ui{outline:2px solid var(--gold);outline-offset:2px}
+/* Abgewählte Zutat = deutlich "ohne" */
+.opt-ingr input:not(:checked) + .opt-ui{border-style:dashed;color:var(--faint);background:transparent}
+.opt-ingr input:not(:checked) + .opt-ui > span{text-decoration:line-through;text-decoration-color:#ff7a5c}
+.opt-ingr input:not(:checked) + .opt-ui::before{border-color:#ff7a5c;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff7a5c' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E")}
+.opt-none input:checked + .opt-ui{border-color:#ff7a5c;background:color-mix(in srgb,#ff7a5c 10%,var(--surface))}
+.opt-none input:checked + .opt-ui::before{background-color:#ff7a5c;border-color:#ff7a5c}
+.cfg-sec.invalid .opt-ui{border-color:rgba(255,122,92,.55)}
+.cfg-err{clear:both;color:#ff9d84;font-size:.84rem;font-weight:600;margin-top:10px}
+/* Chili-Cheese – Highlight */
+.chili-opt{position:relative;display:block;cursor:pointer;clear:both}
+.chili-opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.chili-ui{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:14px 16px;border-radius:16px;border:1.5px solid rgba(255,150,50,.5);
+  background:linear-gradient(120deg,rgba(255,190,40,.15),rgba(226,53,42,.16));color:var(--ink);transition:.2s}
+.chili-ui::before{content:"";width:22px;height:22px;flex:none;border-radius:7px;border:1.5px solid #ffb224;background:transparent center/14px no-repeat;transition:.18s}
+.chili-ui b{font-size:1rem;font-weight:800}
+.chili-ui em{margin-left:auto;font-style:normal;font-weight:800;color:#ffc93c;font-size:1rem}
+.chili-new{font-size:.62rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill);background:linear-gradient(135deg,#ffd34d,#ff5a2c);color:#1a0c03}
+.chili-opt input:checked + .chili-ui{border-color:#ffb224;background:linear-gradient(120deg,rgba(255,190,40,.28),rgba(226,53,42,.26));box-shadow:0 12px 34px -16px rgba(255,120,30,.75)}
+.chili-opt input:checked + .chili-ui::before{background-color:#ffb224;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a0c03' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.chili-opt input:focus-visible + .chili-ui{outline:2px solid #ffb224;outline-offset:2px}
+.jala{margin-top:12px}
+.jala-q{display:block;font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:9px}
+/* Soße im Becher */
+.cups{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cup-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 5px 5px 13px;border:1px solid var(--line-2);border-radius:13px;background:var(--surface);transition:.18s}
+.cup-row > span{font-size:.86rem;font-weight:600;color:var(--text);line-height:1.2}
+.cup-row.has{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--surface))}
+.cup-row .stepper{flex:none}
+.cfg-body textarea{clear:both;display:block;width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;color:var(--ink);resize:vertical;min-height:70px}
+.cfg-body textarea::placeholder{color:var(--faint)}
+.cfg-body textarea:focus{outline:none;border-color:var(--gold)}
+.cfg-foot{display:flex;align-items:center;gap:12px;padding:14px 20px;padding-bottom:calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line-2);background:var(--bg-2);border-radius:0 0 var(--r-lg) var(--r-lg)}
+.cfg-foot .btn{flex:1;padding:12px 12px 12px 20px;justify-content:space-between;white-space:nowrap}
+.cfg-price{background:rgba(25,19,8,.14);border:1px solid rgba(25,19,8,.16);padding:5px 12px;border-radius:var(--pill);font-weight:800}
+.lbl-short{display:none}
+
 /* ============ TOAST ============ */
-.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none}
-.toast{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--gold);color:var(--ink);
+.toast-wrap{position:fixed;bottom:96px;left:0;right:0;z-index:200;display:flex;flex-direction:column;gap:10px;align-items:center;padding:0 16px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:10px;max-width:min(100%,480px);background:var(--surface-2);border:1px solid var(--gold);color:var(--ink);
   padding:12px 20px;border-radius:var(--pill);font-weight:600;font-size:.9rem;box-shadow:var(--shadow);
   transform:translateY(20px);opacity:0;transition:.35s var(--ease)}
 .toast.show{transform:none;opacity:1}
@@ -510,6 +616,44 @@ footer ul a:hover{color:var(--gold)}
 .ts-sep{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.55}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
+/* ============ AKTION CHILI-CHEESE ============ */
+.promo{padding:56px 0 64px}
+.promo-card{position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:30px;
+  padding:58px 40px 40px;border-radius:var(--r-xl);border:1px solid rgba(255,160,60,.45);
+  background:
+    radial-gradient(70% 120% at 0% 100%,rgba(255,90,44,.30),transparent 60%),
+    radial-gradient(60% 120% at 100% 0%,rgba(255,190,40,.20),transparent 60%),
+    linear-gradient(135deg,#1f130a,#140c08 60%,#1a0d09);
+  box-shadow:0 34px 90px -40px rgba(255,110,30,.65),inset 0 1px 0 rgba(255,220,140,.12)}
+.promo-drip{position:absolute;top:0;left:0;width:100%;height:46px;fill:#ffc93c;filter:drop-shadow(0 4px 8px rgba(255,150,30,.35))}
+.promo-emoji{position:relative;width:150px;height:150px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 40% 35%,rgba(255,210,80,.35),rgba(255,90,44,.12) 60%,transparent 72%)}
+.promo-emoji span:first-child{font-size:5rem;line-height:1;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5))}
+.promo-emoji span:last-child{position:absolute;right:6px;bottom:14px;font-size:2.6rem;transform:rotate(18deg);filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
+.promo-new{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#1a0c03;
+  background:linear-gradient(135deg,#ffd34d,#ff5a2c);padding:5px 12px;border-radius:var(--pill);margin-bottom:12px;animation:promoPulse 2.4s ease-in-out infinite}
+@keyframes promoPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,140,40,.55)}50%{box-shadow:0 0 0 9px rgba(255,140,40,0)}}
+.promo-card h2{font-size:clamp(1.55rem,3.3vw,2.45rem);font-weight:900;line-height:1.12;letter-spacing:.3px;color:var(--ink)}
+.promo-hl{background:linear-gradient(90deg,#ffe27a,#ffb224 45%,#ff6a2c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#ffb224}
+.promo-price{white-space:nowrap;color:#ffd34d}
+.promo-card p{color:var(--text);margin-top:12px;max-width:620px}
+.promo-card p b{color:#ffc93c}
+.promo-btn{background:linear-gradient(135deg,#ffe066,#ffa524 50%,#ff5a2c);color:#1a0c03;font-weight:800;border:none;
+  box-shadow:0 20px 44px -18px rgba(255,110,30,.8);white-space:nowrap}
+.promo-btn:hover{transform:translateY(-3px);box-shadow:0 26px 54px -18px rgba(255,110,30,.9)}
+@media(max-width:900px){
+  .promo-card{grid-template-columns:1fr;justify-items:center;text-align:center;gap:18px;padding:56px 24px 30px}
+  .promo-card p{margin-inline:auto}
+  .promo-emoji{width:120px;height:120px}
+  .promo-emoji span:first-child{font-size:4rem}
+  .promo-emoji span:last-child{font-size:2.1rem}
+}
+@media(max-width:560px){
+  .promo{padding:40px 0 44px}
+  .promo-card{padding:50px 18px 26px;border-radius:var(--r-lg)}
+  .promo-btn{width:100%}
+}
+
 /* ============ DELIVERY NOTICE ============ */
 .delivery-note{display:flex;align-items:center;gap:14px;max-width:780px;margin:0 auto;background:color-mix(in srgb,var(--c-getraenke) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c-getraenke) 30%,transparent);border-radius:var(--r);padding:15px 20px}
 .delivery-note .dn-ic{width:42px;height:42px;flex:none;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--c-getraenke) 18%,transparent);color:var(--c-getraenke)}
@@ -524,6 +668,12 @@ footer ul a:hover{color:var(--gold)}
 .extras-list{display:flex;flex-wrap:wrap;gap:10px}
 .extras-list .ex{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--pill);padding:8px 14px;font-size:.88rem;color:var(--text)}
 .extras-list .ex b{color:var(--gold);font-weight:700}
+.extras-list .ex-hot{border-color:rgba(255,160,60,.55);background:linear-gradient(120deg,rgba(255,190,40,.16),rgba(226,53,42,.16));color:var(--ink);font-weight:600}
+.extras-list .ex-hot i{font-style:normal;font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1a0c03;background:linear-gradient(135deg,#ffd34d,#ff5a2c);padding:2px 7px;border-radius:var(--pill)}
+.extras-list .ex-hot b{color:#ffc93c}
+.extras-sub{font-size:.84rem;color:var(--muted);margin-bottom:12px}
+.ts-hot{color:#ffc93c}
+.ts-hot .ic{color:#ff8a3c}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:980px){
@@ -589,6 +739,16 @@ footer ul a:hover{color:var(--gold)}
   .grid-cards{grid-template-columns:1fr;gap:18px}
   .p-media{aspect-ratio:16/10}
   .p-illu{width:100%;height:100%}
+  /* Konfigurator als Bottom-Sheet */
+  .cfg{left:0;right:0;top:auto;bottom:0;width:100%;max-height:92vh;max-height:92dvh;border-radius:22px 22px 0 0;border-bottom:0;transform:translateY(100%);opacity:1}
+  .cfg.open{transform:none}
+  .cfg-head{padding:14px 16px}
+  .cfg-body{padding:2px 16px 18px}
+  .cfg-foot{padding-left:16px;padding-right:16px;border-radius:0}
+  .cups{grid-template-columns:1fr}
+  .opt-ui{font-size:.88rem}
+  .lbl-long{display:none}
+  .lbl-short{display:inline}
   .gal-grid{gap:10px}
   .gal-item{border-radius:var(--r)}
   .gal-item figcaption{padding:28px 11px 10px;font-size:.8rem}
@@ -802,11 +962,13 @@ footer ul a:hover{color:var(--gold)}
 <!-- ============ TRUST STRIP ============ -->
 <div class="trust-strip" aria-hidden="true">
   <div class="trust-track">
+    <span class="ts-item ts-hot"><svg class="ic"><use href="#ic-flame"/></svg> NEU: Chili-Cheese-Soße 🧀</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-leaf"/></svg> Frische Zutaten</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-spark"/></svg> Frisch gegrillt</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
+    <span class="ts-item ts-hot"><svg class="ic"><use href="#ic-flame"/></svg> NEU: Chili-Cheese-Soße 🧀</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-leaf"/></svg> Frische Zutaten</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
@@ -814,6 +976,22 @@ footer ul a:hover{color:var(--gold)}
     <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
   </div>
 </div>
+
+<!-- ============ AKTION: CHILI-CHEESE-SOSSE ============ -->
+<section class="promo" id="chili-cheese" aria-labelledby="promoTitle">
+  <div class="wrap">
+    <div class="promo-card reveal">
+      <svg class="promo-drip" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0H1200V10H1178C1178 20 1152 20 1152 10H1101C1101 50 1075 50 1075 10H1036C1036 16 1010 16 1010 10H965C965 16 939 16 939 10H882C882 42 856 42 856 10H824C824 42 798 42 798 10H772C772 16 746 16 746 10H720C720 34 694 34 694 10H655C655 16 629 16 629 10H584C584 16 558 16 558 10H507C507 34 481 34 481 10H436C436 42 410 42 410 10H390C390 20 364 20 364 10H319C319 16 293 16 293 10H223C223 42 197 42 197 10H133C133 16 107 16 107 10H62C62 16 36 16 36 10H23C23 20 -3 20 -3 10H0Z"/></svg>
+      <div class="promo-emoji" aria-hidden="true"><span>🧀</span><span>🌶️</span></div>
+      <div class="promo-text">
+        <span class="promo-new">Neu bei uns</span>
+        <h2 id="promoTitle">🔥 NEU! <span class="promo-hl">CHILI-CHEESE-SOSSE</span> – <span class="promo-price">NUR 1,50 € EXTRA!</span> 🧀</h2>
+        <p>Cremig, würzig und mit ordentlich Feuer – auf Wunsch <b>mit Jalapeños 🌶️</b>. Einfach beim Bestellen dazubuchen: zu Döner, Yufka, Dönerbox, Dönerteller, Pommes &amp; mehr.</p>
+      </div>
+      <a href="#menu" class="btn btn-lg promo-btn">Jetzt dazubestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
 
 <!-- ============ HIGHLIGHTS ============ -->
 <section class="highlights" id="highlights">
@@ -861,15 +1039,22 @@ footer ul a:hover{color:var(--gold)}
   <div class="wrap">
     <div class="grid-cards" id="menuGrid"></div>
     <div class="extras reveal">
-      <h3><svg class="ic"><use href="#ic-plus"/></svg> Extras &amp; Beläge</h3>
+      <h3><svg class="ic"><use href="#ic-plus"/></svg> Soßen, Extras &amp; Beläge</h3>
+      <p class="extras-sub">Direkt beim Gericht wählbar – der Preis wird automatisch berechnet:</p>
+      <div class="extras-list">
+        <span class="ex ex-hot">🔥 Chili-Cheese-Soße <i>Neu</i> <b>+1,50 €</b></span>
+        <span class="ex">Schafskäse <b>+1,00 €</b></span>
+        <span class="ex">Extra-Soße im Becher <b>+0,50 €</b></span>
+        <span class="ex">Soßen zum Gericht <b>gratis</b></span>
+      </div>
+      <p class="extras-sub" style="margin-top:12px">Unsere Soßen: Cocktailsoße · Scharfe Soße · Joghurt-Kräutersoße · Knoblauch-Joghurtsoße</p>
+      <p class="extras-sub" style="margin-top:16px">Weitere Extras – bitte unter „Besondere Wünsche" angeben, Berechnung im Laden:</p>
       <div class="extras-list">
         <span class="ex">Käse <b>+1,00 €</b></span>
-        <span class="ex">Extra Soße <b>+0,50 €</b></span>
         <span class="ex">Kalbfleisch <b>+2,00 €</b></span>
         <span class="ex">Hähnchenfleisch <b>+1,50 €</b></span>
         <span class="ex">Jede weitere Zutat <b>+1,00 €</b></span>
       </div>
-      <p style="margin-top:14px;font-size:.82rem;color:var(--faint)">Extras bitte bei der Bestellung im Anmerkungsfeld oder per WhatsApp angeben.</p>
     </div>
   </div>
 </section>
@@ -1004,8 +1189,15 @@ footer ul a:hover{color:var(--gold)}
           <img src="img/laden-terrasse.webp" alt="Ladenfront von Edeler Döner mit Tischen draußen" width="1200" height="750" loading="lazy" decoding="async">
           <figcaption><small>So findest du uns</small>Kurfürstenstraße 18 – mit Plätzen draußen</figcaption>
         </figure>
-        <div class="map-card reveal">
-          <iframe src="https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen auf Google Maps"></iframe>
+        <!-- Google Maps erst nach Klick laden (DSGVO, 2-Klick-Lösung) -->
+        <div class="map-card reveal" id="mapCard">
+          <div class="map-consent">
+            <span class="mc-ic"><svg class="ic"><use href="#ic-pin"/></svg></span>
+            <h3>Karte anzeigen</h3>
+            <p>Beim Laden der Karte werden Daten (z. B. deine IP-Adresse) an Google übertragen. Mehr dazu in der <a href="datenschutz.html#google-maps">Datenschutzerklärung</a>.</p>
+            <button class="btn btn-ghost" id="mapLoad" type="button">Google Maps laden</button>
+            <label class="mc-remember"><input type="checkbox" id="mapRemember"> Karte künftig automatisch laden</label>
+          </div>
         </div>
       </div>
     </div>
@@ -1057,7 +1249,7 @@ footer ul a:hover{color:var(--gold)}
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Edeler Döner Schwetzingen · Alle Rechte vorbehalten</span>
-      <span><a href="#top">Nach oben ↑</a> · Impressum · Datenschutz</span>
+      <span><a href="#top">Nach oben ↑</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
     </div>
   </div>
 </footer>
@@ -1086,17 +1278,36 @@ footer ul a:hover{color:var(--gold)}
     <input type="radio" name="fulfil" id="fAbholung" value="Abholung" checked hidden>
     <div class="cart-fields">
       <input type="text" id="custName" placeholder="Dein Name" aria-label="Dein Name" autocomplete="name">
-      <textarea id="custNote" rows="2" placeholder="Anmerkung (optional) – z. B. ohne Zwiebeln" aria-label="Anmerkung zur Bestellung"></textarea>
+      <textarea id="custNote" rows="2" maxlength="300" placeholder="Anmerkung zur Bestellung (optional) – z. B. Abholung um 18:30" aria-label="Anmerkung zur Bestellung"></textarea>
     </div>
     <div class="cart-summary">
       <span class="sum-label">Zwischensumme</span>
       <span class="sum-total" id="cartTotal">0,00 €</span>
     </div>
     <button class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
-    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet. Zahlung bei Abholung – keine Online-Zahlung. 🛵 Lieferung aktuell pausiert.</p>
+    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet – gesendet wird erst, wenn du dort auf Senden tippst. Zahlung bei Abholung, keine Online-Zahlung. 🛵 Lieferung aktuell pausiert. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
     <button class="clear-cart" id="clearCart">Warenkorb leeren</button>
   </div>
 </aside>
+
+<!-- ============ KONFIGURATOR (Zutaten, Soßen, Extras) ============ -->
+<div class="cfg-overlay" id="cfgOverlay"></div>
+<div class="cfg" id="cfg" role="dialog" aria-modal="true" aria-labelledby="cfgTitle" aria-hidden="true" inert>
+  <div class="cfg-head">
+    <div class="cfg-thumb" id="cfgThumb"></div>
+    <div class="cfg-titles"><h3 id="cfgTitle">Gericht</h3><p id="cfgSub"></p></div>
+    <button class="drawer-close" id="cfgClose" aria-label="Auswahl schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
+  </div>
+  <div class="cfg-body" id="cfgBody"></div>
+  <div class="cfg-foot">
+    <div class="stepper" role="group" aria-label="Menge">
+      <button type="button" id="cfgMinus" aria-label="Menge verringern"><svg class="ic"><use href="#ic-minus"/></svg></button>
+      <span id="cfgQty" aria-live="polite">1</span>
+      <button type="button" id="cfgPlus" aria-label="Menge erhöhen"><svg class="ic"><use href="#ic-plus"/></svg></button>
+    </div>
+    <button type="button" class="btn btn-gold" id="cfgAdd"><span id="cfgAddLabel">In den Warenkorb</span><span class="cfg-price" id="cfgAddPrice">0,00 €</span></button>
+  </div>
+</div>
 
 <!-- ============ TOAST ============ -->
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
@@ -1211,9 +1422,77 @@ MENU.forEach(p=>{ if(PHOTOS[p.id]) p.img = `img/${PHOTOS[p.id]}.webp`; });
 /* Flache Liste aller bestellbaren Einheiten (Varianten werden einzeln bestellbar) */
 const ITEMS = [];
 MENU.forEach(p=>{
-  if(p.variants) p.variants.forEach(v=> ITEMS.push({id:v.id, cat:p.cat, name:`${p.name} – ${v.label}`, price:v.price, img:p.img}));
-  else ITEMS.push({id:p.id, cat:p.cat, name:p.name, price:p.price, img:p.img});
+  if(p.variants) p.variants.forEach(v=> ITEMS.push({id:v.id, pid:p.id, cat:p.cat, name:`${p.name} – ${v.label}`, price:v.price, img:p.img}));
+  else ITEMS.push({id:p.id, pid:p.id, cat:p.cat, name:p.name, price:p.price, img:p.img});
 });
+
+/* --------- Bestell-Optionen: Zutaten, Soßen, Extras --------- */
+const INGREDIENTS = ["Zwiebeln","Rotkraut","Weißkraut","Grüner Salat","Tomaten","Çoban salatası"];
+const INGREDIENT_HINT = {"Çoban salatası":"Zwiebeln, Tomaten, Paprika, Gurke"};
+const SAUCES = ["Cocktailsoße","Scharfe Soße","Joghurt-Kräutersoße","Knoblauch-Joghurtsoße"];   // gratis, mehrere möglich
+const PRICE_CHILI = 1.50;   // Chili-Cheese-Soße pro Portion
+const PRICE_FETA  = 1.00;   // Schafskäse
+const PRICE_CUP   = 0.50;   // Extra-Soße separat im Becher
+/* Welche Auswahl gibt es bei welchem Gericht?
+   wrap  = Zutaten abwählen + Soßen + Extras   (Döner im Brot, Yufka, Lahmacun …)
+   box   = mit/ohne Salat + Soßen + Extras      (Boxen, Überbacken)
+   plate = Soßen + Extras                       (Teller)
+   extra = nur Extras                           (Pizza, Fingerfood)
+   Getränke haben keine Auswahl und landen direkt im Warenkorb. */
+const OPTION_TYPE = {
+  "doener-gross":"wrap", "doener-klein":"wrap", "doener-yufka":"wrap", "lahmacun":"wrap", "lahmacun-salat":"wrap",
+  "veggie-yufka":"wrap", "falafel-yufka":"wrap", "falafel-doener":"wrap", "veggi-doener":"wrap",
+  "doener-box":"box", "falafel-box":"box", "doener-ueberbacken":"box",
+  "doener-teller":"plate", "falafel-teller":"plate"
+};
+const prodOf  = item => MENU.find(p => p.id === item.pid);
+const optType = p => OPTION_TYPE[p.id] || (p.cat === "getraenke" ? null : "extra");
+const hasSauces = t => t === "wrap" || t === "box" || t === "plate";
+
+/* Bereinigt eine Auswahl, damit gleiche Bestellungen denselben Schlüssel haben (und gespeicherte Daten gültig bleiben) */
+function normOpts(type, o){
+  o = o || {};
+  const n = {};
+  if(!type) return n;
+  if(type === "wrap") n.ingr = INGREDIENTS.filter(x => (o.ingr||[]).includes(x));
+  if(type === "box")  n.salad = o.salad !== false;
+  if(hasSauces(type)){
+    n.sauces = SAUCES.filter(s => (o.sauces||[]).includes(s));
+    n.noSauce = !n.sauces.length && !!o.noSauce;
+  }
+  n.chili = !!o.chili;
+  if(n.chili) n.jala = o.jala === "ohne" ? "ohne" : "mit";
+  n.feta = !!o.feta;
+  n.cups = {};
+  SAUCES.forEach(s => { const k = Math.min(9, Math.max(0, Math.floor(Number((o.cups||{})[s]) || 0))); if(k) n.cups[s] = k; });
+  n.note = String(o.note || "").replace(/\s+/g, " ").trim().slice(0, 200);
+  return n;
+}
+const cupCount = o => Object.values(o.cups || {}).reduce((a,b) => a + b, 0);
+function unitPrice(id, o){
+  const it = byId(id); if(!it) return 0;
+  return it.price + (o.chili ? PRICE_CHILI : 0) + (o.feta ? PRICE_FETA : 0) + cupCount(o) * PRICE_CUP;
+}
+/* Auswahl als lesbare Zeilen – für Warenkorb und WhatsApp-Nachricht.
+   cls: no = etwas weggelassen, chili = Chili-Cheese, wish = Kundenwunsch */
+function optSummary(type, o){
+  const out = [];
+  if(type === "wrap"){
+    const without = INGREDIENTS.filter(x => !o.ingr.includes(x));
+    if(!without.length) out.push({txt:`Zutaten: alle (${INGREDIENTS.join(", ")})`});
+    else if(!o.ingr.length) out.push({txt:"Zutaten: KEINE – ohne Salat & Gemüse", cls:"no"});
+    else { out.push({txt:`Zutaten: ${o.ingr.join(", ")}`}); out.push({txt:`OHNE: ${without.join(", ")}`, cls:"no"}); }
+  }
+  if(type === "box") out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
+  if(hasSauces(type)) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
+  if(o.chili) out.push({txt:`Chili-Cheese-Soße – ${o.jala === "ohne" ? "OHNE" : "MIT"} Jalapeños`, price:PRICE_CHILI, cls:"chili"});
+  if(o.feta) out.push({txt:"Schafskäse", price:PRICE_FETA});
+  const cups = Object.entries(o.cups || {});
+  if(cups.length) out.push({txt:`Extra-Soße im Becher: ${cups.map(([s,k]) => `${k}x ${s}`).join(", ")}`, price:cupCount(o) * PRICE_CUP});
+  if(o.note) out.push({txt:`Wunsch: ${o.note}`, cls:"wish"});
+  return out;
+}
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* --------- Helpers --------- */
 const $  = s => document.querySelector(s);
@@ -1227,25 +1506,27 @@ const TAG_META = {
   scharf:      {cls:"badge-hot",   icon:"ic-flame", label:"Scharf"}
 };
 
-/* --------- Cart state (localStorage) --------- */
-const STORE_KEY = "edelerdoener_cart_v2";
+/* --------- Cart state (localStorage) ---------
+   Warenkorb = Liste von Zeilen {id, qty, opts}. Gleiches Gericht mit gleicher Auswahl wird zusammengefasst. */
+const STORE_KEY = "edelerdoener_cart_v3";
+try{ localStorage.removeItem("edelerdoener_cart_v2"); }catch(e){}   // altes Format (ohne Auswahl) verwerfen
 let cart = loadCart();
 function loadCart(){
   try{
     const raw = JSON.parse(localStorage.getItem(STORE_KEY));
-    if(!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
+    if(!Array.isArray(raw)) return [];
     // Prune stale/invalid entries (e.g. a menu item removed in a later deploy)
-    const clean = {};
-    for(const [id,q] of Object.entries(raw)){
-      const n = Math.floor(Number(q));
-      if(byId(id) && Number.isFinite(n) && n > 0) clean[id] = n;
-    }
-    return clean;
-  }catch(e){ return {}; }
+    return raw.map(l => {
+      const it = l && byId(l.id), q = Math.floor(Number(l && l.qty));
+      if(!it || !Number.isFinite(q) || q <= 0) return null;
+      return {id:it.id, qty:Math.min(q, 99), opts:normOpts(optType(prodOf(it)), l.opts)};
+    }).filter(Boolean);
+  }catch(e){ return []; }
 }
 function saveCart(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(cart)); }catch(e){} }
-function cartCount(){ return Object.entries(cart).reduce((n,[id,q])=> n + (byId(id) ? q : 0), 0); }
-function cartTotal(){ return Object.entries(cart).reduce((sum,[id,q])=>{ const p=byId(id); return sum + (p ? p.price*q : 0); },0); }
+const lineKey = (id, opts) => id + "|" + JSON.stringify(opts);
+function cartCount(){ return cart.reduce((n,l)=> n + l.qty, 0); }
+function cartTotal(){ return cart.reduce((sum,l)=> sum + unitPrice(l.id, l.opts) * l.qty, 0); }
 
 /* --------- Render product card --------- */
 function badgesHtml(tags, popular){
@@ -1257,14 +1538,18 @@ function badgesHtml(tags, popular){
 function cardHtml(p){
   const c = catOf(p.cat);
   let foot;
+  const t = optType(p);
+  // Gerichte mit Auswahl öffnen den Konfigurator, Getränke landen direkt im Warenkorb
+  const act = label => t ? `aria-haspopup="dialog" aria-label="${label} – Auswahl öffnen"` : `aria-label="${label} in den Warenkorb"`;
   if(p.variants){
     foot = `<div class="p-foot p-foot-variants">` + p.variants.map(v=>
-      `<button class="add-btn add-variant" data-add="${v.id}" aria-label="${p.name} ${v.label} in den Warenkorb"><span class="v-label">${v.label}</span><span class="v-price">${fmt(v.price)}</span><svg class="ic"><use href="#ic-plus"/></svg></button>`
+      `<button class="add-btn add-variant" data-add="${v.id}" ${act(`${p.name} ${v.label}`)}><span class="v-label">${v.label}</span><span class="v-price">${fmt(v.price)}</span><svg class="ic"><use href="#ic-plus"/></svg></button>`
     ).join("") + `</div>`;
   } else {
     foot = `<div class="p-foot"><span class="price">${fmt(p.price)}</span>`+
-      `<button class="add-btn" data-add="${p.id}" aria-label="${p.name} in den Warenkorb"><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
+      `<button class="add-btn" data-add="${p.id}" ${act(p.name)}><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
   }
+  const hint = {wrap:"Zutaten & Soßen nach Wunsch", box:"Mit/ohne Salat & Soßen wählbar", plate:"Soßen nach Wunsch", extra:"Extras wählbar"}[t];
   return `<article class="p-card reveal" data-cat="${p.cat}">
     <div class="p-media${p.img ? " has-img" : ""}" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
@@ -1275,6 +1560,7 @@ function cardHtml(p){
     <div class="p-body">
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
+      ${hint ? `<div class="p-opt"><span><svg class="ic"><use href="#ic-check"/></svg>${hint}</span><span class="p-opt-hot">🔥 Chili-Cheese-Soße dazu: +${fmt(PRICE_CHILI)}</span></div>` : ""}
       ${foot}
     </div>
   </article>`;
@@ -1313,24 +1599,27 @@ function applyFilter(key, btn){
 }
 
 /* --------- Cart operations --------- */
-function addToCart(id){
-  if(!byId(id)) return;
-  cart[id] = (cart[id]||0) + 1;
+/* Fügt eine Zeile hinzu; gleiche Auswahl → Menge erhöhen. at = Position (beim Bearbeiten bleibt die Zeile an ihrem Platz) */
+function addLine(id, opts, qty=1, at=null){
+  const it = byId(id); if(!it) return;
+  opts = normOpts(optType(prodOf(it)), opts);
+  const same = cart.find(l => lineKey(l.id, l.opts) === lineKey(id, opts));
+  if(same) same.qty = Math.min(99, same.qty + qty);
+  else if(at !== null) cart.splice(at, 0, {id, qty, opts});
+  else cart.push({id, qty, opts});
   saveCart(); updateCartUI();
-  toast(`${byId(id).name} hinzugefügt`);
-  pulseFab();
 }
-function setQty(id, qty){
-  if(qty<=0){ delete cart[id]; } else { cart[id]=qty; }
+function setQty(idx, qty){
+  if(!cart[idx]) return;
+  if(qty<=0) cart.splice(idx, 1); else cart[idx].qty = Math.min(99, qty);
   saveCart(); updateCartUI();
 }
-function clearCart(){ cart={}; saveCart(); updateCartUI(); }
+function clearCart(){ cart=[]; saveCart(); updateCartUI(); }
 
 /* --------- Render cart --------- */
 function renderCart(){
   const body = $("#drawerBody"), foot = $("#drawerFoot");
-  const ids = Object.keys(cart);
-  if(ids.length===0){
+  if(cart.length===0){
     body.innerHTML = `<div class="cart-empty">
       <div class="ce-ic"><svg class="ic"><use href="#ic-bag"/></svg></div>
       <h4>Noch nichts drin</h4>
@@ -1341,25 +1630,31 @@ function renderCart(){
     return;
   }
   foot.hidden = false;
-  body.innerHTML = ids.map(id=>{
-    const p = byId(id); if(!p) return "";           // guard against stale ids
-    const q = cart[id], c = catOf(p.cat);
+  body.innerHTML = cart.map((l, idx)=>{
+    const p = byId(l.id); if(!p) return "";           // guard against stale ids
+    const c = catOf(p.cat), t = optType(prodOf(p)), unit = unitPrice(l.id, l.opts);
+    const opts = optSummary(t, l.opts).map(s =>
+      `<li${s.cls ? ` class="${s.cls}"` : ""}>${esc(s.txt)}${s.price ? ` <b>+${fmt(s.price)}</b>` : ""}</li>`).join("");
     return `<div class="cart-item">
       ${p.img
         ? `<div class="ci-media has-img"><img src="${p.img}" alt="" width="60" height="60" loading="lazy"></div>`
         : `<div class="ci-media"><svg class="ic"><use href="#${c.icon}"/></svg></div>`}
       <div class="ci-main">
         <h4>${p.name}</h4>
-        <div class="ci-price">${fmt(p.price)} / Stück</div>
-        <div class="stepper" style="margin-top:8px;width:max-content">
-          <button data-dec="${id}" aria-label="Weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
-          <span>${q}</span>
-          <button data-inc="${id}" aria-label="Mehr"><svg class="ic"><use href="#ic-plus"/></svg></button>
+        <div class="ci-price">${fmt(unit)} / Stück${unit !== p.price ? " inkl. Extras" : ""}</div>
+        ${opts ? `<ul class="ci-opts">${opts}</ul>` : ""}
+        <div class="ci-actions">
+          <div class="stepper">
+            <button data-dec="${idx}" aria-label="${p.name}: eins weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
+            <span>${l.qty}</span>
+            <button data-inc="${idx}" aria-label="${p.name}: eins mehr"><svg class="ic"><use href="#ic-plus"/></svg></button>
+          </div>
+          ${t ? `<button class="ci-edit" data-edit="${idx}" aria-haspopup="dialog">Ändern</button>` : ""}
         </div>
       </div>
       <div class="ci-right">
-        <span class="ci-line">${fmt(p.price*q)}</span>
-        <button class="ci-remove" data-rm="${id}"><svg class="ic"><use href="#ic-trash"/></svg> Entfernen</button>
+        <span class="ci-line">${fmt(unit*l.qty)}</span>
+        <button class="ci-remove" data-rm="${idx}"><svg class="ic"><use href="#ic-trash"/></svg> Entfernen</button>
       </div>
     </div>`;
   }).join("");
@@ -1403,17 +1698,21 @@ function closeDrawer(){
 
 /* --------- Build WhatsApp message --------- */
 function buildOrderMessage(){
-  const lines = Object.entries(cart).map(([id,q])=>{
-    const p = byId(id); if(!p) return null;         // guard against stale ids
-    const c = catOf(p.cat);
-    return `${c.emoji} ${q}x ${p.name} – ${fmt(p.price*q)}`;
+  const ICON = {no:"❌", chili:"🔥", wish:"📝"};
+  const lines = cart.map((l, i)=>{
+    const p = byId(l.id); if(!p) return null;         // guard against stale ids
+    const c = catOf(p.cat), t = optType(prodOf(p));
+    const head = `${i+1}) ${c.emoji} ${l.qty}x ${p.name} – ${fmt(unitPrice(l.id, l.opts) * l.qty)}`;
+    const det = optSummary(t, l.opts).map(s =>
+      `    ${ICON[s.cls] || "•"} ${s.txt}${s.price ? ` (+${fmt(s.price)}${l.qty > 1 ? " je Stück" : ""})` : ""}`);
+    return [head, ...det].join("\n");
   }).filter(Boolean);
   const name = $("#custName").value.trim();
   const note = $("#custNote").value.trim();
 
   let msg = `Hallo ${RESTAURANT_NAME} 👋\n\n`;
   msg += `Ich möchte folgende Bestellung aufgeben:\n\n`;
-  msg += lines.join("\n") + "\n\n";
+  msg += lines.join("\n\n") + "\n\n";
   msg += `Gesamt: ${fmt(cartTotal())}\n\n`;
   msg += `Art: Abholung\n`;
   msg += `Name: ${name}\n`;
@@ -1427,10 +1726,155 @@ function sendWhatsAppOrder(){
   window.open(url, "_blank", "noopener");
 }
 
+/* --------- Konfigurator: Zutaten, Soßen & Extras pro Gericht --------- */
+let cfg = null, cfgLastFocus = null;     // cfg = {id, type, qty, cups, editIdx}
+const ICON_OK = `<svg class="ic"><use href="#ic-check"/></svg>`;
+function optChip(type, name, value, label, checked, extraCls=""){
+  return `<label class="opt ${type==="radio" ? "opt-radio" : ""} ${extraCls}"><input type="${type}" name="${name}" value="${esc(value)}"${checked ? " checked" : ""}><span class="opt-ui">${label}</span></label>`;
+}
+function cfgBodyHtml(p, t, id, o){
+  let h = "";
+  if(p.variants) h += `<fieldset class="cfg-sec"><legend>Fleisch wählen</legend><div class="opt-row">` +
+    p.variants.map(v => optChip("radio","variant",v.id,`${v.label} <em>${fmt(v.price)}</em>`, v.id===id)).join("") + `</div></fieldset>`;
+  if(t === "wrap") h += `<fieldset class="cfg-sec"><legend>Zutaten <small>Alles ist dabei – tippe weg, was du nicht möchtest</small></legend><div class="opt-row">` +
+    INGREDIENTS.map(x => optChip("checkbox","ingr",x, `<span>${x}${INGREDIENT_HINT[x] ? `<small>${INGREDIENT_HINT[x]}</small>` : ""}</span>`, o.ingr.includes(x), "opt-ingr")).join("") + `</div></fieldset>`;
+  if(t === "box") h += `<fieldset class="cfg-sec"><legend>Salat</legend><div class="opt-row">` +
+    optChip("radio","salad","mit","Mit Salat", o.salad) + optChip("radio","salad","ohne","Ohne Salat", !o.salad) + `</div></fieldset>`;
+  if(hasSauces(t)) h += `<fieldset class="cfg-sec" id="cfgSauces"><legend>Soßen <small>Gratis – gerne mehrere oder alle</small></legend><div class="opt-row">` +
+    SAUCES.map(s => optChip("checkbox","sauce",s,s, o.sauces.includes(s))).join("") +
+    optChip("checkbox","noSauce","1","Ohne Soße", o.noSauce, "opt-none") +
+    `</div><p class="cfg-err" id="errSauce" role="alert" hidden>Bitte wähle mindestens eine Soße – oder „Ohne Soße".</p></fieldset>`;
+  h += `<fieldset class="cfg-sec cfg-chili"><legend class="visually-hidden">Chili-Cheese-Soße</legend>
+    <label class="chili-opt"><input type="checkbox" name="chili"${o.chili ? " checked" : ""}><span class="chili-ui"><span class="chili-new">Neu</span><b>🔥 Chili-Cheese-Soße 🧀</b><em>+${fmt(PRICE_CHILI)}</em></span></label>
+    <div class="jala" id="cfgJala"${o.chili ? "" : " hidden"}><span class="jala-q" id="jalaQ">Mit oder ohne Jalapeños?</span>
+      <div class="opt-row" role="radiogroup" aria-labelledby="jalaQ">${optChip("radio","jala","mit","Mit Jalapeños 🌶️", o.jala==="mit")}${optChip("radio","jala","ohne","Ohne Jalapeños", o.jala==="ohne")}</div>
+      <p class="cfg-err" id="errJala" role="alert" hidden>Bitte wähle: mit oder ohne Jalapeños.</p></div></fieldset>`;
+  h += `<fieldset class="cfg-sec"><legend>Extras</legend><div class="opt-row">${optChip("checkbox","feta","1",`Schafskäse <em>+${fmt(PRICE_FETA)}</em>`, o.feta)}</div></fieldset>`;
+  h += `<fieldset class="cfg-sec"><legend>Extra-Soße im Becher <small>Separat zum Mitnehmen – ${fmt(PRICE_CUP)} pro Becher</small></legend><div class="cups">` +
+    SAUCES.map(s => `<div class="cup-row" data-cup-row="${s}"><span>${s}</span><div class="stepper">
+      <button type="button" data-cup="${s}" data-step="-1" aria-label="${s} im Becher: einen weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
+      <span data-cup-n="${s}" aria-live="polite">0</span>
+      <button type="button" data-cup="${s}" data-step="1" aria-label="${s} im Becher: einen mehr"><svg class="ic"><use href="#ic-plus"/></svg></button></div></div>`).join("") + `</div></fieldset>`;
+  h += `<div class="cfg-sec"><label class="cfg-label" for="cfgNote">Besondere Wünsche <small>Optional – z. B. extra scharf, gut durch, Brot extra knusprig</small></label>
+    <textarea id="cfgNote" rows="2" maxlength="200" placeholder="Dein Wunsch an die Küche …">${esc(o.note || "")}</textarea></div>`;
+  return h;
+}
+function readCfg(){
+  const f = $("#cfgBody"), val = n => Array.from(f.querySelectorAll(`input[name="${n}"]:checked`)).map(i => i.value);
+  return {
+    ingr: val("ingr"), salad: val("salad")[0] !== "ohne", sauces: val("sauce"), noSauce: val("noSauce").length > 0,
+    chili: val("chili").length > 0, jala: val("jala")[0] || null, feta: val("feta").length > 0,
+    cups: {...cfg.cups}, note: $("#cfgNote").value
+  };
+}
+function updateCfg(){
+  const raw = readCfg();
+  $("#cfgJala").hidden = !raw.chili;
+  SAUCES.forEach(s => {
+    const k = cfg.cups[s] || 0;
+    $("#cfgBody").querySelector(`[data-cup-n="${s}"]`).textContent = k;
+    $("#cfgBody").querySelector(`[data-cup-row="${s}"]`).classList.toggle("has", k > 0);
+  });
+  $("#cfgQty").textContent = cfg.qty;
+  const total = unitPrice(cfg.id, normOpts(cfg.type, raw)) * cfg.qty;
+  $("#cfgAddLabel").innerHTML = cfg.editIdx !== null
+    ? `<span class="lbl-long">Änderung speichern</span><span class="lbl-short">Speichern</span>`
+    : `<span class="lbl-long">In den Warenkorb</span><span class="lbl-short">Hinzufügen</span>`;
+  $("#cfgAddPrice").textContent = fmt(total);
+  const it = byId(cfg.id), v = (prodOf(it).variants || []).find(x => x.id === cfg.id);
+  $("#cfgSub").textContent = v ? `${v.label} · ${fmt(v.price)}` : fmt(it.price);
+}
+function openCfg(id, line=null, editIdx=null){
+  const it = byId(id); if(!it) return;
+  const p = prodOf(it), t = optType(p);
+  const o = line ? normOpts(t, line.opts) : normOpts(t, {ingr:[...INGREDIENTS], salad:true});
+  if(!line) delete o.jala;                          // Jalapeños muss der Kunde selbst wählen
+  cfg = {id, type:t, qty: line ? line.qty : 1, cups: {...o.cups}, editIdx};
+  const c = catOf(p.cat);
+  $("#cfgTitle").textContent = p.name;
+  $("#cfgThumb").innerHTML = p.img ? `<img src="${p.img}" alt="" width="56" height="56">` : `<svg class="ic"><use href="#${c.icon}"/></svg>`;
+  $("#cfgBody").innerHTML = cfgBodyHtml(p, t, id, o);
+  $("#cfgBody").scrollTop = 0;
+  decorateIcons($("#cfg"));
+  updateCfg();
+  // Dialog öffnen: Hintergrund (und ggf. Warenkorb) inert schalten
+  cfgLastFocus = document.activeElement;
+  document.querySelectorAll(BG_SEL).forEach(el => el.setAttribute("inert",""));
+  $("#drawer").setAttribute("inert","");
+  const d = $("#cfg");
+  d.removeAttribute("inert"); d.setAttribute("aria-hidden","false");
+  d.classList.add("open"); $("#cfgOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  $("#cfgClose").focus();
+}
+function closeCfg(){
+  const d = $("#cfg");
+  d.classList.remove("open"); $("#cfgOverlay").classList.remove("open");
+  d.setAttribute("aria-hidden","true"); d.setAttribute("inert","");
+  if($("#drawer").classList.contains("open")) $("#drawer").removeAttribute("inert");   // zurück in den Warenkorb
+  else { document.querySelectorAll(BG_SEL).forEach(el => el.removeAttribute("inert")); document.body.style.overflow = ""; }
+  cfg = null;
+  if(cfgLastFocus && document.contains(cfgLastFocus)) cfgLastFocus.focus();
+}
+function cfgError(errSel, focusSel){
+  const err = $(errSel); err.hidden = false;
+  err.closest(".cfg-sec").classList.add("invalid");
+  err.closest(".cfg-sec").scrollIntoView({block:"center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  const f = $("#cfgBody").querySelector(focusSel); if(f) f.focus({preventScroll:true});
+}
+function submitCfg(){
+  const raw = readCfg();
+  if(hasSauces(cfg.type) && !raw.sauces.length && !raw.noSauce) return cfgError("#errSauce", 'input[name="sauce"]');
+  if(raw.chili && !raw.jala) return cfgError("#errJala", 'input[name="jala"]');
+  const name = byId(cfg.id).name, edit = cfg.editIdx;
+  if(edit !== null) cart.splice(edit, 1);
+  addLine(cfg.id, raw, cfg.qty, edit);
+  closeCfg();
+  toast(edit !== null ? `${name} geändert` : `${name} hinzugefügt`);
+  if(edit === null) pulseFab();
+}
+function initCfg(){
+  const body = $("#cfgBody");
+  body.addEventListener("change", e => {
+    const i = e.target;
+    if(i.name === "noSauce" && i.checked) body.querySelectorAll('input[name="sauce"]').forEach(s => s.checked = false);
+    if(i.name === "sauce" && i.checked) body.querySelectorAll('input[name="noSauce"]').forEach(s => s.checked = false);
+    if(i.name === "variant") cfg.id = i.value;
+    const sec = i.closest(".cfg-sec");
+    if(sec && sec.classList.contains("invalid")){ sec.classList.remove("invalid"); sec.querySelectorAll(".cfg-err").forEach(x => x.hidden = true); }
+    if(i.name === "chili" && !i.checked){ const j = $("#errJala"); j.hidden = true; j.closest(".cfg-sec").classList.remove("invalid"); }
+    updateCfg();
+  });
+  body.addEventListener("click", e => {
+    const b = e.target.closest("[data-cup]"); if(!b) return;
+    const s = b.dataset.cup;
+    cfg.cups[s] = Math.min(9, Math.max(0, (cfg.cups[s] || 0) + Number(b.dataset.step)));
+    updateCfg();
+  });
+  $("#cfgMinus").addEventListener("click", () => { cfg.qty = Math.max(1, cfg.qty - 1); updateCfg(); });
+  $("#cfgPlus").addEventListener("click",  () => { cfg.qty = Math.min(99, cfg.qty + 1); updateCfg(); });
+  $("#cfgAdd").addEventListener("click", submitCfg);
+  $("#cfgClose").addEventListener("click", closeCfg);
+  $("#cfgOverlay").addEventListener("click", closeCfg);
+  $("#cfg").addEventListener("keydown", e => trapFocus($("#cfg"), e));
+}
+
+/* Focus trap for dialogs */
+function trapFocus(box, e){
+  if(e.key !== "Tab") return;
+  const foc = Array.from(box.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'))
+    .filter(el => !el.disabled && el.offsetParent !== null);
+  if(!foc.length) return;
+  const first = foc[0], last = foc[foc.length-1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+}
+
 /* --------- Toast --------- */
 let toastTimer;
 function toast(text){
   const wrap = $("#toastWrap");
+  wrap.replaceChildren();                       // immer nur eine Meldung gleichzeitig
   const el = document.createElement("div");
   el.className = "toast";
   el.innerHTML = `<svg class="ic"><use href="#ic-check"/></svg> ${text}`;
@@ -1460,6 +1904,21 @@ function wireContact(){
   set("#footTel", phoneTel, phoneDisp);
   set("#waContactBtn", waUrl);
   set("#footWa", waUrl);
+}
+
+/* --------- Google Maps erst nach Einwilligung laden (2-Klick) --------- */
+const MAPS_KEY = "edelerdoener_maps_ok";
+const MAPS_SRC = "https://www.google.com/maps?q=Kurf%C3%BCrstenstra%C3%9Fe%2018%2C%2068723%20Schwetzingen&output=embed";
+function loadMap(){
+  $("#mapCard").innerHTML = `<iframe src="${MAPS_SRC}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort Edeler Döner Schwetzingen auf Google Maps"></iframe>`;
+}
+function initMap(){
+  let ok = false; try{ ok = localStorage.getItem(MAPS_KEY) === "1"; }catch(e){}
+  if(ok){ loadMap(); return; }
+  $("#mapLoad").addEventListener("click", ()=>{
+    if($("#mapRemember").checked){ try{ localStorage.setItem(MAPS_KEY, "1"); }catch(e){} }
+    loadMap();
+  });
 }
 
 /* --------- Opening hours: highlight + open now --------- */
@@ -1531,7 +1990,9 @@ function initEvents(){
   document.addEventListener("click", e=>{
     const add = e.target.closest("[data-add]");
     if(add){
-      addToCart(add.dataset.add);
+      const it = byId(add.dataset.add); if(!it) return;
+      if(optType(prodOf(it))){ openCfg(it.id); return; }       // Gericht mit Auswahl → Konfigurator
+      addLine(it.id, {}); toast(`${it.name} hinzugefügt`); pulseFab();
       if(add.classList.contains("added")) return;   // already showing confirmation → don't re-capture label
       const orig = add.innerHTML;
       add.classList.add("added");
@@ -1540,9 +2001,10 @@ function initEvents(){
       setTimeout(()=>{ add.classList.remove("added"); add.innerHTML = orig; }, 1100);
       return;
     }
-    const inc = e.target.closest("[data-inc]"); if(inc){ setQty(inc.dataset.inc, (cart[inc.dataset.inc]||0)+1); return; }
-    const dec = e.target.closest("[data-dec]"); if(dec){ setQty(dec.dataset.dec, (cart[dec.dataset.dec]||0)-1); return; }
-    const rm  = e.target.closest("[data-rm]");  if(rm){ setQty(rm.dataset.rm, 0); return; }
+    const inc  = e.target.closest("[data-inc]");  if(inc){ const i=+inc.dataset.inc; if(cart[i]) setQty(i, cart[i].qty+1); return; }
+    const dec  = e.target.closest("[data-dec]");  if(dec){ const i=+dec.dataset.dec; if(cart[i]) setQty(i, cart[i].qty-1); return; }
+    const rm   = e.target.closest("[data-rm]");   if(rm){ setQty(+rm.dataset.rm, 0); return; }
+    const edit = e.target.closest("[data-edit]"); if(edit){ const i=+edit.dataset.edit; if(cart[i]) openCfg(cart[i].id, cart[i], i); return; }
     const flt = e.target.closest("[data-filter]"); if(flt){ applyFilter(flt.dataset.filter, flt); return; }
   });
   // cart open/close
@@ -1551,17 +2013,15 @@ function initEvents(){
   $("#orderBandBtn").addEventListener("click", openDrawer);
   $("#drawerClose").addEventListener("click", closeDrawer);
   $("#overlay").addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && $("#drawer").classList.contains("open")) closeDrawer(); });
-  // Focus trap inside the cart dialog
-  $("#drawer").addEventListener("keydown", e=>{
-    if(e.key !== "Tab") return;
-    const foc = Array.from($("#drawer").querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'))
-      .filter(el => !el.disabled && el.offsetParent !== null);
-    if(!foc.length) return;
-    const first = foc[0], last = foc[foc.length-1];
-    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  // Escape closes the topmost dialog (Konfigurator liegt über dem Warenkorb)
+  document.addEventListener("keydown", e=>{
+    if(e.key !== "Escape") return;
+    if($("#cfg").classList.contains("open")) closeCfg();
+    else if($("#drawer").classList.contains("open")) closeDrawer();
   });
+  // Focus trap inside the cart dialog
+  $("#drawer").addEventListener("keydown", e=> trapFocus($("#drawer"), e));
+  initCfg();
   // order + clear
   $("#waOrderBtn").addEventListener("click", sendWhatsAppOrder);
   $("#clearCart").addEventListener("click", clearCart);
@@ -1573,6 +2033,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderMenu();
   updateCartUI();
   wireContact();
+  initMap();
   updateHours();
   initScroll();
   initNav();
