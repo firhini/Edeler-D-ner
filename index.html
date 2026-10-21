@@ -5,18 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b0b0d">
 <title>Edeler Döner Schwetzingen · Premium Halal Döner, Pizza & Falafel</title>
-<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Steinofen-Pizza, Falafel, Yufka & mehr. Online zusammenstellen und in Sekunden per WhatsApp bestellen (Abholung).">
-<meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Dürüm, Lahmacun, Pizza Schwetzingen, Burger, WhatsApp Bestellung, Kurfürstenstraße">
+<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Pizza, Falafel, Yufka & mehr. Online zusammenstellen und in Sekunden per WhatsApp bestellen (Abholung).">
+<meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Dürüm, Lahmacun, Pizza Schwetzingen, Falafel, WhatsApp Bestellung, Kurfürstenstraße">
 <meta name="author" content="Edeler Döner Schwetzingen">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://edeler-doener.de/">
 <meta property="og:title" content="Edeler Döner Schwetzingen · Premium Halal">
-<meta property="og:description" content="100% Halal Döner, Steinofen-Pizza, Falafel & mehr – online zusammenstellen und per WhatsApp bestellen.">
+<meta property="og:description" content="100% Halal Döner, Pizza, Falafel & mehr – online zusammenstellen und per WhatsApp bestellen.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://edeler-doener.de/">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Edeler Döner Schwetzingen">
-<!-- Social-Share-Bild: hier ein echtes 1200×630 Foto hinterlegen (z. B. angerichteter Döner) -->
 <meta property="og:image" content="https://edeler-doener.de/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -152,17 +151,18 @@ header.scrolled{background:rgba(11,11,13,.94);
   border-bottom-color:var(--line);box-shadow:0 10px 30px -20px rgba(0,0,0,.9)}
 /* Frosted blur only on desktop: on mobile the header must NOT create a containing block
    for the fixed off-canvas nav (backdrop-filter would collapse it to header height). */
-@media(min-width:721px){header.scrolled{background:rgba(11,11,13,.82);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2)}}
+@media(min-width:1081px){header.scrolled{background:rgba(11,11,13,.82);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2)}}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
 .brand{display:flex;align-items:center;gap:13px}
 .logo-mark{height:52px;width:auto;flex:none;filter:drop-shadow(0 2px 12px rgba(214,178,94,.22))}
 .foot-logo{display:inline-block}
 .foot-logo img{width:200px;height:auto;display:block}
 .brand-name{display:flex;flex-direction:column;line-height:1}
-.brand-name b{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:800;color:var(--ink);letter-spacing:.3px}
+.brand-name b{white-space:nowrap;font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:800;color:var(--ink);letter-spacing:.3px}
 .brand-name span{font-size:.6rem;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:3px}
 .navlinks{display:flex;align-items:center;gap:4px}
 .navlinks a{position:relative;padding:9px 14px;font-size:.92rem;font-weight:500;color:var(--text);border-radius:8px;transition:color .2s}
+.navlinks a{white-space:nowrap}
 .navlinks a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .navlinks a:hover,.navlinks a.active{color:var(--gold)}
 .navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1)}
@@ -184,7 +184,7 @@ header.scrolled{background:rgba(11,11,13,.94);
    off-canvas panel — both in the header's stacking context — stay tappable above it. */
 .nav-scrim{position:fixed;inset:0;background:rgba(5,5,7,.6);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);z-index:99;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
 .nav-scrim.open{opacity:1;visibility:visible}
-@media(min-width:721px){.nav-scrim{display:none}}
+@media(min-width:1081px){.nav-scrim{display:none}}
 
 /* ============ HERO ============ */
 .hero{min-height:100svh;display:flex;align-items:center;padding-top:calc(var(--header-h) + 40px);padding-bottom:60px;position:relative;overflow:hidden}
@@ -362,6 +362,9 @@ header.scrolled{background:rgba(11,11,13,.94);
 
 /* ============ REVIEWS ============ */
 .reviews{background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.reviews .sec-head{margin-bottom:30px}
+.rev-cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+@media(max-width:560px){.rev-cta .btn{width:100%}}
 .rev-top{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:44px}
 .rev-top .big{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800;color:var(--gold)}
 .rev-top .stars{color:var(--gold);font-size:1.15rem;letter-spacing:2px}
@@ -428,7 +431,7 @@ footer{background:var(--bg-1);border-top:1px solid var(--line);padding:64px 0 30
 .foot-social a{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);transition:.25s}
 .foot-social a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-3px)}
 .foot-social a .ic{width:20px;height:20px}
-footer h5{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
+footer .foot-h{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
 footer ul{list-style:none;display:grid;gap:11px}
 footer ul a,footer ul li{color:var(--muted);font-size:.92rem;transition:.2s}
 footer ul a:hover{color:var(--gold)}
@@ -682,6 +685,17 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 .ts-hot .ic{color:#ff8a3c}
 
 /* ============ RESPONSIVE ============ */
+/* Aufklappmenü (☰) bis Tablet-Breite – darüber passt die volle Navigation in eine Zeile */
+@media(max-width:1080px){
+  .navlinks{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--bg-1);border-left:1px solid var(--line);
+    flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateX(105%);visibility:hidden;
+    transition:transform .4s var(--ease),visibility .4s;z-index:105}
+  .navlinks.open{transform:none;visibility:visible}
+  .navlinks a{font-size:1.1rem;padding:12px}
+  .navlinks a::after{display:none}
+  .burger{display:flex}
+  .nav-actions .navcta{display:none}
+}
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:20px;text-align:center}
   .hero .lead{margin-inline:auto}
@@ -699,15 +713,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
 }
 @media(max-width:720px){
-  .navlinks{position:fixed;top:0;right:0;bottom:0;width:min(80vw,320px);background:var(--bg-1);border-left:1px solid var(--line);
-    flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateX(105%);visibility:hidden;
-    transition:transform .4s var(--ease),visibility .4s;z-index:105}
-  .navlinks.open{transform:none;visibility:visible}
-  .navlinks a{font-size:1.1rem;padding:12px}
-  .navlinks a::after{display:none}
-  .burger{display:flex}
   .cart-btn span.cart-label{display:none}
-  .nav-actions .navcta{display:none}
   .add-btn{padding:12px 18px}
   .filter-pill{padding:12px 18px}
   .drawer-close{width:44px;height:44px}
@@ -912,7 +918,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 <header id="header">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Edeler Döner Startseite">
-      <img class="logo-mark" src="img/logo-mark.webp" alt="" width="226" height="240" decoding="async">
+      <img class="logo-mark" src="img/logo-mark.webp" alt="" width="151" height="160" decoding="async">
       <span class="brand-name"><b>Edeler Döner</b><span>Schwetzingen</span></span>
     </a>
     <nav class="navlinks" id="navlinks" aria-label="Hauptnavigation">
@@ -923,18 +929,19 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <a href="#visit">Kontakt</a>
     </nav>
     <div class="nav-actions">
-      <button class="cart-btn" id="cartBtnTop" aria-label="Warenkorb öffnen">
+      <button type="button" class="cart-btn" id="cartBtnTop" aria-label="Warenkorb öffnen">
         <svg class="ic"><use href="#ic-bag"/></svg>
         <span class="cart-label">Warenkorb</span>
         <span class="cart-count" id="cartCountTop">0</span>
       </button>
       <a href="#menu" class="btn btn-gold navcta">Jetzt bestellen</a>
-      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="navlinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button type="button" class="burger" id="burger" aria-label="Menü öffnen" aria-controls="navlinks" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="nav-scrim" id="navScrim"></div>
 
+<main id="main">
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap hero-grid">
@@ -944,14 +951,14 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
         <span class="line">Döner, wie er</span>
         <span class="line"><em class="gold-text">sein soll.</em></span>
       </h1>
-      <p class="lead">Saftiger Döner vom Spieß, knusprige Steinofen-Pizza, hausgemachte Falafel &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
+      <p class="lead">Saftiger Döner vom Spieß, knusprige Pizza, Falafel &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
       <div class="hero-cta">
         <a href="#menu" class="btn btn-gold btn-lg">Jetzt bestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
         <a href="#menu" class="btn btn-ghost btn-lg">Speisekarte ansehen</a>
       </div>
       <div class="hero-trust">
-        <div class="t"><span class="stars">★★★★★</span><span>4,8 · über 600 Gäste</span></div>
-        <div class="t"><b>100%</b><span>Halal-zertifiziert</span></div>
+        <div class="t"><b>Di–So</b><span>11 – 21 Uhr geöffnet</span></div>
+        <div class="t"><b>100%</b><span>Halal-Fleisch</span></div>
         <div class="t"><b>ab 5,00€</b><span>Döner im Brot</span></div>
       </div>
     </div>
@@ -959,7 +966,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <span class="hv-ring"></span><span class="hv-ring r2"></span><span class="hv-ring r3"></span>
       <span class="hv-glow"></span>
       <div class="hv-disc"><img src="img/hero-doener.webp" alt="Döner im Fladenbrot mit Pommes vor der Edeler-Döner-Theke" width="900" height="900" fetchpriority="high" decoding="async"></div>
-      <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-star"/></svg></span><div><b>4,8 / 5</b><span>Google Bewertungen</span></div></div>
+      <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-flame"/></svg></span><div><b>Chili-Cheese</b><span>Neu · nur +1,50 €</span></div></div>
       <div class="float-card fc-2"><span class="fc-ic"><svg class="ic"><use href="#ic-medal"/></svg></span><div><b>100% Halal</b><span>Kalb &amp; Hähnchen</span></div></div>
       <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-bag"/></svg></span><div><b>Abholung</b><span>Lieferung bald</span></div></div>
     </div>
@@ -1007,7 +1014,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <h2 class="visually-hidden">Warum Edeler Döner</h2>
     <div class="hl-grid">
       <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p></div>
-      <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Täglich frische Beilagen, hausgemachte Soßen und Teig aus dem Steinofen.</p></div>
+      <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Frische Beilagen, vier Soßen zur Wahl und Pizza frisch aus dem Ofen.</p></div>
       <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3>Abholung vor Ort</h3><p>Frisch zubereitet und direkt bei uns abgeholt – Lieferung ist bald wieder für euch da.</p></div>
       <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Karte zusammenstellen, ein Klick – deine Bestellung landet direkt bei uns.</p></div>
     </div>
@@ -1084,7 +1091,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <div class="oc-ic"><svg class="ic"><use href="#ic-wa"/></svg></div>
       <h3>Direkt bestellen</h3>
       <p>Öffne deinen Warenkorb und sende die Bestellung in wenigen Sekunden per WhatsApp an Edeler Döner.</p>
-      <button class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
+      <button type="button" class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
       <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Zahlung bei Abholung – keine Online-Zahlung nötig. Lieferung aktuell pausiert.</p>
     </div>
   </div>
@@ -1104,12 +1111,12 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <h2 class="sec-title">Ehrliches Essen, <span class="gold-text">keine Kompromisse</span></h2>
       <blockquote class="about-quote">„Kardeş eliyle – von Brüdern gemacht."<small>Unser Versprechen für Schwetzingen &amp; Umgebung</small></blockquote>
       <p class="lead-p">Edeler Döner steht in Schwetzingen für echtes Handwerk statt Fließband. Bei uns kommt zusammen, was zusammengehört: bestes Halal-Fleisch, frische Zutaten und die Zeit, die guter Geschmack braucht.</p>
-      <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, unsere Soßen machen wir selbst, und unser Pizzateig kommt frisch aus dem Steinofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
+      <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, jeder Döner wird frisch vor deinen Augen belegt, und unsere Pizza kommt frisch aus dem Ofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
       <p>Ob schnell zum Mitnehmen oder gemütlich vor Ort – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
       <div class="about-stats">
         <div class="s reveal"><b>100%</b><span>Halal-Qualität</span></div>
         <div class="s reveal" data-d="1"><b>30+</b><span>Gerichte auf der Karte</span></div>
-        <div class="s reveal" data-d="2"><b>4,8★</b><span>Gäste-Bewertung</span></div>
+        <div class="s reveal" data-d="2"><b>4</b><span>Soßen gratis zur Wahl</span></div>
       </div>
     </div>
   </div>
@@ -1124,32 +1131,28 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <p class="sec-intro">Echte Gerichte, echtes Handwerk – so sieht es bei uns jeden Tag aus.</p>
     </div>
     <div class="gal-grid">
-      <figure class="gal-item tall reveal"><img src="img/gal-theke.webp" alt="Döner im gegrillten Fladenbrot vor der Salattheke von Edeler Döner" width="720" height="1080" loading="lazy" decoding="async"><figcaption><small>Von unserer Theke</small>Döner im knusprigen Fladenbrot</figcaption></figure>
-      <figure class="gal-item reveal" data-d="1"><img src="img/gal-yufka.webp" alt="Yufka wird an der Theke mit Fleisch und Salat belegt" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Handgemacht</small>Frisch vor deinen Augen belegt</figcaption></figure>
-      <figure class="gal-item reveal" data-d="2"><img src="img/gal-brot.webp" alt="Gestapelte, frisch gebackene Fladenbrote mit Sesam" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Jeden Tag</small>Frisch gebackenes Fladenbrot</figcaption></figure>
-      <figure class="gal-item reveal" data-d="3"><img src="img/gal-yufkabrot.webp" alt="Gestapelte, dünne Yufka-Teigfladen" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Hauchdünn</small>Yufka-Teig für deinen Dürüm</figcaption></figure>
-      <figure class="gal-item reveal" data-d="1"><img src="img/gal-teller.webp" alt="Dönerteller mit Fleisch, Salat und Pommes" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Große Portion</small>Dönerteller mit Pommes</figcaption></figure>
-      <figure class="gal-item reveal" data-d="2"><img src="img/gal-lahmacun.webp" alt="Lahmacun mit Petersilie und Zitrone auf einem Holzbrett" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Knusprig</small>Lahmacun aus dem Ofen</figcaption></figure>
-      <figure class="gal-item reveal" data-d="3"><img src="img/gal-pizza.webp" alt="Pizza mit Kalbfleisch, Käse und Joghurtsoße im Karton" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Ofenfrisch</small>Pizza mit Dönerfleisch</figcaption></figure>
+      <figure class="gal-item tall reveal"><img src="img/gal-theke.webp" srcset="img/gal-theke-480.webp 480w, img/gal-theke.webp 720w" sizes="(max-width:980px) 50vw, 290px" alt="Döner im gegrillten Fladenbrot vor der Salattheke von Edeler Döner" width="720" height="1080" loading="lazy" decoding="async"><figcaption><small>Von unserer Theke</small>Döner im knusprigen Fladenbrot</figcaption></figure>
+      <figure class="gal-item reveal" data-d="1"><img src="img/gal-yufka.webp" srcset="img/gal-yufka-480.webp 480w, img/gal-yufka.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Yufka wird an der Theke mit Fleisch und Salat belegt" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Handgemacht</small>Frisch vor deinen Augen belegt</figcaption></figure>
+      <figure class="gal-item reveal" data-d="2"><img src="img/gal-brot.webp" srcset="img/gal-brot-480.webp 480w, img/gal-brot.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Gestapelte, frisch gebackene Fladenbrote mit Sesam" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Frisch &amp; knusprig</small>Fladenbrot mit Sesam</figcaption></figure>
+      <figure class="gal-item reveal" data-d="3"><img src="img/gal-yufkabrot.webp" srcset="img/gal-yufkabrot-480.webp 480w, img/gal-yufkabrot.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Gestapelte, dünne Yufka-Teigfladen" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Hauchdünn</small>Yufka-Teig für deinen Dürüm</figcaption></figure>
+      <figure class="gal-item reveal" data-d="1"><img src="img/gal-teller.webp" srcset="img/gal-teller-480.webp 480w, img/gal-teller.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Dönerteller mit Fleisch, Salat und Pommes" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Große Portion</small>Dönerteller mit Pommes</figcaption></figure>
+      <figure class="gal-item reveal" data-d="2"><img src="img/gal-lahmacun.webp" srcset="img/gal-lahmacun-480.webp 480w, img/gal-lahmacun.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Lahmacun mit Petersilie und Zitrone auf einem Holzbrett" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Knusprig</small>Lahmacun aus dem Ofen</figcaption></figure>
+      <figure class="gal-item reveal" data-d="3"><img src="img/gal-pizza.webp" srcset="img/gal-pizza-480.webp 480w, img/gal-pizza.webp 800w" sizes="(max-width:980px) 50vw, 290px" alt="Pizza mit Kalbfleisch, Käse und Joghurtsoße im Karton" width="800" height="600" loading="lazy" decoding="async"><figcaption><small>Ofenfrisch</small>Pizza mit Dönerfleisch</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- ============ REVIEWS ============ -->
+<!-- ============ BEWERTEN (echte Bewertungen hier ergänzen, sobald vorhanden) ============ -->
 <section class="reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head center">
       <span class="eyebrow center">Bewertungen</span>
-      <h2 class="sec-title">Das sagen <span class="gold-text">unsere Gäste</span></h2>
+      <h2 class="sec-title">Wie hat's dir <span class="gold-text">geschmeckt?</span></h2>
+      <p class="sec-intro">Deine Meinung hilft uns – und allen, die in Schwetzingen guten Döner suchen. Wir freuen uns über deine ehrliche Bewertung auf Google oder dein Feedback per WhatsApp.</p>
     </div>
-    <div class="rev-top">
-      <span class="big">4,8</span>
-      <div style="text-align:left"><div class="stars">★★★★★</div><small>Basierend auf über 600 Bewertungen</small></div>
-    </div>
-    <div class="rev-grid">
-      <div class="rev reveal"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Bester Döner in Schwetzingen! Das Fleisch ist immer saftig, die Soßen hausgemacht und das Team super freundlich. Bestelle fast jede Woche.</p><div class="who"><span class="av">M</span><div><b>Murat K.</b><span>Stammgast</span></div></div></div>
-      <div class="rev reveal" data-d="1"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Endlich ein Laden, bei dem 100% Halal wirklich ernst genommen wird. Die Pizza aus dem Steinofen ist ein Traum und die Portionen sind riesig.</p><div class="who"><span class="av">S</span><div><b>Sarah L.</b><span>Google Bewertung</span></div></div></div>
-      <div class="rev reveal" data-d="2"><span class="q"><svg class="ic"><use href="#ic-quote"/></svg></span><div class="stars">★★★★★</div><p>Per WhatsApp vorbestellt, 10 Minuten später abgeholt – alles frisch und heiß. Preis-Leistung top. Klare Empfehlung für ganz Schwetzingen!</p><div class="who"><span class="av">D</span><div><b>Daniel R.</b><span>Abholung</span></div></div></div>
+    <div class="rev-cta reveal">
+      <a class="btn btn-gold btn-lg" href="https://www.google.com/maps/search/?api=1&amp;query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-star"/></svg> Auf Google bewerten</a>
+      <a class="btn btn-ghost btn-lg" id="waFeedbackBtn" href="https://wa.me/491781804021" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-wa"/></svg> Feedback per WhatsApp</a>
     </div>
   </div>
 </section>
@@ -1171,7 +1174,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
         <div class="info-row">
           <div class="ir-ic"><svg class="ic"><use href="#ic-clock"/></svg></div>
           <div style="flex:1"><h3>Öffnungszeiten</h3>
-            <table class="hours-table" id="hours">
+            <table class="hours-table" id="hours"><tbody>
               <tr data-day="1"><td>Montag</td><td>Ruhetag</td></tr>
               <tr data-day="2"><td>Dienstag</td><td>11:00 – 21:00</td></tr>
               <tr data-day="3"><td>Mittwoch</td><td>11:00 – 21:00</td></tr>
@@ -1179,7 +1182,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
               <tr data-day="5"><td>Freitag</td><td>11:00 – 21:00</td></tr>
               <tr data-day="6"><td>Samstag</td><td>11:00 – 21:00</td></tr>
               <tr data-day="0"><td>Sonntag</td><td>11:00 – 21:00</td></tr>
-            </table>
+</tbody>            </table>
             <div class="open-now" id="openNow"><span class="dot"></span><span id="openNowText">–</span></div>
           </div>
         </div>
@@ -1212,23 +1215,23 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   </div>
 </section>
 
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#top" class="foot-logo" aria-label="Edeler Döner – nach oben">
-          <img src="img/logo.webp" alt="Edeler Döner Logo" width="720" height="584" loading="lazy" decoding="async">
+          <img src="img/logo.webp" alt="Edeler Döner Logo" width="480" height="389" loading="lazy" decoding="async">
         </a>
-        <p>100% Halal – Döner, Steinofen-Pizza, Falafel &amp; mehr, frisch gemacht mitten in Schwetzingen.</p>
+        <p>100% Halal – Döner, Pizza, Falafel &amp; mehr, frisch gemacht mitten in Schwetzingen.</p>
         <div class="foot-social">
-          <a href="#" aria-label="Instagram"><svg class="ic"><use href="#ic-instagram"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg class="ic"><use href="#ic-facebook"/></svg></a>
           <a href="#" id="footWa" aria-label="WhatsApp"><svg class="ic"><use href="#ic-wa"/></svg></a>
         </div>
       </div>
       <div>
-        <h5>Entdecken</h5>
+        <h3 class="foot-h">Entdecken</h3>
         <ul>
           <li><a href="#menu">Speisekarte</a></li>
           <li><a href="#popular">Beliebte Gerichte</a></li>
@@ -1239,18 +1242,18 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
         </ul>
       </div>
       <div>
-        <h5>Öffnungszeiten</h5>
+        <h3 class="foot-h">Öffnungszeiten</h3>
         <ul>
           <li>Di – So&nbsp;&nbsp;11 – 21 Uhr</li>
           <li>Montag&nbsp;&nbsp;Ruhetag</li>
         </ul>
       </div>
       <div>
-        <h5>Kontakt</h5>
+        <h3 class="foot-h">Kontakt</h3>
         <ul>
           <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-pin"/></svg> Kurfürstenstraße 18</li>
           <li>68723 Schwetzingen</li>
-          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-phone"/></svg> Tel: <a id="footTel" href="tel:+491781804021">0178 1804021</a></li>
+          <li><svg class="ic" style="width:15px;height:15px;display:inline;vertical-align:-2px;color:var(--gold)"><use href="#ic-phone"/></svg> Tel: <a id="footTel" href="tel:+491781804021">0178&nbsp;1804021</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Auf Google Maps →</a></li>
         </ul>
       </div>
@@ -1263,7 +1266,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 </footer>
 
 <!-- ============ CART FAB ============ -->
-<button class="cart-fab" id="cartFab" aria-label="Warenkorb öffnen">
+<button type="button" class="cart-fab" id="cartFab" aria-label="Warenkorb öffnen">
   <svg class="ic"><use href="#ic-bag"/></svg>
   <span>Warenkorb</span>
   <span class="fab-count" id="fabCount">0</span>
@@ -1271,10 +1274,10 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 
 <!-- ============ CART DRAWER ============ -->
 <div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" inert aria-label="Warenkorb" role="dialog" aria-modal="true">
+<div class="drawer" id="drawer" aria-hidden="true" inert aria-label="Warenkorb" role="dialog" aria-modal="true">
   <div class="drawer-head">
     <h3><svg class="ic"><use href="#ic-bag"/></svg> Dein Warenkorb</h3>
-    <button class="drawer-close" id="drawerClose" aria-label="Warenkorb schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="Warenkorb schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
   </div>
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-foot" id="drawerFoot" hidden>
@@ -1292,11 +1295,11 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <span class="sum-label">Zwischensumme</span>
       <span class="sum-total" id="cartTotal">0,00 €</span>
     </div>
-    <button class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
+    <button type="button" class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
     <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet – gesendet wird erst, wenn du dort auf Senden tippst. Zahlung bei Abholung, keine Online-Zahlung. 🛵 Lieferung aktuell pausiert. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
-    <button class="clear-cart" id="clearCart">Warenkorb leeren</button>
+    <button type="button" class="clear-cart" id="clearCart">Warenkorb leeren</button>
   </div>
-</aside>
+</div>
 
 <!-- ============ KONFIGURATOR (Zutaten, Soßen, Extras) ============ -->
 <div class="cfg-overlay" id="cfgOverlay"></div>
@@ -1304,7 +1307,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   <div class="cfg-head">
     <div class="cfg-thumb" id="cfgThumb"></div>
     <div class="cfg-titles"><h3 id="cfgTitle">Gericht</h3><p id="cfgSub"></p></div>
-    <button class="drawer-close" id="cfgClose" aria-label="Auswahl schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
+    <button type="button" class="drawer-close" id="cfgClose" aria-label="Auswahl schließen"><svg class="ic"><use href="#ic-plus" style="transform:rotate(45deg);transform-origin:center"/></svg></button>
   </div>
   <div class="cfg-body" id="cfgBody"></div>
   <div class="cfg-foot">
@@ -1334,7 +1337,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   "servesCuisine":["Döner","Türkisch","Pizza","Falafel","Halal"],
   "priceRange":"€",
   "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"600"},
+  "menu":"https://edeler-doener.de/#menu",
   "openingHoursSpecification":[
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"21:00"}
   ]
@@ -1372,7 +1375,7 @@ const CATEGORIES = [
    tags: "halal" | "vegetarisch" | "scharf". popular: Bestseller-Sektion */
 const MENU = [
   // DÖNER (Hähnchen / Kalb)
-  {id:"doener-gross",       cat:"doener", name:"Döner Groß im Brot", desc:"Großes Fladenbrot, reichlich Fleisch vom Spieß, frischer Salat und hausgemachte Soßen.", tags:["halal"], popular:true,
+  {id:"doener-gross",       cat:"doener", name:"Döner Groß im Brot", desc:"Großes Fladenbrot, reichlich Fleisch vom Spieß, frischer Salat und Soße nach Wahl.", tags:["halal"], popular:true,
     variants:[{id:"doener-gross-h",label:"Hähnchen",price:6.00},{id:"doener-gross-k",label:"Kalb",price:7.50}]},
   {id:"doener-klein",       cat:"doener", name:"Döner Klein im Brot", desc:"Die handliche Variante im Fladenbrot mit Salat und Soße.", tags:["halal"],
     variants:[{id:"doener-klein-h",label:"Hähnchen",price:5.00},{id:"doener-klein-k",label:"Kalb",price:6.50}]},
@@ -1400,20 +1403,20 @@ const MENU = [
   {id:"pizza-kalb",        cat:"pizza", name:"Kalbpizza",         desc:"Reichlich zartes Kalbfleisch mit Käse.", price:13.00, tags:["halal"]},
   // VEGETARISCH
   {id:"veggie-yufka",   cat:"vegetarisch", name:"Veggie Yufka",   desc:"Dünnes Yufka-Fladenbrot mit frischem Salat und Soße, gerollt.", price:6.50, tags:["vegetarisch"]},
-  {id:"falafel-yufka",  cat:"vegetarisch", name:"Falafel Yufka",  desc:"Hausgemachte Falafel mit Salat und Soße im Yufka gerollt.", price:7.00, tags:["vegetarisch"], popular:true},
-  {id:"falafel-box",    cat:"vegetarisch", name:"Falafel Box",    desc:"Knusprige Falafel auf Pommes mit Soße – handlich für unterwegs.", price:6.00, tags:["vegetarisch"]},
+  {id:"falafel-yufka",  cat:"vegetarisch", name:"Falafel Yufka",  desc:"Knusprige Falafel mit Salat und Soße im Yufka gerollt.", price:7.00, tags:["vegetarisch"], popular:true},
+  {id:"falafel-box",    cat:"vegetarisch", name:"Falafel Box",    desc:"Knusprige Falafel mit Soße – handlich in der Box für unterwegs.", price:6.00, tags:["vegetarisch"]},
   {id:"falafel-teller", cat:"vegetarisch", name:"Falafel Teller", desc:"Große Portion Falafel mit Salat, Beilage und Soße.", price:9.50, tags:["vegetarisch"]},
   {id:"falafel-doener", cat:"vegetarisch", name:"Falafel Döner",  desc:"Fladenbrot gefüllt mit Falafel, frischem Salat und Soße.", price:6.50, tags:["vegetarisch"]},
   {id:"veggi-doener",   cat:"vegetarisch", name:"Veggi Döner",    desc:"Vegetarischer Döner mit Gemüse, Salat und Soße.", price:6.00, tags:["vegetarisch"]},
   // FINGERFOOD
   {id:"nuggets-pommes", cat:"fingerfood", name:"Nuggets & Pommes", desc:"Knusprige Chicken Nuggets mit goldgelben Pommes und Dip.", price:7.00, tags:["halal"], popular:true},
-  {id:"pommes-klein",   cat:"fingerfood", name:"Pommes klein",     desc:"Goldgelb frittiert, mit Ketchup oder Mayo.", price:3.50, tags:["vegetarisch"]},
+  {id:"pommes-klein",   cat:"fingerfood", name:"Pommes klein",     desc:"Goldgelb frittiert und schön knusprig.", price:3.50, tags:["vegetarisch"]},
   {id:"pommes-gross",   cat:"fingerfood", name:"Pommes groß",      desc:"Die große Portion knusprige Pommes.", price:4.50, tags:["vegetarisch"]},
   // GETRÄNKE
   {id:"fritz-kola",    cat:"getraenke", name:"Fritz-Kola 0,33 l",   desc:"Koffeinstarke Kult-Limonade in der Flasche.", price:2.50, tags:[]},
-  {id:"wasser",        cat:"getraenke", name:"Wasser 0,5 l",        desc:"Still oder mit Kohlensäure.", price:1.50, tags:[]},
+  {id:"wasser",        cat:"getraenke", name:"Wasser 0,5 l",        desc:"Erfrischend und gut gekühlt.", price:1.50, tags:[]},
   {id:"ayran",         cat:"getraenke", name:"Ayran 0,25 l",        desc:"Erfrischendes türkisches Joghurtgetränk.", price:1.50, tags:["vegetarisch"]},
-  {id:"dosengetraenk", cat:"getraenke", name:"Dosengetränk 0,33 l", desc:"Hot Blood & Softdrinks – eisgekühlt in der Dose.", price:2.00, tags:[]},
+  {id:"dosengetraenk", cat:"getraenke", name:"Dosengetränk 0,33 l", desc:"Hot Blood – eisgekühlt in der Dose.", price:2.00, tags:[]},
   {id:"redbull",       cat:"getraenke", name:"Red Bull 0,25 l",     desc:"Energy für zwischendurch.", price:2.50, tags:[]}
 ];
 
@@ -1453,15 +1456,19 @@ const OPTION_TYPE = {
   "doener-box":"box", "falafel-box":"box", "doener-ueberbacken":"box",
   "doener-teller":"plate", "falafel-teller":"plate"
 };
+/* Laut Menütafel „mit Pommes oder Reis" → Pflichtauswahl der Beilage */
+const SIDE_CHOICE = new Set(["doener-box", "doener-teller"]);
+const SIDES = ["Pommes", "Reis"];
 const prodOf  = item => MENU.find(p => p.id === item.pid);
 const optType = p => OPTION_TYPE[p.id] || (p.cat === "getraenke" ? null : "extra");
 const hasSauces = t => t === "wrap" || t === "box" || t === "plate";
 
 /* Bereinigt eine Auswahl, damit gleiche Bestellungen denselben Schlüssel haben (und gespeicherte Daten gültig bleiben) */
-function normOpts(type, o){
+function normOpts(type, o, pid){
   o = o || {};
   const n = {};
   if(!type) return n;
+  if(SIDE_CHOICE.has(pid)) n.side = SIDES.includes(o.side) ? o.side : null;
   if(type === "wrap") n.ingr = INGREDIENTS.filter(x => (o.ingr||[]).includes(x));
   if(type === "box")  n.salad = o.salad !== false;
   if(hasSauces(type)){
@@ -1491,6 +1498,7 @@ function optSummary(type, o){
     else if(!o.ingr.length) out.push({txt:"Zutaten: KEINE – ohne Salat & Gemüse", cls:"no"});
     else { out.push({txt:`Zutaten: ${o.ingr.join(", ")}`}); out.push({txt:`OHNE: ${without.join(", ")}`, cls:"no"}); }
   }
+  if("side" in o) out.push(o.side ? {txt:`Beilage: ${o.side}`} : {txt:"Beilage: bitte angeben (Pommes oder Reis)", cls:"no"});
   if(type === "box") out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
   if(hasSauces(type)) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
   if(o.chili) out.push({txt:`Chili-Cheese-Soße – ${o.jala === "ohne" ? "OHNE" : "MIT"} Jalapeños`, price:PRICE_CHILI, cls:"chili"});
@@ -1527,7 +1535,7 @@ function loadCart(){
     return raw.map(l => {
       const it = l && byId(l.id), q = Math.floor(Number(l && l.qty));
       if(!it || !Number.isFinite(q) || q <= 0) return null;
-      return {id:it.id, qty:Math.min(q, 99), opts:normOpts(optType(prodOf(it)), l.opts)};
+      return {id:it.id, qty:Math.min(q, 99), opts:normOpts(optType(prodOf(it)), l.opts, it.pid)};
     }).filter(Boolean);
   }catch(e){ return []; }
 }
@@ -1551,18 +1559,19 @@ function cardHtml(p){
   const act = label => t ? `aria-haspopup="dialog" aria-label="${label} – Auswahl öffnen"` : `aria-label="${label} in den Warenkorb"`;
   if(p.variants){
     foot = `<div class="p-foot p-foot-variants">` + p.variants.map(v=>
-      `<button class="add-btn add-variant" data-add="${v.id}" ${act(`${p.name} ${v.label}`)}><span class="v-label">${v.label}</span><span class="v-price">${fmt(v.price)}</span><svg class="ic"><use href="#ic-plus"/></svg></button>`
+      `<button type="button" class="add-btn add-variant" data-add="${v.id}" ${act(`${p.name} ${v.label}`)}><span class="v-label">${v.label}</span><span class="v-price">${fmt(v.price)}</span><svg class="ic"><use href="#ic-plus"/></svg></button>`
     ).join("") + `</div>`;
   } else {
     foot = `<div class="p-foot"><span class="price">${fmt(p.price)}</span>`+
-      `<button class="add-btn" data-add="${p.id}" ${act(p.name)}><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
+      `<button type="button" class="add-btn" data-add="${p.id}" ${act(p.name)}><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
   }
-  const hint = {wrap:"Zutaten & Soßen nach Wunsch", box:"Mit/ohne Salat & Soßen wählbar", plate:"Soßen nach Wunsch", extra:"Extras wählbar"}[t];
+  const hint = (SIDE_CHOICE.has(p.id) ? "Pommes oder Reis · " : "") +
+    ({wrap:"Zutaten & Soßen nach Wunsch", box:"Mit/ohne Salat & Soßen wählbar", plate:"Soßen nach Wunsch", extra:"Extras wählbar"}[t] || "");
   return `<article class="p-card reveal" data-cat="${p.cat}">
     <div class="p-media${p.img ? " has-img" : ""}" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
       ${p.img
-        ? `<img src="${p.img}" alt="${p.name}" width="800" height="550" loading="lazy" decoding="async">`
+        ? `<img src="${p.img}" srcset="${p.img.replace(".webp","-480.webp")} 480w, ${p.img} 800w" sizes="(max-width:560px) 92vw, (max-width:980px) 46vw, 300px" alt="${p.name}" width="800" height="550" loading="lazy" decoding="async">`
         : `<svg class="p-illu" aria-hidden="true" focusable="false"><use href="#${c.illu}"/></svg>`}
     </div>
     <div class="p-body">
@@ -1583,8 +1592,8 @@ function renderMenu(){
     .forEach(p=>{ if(!seenCat.has(p.cat)){ seenCat.add(p.cat); pop.push(p); } });
   $("#popularGrid").innerHTML = pop.slice(0,4).map(cardHtml).join("");
   // filters
-  const pills = [`<button class="filter-pill active" data-filter="all" aria-pressed="true"><svg class="ic"><use href="#ic-spark"/></svg> Alle</button>`]
-    .concat(CATEGORIES.map(c=>`<button class="filter-pill" data-filter="${c.key}" aria-pressed="false"><svg class="ic"><use href="#${c.icon}"/></svg> ${c.label}</button>`));
+  const pills = [`<button type="button" class="filter-pill active" data-filter="all" aria-pressed="true"><svg class="ic"><use href="#ic-spark"/></svg> Alle</button>`]
+    .concat(CATEGORIES.map(c=>`<button type="button" class="filter-pill" data-filter="${c.key}" aria-pressed="false"><svg class="ic"><use href="#${c.icon}"/></svg> ${c.label}</button>`));
   $("#filterScroll").innerHTML = pills.join("");
   decorateIcons();
   observeReveals();
@@ -1610,7 +1619,7 @@ function applyFilter(key, btn){
 /* Fügt eine Zeile hinzu; gleiche Auswahl → Menge erhöhen. at = Position (beim Bearbeiten bleibt die Zeile an ihrem Platz) */
 function addLine(id, opts, qty=1, at=null){
   const it = byId(id); if(!it) return;
-  opts = normOpts(optType(prodOf(it)), opts);
+  opts = normOpts(optType(prodOf(it)), opts, it.pid);
   const same = cart.find(l => lineKey(l.id, l.opts) === lineKey(id, opts));
   if(same) same.qty = Math.min(99, same.qty + qty);
   else if(at !== null) cart.splice(at, 0, {id, qty, opts});
@@ -1653,16 +1662,16 @@ function renderCart(){
         ${opts ? `<ul class="ci-opts">${opts}</ul>` : ""}
         <div class="ci-actions">
           <div class="stepper">
-            <button data-dec="${idx}" aria-label="${p.name}: eins weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
+            <button type="button" data-dec="${idx}" aria-label="${p.name}: eins weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
             <span>${l.qty}</span>
-            <button data-inc="${idx}" aria-label="${p.name}: eins mehr"><svg class="ic"><use href="#ic-plus"/></svg></button>
+            <button type="button" data-inc="${idx}" aria-label="${p.name}: eins mehr"><svg class="ic"><use href="#ic-plus"/></svg></button>
           </div>
-          ${t ? `<button class="ci-edit" data-edit="${idx}" aria-haspopup="dialog">Ändern</button>` : ""}
+          ${t ? `<button type="button" class="ci-edit" data-edit="${idx}" aria-haspopup="dialog">Ändern</button>` : ""}
         </div>
       </div>
       <div class="ci-right">
         <span class="ci-line">${fmt(unit*l.qty)}</span>
-        <button class="ci-remove" data-rm="${idx}"><svg class="ic"><use href="#ic-trash"/></svg> Entfernen</button>
+        <button type="button" class="ci-remove" data-rm="${idx}"><svg class="ic"><use href="#ic-trash"/></svg> Entfernen</button>
       </div>
     </div>`;
   }).join("");
@@ -1681,7 +1690,7 @@ function updateCartUI(){
 
 /* --------- Drawer open/close --------- */
 let lastFocus = null;
-const BG_SEL = "header, section, footer, .cart-fab";   // made inert while the dialog is open
+const BG_SEL = "header, main, footer, .cart-fab";   // made inert while the dialog is open
 function openDrawer(){
   lastFocus = document.activeElement;
   const d = $("#drawer");
@@ -1735,7 +1744,7 @@ function sendWhatsAppOrder(){
 }
 
 /* --------- Konfigurator: Zutaten, Soßen & Extras pro Gericht --------- */
-let cfg = null, cfgLastFocus = null;     // cfg = {id, type, qty, cups, editIdx}
+let cfg = null, cfgLastFocus = null;     // cfg = {id, pid, type, qty, cups, editIdx}
 const ICON_OK = `<svg class="ic"><use href="#ic-check"/></svg>`;
 function optChip(type, name, value, label, checked, extraCls=""){
   return `<label class="opt ${type==="radio" ? "opt-radio" : ""} ${extraCls}"><input type="${type}" name="${name}" value="${esc(value)}"${checked ? " checked" : ""}><span class="opt-ui">${label}</span></label>`;
@@ -1746,6 +1755,9 @@ function cfgBodyHtml(p, t, id, o){
     p.variants.map(v => optChip("radio","variant",v.id,`${v.label} <em>${fmt(v.price)}</em>`, v.id===id)).join("") + `</div></fieldset>`;
   if(t === "wrap") h += `<fieldset class="cfg-sec"><legend>Zutaten <small>Alles ist dabei – tippe weg, was du nicht möchtest</small></legend><div class="opt-row">` +
     INGREDIENTS.map(x => optChip("checkbox","ingr",x, `<span>${x}${INGREDIENT_HINT[x] ? `<small>${INGREDIENT_HINT[x]}</small>` : ""}</span>`, o.ingr.includes(x), "opt-ingr")).join("") + `</div></fieldset>`;
+  if(SIDE_CHOICE.has(p.id)) h += `<fieldset class="cfg-sec" id="cfgSide"><legend>Beilage <small>Bitte wählen</small></legend><div class="opt-row">` +
+    SIDES.map(x => optChip("radio","side",x,`Mit ${x}`, o.side===x)).join("") +
+    `</div><p class="cfg-err" id="errSide" role="alert" hidden>Bitte wähle deine Beilage: Pommes oder Reis.</p></fieldset>`;
   if(t === "box") h += `<fieldset class="cfg-sec"><legend>Salat</legend><div class="opt-row">` +
     optChip("radio","salad","mit","Mit Salat", o.salad) + optChip("radio","salad","ohne","Ohne Salat", !o.salad) + `</div></fieldset>`;
   if(hasSauces(t)) h += `<fieldset class="cfg-sec" id="cfgSauces"><legend>Soßen <small>Gratis – gerne mehrere oder alle</small></legend><div class="opt-row">` +
@@ -1770,7 +1782,7 @@ function cfgBodyHtml(p, t, id, o){
 function readCfg(){
   const f = $("#cfgBody"), val = n => Array.from(f.querySelectorAll(`input[name="${n}"]:checked`)).map(i => i.value);
   return {
-    ingr: val("ingr"), salad: val("salad")[0] !== "ohne", sauces: val("sauce"), noSauce: val("noSauce").length > 0,
+    side: val("side")[0] || null, ingr: val("ingr"), salad: val("salad")[0] !== "ohne", sauces: val("sauce"), noSauce: val("noSauce").length > 0,
     chili: val("chili").length > 0, jala: val("jala")[0] || null, feta: val("feta").length > 0,
     cups: {...cfg.cups}, note: $("#cfgNote").value
   };
@@ -1784,7 +1796,7 @@ function updateCfg(){
     $("#cfgBody").querySelector(`[data-cup-row="${s}"]`).classList.toggle("has", k > 0);
   });
   $("#cfgQty").textContent = cfg.qty;
-  const total = unitPrice(cfg.id, normOpts(cfg.type, raw)) * cfg.qty;
+  const total = unitPrice(cfg.id, normOpts(cfg.type, raw, cfg.pid)) * cfg.qty;
   $("#cfgAddLabel").innerHTML = cfg.editIdx !== null
     ? `<span class="lbl-long">Änderung speichern</span><span class="lbl-short">Speichern</span>`
     : `<span class="lbl-long">In den Warenkorb</span><span class="lbl-short">Hinzufügen</span>`;
@@ -1795,9 +1807,9 @@ function updateCfg(){
 function openCfg(id, line=null, editIdx=null){
   const it = byId(id); if(!it) return;
   const p = prodOf(it), t = optType(p);
-  const o = line ? normOpts(t, line.opts) : normOpts(t, {ingr:[...INGREDIENTS], salad:true});
+  const o = line ? normOpts(t, line.opts, p.id) : normOpts(t, {ingr:[...INGREDIENTS], salad:true}, p.id);
   if(!line) delete o.jala;                          // Jalapeños muss der Kunde selbst wählen
-  cfg = {id, type:t, qty: line ? line.qty : 1, cups: {...o.cups}, editIdx};
+  cfg = {id, pid:p.id, type:t, qty: line ? line.qty : 1, cups: {...o.cups}, editIdx};
   const c = catOf(p.cat);
   $("#cfgTitle").textContent = p.name;
   $("#cfgThumb").innerHTML = p.img ? `<img src="${p.img}" alt="" width="56" height="56">` : `<svg class="ic"><use href="#${c.icon}"/></svg>`;
@@ -1832,6 +1844,7 @@ function cfgError(errSel, focusSel){
 }
 function submitCfg(){
   const raw = readCfg();
+  if(SIDE_CHOICE.has(cfg.pid) && !raw.side) return cfgError("#errSide", 'input[name="side"]');
   if(hasSauces(cfg.type) && !raw.sauces.length && !raw.noSauce) return cfgError("#errSauce", 'input[name="sauce"]');
   if(raw.chili && !raw.jala) return cfgError("#errJala", 'input[name="jala"]');
   const name = byId(cfg.id).name, edit = cfg.editIdx;
@@ -1904,7 +1917,7 @@ function wireContact(){
   const waUrl = `https://wa.me/${wa}?text=${waMsg}`;
   // National anzeigen (0178 1804021), tel-Link international (+491781804021)
   const phoneNat  = PHONE_NUMBER.replace(/\D/g,"");
-  const phoneDisp = phoneNat.replace(/^(01\d{2}|0\d{4})(\d+)$/, "$1 $2");   // Handy: 4-stellige Vorwahl, Festnetz: 5-stellig
+  const phoneDisp = phoneNat.replace(/^(01\d{2}|0\d{4})(\d+)$/, "$1\u00a0$2");   // Handy: 4-stellige Vorwahl, Festnetz: 5-stellig
   const phoneTel  = "tel:+49" + phoneNat.replace(/^0/, "");
   const set = (sel,href,txt)=>{ const el=$(sel); if(el){ el.href=href; if(txt) el.textContent=txt; } };
   set("#telLink", phoneTel, phoneDisp);
@@ -1912,6 +1925,7 @@ function wireContact(){
   set("#footTel", phoneTel, phoneDisp);
   set("#waContactBtn", waUrl);
   set("#footWa", waUrl);
+  set("#waFeedbackBtn", `https://wa.me/${wa}?text=${encodeURIComponent(`Hallo ${RESTAURANT_NAME} 👋, mein Feedback:`)}`);
 }
 
 /* --------- Google Maps erst nach Einwilligung laden (2-Klick) --------- */
@@ -1931,18 +1945,31 @@ function initMap(){
 
 /* --------- Opening hours: highlight + open now --------- */
 const HOURS = {1:null,2:[11,21],3:[11,21],4:[11,21],5:[11,21],6:[11,21],0:[11,21]}; // Mo = Ruhetag
+/* Aktuelle Uhrzeit in Schwetzingen (nicht die Zeitzone des Besucher-Geräts) */
+function berlinNow(){
+  try{
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", {timeZone:"Europe/Berlin", weekday:"short", hour:"numeric", minute:"numeric", hourCycle:"h23"})
+      .formatToParts(new Date()).map(x => [x.type, x.value]));
+    return {day:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(parts.weekday), h:Number(parts.hour) + Number(parts.minute)/60};
+  }catch(e){ const d = new Date(); return {day:d.getDay(), h:d.getHours() + d.getMinutes()/60}; }
+}
 function updateHours(){
-  const now = new Date();
-  const day = now.getDay();
+  const {day, h} = berlinNow();
   const row = document.querySelector(`#hours tr[data-day="${day}"]`);
   if(row) row.classList.add("today");
   const hrs = HOURS[day];
-  const h = now.getHours() + now.getMinutes()/60;
   const isOpen = !!hrs && h>=hrs[0] && h<hrs[1];
   const box = $("#openNow"), txt = $("#openNowText");
   if(box && txt){
     box.classList.add(isOpen ? "yes" : "no");
-    txt.textContent = isOpen ? `Jetzt geöffnet · bis ${hrs[1]}:00 Uhr` : (hrs ? "Gerade geschlossen" : "Heute Ruhetag");
+    let msg;
+    if(isOpen) msg = `Jetzt geöffnet · bis ${hrs[1]}:00 Uhr`;
+    else if(hrs && h < hrs[0]) msg = `Gerade geschlossen · öffnet heute um ${hrs[0]}:00 Uhr`;
+    else {
+      const next = HOURS[(day + 1) % 7];
+      msg = (hrs ? "Gerade geschlossen" : "Heute Ruhetag") + (next ? ` · morgen ab ${next[0]}:00 Uhr` : " · morgen Ruhetag");
+    }
+    txt.textContent = msg;
   }
 }
 

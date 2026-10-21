@@ -1,0 +1,2 @@
+# Alte Netlify-Adresse dauerhaft auf die eigene Domain umleiten (keine doppelten Inhalte bei Google)
+https://edeler.netlify.app/* https://edeler-doener.de/:splat 301!
