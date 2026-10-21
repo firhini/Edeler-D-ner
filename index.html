@@ -441,6 +441,11 @@ footer ul a:hover{color:var(--gold)}
   color:#191308;border:none;padding:15px 20px;border-radius:var(--pill);font-weight:700;box-shadow:var(--shadow-gold);
   transform:translateY(120px);transition:transform .45s var(--ease),box-shadow .3s}
 .cart-fab.show{transform:translateY(0)}
+/* Blendet Netlify unten rechts sein „Powered by"-Badge ein, rückt der Warenkorb-Button darüber (sonst verdeckt) */
+body:has(#nl-badge-frame) .cart-fab{bottom:96px}
+body:has(#nl-badge-frame) .toast-wrap{bottom:170px}
+body:has(#nl-badge-frame) .drawer-foot{padding-bottom:100px}
+body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 170px),900px)}
 .cart-fab:hover{box-shadow:0 24px 54px -14px rgba(214,178,94,.6)}
 .cart-fab .ic{width:22px;height:22px}
 .cart-fab .fab-count{background:#191308;color:var(--gold-hi);border-radius:var(--pill);min-width:22px;height:22px;padding:0 6px;display:grid;place-items:center;font-size:.78rem;font-weight:800}
@@ -745,6 +750,8 @@ footer ul a:hover{color:var(--gold)}
   .cfg-head{padding:14px 16px}
   .cfg-body{padding:2px 16px 18px}
   .cfg-foot{padding-left:16px;padding-right:16px;border-radius:0}
+  body:has(#nl-badge-frame) .cfg{top:auto;max-height:92vh;max-height:92dvh}
+  body:has(#nl-badge-frame) .cfg-foot{padding-bottom:84px}
   .cups{grid-template-columns:1fr}
   .opt-ui{font-size:.88rem}
   .lbl-long{display:none}
