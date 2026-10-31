@@ -820,6 +820,19 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+/* Sehr kleine Handys (z. B. iPhone SE 1. Gen., 320 px) */
+@media(max-width:360px){
+  .brand{gap:8px}
+  .logo-mark{height:42px}
+  .brand-name b{font-size:1.04rem}
+  .brand-name span{font-size:.55rem;letter-spacing:2.6px}
+  .cfg-foot{gap:8px;padding-left:12px;padding-right:12px}
+  .cfg-foot .btn{padding:11px 8px 11px 14px;gap:6px;font-size:.9rem}
+  .cfg-foot .stepper button{width:30px;height:30px}
+  .cfg-price{padding:4px 9px}
+  .hours-table td{font-size:.86rem}
+  .hours-table td:last-child{white-space:nowrap;padding-left:8px}
+}
 </style>
 </head>
 <body>

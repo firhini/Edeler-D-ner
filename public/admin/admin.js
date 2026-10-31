@@ -493,8 +493,8 @@ function updateSaveBar(){
   $("#discardBtn").hidden = !d || state.saving;
   let txt;
   if(state.error) txt = `<span class="bad">⚠ ${esc(state.error)}</span>`;
-  else if(d) txt = `<b>Ungespeicherte Änderungen</b> – erst nach „Speichern“ auf der Website.`;
-  else if(state.version) txt = `Alles gespeichert ✓ <span class="muted">· Version ${state.version} · ${esc(when(state.savedAt))}${state.by ? " · " + esc(state.by) : ""}</span>`;
+  else if(d) txt = `<b>Noch nicht gespeichert</b><span class="sb-long"> – erst nach „Speichern“ auf der Website.</span>`;
+  else if(state.version) txt = `Alles gespeichert ✓<span class="muted sb-long"> · Version ${state.version} · ${esc(when(state.savedAt))}${state.by ? " · " + esc(state.by) : ""}</span>`;
   else txt = `Website zeigt die Grundeinstellung.`;
   $("#sbState").innerHTML = txt;
 }

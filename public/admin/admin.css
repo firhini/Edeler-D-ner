@@ -233,7 +233,8 @@ input[type=time]{min-width:0}
   .item .thumb{order:1} .item .meta{order:2;flex:1 1 calc(100% - 70px)}
   .item .moves{order:3;flex-direction:row;margin-left:66px} .item .moves .icon-btn{width:34px;height:34px}
   .item .avail{order:4} .item > .btn{order:5;margin-left:auto}
-  .savebar .sb-state{font-size:.8rem}
+  .savebar .sb-state{font-size:.82rem}
+  .savebar .sb-long{display:none}
   .dlg{width:100vw;max-height:100dvh;height:100dvh;border-radius:0;max-width:none;margin:0}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
