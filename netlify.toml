@@ -1,0 +1,11 @@
+# Website = Ordner "public" (ohne Build-Schritt), API = Netlify Functions in "netlify/functions"
+[build]
+  publish = "public"
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

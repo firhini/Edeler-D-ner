@@ -1,0 +1,10 @@
+{
+  "name": "edeler-doener",
+  "private": true,
+  "description": "Website von Edeler Döner Schwetzingen mit Admin-Bereich (Netlify Functions + Blobs)",
+  "type": "module",
+  "engines": { "node": ">=22.12.0" },
+  "dependencies": {
+    "@netlify/blobs": "11.1.7"
+  }
+}

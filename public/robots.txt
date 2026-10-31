@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /api/auth/
 
 Sitemap: https://edeler-doener.de/sitemap.xml

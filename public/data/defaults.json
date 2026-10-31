@@ -1,0 +1,725 @@
+{
+ "schema": 1,
+ "shop": {
+  "ordersOpen": true,
+  "notice": {
+   "enabled": false,
+   "text": ""
+  }
+ },
+ "contact": {
+  "phone": "01781804021",
+  "whatsapp": "491781804021",
+  "instagram": "",
+  "facebook": ""
+ },
+ "hours": {
+  "0": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "1": {
+   "closed": true,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "2": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "3": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "4": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "5": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  },
+  "6": {
+   "closed": false,
+   "open": "11:00",
+   "close": "21:00"
+  }
+ },
+ "delivery": {
+  "enabled": true,
+  "minOrder": 0,
+  "lastOrder": "",
+  "payment": {
+   "cash": true,
+   "card": false
+  },
+  "zones": [
+   {
+    "label": "bis 5 km",
+    "fee": 3,
+    "towns": [
+     {
+      "name": "Schwetzingen",
+      "plz": "68723",
+      "city": ""
+     },
+     {
+      "name": "Plankstadt",
+      "plz": "68723",
+      "city": ""
+     },
+     {
+      "name": "Oftersheim",
+      "plz": "68723",
+      "city": ""
+     },
+     {
+      "name": "Brühl",
+      "plz": "68782",
+      "city": ""
+     }
+    ]
+   },
+   {
+    "label": "5–7 km",
+    "fee": 6,
+    "towns": [
+     {
+      "name": "Eppelheim",
+      "plz": "69214",
+      "city": ""
+     },
+     {
+      "name": "Ketsch",
+      "plz": "68775",
+      "city": ""
+     },
+     {
+      "name": "Mannheim-Rheinau",
+      "plz": "68219",
+      "city": "Mannheim"
+     }
+    ]
+   }
+  ]
+ },
+ "extras": {
+  "ingredients": [
+   {
+    "name": "Zwiebeln",
+    "hint": ""
+   },
+   {
+    "name": "Rotkraut",
+    "hint": ""
+   },
+   {
+    "name": "Weißkraut",
+    "hint": ""
+   },
+   {
+    "name": "Grüner Salat",
+    "hint": ""
+   },
+   {
+    "name": "Tomaten",
+    "hint": ""
+   },
+   {
+    "name": "Çoban salatası",
+    "hint": "Zwiebeln, Tomaten, Paprika, Gurke"
+   }
+  ],
+  "sauces": [
+   "Cocktailsoße",
+   "Scharfe Soße",
+   "Joghurt-Kräutersoße",
+   "Knoblauch-Joghurtsoße"
+  ],
+  "sides": [
+   "Pommes",
+   "Reis"
+  ],
+  "chili": {
+   "enabled": true,
+   "price": 1.5,
+   "promo": true
+  },
+  "feta": {
+   "enabled": true,
+   "price": 1
+  },
+  "cup": {
+   "enabled": true,
+   "price": 0.5
+  },
+  "more": [
+   {
+    "name": "Käse",
+    "price": 1
+   },
+   {
+    "name": "Kalbfleisch",
+    "price": 2
+   },
+   {
+    "name": "Hähnchenfleisch",
+    "price": 1.5
+   },
+   {
+    "name": "Jede weitere Zutat",
+    "price": 1
+   }
+  ]
+ },
+ "menu": [
+  {
+   "id": "doener-gross",
+   "cat": "doener",
+   "name": "Döner Groß im Brot",
+   "desc": "Großes Fladenbrot, reichlich Fleisch vom Spieß, frischer Salat und Soße nach Wahl.",
+   "variants": [
+    {
+     "id": "doener-gross-h",
+     "label": "Hähnchen",
+     "price": 6
+    },
+    {
+     "id": "doener-gross-k",
+     "label": "Kalb",
+     "price": 7.5
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-doener-brot",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "doener-klein",
+   "cat": "doener",
+   "name": "Döner Klein im Brot",
+   "desc": "Die handliche Variante im Fladenbrot mit Salat und Soße.",
+   "variants": [
+    {
+     "id": "doener-klein-h",
+     "label": "Hähnchen",
+     "price": 5
+    },
+    {
+     "id": "doener-klein-k",
+     "label": "Kalb",
+     "price": 6.5
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-doener-klein",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "doener-box",
+   "cat": "doener",
+   "name": "Dönerbox",
+   "desc": "Zartes Fleisch auf Pommes oder Reis mit Salat und Soße – handlich für unterwegs.",
+   "variants": [
+    {
+     "id": "doener-box-h",
+     "label": "Hähnchen",
+     "price": 6
+    },
+    {
+     "id": "doener-box-k",
+     "label": "Kalb",
+     "price": 8
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-doenerbox",
+   "options": "box",
+   "side": true
+  },
+  {
+   "id": "doener-yufka",
+   "cat": "doener",
+   "name": "Döner Yufka (Dürüm)",
+   "desc": "Dünnes Yufka-Fladenbrot mit Fleisch, frischem Salat und Soße, fest gerollt.",
+   "variants": [
+    {
+     "id": "doener-yufka-h",
+     "label": "Hähnchen",
+     "price": 8
+    },
+    {
+     "id": "doener-yufka-k",
+     "label": "Kalb",
+     "price": 9
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-doener-yufka",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "doener-ueberbacken",
+   "cat": "doener",
+   "name": "Döner Überbacken",
+   "desc": "Mit Käse überbacken und knusprig gebacken – herzhaft und heiß.",
+   "variants": [
+    {
+     "id": "doener-ueberbacken-h",
+     "label": "Hähnchen",
+     "price": 10
+    },
+    {
+     "id": "doener-ueberbacken-k",
+     "label": "Kalb",
+     "price": 12.5
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-ueberbacken",
+   "options": "box",
+   "side": false
+  },
+  {
+   "id": "doener-teller",
+   "cat": "doener",
+   "name": "Dönerteller",
+   "desc": "Große Portion Fleisch mit frischem Salat und Pommes oder Reis.",
+   "variants": [
+    {
+     "id": "doener-teller-h",
+     "label": "Hähnchen",
+     "price": 12
+    },
+    {
+     "id": "doener-teller-k",
+     "label": "Kalb",
+     "price": 14
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-doenerteller",
+   "options": "plate",
+   "side": true
+  },
+  {
+   "id": "lahmacun",
+   "cat": "lahmacun",
+   "name": "Lahmacun",
+   "desc": "Hauchdünn gebackener Teigfladen, gerollt mit Dönerfleisch, Salat und Soße.",
+   "variants": [
+    {
+     "id": "lahmacun-h",
+     "label": "Hähnchen",
+     "price": 9
+    },
+    {
+     "id": "lahmacun-k",
+     "label": "Kalb",
+     "price": 10
+    }
+   ],
+   "tags": [
+    "halal"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-lahmacun",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "lahmacun-salat",
+   "cat": "lahmacun",
+   "name": "Lahmacun mit Salat",
+   "desc": "Lahmacun mit frischem Salat und Soße, frisch gerollt.",
+   "price": 7,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-lahmacun-salat",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "pizza-margherita",
+   "cat": "pizza",
+   "name": "Pizza Margherita",
+   "desc": "Tomatensauce, Mozzarella und Basilikum – frisch aus dem Ofen.",
+   "price": 8.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-salami",
+   "cat": "pizza",
+   "name": "Pizza Salami",
+   "desc": "Tomatensauce, Käse und würzige Salami.",
+   "price": 9.5,
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-pizza-salami",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-sucuk",
+   "cat": "pizza",
+   "name": "Pizza Sucuk",
+   "desc": "Mit pikanter türkischer Knoblauchwurst und Käse.",
+   "price": 9.5,
+   "tags": [
+    "halal",
+    "scharf"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-pizza-sucuk",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-thunfisch",
+   "cat": "pizza",
+   "name": "Pizza Thunfisch",
+   "desc": "Thunfisch, Zwiebeln und Käse auf knusprigem Boden.",
+   "price": 9.5,
+   "tags": [],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-vegetarisch",
+   "cat": "pizza",
+   "name": "Pizza Vegetarisch",
+   "desc": "Tomaten, Zwiebeln, Paprika, Pilze und Oliven.",
+   "price": 10,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-funghi",
+   "cat": "pizza",
+   "name": "Pizza Funghi",
+   "desc": "Mit frischen Champignons und reichlich Mozzarella.",
+   "price": 9.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-karisik",
+   "cat": "pizza",
+   "name": "Karışık Pizza",
+   "desc": "Salami, Sucuk, Paprika, Pilze, Zwiebeln und Oliven – die volle Ladung.",
+   "price": 12,
+   "tags": [
+    "halal",
+    "scharf"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-haehnchen",
+   "cat": "pizza",
+   "name": "Hähnchenpizza",
+   "desc": "Zartes Hähnchenfleisch, Käse und Gemüse.",
+   "price": 11,
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-pizza-haehnchen",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pizza-kalb",
+   "cat": "pizza",
+   "name": "Kalbpizza",
+   "desc": "Reichlich zartes Kalbfleisch mit Käse.",
+   "price": 13,
+   "tags": [
+    "halal"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-pizza-kalb",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "veggie-yufka",
+   "cat": "vegetarisch",
+   "name": "Veggie Yufka",
+   "desc": "Dünnes Yufka-Fladenbrot mit frischem Salat und Soße, gerollt.",
+   "price": 6.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "falafel-yufka",
+   "cat": "vegetarisch",
+   "name": "Falafel Yufka",
+   "desc": "Knusprige Falafel mit Salat und Soße im Yufka gerollt.",
+   "price": 7,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "falafel-box",
+   "cat": "vegetarisch",
+   "name": "Falafel Box",
+   "desc": "Knusprige Falafel mit Soße – handlich in der Box für unterwegs.",
+   "price": 6,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "box",
+   "side": false
+  },
+  {
+   "id": "falafel-teller",
+   "cat": "vegetarisch",
+   "name": "Falafel Teller",
+   "desc": "Große Portion Falafel mit Salat, Beilage und Soße.",
+   "price": 9.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "plate",
+   "side": false
+  },
+  {
+   "id": "falafel-doener",
+   "cat": "vegetarisch",
+   "name": "Falafel Döner",
+   "desc": "Fladenbrot gefüllt mit Falafel, frischem Salat und Soße.",
+   "price": 6.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "veggi-doener",
+   "cat": "vegetarisch",
+   "name": "Veggi Döner",
+   "desc": "Vegetarischer Döner mit Gemüse, Salat und Soße.",
+   "price": 6,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "wrap",
+   "side": false
+  },
+  {
+   "id": "nuggets-pommes",
+   "cat": "fingerfood",
+   "name": "Nuggets & Pommes",
+   "desc": "Knusprige Chicken Nuggets mit goldgelben Pommes und Dip.",
+   "price": 7,
+   "tags": [
+    "halal"
+   ],
+   "popular": true,
+   "available": true,
+   "photo": "img/card-nuggets",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pommes-klein",
+   "cat": "fingerfood",
+   "name": "Pommes klein",
+   "desc": "Goldgelb frittiert und schön knusprig.",
+   "price": 3.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-pommes-klein",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "pommes-gross",
+   "cat": "fingerfood",
+   "name": "Pommes groß",
+   "desc": "Die große Portion knusprige Pommes.",
+   "price": 4.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "img/card-pommes",
+   "options": "extra",
+   "side": false
+  },
+  {
+   "id": "fritz-kola",
+   "cat": "getraenke",
+   "name": "Fritz-Kola 0,33 l",
+   "desc": "Koffeinstarke Kult-Limonade in der Flasche.",
+   "price": 2.5,
+   "tags": [],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "none",
+   "side": false
+  },
+  {
+   "id": "wasser",
+   "cat": "getraenke",
+   "name": "Wasser 0,5 l",
+   "desc": "Erfrischend und gut gekühlt.",
+   "price": 1.5,
+   "tags": [],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "none",
+   "side": false
+  },
+  {
+   "id": "ayran",
+   "cat": "getraenke",
+   "name": "Ayran 0,25 l",
+   "desc": "Erfrischendes türkisches Joghurtgetränk.",
+   "price": 1.5,
+   "tags": [
+    "vegetarisch"
+   ],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "none",
+   "side": false
+  },
+  {
+   "id": "dosengetraenk",
+   "cat": "getraenke",
+   "name": "Dosengetränk 0,33 l",
+   "desc": "Hot Blood – eisgekühlt in der Dose.",
+   "price": 2,
+   "tags": [],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "none",
+   "side": false
+  },
+  {
+   "id": "redbull",
+   "cat": "getraenke",
+   "name": "Red Bull 0,25 l",
+   "desc": "Energy für zwischendurch.",
+   "price": 2.5,
+   "tags": [],
+   "popular": false,
+   "available": true,
+   "photo": "",
+   "options": "none",
+   "side": false
+  }
+ ],
+ "legal": {
+  "owner": "",
+  "email": "",
+  "legalForm": "",
+  "registerCourt": "Amtsgericht Mannheim",
+  "registerNo": "",
+  "vatId": "",
+  "responsible": ""
+ }
+}
