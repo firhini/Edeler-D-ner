@@ -1361,7 +1361,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="cart-fields" id="deliveryFields" hidden>
       <select id="custTown" aria-label="Dein Ort im Liefergebiet"></select>
       <input type="text" id="custStreet" maxlength="100" placeholder="Straße und Hausnummer" aria-label="Straße und Hausnummer" autocomplete="address-line1">
-      <input type="text" id="custAddrNote" maxlength="120" placeholder="Hinweis für den Fahrer (optional) – Klingel, Etage …" aria-label="Hinweis für den Fahrer">
+      <input type="text" id="custAddrNote" maxlength="120" placeholder="Klingel, Etage … (optional)" aria-label="Hinweis für den Fahrer (optional)">
       <fieldset class="pay-row" id="payRow" hidden>
         <legend>Zahlung bei Lieferung:</legend>
         <label class="pay-opt"><input type="radio" name="pay" value="bar" checked><span>Bar</span></label>
@@ -1841,15 +1841,21 @@ function updateTotals(){
   $("#payRow").hidden = !(PAY.cash && PAY.card);
   setText("#delInfo", info.join(" "));
   $("#delInfo").hidden = !info.length;
-  // Hinweise oben im Warenkorb
+  // Hinweise oben im Warenkorb: pausiert / gerade geschlossen / Hinweis aus dem Admin-Bereich
   const al = $("#cartAlert"), n = S && S.shop.notice;
+  $(".sum-main .sum-label").textContent = del && !t ? "Gesamt (ohne Liefergebühr)" : "Gesamt";
   if(!ORDERS_OPEN){
     al.className = "cart-alert warn";
     al.innerHTML = `Online-Bestellungen sind gerade pausiert. Ruf uns gerne an: <a href="tel:${esc(phoneIntl())}">${esc(phoneDisplay())}</a>`;
     al.hidden = false;
-  } else if(n && n.enabled && n.text){
-    al.className = "cart-alert"; al.textContent = n.text; al.hidden = false;
-  } else al.hidden = true;
+  } else {
+    const lines = [];
+    if(!openState().open){ const nx = nextOpenText(); lines.push(`Gerade geschlossen${nx ? ` – wir öffnen wieder ${nx}` : ""}. Bestellungen lesen wir erst dann.`); }
+    if(n && n.enabled && n.text) lines.push(n.text);
+    al.className = "cart-alert";
+    al.innerHTML = lines.map(esc).join("<br>");
+    al.hidden = !lines.length;
+  }
   const btn = $("#waOrderBtn");
   btn.setAttribute("aria-disabled", String(!ORDERS_OPEN));
   btn.classList.toggle("is-paused", !ORDERS_OPEN);
@@ -2238,6 +2244,16 @@ function openState(){
   if(today && m >= today.o && m < today.c) return {open:true, msg:`Jetzt geöffnet · bis ${today.close} Uhr`};
   if(today && m < today.o) return {open:false, msg:`Gerade geschlossen · öffnet heute um ${today.open} Uhr`};
   return {open:false, msg:(today ? "Gerade geschlossen" : "Heute Ruhetag") + (next ? ` · morgen ab ${next.open} Uhr` : " · morgen Ruhetag")};
+}
+/* Wann öffnen wir als Nächstes? (Hinweis im Warenkorb, wenn gerade geschlossen) */
+function nextOpenText(){
+  const {day, m} = berlinNow(), today = HOURS[day];
+  if(today && m < today.o) return `heute um ${today.open} Uhr`;
+  for(let k = 1; k <= 7; k++){
+    const d = (day + k) % 7, x = HOURS[d];
+    if(x) return k === 1 ? `morgen um ${x.open} Uhr` : `am ${DAY_NAMES[d]} um ${x.open} Uhr`;
+  }
+  return "";
 }
 function updateHours(){
   const {day} = berlinNow();

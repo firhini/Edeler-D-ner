@@ -23,11 +23,11 @@ const CATS = [
 ];
 const catOf = k => CATS.find(c => c.key === k) || CATS[0];
 const OPTIONS = [
-  {key:"wrap",  label:"Zutaten abwählen + Soßen + Extras", hint:"Für Döner im Brot, Yufka, Lahmacun …"},
-  {key:"box",   label:"Mit/ohne Salat + Soßen + Extras", hint:"Für Boxen und Überbackenes"},
-  {key:"plate", label:"Soßen + Extras", hint:"Für Teller"},
-  {key:"extra", label:"Nur Extras (z. B. Chili-Cheese, Schafskäse)", hint:"Für Pizza, Pommes, Fingerfood"},
-  {key:"none",  label:"Keine Auswahl – direkt in den Warenkorb", hint:"Für Getränke"}
+  {key:"wrap",  label:"Zutaten + Soßen + Extras", hint:"Zutaten abwählen, Soßen und Extras – für Döner im Brot, Yufka und Lahmacun"},
+  {key:"box",   label:"Salat ja/nein + Soßen + Extras", hint:"Mit oder ohne Salat, Soßen und Extras – für Boxen und Überbackenes"},
+  {key:"plate", label:"Soßen + Extras", hint:"Soßen und Extras – für Teller"},
+  {key:"extra", label:"Nur Extras", hint:"Nur Extras wie Chili-Cheese oder Schafskäse – für Pizza, Pommes, Fingerfood"},
+  {key:"none",  label:"Nichts – direkt in den Warenkorb", hint:"Keine Auswahl – für Getränke"}
 ];
 const TAGS = [{key:"halal", label:"Halal"}, {key:"vegetarisch", label:"Vegetarisch"}, {key:"scharf", label:"Scharf"}];
 const DAYS = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
@@ -45,8 +45,8 @@ const SECTIONS = [
   {key:"hours", label:"Öffnungszeiten"},
   {key:"contact", label:"Kontakt"},
   {key:"legal", label:"Impressum"},
-  {key:"users", label:"Zugänge"},
-  {key:"history", label:"Verlauf"}
+  {key:"users", label:"Benutzer"},
+  {key:"history", label:"Frühere Stände"}
 ];
 
 const state = {
@@ -75,11 +75,12 @@ async function api(method, path, body){
 
 /* ---------------- Pfad-Helfer (z. B. "delivery.zones.0.fee") ---------------- */
 const getP = (path, obj = state.draft) => path.split(".").reduce((o, k) => o == null ? undefined : o[k], obj);
-function setP(path, v){
+function setIn(obj, path, v){
   const ks = path.split("."), last = ks.pop();
-  const o = ks.reduce((x, k) => x[k], state.draft);
+  const o = ks.reduce((x, k) => x[k], obj);
   o[last] = v;
 }
+const setP = (path, v) => setIn(state.draft, path, v);
 
 /* ---------------- Bausteine für Formulare ---------------- */
 function fText(path, label, o = {}){
@@ -97,7 +98,7 @@ function fTime(path, label, o = {}){
 }
 function fSwitch(path, title, sub = "", o = {}){
   const v = !!getP(path), on = o.inverse ? !v : v;
-  return `<label class="switch"><input type="checkbox" data-bind="${path}" data-type="${o.inverse ? "boolnot" : "bool"}"${on ? " checked" : ""}${o.rerender ? " data-rerender" : ""}><span class="sw"></span><span class="sw-txt"><b>${title}</b>${sub ? `<small>${sub}</small>` : ""}</span></label>`;
+  return `<label class="switch"><input type="checkbox" data-bind="${path}" data-type="${o.inverse ? "boolnot" : "bool"}"${on ? " checked" : ""}${o.rerender ? " data-rerender" : ""}${o.quick ? " data-quick" : ""}><span class="sw"></span><span class="sw-txt"><b>${title}</b>${sub ? `<small>${sub}</small>` : ""}</span></label>`;
 }
 function fCheck(path, label, o = {}){
   return `<label class="check"><input type="checkbox" data-bind="${path}" data-type="bool"${getP(path) ? " checked" : ""}${o.rerender ? " data-rerender" : ""}> ${label}</label>`;
@@ -122,7 +123,7 @@ function todos(){
   if(!L.vatId) out.push({lvl:"opt", t:"Umsatzsteuer-ID", s:"Nur eintragen, falls vorhanden.", go:"legal.vatId"});
   if(!L.registerNo) out.push({lvl:"opt", t:"Handelsregister-Nummer", s:"Nur nötig, wenn der Laden im Handelsregister steht.", go:"legal.registerNo"});
   if(!d.contact.instagram && !d.contact.facebook) out.push({lvl:"opt", t:"Instagram / Facebook", s:"Falls vorhanden – erscheint als Symbol unten auf der Website.", go:"contact.instagram"});
-  if(state.users.length < 2) out.push({lvl:"opt", t:"Zweiten Zugang anlegen", s:"Z. B. für den Mitinhaber – jeder mit eigenem Passwort.", sec:"users"});
+  if(state.users.length < 2) out.push({lvl:"opt", t:"Zweiten Benutzer anlegen", s:"Z. B. für den Mitinhaber – jeder mit eigenem Passwort.", sec:"users"});
   return out;
 }
 const mustCount = () => todos().filter(t => t.lvl === "must").length;
@@ -131,17 +132,19 @@ const mustCount = () => todos().filter(t => t.lvl === "must").length;
 const R = {};
 
 R.overview = () => {
-  const d = state.draft, list = todos(), must = list.filter(t => t.lvl === "must").length;
+  const d = state.draft, list = todos(), mustList = list.filter(t => t.lvl === "must"), others = list.filter(t => t.lvl !== "must");
   const off = d.menu.filter(m => m.available === false).length;
   const icon = {must:"!", check:"?", opt:"+"};
+  const li = t => `<li class="${t.lvl}"><span class="ic" aria-hidden="true">${icon[t.lvl]}</span><div><b>${esc(t.t)}</b><small>${esc(t.s)}</small></div>
+      <button class="btn btn-sm" type="button" data-act="goto" ${t.go ? `data-path="${t.go}"` : `data-sec="${t.sec}"`}>${t.lvl === "must" ? "Ausfüllen" : "Öffnen"}</button></li>`;
   return `
-  <h1 class="sec-title">Hallo ${esc(state.user)} 👋</h1>
-  <p class="sec-intro">Hier stellst du alles für die Website ein. Änderungen werden erst nach <b>„Speichern“</b> (unten) übernommen und sind dann nach wenigen Sekunden auf der Website sichtbar.</p>
-  ${state.version === 0 ? `<p class="info warn">Es wurde noch nie gespeichert – die Website zeigt die Grundeinstellung. Sobald du einmal speicherst, gelten deine Angaben.</p>` : ""}
+  <div class="row"><h1 class="sec-title">Hallo ${esc(state.user)} 👋</h1><span class="spacer"></span><a class="btn btn-sm" href="/" target="_blank" rel="noopener">Website ansehen ↗</a></div>
+  <p class="sec-intro">Hier stellst du alles für die Website ein. Änderungen werden erst nach <b>„Speichern“</b> (unten) übernommen und sind dann nach wenigen Sekunden auf der Website sichtbar. Ausnahme: Die Schalter mit „Wirkt sofort“ gelten direkt.</p>
+  ${state.version === 0 ? `<p class="info warn">Es wurde noch nie gespeichert – die Website zeigt die Grundeinstellung. Bitte einmal unten auf „Speichern“ tippen, dann gelten deine Angaben.</p>` : ""}
   <div class="card">
     <h2 class="card-h">Bestellungen</h2>
     <p class="hint">Bei Stress, Ausfall oder kurzfristig geschlossen: hier ausschalten. Kunden sehen dann einen Hinweis und können nicht per WhatsApp bestellen.</p>
-    <div class="big-switch${d.shop.ordersOpen ? "" : " off"}">${fSwitch("shop.ordersOpen", "Online-Bestellungen annehmen", d.shop.ordersOpen ? "Kunden können über die Website per WhatsApp bestellen." : "AUS – Kunden sehen „Online-Bestellungen sind gerade pausiert“.", {rerender:true})}</div>
+    <div class="big-switch${d.shop.ordersOpen ? "" : " off"}">${fSwitch("shop.ordersOpen", "Online-Bestellungen annehmen", (d.shop.ordersOpen ? "Kunden können über die Website per WhatsApp bestellen." : "AUS – Kunden sehen „Online-Bestellungen sind gerade pausiert“.") + " <b>Wirkt sofort.</b>", {rerender:true, quick:true})}</div>
   </div>
   <div class="card">
     <h2 class="card-h">Hinweis auf der Website</h2>
@@ -152,25 +155,24 @@ R.overview = () => {
     </div>
   </div>
   <div class="card">
-    <h2 class="card-h">${must ? `Noch auszufüllen (${must} Pflicht)` : "Alles Wichtige ist ausgefüllt ✓"}</h2>
-    <p class="hint"><b>!</b> = Pflicht · <b>?</b> = bitte einmal prüfen · <b>+</b> = optional</p>
-    <ul class="todo-list">${list.map(t => `<li class="${t.lvl}"><span class="ic" aria-hidden="true">${icon[t.lvl]}</span><div><b>${esc(t.t)}</b><small>${esc(t.s)}</small></div>
-      <button class="btn btn-sm" type="button" data-act="goto" ${t.go ? `data-path="${t.go}"` : `data-sec="${t.sec}"`}>${t.lvl === "must" ? "Ausfüllen" : "Öffnen"}</button></li>`).join("")}</ul>
+    <h2 class="card-h">${mustList.length ? `Noch auszufüllen (Pflicht): ${mustList.length}` : "Alles Wichtige ist ausgefüllt ✓"}</h2>
+    ${mustList.length ? `<ul class="todo-list">${mustList.map(li).join("")}</ul>` : ""}
+    ${others.length ? `<details class="more"><summary>Weitere Punkte zum Prüfen (${others.length})</summary><ul class="todo-list">${others.map(li).join("")}</ul></details>` : ""}
   </div>
   <div class="card">
     <h2 class="card-h">Auf einen Blick</h2>
     <div class="stats">
       <div class="stat"><b>${d.menu.length}</b><span>Gerichte auf der Karte</span></div>
       <div class="stat"><b>${off}</b><span>gerade nicht verfügbar</span></div>
-      <div class="stat"><b>${d.delivery.enabled ? "An" : "Aus"}</b><span>Lieferung${d.delivery.enabled ? ` · ${d.delivery.zones.length} Zonen` : ""}</span></div>
-      <div class="stat"><b>${state.users.length}</b><span>Zugänge</span></div>
+      <div class="stat"><b>${d.delivery.enabled ? "An" : "Aus"}</b><span>Lieferung${d.delivery.enabled ? ` · ${d.delivery.zones.length} Liefergebiete` : ""}</span></div>
+      <div class="stat"><b>${state.users.length}</b><span>Benutzer</span></div>
     </div>
   </div>
   <div class="card">
     <h2 class="card-h">Gut zu wissen</h2>
     <ul class="hint">
-      <li>Fehler gemacht? Unter <button class="linkbtn" type="button" data-act="goto" data-sec="history">Verlauf</button> kannst du jeden früheren Stand wiederherstellen.</li>
-      <li>Ein Gericht ist aus? In der <button class="linkbtn" type="button" data-act="goto" data-sec="menu">Speisekarte</button> einfach „verfügbar“ ausschalten.</li>
+      <li>Fehler gemacht? Unter <button class="linkbtn" type="button" data-act="goto" data-sec="history">Frühere Stände</button> kannst du einen alten Stand zurückholen.</li>
+      <li>Ein Gericht ist aus? In der <button class="linkbtn" type="button" data-act="goto" data-sec="menu">Speisekarte</button> einfach „verfügbar“ ausschalten – wirkt sofort.</li>
       <li>Bestellungen kommen wie bisher per WhatsApp an die Nummer unter <button class="linkbtn" type="button" data-act="goto" data-sec="contact">Kontakt</button>.</li>
     </ul>
   </div>`;
@@ -191,7 +193,7 @@ function itemRow(m, i, first, last){
     </div>
     <div class="thumb">${m.photo ? `<img src="${esc(photoUrl(m.photo, true))}" alt="" loading="lazy" width="54" height="54">` : c.emoji}</div>
     <div class="meta"><b>${esc(m.name || "(ohne Namen)")}</b><span>${esc(priceLine(m))}</span>${tags ? `<span class="tagline">${esc(tags)}</span>` : ""}</div>
-    <div class="avail"><label class="switch"><input type="checkbox" data-bind="menu.${i}.available" data-type="bool"${m.available !== false ? " checked" : ""} data-rerender aria-label="${esc(m.name)} verfügbar"><span class="sw"></span><span class="sw-txt"><b>${m.available !== false ? "verfügbar" : "aus"}</b></span></label></div>
+    <div class="avail"><label class="switch"><input type="checkbox" data-bind="menu.${i}.available" data-type="bool"${m.available !== false ? " checked" : ""} data-rerender data-quick aria-label="${esc(m.name)} verfügbar (wirkt sofort)"><span class="sw"></span><span class="sw-txt"><b>${m.available !== false ? "verfügbar" : "aus"}</b></span></label></div>
     <button class="btn btn-sm" type="button" data-act="item-edit" data-i="${i}">Bearbeiten</button>
   </div>`;
 }
@@ -208,7 +210,7 @@ R.menu = () => {
   }).join("");
   return `
   <h1 class="sec-title">Speisekarte</h1>
-  <p class="sec-intro">Preise, Beschreibungen, Fotos und Reihenfolge. Ist etwas aus, schalte es auf „aus“ – es bleibt sichtbar, kann aber nicht bestellt werden.</p>
+  <p class="sec-intro">Preise, Beschreibungen, Fotos und Reihenfolge. Ist etwas aus, schalte es auf „aus“ – <b>wirkt sofort</b>: Es bleibt sichtbar, kann aber nicht bestellt werden.</p>
   <div class="toolbar"><input type="search" id="menuSearch" value="${esc(state.menuSearch)}" placeholder="Gericht suchen …" aria-label="Gericht suchen"></div>
   <div class="chips" role="group" aria-label="Kategorie">
     <button class="chip" type="button" data-act="menu-cat" data-cat="all" aria-pressed="${state.menuCat === "all"}">Alle</button>
@@ -230,14 +232,14 @@ function itemDlgHtml(i){
   <div class="fld"><span class="lbl">Preis</span>
     <div class="seg" role="group" aria-label="Preisart">
       <button type="button" data-act="price-mode" data-mode="single" aria-pressed="${!hasVar}">Ein Preis</button>
-      <button type="button" data-act="price-mode" data-mode="variants" aria-pressed="${hasVar}">Mehrere Varianten</button>
+      <button type="button" data-act="price-mode" data-mode="variants" aria-pressed="${hasVar}">Mehrere Preise</button>
     </div>
-    ${hasVar ? `<small>Z. B. Hähnchen / Kalb oder Klein / Groß – jede Variante mit eigenem Preis.</small>
+    ${hasVar ? `<small>Z. B. Hähnchen / Kalb oder Klein / Groß – jede Sorte mit eigenem Preis.</small>
       <div class="list" data-err="${p}.variants">${m.variants.map((v, j) => `<div class="li-row"><div class="grow"><div class="two">
-          ${fText(`${p}.variants.${j}.label`, "Variante", {max:20, ph:"z. B. Hähnchen"})}
+          ${fText(`${p}.variants.${j}.label`, "Bezeichnung", {max:20, ph:"z. B. Hähnchen"})}
           ${fMoney(`${p}.variants.${j}.price`, "Preis")}
-        </div></div><button class="icon-btn danger" type="button" data-act="var-del" data-j="${j}" aria-label="Variante entfernen">✕</button></div>`).join("")}</div>
-      ${m.variants.length < 4 ? `<button class="btn btn-sm" type="button" data-act="var-add">+ Variante</button>` : ""}`
+        </div></div><button class="icon-btn danger" type="button" data-act="var-del" data-j="${j}" aria-label="Diesen Preis entfernen">✕</button></div>`).join("")}</div>
+      ${m.variants.length < 4 ? `<button class="btn btn-sm" type="button" data-act="var-add">+ Weiterer Preis</button>` : ""}`
     : `<div class="money-w">${fMoney(p + ".price", "Preis")}</div>`}
   </div>
   <div class="fld"><span class="lbl">Foto</span>
@@ -251,12 +253,12 @@ function itemDlgHtml(i){
     </div>
     <small id="photoMsg" role="status">Tipp: Querformat, gut beleuchtet. Das Foto wird automatisch zugeschnitten und verkleinert.</small>
   </div>
-  <div class="fld"><span class="lbl">Merkmale</span>
+  <div class="fld"><span class="lbl">Zeichen auf der Speisekarte</span>
     <div class="row">${TAGS.map(t => `<label class="check"><input type="checkbox" data-tag="${t.key}"${(m.tags || []).includes(t.key) ? " checked" : ""}> ${t.label}</label>`).join("")}</div>
   </div>
   ${fSwitch(p + ".popular", "Beliebt", "Mit Stern markieren und bei den Bestsellern auf der Startseite zeigen.")}
   ${fSwitch(p + ".available", "Verfügbar", "Aus = bleibt sichtbar, aber „Gerade nicht verfügbar“.")}
-  <label class="fld"><span class="lbl">Auswahl beim Bestellen</span>
+  <label class="fld"><span class="lbl">Was darf der Kunde auswählen?</span>
     <select data-bind="${p}.options" data-type="text" data-rerender>${OPTIONS.map(o => `<option value="${o.key}"${m.options === o.key ? " selected" : ""}>${o.label}</option>`).join("")}</select>
     <small>${esc((OPTIONS.find(o => o.key === m.options) || OPTIONS[3]).hint)}. Welche Zutaten, Soßen und Extras es gibt, stellst du unter „Extras &amp; Soßen“ ein.</small>
   </label>
@@ -299,9 +301,9 @@ R.extras = () => {
     ${e.ingredients.length < 20 ? `<button class="btn btn-sm" type="button" data-act="list-add" data-path="extras.ingredients">+ Hinzufügen</button>` : ""}</div>
   <div class="card"><h2 class="card-h">Beilagen zur Auswahl</h2><p class="hint">Für Gerichte mit „Beilage wählen lassen“ (z. B. Dönerbox, Dönerteller). Mindestens 2.</p>${simpleList("extras.sides", e.sides, "z. B. Pommes", 6)}</div>
   <h2 class="cat-h">Extras mit Aufpreis <small>– werden automatisch berechnet</small></h2>
-  ${priced("chili", "🔥 Chili-Cheese-Soße", "Mit Wahl „mit/ohne Jalapeños“.", `<div class="mt10">${fSwitch("extras.chili.promo", "Als NEU-Aktion hervorheben", "Großes Banner auf der Startseite + „Neu“-Markierung.")}</div>`)}
-  ${priced("feta", "Schafskäse", "")}
-  ${priced("cup", "Extra-Soße im Becher", "Separat zum Mitnehmen, Preis pro Becher.")}
+  ${priced("chili", "🔥 Chili-Cheese-Soße", "Mit Wahl „mit/ohne Jalapeños“. Aus = kann nicht dazubestellt werden.", `<div class="mt10">${fSwitch("extras.chili.promo", "Als NEU-Aktion hervorheben", "Großes Banner auf der Startseite + „Neu“-Markierung.")}</div>`)}
+  ${priced("feta", "Schafskäse", "Aus = kann nicht dazubestellt werden.")}
+  ${priced("cup", "Extra-Soße im Becher", "Separat zum Mitnehmen, Preis pro Becher. Aus = kann nicht dazubestellt werden.")}
   <div class="card"><h2 class="card-h">Weitere Extras (nur zur Info)</h2><p class="hint">Stehen unter der Speisekarte. Der Kunde schreibt sie unter „Besondere Wünsche“, berechnet wird im Laden.</p>
     <div class="list" data-err="extras.more">${e.more.map((x, i) => `<div class="li-row"><div class="grow"><div class="two">
       <input type="text" data-bind="extras.more.${i}.name" data-type="text" value="${esc(x.name)}" maxlength="40" placeholder="z. B. Käse" aria-label="Name des Extras">
@@ -316,30 +318,33 @@ R.delivery = () => {
   return `
   <h1 class="sec-title">Lieferung</h1>
   <p class="sec-intro">Liefergebiete, Gebühren und Regeln. Der Kunde wählt im Warenkorb seinen Ort – die Gebühr wird automatisch dazugerechnet.</p>
-  <div class="card"><div class="big-switch${d.enabled ? "" : " off"}">${fSwitch("delivery.enabled", "Lieferung anbieten", d.enabled ? "Kunden können Lieferung wählen." : "AUS – Website zeigt „Lieferung gerade pausiert“, Abholung geht weiter.", {rerender:true})}</div></div>
+  <div class="card"><div class="big-switch${d.enabled ? "" : " off"}">${fSwitch("delivery.enabled", "Lieferung anbieten", (d.enabled ? "Kunden können Lieferung wählen." : "AUS – Website zeigt „Lieferung gerade pausiert“, Abholung geht weiter.") + " <b>Wirkt sofort.</b>", {rerender:true, quick:true})}</div></div>
   <p class="info">So kommt eine Lieferbestellung an: per WhatsApp mit Adresse, Gebühr, Zahlungsart und einem <b>Routen-Link für den Fahrer</b> (öffnet Google Maps oder Apple Karten). Einfach an den Fahrer weiterleiten.</p>
   <h2 class="cat-h">Liefergebiete</h2>
-  <p class="hint">Jede Zone hat eine Gebühr und eine Liste von Orten. „Stadt für die Adresse“ nur ausfüllen, wenn der Ortsname kein eigener Ort ist (z. B. Mannheim-Rheinau → Mannheim) – sonst leer lassen.</p>
+  <p class="hint">Jedes Liefergebiet hat eine Gebühr und eine Liste von Orten. Das Feld „Stadt“ nur bei Stadtteilen ausfüllen (z. B. Mannheim-Rheinau → Mannheim), damit der Fahrer-Link die Adresse findet – sonst leer lassen.</p>
   <div data-err="delivery.zones">${d.zones.map((z, i) => `<div class="zone">
     <div class="zone-head">
-      ${fText(`delivery.zones.${i}.label`, "Name der Zone", {max:20, ph:"z. B. bis 5 km"})}
+      ${fText(`delivery.zones.${i}.label`, "Name (sieht der Kunde)", {max:20, ph:"z. B. bis 5 km"})}
       ${fMoney(`delivery.zones.${i}.fee`, "Liefergebühr")}
-      <button class="icon-btn danger" type="button" data-act="list-del" data-path="delivery.zones" data-i="${i}" aria-label="Zone entfernen">✕</button>
     </div>
-    <div class="town-h"><span>Ort</span><span>PLZ</span><span>Stadt für die Adresse (optional)</span><span></span></div>
+    <div class="town-h"><span>Ort</span><span>PLZ</span><span>Stadt (nur bei Stadtteil)</span><span></span></div>
     <div class="list" data-err="delivery.zones.${i}.towns">${z.towns.map((t, j) => `<div class="town">
       <input type="text" data-bind="delivery.zones.${i}.towns.${j}.name" data-type="text" value="${esc(t.name)}" maxlength="40" placeholder="Ort" aria-label="Ort">
       <input type="text" inputmode="numeric" data-bind="delivery.zones.${i}.towns.${j}.plz" data-type="text" value="${esc(t.plz)}" maxlength="5" placeholder="PLZ" aria-label="Postleitzahl">
-      <input type="text" data-bind="delivery.zones.${i}.towns.${j}.city" data-type="text" value="${esc(t.city)}" maxlength="40" placeholder="Stadt (optional)" aria-label="Stadt für die Adresse">
+      <input type="text" data-bind="delivery.zones.${i}.towns.${j}.city" data-type="text" value="${esc(t.city)}" maxlength="40" placeholder="Nur bei Stadtteil: Stadt" aria-label="Stadt für die Adresse (nur bei Stadtteil)">
       <button class="icon-btn danger" type="button" data-act="list-del" data-path="delivery.zones.${i}.towns" data-i="${j}" aria-label="Ort entfernen">✕</button>
     </div>`).join("")}</div>
-    <button class="btn btn-sm" type="button" data-act="list-add" data-path="delivery.zones.${i}.towns">+ Ort hinzufügen</button>
+    <div class="row zone-foot">
+      <button class="btn btn-sm" type="button" data-act="list-add" data-path="delivery.zones.${i}.towns">+ Ort hinzufügen</button>
+      <span class="spacer"></span>
+      <button class="btn btn-sm btn-danger" type="button" data-act="list-del" data-path="delivery.zones" data-i="${i}" data-confirm="Dieses ganze Liefergebiet mit allen Orten löschen?">Liefergebiet löschen</button>
+    </div>
   </div>`).join("")}</div>
-  ${d.zones.length < 6 ? `<button class="btn" type="button" data-act="list-add" data-path="delivery.zones">+ Zone hinzufügen</button>` : ""}
+  ${d.zones.length < 6 ? `<button class="btn" type="button" data-act="list-add" data-path="delivery.zones">+ Weiteres Liefergebiet (andere Gebühr)</button>` : ""}
   <h2 class="cat-h">Regeln</h2>
   <div class="card stack">
     <div class="grid2">
-      ${fMoney("delivery.minOrder", "Mindestbestellwert", {hint:"0 = kein Mindestbestellwert. Gilt ohne Liefergebühr."})}
+      ${fMoney("delivery.minOrder", "Mindestbestellwert", {hint:"0 = kein Mindestbestellwert. Die Liefergebühr zählt nicht mit."})}
       <div class="fld">${fTime("delivery.lastOrder", "Letzte Lieferbestellung", {hint:"Leer = bis Ladenschluss. Danach geht nur noch Abholung."})}
         ${d.lastOrder ? `<button class="linkbtn small" type="button" data-act="clear" data-path="delivery.lastOrder">Uhrzeit löschen (bis Ladenschluss)</button>` : ""}</div>
     </div>
@@ -358,14 +363,15 @@ R.hours = () => {
   <div class="card" data-err="hours">
     ${WEEK.map(d => `<div class="hours-row">
       <span class="day">${DAYS[d]}</span>
-      ${fSwitch(`hours.${d}.closed`, h[d].closed ? "Ruhetag" : "Geöffnet", "", {inverse:true, rerender:true})}
-      ${h[d].closed ? `<span class="closed-note">Geschlossen</span>` : `<div class="times">
+      ${fSwitch(`hours.${d}.closed`, "Geöffnet", "", {inverse:true, rerender:true})}
+      ${h[d].closed ? `<span class="closed-note">Ruhetag – geschlossen</span>` : `<div class="times">
         <span>von</span><input type="time" data-bind="hours.${d}.open" data-type="text" value="${esc(h[d].open)}" aria-label="${DAYS[d]} öffnet um">
         <span>bis</span><input type="time" data-bind="hours.${d}.close" data-type="text" value="${esc(h[d].close)}" aria-label="${DAYS[d]} schließt um">
       </div>`}
     </div>`).join("")}
   </div>
-  <button class="btn btn-sm wrap" type="button" data-act="hours-copy">Zeiten vom ersten geöffneten Tag für alle geöffneten Tage übernehmen</button>`;
+  ${(() => { const src = WEEK.find(d => !h[d].closed); return src === undefined ? "" :
+    `<button class="btn btn-sm wrap" type="button" data-act="hours-copy">Zeiten von ${DAYS[src]} auf alle geöffneten Tage übertragen</button>`; })()}`;
 };
 
 /* ----- Kontakt ----- */
@@ -389,7 +395,7 @@ R.contact = () => {
 /* ----- Impressum ----- */
 R.legal = () => `
   <h1 class="sec-title">Impressum &amp; Datenschutz</h1>
-  <p class="sec-intro">Gesetzliche Pflichtangaben. Sie erscheinen automatisch im <a href="/impressum.html" target="_blank" rel="noopener">Impressum</a> und in der <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>. Mit <em>*</em> = Pflicht.</p>
+  <p class="sec-intro">Gesetzliche Pflichtangaben. Sie erscheinen automatisch im <a href="/impressum.html" target="_blank" rel="noopener">Impressum</a> und in der <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>. Mit <em>*</em> = Pflicht. Solange ein Pflichtfeld leer ist, steht im Impressum ein Platzhalter – das kann eine Abmahnung bringen, also bitte ausfüllen.</p>
   <div class="card stack">
     ${fText("legal.owner", "Vor- und Nachname des Inhabers", {req:true, max:80, ph:"z. B. Max Mustermann", attrs:'autocomplete="name"', hint:"Bei mehreren Inhabern (GbR) alle Namen, z. B. „Ali Yilmaz und Mehmet Kaya“."})}
     ${fText("legal.email", "E-Mail-Adresse", {req:true, type:"email", max:120, ph:"z. B. info@edeler-doener.de", attrs:'autocomplete="email"', hint:"Pflicht im Impressum – muss regelmäßig gelesen werden."})}
@@ -407,10 +413,10 @@ R.legal = () => `
 
 /* ----- Zugänge ----- */
 R.users = () => `
-  <h1 class="sec-title">Zugänge</h1>
-  <p class="sec-intro">Jeder Inhaber bekommt einen eigenen Zugang. Jeder Zugang kann alles ändern – also nur an Personen geben, denen ihr voll vertraut. Im Verlauf steht, wer was gespeichert hat.</p>
+  <h1 class="sec-title">Benutzer &amp; Passwörter</h1>
+  <p class="sec-intro">Jeder Inhaber bekommt einen eigenen Benutzer. Jeder Benutzer kann alles ändern – also nur an Personen geben, denen ihr voll vertraut. Unter „Frühere Stände“ steht, wer was gespeichert hat.</p>
   <div class="card">
-    <h2 class="card-h">Alle Zugänge</h2>
+    <h2 class="card-h">Alle Benutzer</h2>
     <ul class="users">${state.users.map(u => `<li><b>${esc(u)}${u === state.user ? ` <span class="badge gold">du</span>` : ""}</b>
       ${u !== state.user ? `<button class="btn btn-sm" type="button" data-act="user-reset" data-user="${esc(u)}">Passwort neu setzen</button>
       <button class="btn btn-sm btn-danger" type="button" data-act="user-del" data-user="${esc(u)}">Löschen</button>` : ""}
@@ -419,12 +425,12 @@ R.users = () => `
         <button class="btn btn-sm btn-gold" type="submit">Setzen</button></form>` : ""}</li>`).join("")}</ul>
   </div>
   <form class="card stack" data-form="user-add">
-    <h2 class="card-h">Neuen Zugang anlegen</h2>
+    <h2 class="card-h">Neuen Benutzer anlegen</h2>
     <div class="grid2">
       <label class="fld"><span class="lbl">Benutzername</span><input type="text" id="newUser" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="30" placeholder="z. B. mehmet"><small>3–30 Zeichen: Buchstaben, Ziffern, Punkt, Minus</small></label>
       <label class="fld"><span class="lbl">Passwort</span><input type="password" id="newUserPw" autocomplete="new-password" placeholder="mind. 10 Zeichen"></label>
     </div>
-    <div><button class="btn btn-gold" type="submit">Zugang anlegen</button></div>
+    <div><button class="btn btn-gold" type="submit">Benutzer anlegen</button></div>
   </form>
   <form class="card stack" data-form="password">
     <h2 class="card-h">Dein Passwort ändern</h2>
@@ -434,18 +440,18 @@ R.users = () => `
       <label class="fld"><span class="lbl">Neues Passwort wiederholen</span><input type="password" id="pwNew2" autocomplete="new-password"></label>
     </div>
     <div><button class="btn btn-gold" type="submit">Passwort ändern</button></div>
-    <small class="hint">Danach sind alle anderen Geräte mit deinem Zugang abgemeldet.</small>
+    <small class="hint">Danach sind alle anderen Geräte mit deinem Benutzer abgemeldet.</small>
   </form>`;
 
 /* ----- Verlauf ----- */
 R.history = () => {
-  if(!state.history){ loadHistory(); return `<h1 class="sec-title">Verlauf</h1><p class="muted">Wird geladen …</p>`; }
+  if(!state.history){ loadHistory(); return `<h1 class="sec-title">Frühere Stände</h1><p class="muted">Wird geladen …</p>`; }
   return `
-  <h1 class="sec-title">Verlauf</h1>
-  <p class="sec-intro">Die letzten 30 gespeicherten Stände. Wiederherstellen macht einen alten Stand wieder aktuell (als neue Version – nichts geht verloren).</p>
-  ${state.history.length ? `<ul class="history">${state.history.map(h => `<li><div><b>Version ${h.version}</b>${h.version === state.version ? ` <span class="badge gold">aktuell</span>` : ""}
-      <small>${esc(when(h.savedAt))} · von ${esc(h.by)}</small></div>
-      ${h.version !== state.version ? `<button class="btn btn-sm" type="button" data-act="restore" data-v="${h.version}">Wiederherstellen</button>` : ""}</li>`).join("")}</ul>`
+  <h1 class="sec-title">Frühere Stände</h1>
+  <p class="sec-intro">Jedes Speichern merkt sich einen Stand (die letzten 30). Fehler gemacht? Einfach einen früheren Stand zurückholen – er ist dann sofort auf der Website. Nichts geht verloren.</p>
+  ${state.history.length ? `<ul class="history">${state.history.map(h => `<li><div><b>${esc(when(h.savedAt))}</b>${h.version === state.version ? ` <span class="badge gold">aktuell</span>` : ""}
+      <small>gespeichert von ${esc(h.by)}</small></div>
+      ${h.version !== state.version ? `<button class="btn btn-sm" type="button" data-act="restore" data-v="${h.version}" data-when="${esc(when(h.savedAt))}">Diesen Stand zurückholen</button>` : ""}</li>`).join("")}</ul>`
     : `<p class="muted">Noch nichts gespeichert.</p>`}`;
 };
 async function loadHistory(){
@@ -488,15 +494,17 @@ const dirty = () => state.draft && JSON.stringify(state.draft) !== JSON.stringif
 function updateSaveBar(){
   const d = dirty(), bar = $("#savebar");
   bar.classList.toggle("dirty", d);
-  $("#saveBtn").disabled = !d || state.saving;
+  $("#saveBtn").disabled = (!d && state.version > 0) || state.saving;   // ganz am Anfang darf auch ohne Änderung gespeichert werden
   $("#saveBtn").textContent = state.saving ? "Speichert …" : "Speichern";
   $("#discardBtn").hidden = !d || state.saving;
   let txt;
   if(state.error) txt = `<span class="bad">⚠ ${esc(state.error)}</span>`;
   else if(d) txt = `<b>Noch nicht gespeichert</b><span class="sb-long"> – erst nach „Speichern“ auf der Website.</span>`;
-  else if(state.version) txt = `Alles gespeichert ✓<span class="muted sb-long"> · Version ${state.version} · ${esc(when(state.savedAt))}${state.by ? " · " + esc(state.by) : ""}</span>`;
-  else txt = `Website zeigt die Grundeinstellung.`;
+  else if(state.version) txt = `Alles gespeichert ✓<span class="muted sb-long"> · ${esc(when(state.savedAt))}${state.by ? " · " + esc(state.by) : ""}</span>` +
+    (mustCount() ? `<br><span class="bad">⚠ Impressum unvollständig</span>` : "");
+  else txt = `<b>Noch nie gespeichert</b><span class="sb-long"> – bitte einmal „Speichern“ tippen.</span>`;
   $("#sbState").innerHTML = txt;
+  $("#sbState").dataset.version = state.version;      // für automatische Tests
 }
 
 /* ---------------- Fehler an Feldern ---------------- */
@@ -534,7 +542,8 @@ function gotoField(path, msg){
     if(msg){
       if(el.matches("input,select,textarea")) el.setAttribute("aria-invalid", "true"); else el.classList.add("invalid");
       const p = document.createElement("p");
-      p.className = "field-err"; p.setAttribute("role", "alert"); p.textContent = msg;
+      p.className = "field-err"; p.setAttribute("role", "alert");
+      p.textContent = `${msg.replace(/[.!]?$/, ".")} Bitte korrigieren und dann „Speichern“ tippen.`;
       (el.closest(".fld, .li-row, .town, .zone-head, .hours-row") || el).insertAdjacentElement("afterend", p);
     }
     el.scrollIntoView({block:"center", behavior:"smooth"});
@@ -600,6 +609,7 @@ function onInput(e){
   if(state.error){ state.error = ""; }
   // Kennung neuer Gerichte mitführen
   if(state.editIdx !== null && /^menu\.\d+\.(name|variants\.\d+\.label)$/.test(path)) refreshNewIds(state.draft.menu[state.editIdx]);
+  if(el.hasAttribute("data-quick") && e.type === "change") quickSave(path, readVal(el));
   if(el.hasAttribute("data-rerender") && e.type === "change"){
     if(el.closest("#itemDlg")) rerenderItem(); else { const y = window.scrollY; render(); window.scrollTo(0, y); }
   } else updateSaveBar();
@@ -634,7 +644,8 @@ async function onClick(e){
     case "list-del": {
       const list = getP(path), item = list[i];
       const label = typeof item === "string" ? item : (item && (item.name || item.label)) || "";
-      if(label && !(await ask(`„${label}“ entfernen?`, "Entfernen"))) return;
+      if(b.dataset.confirm){ if(!(await ask(b.dataset.confirm, "Löschen"))) return; }
+      else if(label && !(await ask(`„${label}“ entfernen?`, "Entfernen"))) return;
       list.splice(i, 1); rerender(); break;
     }
     case "list-up": case "list-down": {
@@ -694,7 +705,7 @@ async function onClick(e){
     case "photo-lib": openPhotoLib(); break;
     case "photo-none": state.draft.menu[state.editIdx].photo = ""; rerenderItem(); updateSaveBar(); break;
     case "photo-set": state.draft.menu[state.editIdx].photo = b.dataset.photo; $("#photoDlg").close(); rerenderItem(); updateSaveBar(); break;
-    case "restore": restore(Number(b.dataset.v)); break;
+    case "restore": restore(Number(b.dataset.v), b.dataset.when); break;
     case "user-reset": state.resetUser = state.resetUser === b.dataset.user ? null : b.dataset.user; render(); if($("#resetPw")) $("#resetPw").focus(); break;
     case "user-del": deleteUser(b.dataset.user); break;
   }
@@ -772,9 +783,36 @@ async function uploadPhoto(file){
   }catch(e){ say("⚠ " + e.message); toast(e.message, true); }
 }
 
+/* ---------------- Sofort-Schalter ----------------
+   „Online-Bestellungen“, „Lieferung anbieten“ und „verfügbar“ (Speisekarte) wirken sofort – ohne „Speichern“.
+   Gespeichert wird nur dieser eine Wert; andere ungespeicherte Änderungen bleiben ungespeichert. */
+async function quickSave(path, value){
+  let target = path, label;
+  const mm = /^menu\.(\d+)\.available$/.exec(path);
+  if(mm){
+    const item = state.draft.menu[Number(mm[1])], k = state.saved.menu.findIndex(x => x.id === item.id);
+    if(k < 0){ toast("Neues Gericht – wird mit „Speichern“ übernommen."); return; }
+    target = `menu.${k}.available`;
+    label = value ? `„${item.name}“ ist wieder bestellbar ✓` : `„${item.name}“ ist jetzt „Gerade nicht verfügbar“ ✓`;
+  } else if(path === "shop.ordersOpen") label = value ? "Online-Bestellungen sind wieder an ✓" : "Online-Bestellungen sind jetzt pausiert ✓";
+  else if(path === "delivery.enabled") label = value ? "Lieferung ist wieder an ✓" : "Lieferung ist jetzt pausiert ✓";
+  const next = clone(state.saved);
+  setIn(next, target, value);
+  state.saving = true; updateSaveBar();
+  try{
+    const res = await api("PUT", "admin/settings", {baseVersion: state.version, settings: next});
+    state.saved = next; state.version = res.version; state.savedAt = res.savedAt; state.by = state.user;
+    toast(`${label} – sofort auf der Website`);
+  }catch(e){
+    toast(`${e.message} Bitte unten auf „Speichern“ tippen.`, true);
+  }finally{
+    state.saving = false; updateSaveBar();
+  }
+}
+
 /* ---------------- Speichern ---------------- */
 async function save(){
-  if(state.saving || !dirty()) return;
+  if(state.saving || (!dirty() && state.version > 0)) return;
   if(state.editIdx !== null) $("#itemDlg").close();
   state.saving = true; state.error = ""; clearFieldErrors(); updateSaveBar();
   try{
@@ -795,14 +833,14 @@ async function discard(){
   state.draft = clone(state.saved); state.error = ""; state.newIds.clear();
   render();
 }
-async function restore(v){
+async function restore(v, whenTxt){
   const extra = dirty() ? " Deine ungespeicherten Änderungen gehen dabei verloren." : "";
-  if(!(await ask(`Version ${v} wiederherstellen? Sie wird sofort auf der Website aktiv.${extra}`, "Wiederherstellen"))) return;
+  if(!(await ask(`Den Stand vom ${whenTxt || "…"} zurückholen? Er ist sofort auf der Website aktiv.${extra}`, "Zurückholen"))) return;
   try{
     await api("POST", "admin/restore", {version: v, baseVersion: state.version});
     await loadState();
     state.history = null; render();
-    toast(`Version ${v} wiederhergestellt ✓`);
+    toast(`Stand vom ${whenTxt || "…"} zurückgeholt ✓`);
   }catch(e){ toast(e.message, true); }
 }
 
@@ -820,10 +858,10 @@ async function onSubmit(e){
     }
     if(f.dataset.form === "user-add"){
       const user = $("#newUser").value.trim(), password = $("#newUserPw").value;
-      const confirm = await askPassword(`Zur Sicherheit: Gib dein eigenes Passwort ein, um den Zugang „${user}“ anzulegen.`);
+      const confirm = await askPassword(`Zur Sicherheit: Gib dein eigenes Passwort ein, um den Benutzer „${user}“ anzulegen.`);
       if(confirm === null) return;
       const r = await api("POST", "admin/users", {user, password, confirm});
-      state.users = r.users; render(); toast("Zugang angelegt ✓ – Benutzername und Passwort jetzt weitergeben");
+      state.users = r.users; render(); toast("Benutzer angelegt ✓ – Benutzername und Passwort jetzt weitergeben");
     }
     if(f.dataset.form === "user-reset"){
       const u = state.resetUser, password = $("#resetPw").value;
@@ -835,9 +873,9 @@ async function onSubmit(e){
   }catch(err){ toast(err.message, true); }
 }
 async function deleteUser(u){
-  const confirm = await askPassword(`Zugang „${u}“ löschen? Diese Person kann sich dann nicht mehr anmelden. Zur Sicherheit: Gib dein eigenes Passwort ein.`);
+  const confirm = await askPassword(`Benutzer „${u}“ löschen? Diese Person kann sich dann nicht mehr anmelden. Zur Sicherheit: Gib dein eigenes Passwort ein.`);
   if(confirm === null) return;
-  try{ state.users = (await api("DELETE", `admin/users/${encodeURIComponent(u)}`, {confirm})).users; render(); toast("Zugang gelöscht"); }
+  try{ state.users = (await api("DELETE", `admin/users/${encodeURIComponent(u)}`, {confirm})).users; render(); toast("Benutzer gelöscht"); }
   catch(e){ toast(e.message, true); }
 }
 
@@ -929,6 +967,11 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#discardBtn").addEventListener("click", discard);
   $("#itemDlg").addEventListener("close", onItemClose);
   $("#itemDelete").addEventListener("click", deleteItem);
+  // „Speichern“ im Gericht-Fenster speichert alles (und schließt das Fenster)
+  $("#itemSave").addEventListener("click", () => {
+    if(dirty() || state.version === 0) save();
+    else { $("#itemDlg").close(); toast("Keine Änderungen – nichts zu speichern"); }
+  });
   $("#reloginDlg").addEventListener("cancel", e => e.preventDefault());
   window.addEventListener("beforeunload", e => { if(dirty()){ e.preventDefault(); e.returnValue = ""; } });
 
@@ -938,7 +981,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try{
       await api("POST", "auth/setup", {code: $("#suCode").value, user: $("#suUser").value.trim(), password: $("#suPass").value});
       await startApp();
-      toast("Willkommen! Dein Zugang ist eingerichtet ✓");
+      toast("Willkommen! Dein Benutzer ist eingerichtet ✓");
     }catch(err){ formError("#setupErr", err.message); }
   });
   $("#loginForm").addEventListener("submit", async e => {

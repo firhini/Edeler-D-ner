@@ -170,7 +170,7 @@ input[type=time]{color-scheme:dark}
 .li-row .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .li-row .money-w{max-width:130px}
 .zone{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:0 0 14px;background:var(--surface-2)}
-.zone-head{display:grid;grid-template-columns:1fr 140px auto;gap:10px;align-items:end;margin:0 0 12px}
+.zone-head{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:end;margin:0 0 12px}
 .town{display:grid;grid-template-columns:1.4fr 100px 1fr auto;gap:8px;align-items:center}
 .town-h{display:grid;grid-template-columns:1.4fr 100px 1fr 40px;gap:8px;font-size:.78rem;color:var(--muted);font-weight:600;margin:0 0 4px}
 .hours-row{display:grid;grid-template-columns:120px 1fr 1fr;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-2)}
@@ -210,6 +210,11 @@ input[type=time]{min-width:0}
 .history li small{display:block;color:var(--muted)}
 .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:var(--pill);background:var(--surface-3);color:var(--muted);margin-left:6px;vertical-align:1px}
 .badge.gold{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold)}
+/* Übersicht: weitere Punkte aufklappbar */
+details.more{margin-top:12px}
+details.more summary{cursor:pointer;font-weight:600;color:var(--gold);padding:8px 0;min-height:40px}
+details.more .todo-list{margin-top:8px}
+.zone-foot{margin-top:10px}
 .users{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
 .users li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line-2)}
 .users li b{flex:1;color:var(--ink)}
@@ -231,6 +236,10 @@ input[type=time]{min-width:0}
   .hours-row .times,.hours-row .closed-note{grid-column:1/-1}
   .item{flex-wrap:wrap;row-gap:8px}
   .item .thumb{order:1} .item .meta{order:2;flex:1 1 calc(100% - 70px)}
+  .li-row:has(.two){flex-wrap:wrap}
+  .li-row:has(.two) > .grow{flex:1 1 100%}
+  .li-row:has(.two) > .icon-btn:first-of-type{margin-left:auto}
+  .li-row .two{grid-template-columns:1fr}
   .item .moves{order:3;flex-direction:row;margin-left:66px} .item .moves .icon-btn{width:34px;height:34px}
   .item .avail{order:4} .item > .btn{order:5;margin-left:auto}
   .savebar .sb-state{font-size:.82rem}
