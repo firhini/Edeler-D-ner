@@ -365,7 +365,7 @@ R.hours = () => {
       </div>`}
     </div>`).join("")}
   </div>
-  <button class="btn btn-sm" type="button" data-act="hours-copy">Zeiten vom ersten geöffneten Tag für alle geöffneten Tage übernehmen</button>`;
+  <button class="btn btn-sm wrap" type="button" data-act="hours-copy">Zeiten vom ersten geöffneten Tag für alle geöffneten Tage übernehmen</button>`;
 };
 
 /* ----- Kontakt ----- */

@@ -177,7 +177,10 @@ input[type=time]{color-scheme:dark}
 .hours-row:last-child{border-bottom:0}
 .hours-row .day{font-weight:600;color:var(--ink)}
 .hours-row .closed-note{grid-column:2/-1;color:var(--muted);font-size:.9rem}
-.hours-row .times{grid-column:2/-1;display:grid;grid-template-columns:auto 1fr auto 1fr;gap:8px;align-items:center}
+.hours-row .times{grid-column:2/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center}
+.hours-row .times input{min-width:0;padding-left:8px;padding-right:6px}
+input[type=time]{min-width:0}
+.btn.wrap{white-space:normal;text-align:center}
 .hours-row .times span{color:var(--muted);font-size:.86rem}
 
 /* Dialoge */

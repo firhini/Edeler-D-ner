@@ -2187,9 +2187,9 @@ function hoursTrust(){
   return {b:"Heute", span: t ? `${spanTxt(t)} geöffnet` : "Ruhetag"};
 }
 function renderHours(){
-  $("#hours tbody").innerHTML = WEEK.map(d => `<tr data-day="${d}"><td>${DAY_NAMES[d]}</td><td>${HOURS[d] ? `${HOURS[d].open} – ${HOURS[d].close}` : "Ruhetag"}</td></tr>`).join("");
+  $("#hours tbody").innerHTML = WEEK.map(d => `<tr data-day="${d}"><td>${DAY_NAMES[d]}</td><td>${HOURS[d] ? esc(`${HOURS[d].open} – ${HOURS[d].close}`) : "Ruhetag"}</td></tr>`).join("");
   $("#footHours").innerHTML = hourGroups().map(g =>
-    `<li>${g.days.length === 1 ? DAY_NAMES[g.days[0]] : dayRange(g.days)}&nbsp;&nbsp;${g.x ? spanTxt(g.x) : "Ruhetag"}</li>`).join("");
+    `<li>${g.days.length === 1 ? DAY_NAMES[g.days[0]] : dayRange(g.days)}&nbsp;&nbsp;${g.x ? esc(spanTxt(g.x)) : "Ruhetag"}</li>`).join("");
   // Google (strukturierte Daten)
   try{
     const ld = JSON.parse($("#ldjson").textContent), spec = {};
