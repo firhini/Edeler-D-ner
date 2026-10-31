@@ -408,7 +408,7 @@ R.legal = () => `
 /* ----- Zugänge ----- */
 R.users = () => `
   <h1 class="sec-title">Zugänge</h1>
-  <p class="sec-intro">Jeder Inhaber oder Mitarbeiter bekommt einen eigenen Zugang. Im Verlauf steht, wer was gespeichert hat.</p>
+  <p class="sec-intro">Jeder Inhaber bekommt einen eigenen Zugang. Jeder Zugang kann alles ändern – also nur an Personen geben, denen ihr voll vertraut. Im Verlauf steht, wer was gespeichert hat.</p>
   <div class="card">
     <h2 class="card-h">Alle Zugänge</h2>
     <ul class="users">${state.users.map(u => `<li><b>${esc(u)}${u === state.user ? ` <span class="badge gold">du</span>` : ""}</b>
@@ -819,19 +819,25 @@ async function onSubmit(e){
       f.reset(); toast("Passwort geändert ✓");
     }
     if(f.dataset.form === "user-add"){
-      const r = await api("POST", "admin/users", {user: $("#newUser").value.trim(), password: $("#newUserPw").value});
+      const user = $("#newUser").value.trim(), password = $("#newUserPw").value;
+      const confirm = await askPassword(`Zur Sicherheit: Gib dein eigenes Passwort ein, um den Zugang „${user}“ anzulegen.`);
+      if(confirm === null) return;
+      const r = await api("POST", "admin/users", {user, password, confirm});
       state.users = r.users; render(); toast("Zugang angelegt ✓ – Benutzername und Passwort jetzt weitergeben");
     }
     if(f.dataset.form === "user-reset"){
-      const u = state.resetUser;
-      await api("POST", `admin/users/${encodeURIComponent(u)}/password`, {password: $("#resetPw").value});
+      const u = state.resetUser, password = $("#resetPw").value;
+      const confirm = await askPassword(`Zur Sicherheit: Gib dein eigenes Passwort ein, um das Passwort von „${u}“ neu zu setzen.`);
+      if(confirm === null) return;
+      await api("POST", `admin/users/${encodeURIComponent(u)}/password`, {password, confirm});
       state.resetUser = null; render(); toast(`Neues Passwort für ${u} gesetzt ✓`);
     }
   }catch(err){ toast(err.message, true); }
 }
 async function deleteUser(u){
-  if(!(await ask(`Zugang „${u}“ löschen? Diese Person kann sich dann nicht mehr anmelden.`, "Löschen"))) return;
-  try{ state.users = (await api("DELETE", `admin/users/${encodeURIComponent(u)}`)).users; render(); toast("Zugang gelöscht"); }
+  const confirm = await askPassword(`Zugang „${u}“ löschen? Diese Person kann sich dann nicht mehr anmelden. Zur Sicherheit: Gib dein eigenes Passwort ein.`);
+  if(confirm === null) return;
+  try{ state.users = (await api("DELETE", `admin/users/${encodeURIComponent(u)}`, {confirm})).users; render(); toast("Zugang gelöscht"); }
   catch(e){ toast(e.message, true); }
 }
 
@@ -847,6 +853,20 @@ function ask(text, yes = "Ja"){
     d.oncancel = ev => { ev.preventDefault(); done(false); };
     d.showModal();
     $("#confirmNo").focus();
+  });
+}
+/* Eigenes Passwort abfragen (für Zugänge verwalten). Ergebnis: Passwort oder null (abgebrochen) */
+function askPassword(text){
+  return new Promise(resolve => {
+    const d = $("#pwDlg"), inp = $("#pwDlgInput");
+    $("#pwDlgText").textContent = text;
+    inp.value = "";
+    const done = v => { d.close(); $("#pwDlgForm").onsubmit = $("#pwDlgNo").onclick = d.oncancel = null; inp.value = ""; resolve(v); };
+    $("#pwDlgForm").onsubmit = ev => { ev.preventDefault(); if(inp.value) done(inp.value); else inp.focus(); };
+    $("#pwDlgNo").onclick = () => done(null);
+    d.oncancel = ev => { ev.preventDefault(); done(null); };
+    d.showModal();
+    inp.focus();
   });
 }
 let toastT;

@@ -24,7 +24,9 @@ const arr = (v, path, label, max) => {
 export function text(v, path, label, { max = 200, required = false } = {}) {
   if (v === undefined || v === null) v = "";
   if (typeof v !== "string" && typeof v !== "number") fail(path, `${label}: ungültiger Text`);
-  const s = String(v).replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim();
+  const s = String(v).replace(/[\u0000-\u001f\u007f-\u009f<>]/g, " ")
+    .replace(/[\u00ad\u200b\u200c\u200e\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g, "")   // unsichtbare Zeichen / Schreibrichtungs-Tricks
+    .replace(/\s+/g, " ").trim();
   if (required && !s) fail(path, `${label} fehlt`);
   if (s.length > max) fail(path, `${label} ist zu lang (höchstens ${max} Zeichen)`);
   return s;
@@ -116,7 +118,7 @@ function validateMenu(list) {
     if (photo && !PHOTO_RE.test(photo)) fail(`${p}.photo`, `${name}: Foto ist ungültig`);
     out.photo = photo;
     out.options = OPTION_TYPES.includes(it.options) ? it.options : fail(`${p}.options`, `${name}: bitte die Auswahl beim Bestellen festlegen`);
-    out.side = bool(it.side);
+    out.side = out.options !== "none" && bool(it.side);   // Beilagen-Wahl nur bei Gerichten mit Auswahl
     return out;
   });
 }
@@ -200,7 +202,7 @@ function validateHours(h) {
 function validateLegal(l) {
   obj(l, "legal", "Impressum");
   const email = text(l.email, "legal.email", "E-Mail-Adresse", { max: 120 });
-  if (email && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) fail("legal.email", "E-Mail-Adresse sieht nicht richtig aus");
+  if (email && !/^[^\s@?&#%"'\\]+@[^\s@?&#%"'\\]+\.[a-z]{2,}$/i.test(email)) fail("legal.email", "E-Mail-Adresse sieht nicht richtig aus");
   const vatId = text(l.vatId, "legal.vatId", "Umsatzsteuer-ID", { max: 20 }).replace(/\s/g, "").toUpperCase();
   if (vatId && !/^DE\d{9}$/.test(vatId)) fail("legal.vatId", "Umsatzsteuer-ID: Format DE + 9 Ziffern, z. B. DE123456789");
   return {

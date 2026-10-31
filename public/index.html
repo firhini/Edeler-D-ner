@@ -1452,7 +1452,9 @@ let EX = {chili:{enabled:false, price:0, promo:false}, feta:{enabled:false, pric
 const prodOf  = item => MENU.find(p => p.id === item.pid);
 const optType = p => (p && p.options && p.options !== "none") ? p.options : null;
 const hasSauces = t => (t === "wrap" || t === "box" || t === "plate") && SAUCES.length > 0;
-const hasSide = pid => { const p = MENU.find(x => x.id === pid); return !!(p && p.side && SIDES.length); };
+const hasSide = pid => { const p = MENU.find(x => x.id === pid); return !!(p && p.side && p.options !== "none" && SIDES.length); };
+/* Nachschlagen nur in eigenen Einträgen – Namen wie „constructor“ dürfen nichts kaputt machen */
+const own = (o, k) => o && Object.hasOwn(o, k) ? o[k] : undefined;
 const orList = a => a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + " oder " + a[a.length - 1];
 
 /* Bereinigt eine Auswahl, damit gleiche Bestellungen denselben Schlüssel haben (und gespeicherte Daten gültig bleiben) */
@@ -1471,7 +1473,7 @@ function normOpts(type, o, pid){
   if(n.chili) n.jala = o.jala === "ohne" ? "ohne" : "mit";
   n.feta = EX.feta.enabled && !!o.feta;
   n.cups = {};
-  if(EX.cup.enabled) SAUCES.forEach(s => { const k = Math.min(9, Math.max(0, Math.floor(Number((o.cups||{})[s]) || 0))); if(k) n.cups[s] = k; });
+  if(EX.cup.enabled) SAUCES.forEach(s => { const k = Math.min(9, Math.max(0, Math.floor(Number(own(o.cups, s)) || 0))); if(k) n.cups[s] = k; });
   n.note = String(o.note || "").replace(/\s+/g, " ").trim().slice(0, 200);
   return n;
 }
@@ -1943,7 +1945,7 @@ function cfgBodyHtml(p, t, id, o){
   if(p.variants && p.variants.length) h += `<fieldset class="cfg-sec"><legend>${meat ? "Fleisch wählen" : "Bitte wählen"}</legend><div class="opt-row">` +
     p.variants.map(v => optChip("radio","variant",v.id,`${esc(v.label)} <em>${fmt(v.price)}</em>`, v.id===id)).join("") + `</div></fieldset>`;
   if(t === "wrap" && INGREDIENTS.length) h += `<fieldset class="cfg-sec"><legend>Zutaten <small>Alles ist dabei – tippe weg, was du nicht möchtest</small></legend><div class="opt-row">` +
-    INGREDIENTS.map(x => optChip("checkbox","ingr",x, `<span>${esc(x)}${INGREDIENT_HINT[x] ? `<small>${esc(INGREDIENT_HINT[x])}</small>` : ""}</span>`, o.ingr.includes(x), "opt-ingr")).join("") + `</div></fieldset>`;
+    INGREDIENTS.map(x => optChip("checkbox","ingr",x, `<span>${esc(x)}${own(INGREDIENT_HINT, x) ? `<small>${esc(own(INGREDIENT_HINT, x))}</small>` : ""}</span>`, o.ingr.includes(x), "opt-ingr")).join("") + `</div></fieldset>`;
   if(hasSide(p.id)) h += `<fieldset class="cfg-sec" id="cfgSide"><legend>Beilage <small>Bitte wählen</small></legend><div class="opt-row">` +
     SIDES.map(x => optChip("radio","side",x,`Mit ${esc(x)}`, o.side===x)).join("") +
     `</div><p class="cfg-err" id="errSide" role="alert" hidden>Bitte wähle deine Beilage: ${esc(orList(SIDES))}.</p></fieldset>`;
@@ -1980,7 +1982,7 @@ function updateCfg(){
   const raw = readCfg();
   if($("#cfgJala")) $("#cfgJala").hidden = !raw.chili;
   SAUCES.forEach((s, i) => {
-    const k = cfg.cups[s] || 0, nEl = $("#cfgBody").querySelector(`[data-cup-n="${i}"]`);
+    const k = own(cfg.cups, s) || 0, nEl = $("#cfgBody").querySelector(`[data-cup-n="${i}"]`);
     if(!nEl) return;
     nEl.textContent = k;
     $("#cfgBody").querySelector(`[data-cup-row="${i}"]`).classList.toggle("has", k > 0);
@@ -2059,7 +2061,7 @@ function initCfg(){
   body.addEventListener("click", e => {
     const b = e.target.closest("[data-cup]"); if(!b) return;
     const s = SAUCES[Number(b.dataset.cup)]; if(!s) return;
-    cfg.cups[s] = Math.min(9, Math.max(0, (cfg.cups[s] || 0) + Number(b.dataset.step)));
+    cfg.cups[s] = Math.min(9, Math.max(0, (own(cfg.cups, s) || 0) + Number(b.dataset.step)));
     updateCfg();
   });
   $("#cfgMinus").addEventListener("click", () => { cfg.qty = Math.max(1, cfg.qty - 1); updateCfg(); });

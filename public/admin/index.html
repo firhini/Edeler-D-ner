@@ -118,6 +118,21 @@
   </div>
 </dialog>
 
+<!-- Eigenes Passwort zur Bestätigung -->
+<dialog class="dlg dlg-sm" id="pwDlg" aria-labelledby="pwDlgTitle">
+  <form id="pwDlgForm" novalidate>
+    <div class="dlg-head"><h2 id="pwDlgTitle">Bitte bestätigen</h2></div>
+    <div class="dlg-body">
+      <p id="pwDlgText"></p>
+      <label class="fld"><span class="lbl">Dein Passwort</span><input type="password" id="pwDlgInput" autocomplete="current-password"></label>
+    </div>
+    <div class="dlg-foot">
+      <button class="btn btn-ghost" type="button" id="pwDlgNo">Abbrechen</button>
+      <button class="btn btn-gold" type="submit">Bestätigen</button>
+    </div>
+  </form>
+</dialog>
+
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
