@@ -2,6 +2,7 @@
 // Läuft als Netlify Function, Daten liegen in Netlify Blobs (kein eigener Server, keine Zusatz-Anbieter).
 import { createHash, createHmac, randomBytes, randomInt, scrypt as scryptCb, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
+import { purgeCache } from "@netlify/functions";
 import { validateSettings, ValidationError } from "./lib/validate.mjs";
 
 export const config = { path: "/api/*" };
@@ -129,6 +130,14 @@ const clearAttempts = (store, ...keys) => Promise.all(keys.map(key => store.dele
 
 /* ---------- Einstellungen ---------- */
 async function loadCurrent(store) { return store.getWithMetadata("settings/current", { type: "json" }); }
+/* Öffentliche Einstellungen bleiben bis zu 10 Minuten im Netlify-CDN (spart Funktionsaufrufe = Credits).
+   Nach dem Speichern wird dieser Zwischenspeicher gezielt geleert → Änderung ist sofort sichtbar. */
+const SETTINGS_TAG = "edeler-settings";
+async function refreshPublicSettings() {
+  if (globalThis.__EDELER_STORE__) return true;                      // lokale Tests: kein CDN
+  try { await purgeCache({ tags: [SETTINGS_TAG] }); return true; }
+  catch (e) { console.error("CDN-Zwischenspeicher konnte nicht geleert werden", e); return false; }
+}
 
 async function saveSettings(store, data, by, baseVersion) {
   const cur = await loadCurrent(store);
@@ -144,7 +153,8 @@ async function saveSettings(store, data, by, baseVersion) {
   index.unshift({ version: doc.version, savedAt: doc.savedAt, by });
   for (const old of index.splice(HISTORY_KEEP)) await store.delete(`settings/history/${String(old.version).padStart(6, "0")}`);
   await store.setJSON("settings/index", index);
-  return json({ ok: true, version: doc.version, savedAt: doc.savedAt });
+  const live = await refreshPublicSettings();
+  return json({ ok: true, version: doc.version, savedAt: doc.savedAt, live });
 }
 
 /* ---------- Fotos ---------- */
@@ -171,7 +181,8 @@ export default async function handler(req, context) {
     // Öffentlich: aktuelle Einstellungen für die Website (kurz im CDN zwischengespeichert)
     if (path === "settings" && method === "GET") {
       const cur = await loadCurrent(store);
-      const cache = { "cache-control": "public, max-age=0, must-revalidate", "netlify-cdn-cache-control": "public, durable, s-maxage=10, stale-while-revalidate=60", "x-robots-tag": "noindex" };
+      const cache = { "cache-control": "public, max-age=0, must-revalidate", "netlify-cdn-cache-control": "public, durable, s-maxage=600, stale-while-revalidate=3600",
+                      "netlify-cache-tag": SETTINGS_TAG, "x-robots-tag": "noindex" };
       if (!cur) return json({ version: 0, savedAt: null, settings: null }, 200, cache);   // noch nie gespeichert → Website nutzt Grundeinstellung
       return json({ version: cur.data.version, savedAt: cur.data.savedAt, settings: cur.data.data }, 200, cache);
     }
@@ -182,7 +193,9 @@ export default async function handler(req, context) {
       let r = await store.getWithMetadata(`photo/${pm[1]}/${pm[2] || "800"}`, { type: "arrayBuffer" });
       if (!r && pm[2] === "640") r = await store.getWithMetadata(`photo/${pm[1]}/800`, { type: "arrayBuffer" });
       if (!r) return new Response("Nicht gefunden", { status: 404 });
-      return new Response(r.data, { headers: { "content-type": r.metadata?.type || "image/webp", "cache-control": "public, max-age=31536000, immutable" } });
+      // Fotos ändern sich nie (neues Foto = neue Adresse) → dauerhaft im CDN, die Funktion läuft nur beim ersten Abruf
+      return new Response(r.data, { headers: { "content-type": r.metadata?.type || "image/webp", "cache-control": "public, max-age=31536000, immutable",
+                                              "netlify-cdn-cache-control": "public, durable, max-age=31536000, immutable" } });
     }
 
     // Ab hier nur Admin: Schutz gegen Fremd-Seiten (CSRF)

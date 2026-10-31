@@ -136,7 +136,7 @@ R.overview = () => {
   const icon = {must:"!", check:"?", opt:"+"};
   return `
   <h1 class="sec-title">Hallo ${esc(state.user)} 👋</h1>
-  <p class="sec-intro">Hier stellst du alles für die Website ein. Änderungen werden erst nach <b>„Speichern“</b> (unten) übernommen und sind dann nach etwa einer Minute auf der Website sichtbar.</p>
+  <p class="sec-intro">Hier stellst du alles für die Website ein. Änderungen werden erst nach <b>„Speichern“</b> (unten) übernommen und sind dann nach wenigen Sekunden auf der Website sichtbar.</p>
   ${state.version === 0 ? `<p class="info warn">Es wurde noch nie gespeichert – die Website zeigt die Grundeinstellung. Sobald du einmal speicherst, gelten deine Angaben.</p>` : ""}
   <div class="card">
     <h2 class="card-h">Bestellungen</h2>
@@ -778,10 +778,10 @@ async function save(){
   if(state.editIdx !== null) $("#itemDlg").close();
   state.saving = true; state.error = ""; clearFieldErrors(); updateSaveBar();
   try{
-    await api("PUT", "admin/settings", {baseVersion: state.version, settings: state.draft});
+    const res = await api("PUT", "admin/settings", {baseVersion: state.version, settings: state.draft});
     state.newIds.clear();
     await loadState();
-    toast("Gespeichert ✓ – in etwa einer Minute auf der Website sichtbar");
+    toast(res.live === false ? "Gespeichert ✓ – auf der Website spätestens in 10 Minuten sichtbar" : "Gespeichert ✓ – in wenigen Sekunden auf der Website sichtbar");
   }catch(e){
     state.error = e.message;
     if(e.status === 422 && e.data && e.data.field) gotoField(e.data.field, e.message);
