@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#08080a">
+<title>Verwaltung · Edeler Döner</title>
+<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/admin/admin.css">
+<script src="/admin/admin.js" defer></script>
+</head>
+<body>
+
+<!-- Laden -->
+<div class="screen center" role="main" id="scrLoading">
+  <img class="logo" src="/img/logo-mark.webp" alt="" width="151" height="160">
+  <p class="muted">Verwaltung wird geladen …</p>
+</div>
+
+<!-- Erste Einrichtung -->
+<div class="screen center" role="main" id="scrSetup" hidden>
+  <form class="auth-card" id="setupForm" novalidate>
+    <img class="logo" src="/img/logo-mark.webp" alt="" width="151" height="160">
+    <h1>Verwaltung einrichten</h1>
+    <p class="muted">Einmalig: Gib den Einrichtungs-Code ein, den du bekommen hast, und lege deinen eigenen Zugang an. Danach meldest du dich nur noch mit Benutzername und Passwort an.</p>
+    <label class="fld"><span class="lbl">Einrichtungs-Code</span><input type="text" id="suCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EDLR-XXXX-XXXX-XXXX-XXXX" required></label>
+    <label class="fld"><span class="lbl">Dein Benutzername</span><input type="text" id="suUser" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="z. B. inhaber" required><small>3–30 Zeichen: Buchstaben, Ziffern, Punkt, Minus</small></label>
+    <label class="fld"><span class="lbl">Passwort</span><input id="suPass" type="password" autocomplete="new-password" required><small>Mindestens 10 Zeichen</small></label>
+    <label class="fld"><span class="lbl">Passwort wiederholen</span><input id="suPass2" type="password" autocomplete="new-password" required></label>
+    <p class="form-err" id="setupErr" role="alert" hidden></p>
+    <button class="btn btn-gold btn-block" type="submit">Zugang anlegen &amp; loslegen</button>
+  </form>
+</div>
+
+<!-- Anmelden -->
+<div class="screen center" role="main" id="scrLogin" hidden>
+  <form class="auth-card" id="loginForm" novalidate>
+    <img class="logo" src="/img/logo-mark.webp" alt="" width="151" height="160">
+    <h1>Verwaltung</h1>
+    <p class="muted">Edeler Döner – nur für Inhaber und Mitarbeiter.</p>
+    <label class="fld"><span class="lbl">Benutzername</span><input type="text" id="liUser" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+    <label class="fld"><span class="lbl">Passwort</span><input id="liPass" type="password" autocomplete="current-password" required></label>
+    <p class="form-err" id="loginErr" role="alert" hidden></p>
+    <button class="btn btn-gold btn-block" type="submit">Anmelden</button>
+    <p class="muted small">Passwort vergessen? Ein anderer Inhaber kann es unter „Zugänge“ neu setzen.</p>
+  </form>
+</div>
+
+<!-- Verwaltung -->
+<div class="app" id="scrApp" hidden>
+  <header class="topbar">
+    <a class="brand" href="/" target="_blank" rel="noopener" title="Website in neuem Tab öffnen">
+      <img src="/img/logo-mark.webp" alt="" width="151" height="160">
+      <span><b>Edeler Döner</b><small>Verwaltung</small></span>
+    </a>
+    <div class="top-actions">
+      <a class="btn btn-ghost btn-sm" href="/" target="_blank" rel="noopener">Website ansehen ↗</a>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn" type="button">Abmelden</button>
+    </div>
+  </header>
+  <nav class="tabs" id="tabs" aria-label="Bereiche der Verwaltung"></nav>
+  <main class="main" id="main" tabindex="-1"></main>
+  <div class="savebar" id="savebar">
+    <div class="sb-state" id="sbState" role="status" aria-live="polite"></div>
+    <div class="sb-actions">
+      <button class="btn btn-ghost btn-sm" id="discardBtn" type="button" hidden>Verwerfen</button>
+      <button class="btn btn-gold" id="saveBtn" type="button" disabled>Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gericht bearbeiten -->
+<dialog class="dlg" id="itemDlg" aria-labelledby="itemDlgTitle">
+  <div class="dlg-head">
+    <h2 id="itemDlgTitle">Gericht bearbeiten</h2>
+    <button class="icon-btn" type="button" data-close-dlg aria-label="Schließen">✕</button>
+  </div>
+  <div class="dlg-body" id="itemDlgBody"></div>
+  <div class="dlg-foot">
+    <button class="btn btn-danger btn-sm" type="button" id="itemDelete">Gericht löschen</button>
+    <button class="btn btn-gold" type="button" data-close-dlg>Fertig</button>
+  </div>
+</dialog>
+
+<!-- Foto auswählen -->
+<dialog class="dlg" id="photoDlg" aria-labelledby="photoDlgTitle">
+  <div class="dlg-head">
+    <h2 id="photoDlgTitle">Foto auswählen</h2>
+    <button class="icon-btn" type="button" data-close-dlg aria-label="Schließen">✕</button>
+  </div>
+  <div class="dlg-body" id="photoDlgBody"></div>
+</dialog>
+
+<!-- Erneut anmelden (Sitzung abgelaufen) -->
+<dialog class="dlg dlg-sm" id="reloginDlg" aria-labelledby="reloginTitle">
+  <form id="reloginForm" novalidate>
+    <div class="dlg-head"><h2 id="reloginTitle">Bitte erneut anmelden</h2></div>
+    <div class="dlg-body">
+      <p class="muted">Deine Anmeldung ist abgelaufen. Deine Änderungen bleiben erhalten.</p>
+      <label class="fld"><span class="lbl">Benutzername</span><input type="text" id="rlUser" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+      <label class="fld"><span class="lbl">Passwort</span><input id="rlPass" type="password" autocomplete="current-password"></label>
+      <p class="form-err" id="reloginErr" role="alert" hidden></p>
+    </div>
+    <div class="dlg-foot"><button class="btn btn-gold btn-block" type="submit">Anmelden</button></div>
+  </form>
+</dialog>
+
+<!-- Rückfrage -->
+<dialog class="dlg dlg-sm" id="confirmDlg" aria-labelledby="confirmTitle">
+  <div class="dlg-head"><h2 id="confirmTitle">Sicher?</h2></div>
+  <div class="dlg-body"><p id="confirmText"></p></div>
+  <div class="dlg-foot">
+    <button class="btn btn-ghost" type="button" id="confirmNo">Abbrechen</button>
+    <button class="btn btn-gold" type="button" id="confirmYes">Ja</button>
+  </div>
+</dialog>
+
+<!-- Eigenes Passwort zur Bestätigung -->
+<dialog class="dlg dlg-sm" id="pwDlg" aria-labelledby="pwDlgTitle">
+  <form id="pwDlgForm" novalidate>
+    <div class="dlg-head"><h2 id="pwDlgTitle">Bitte bestätigen</h2></div>
+    <div class="dlg-body">
+      <p id="pwDlgText"></p>
+      <label class="fld"><span class="lbl">Dein Passwort</span><input type="password" id="pwDlgInput" autocomplete="current-password"></label>
+    </div>
+    <div class="dlg-foot">
+      <button class="btn btn-ghost" type="button" id="pwDlgNo">Abbrechen</button>
+      <button class="btn btn-gold" type="submit">Bestätigen</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
