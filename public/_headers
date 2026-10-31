@@ -9,9 +9,9 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Bilder einen Tag zwischenspeichern (neue Fotos mit gleichem Namen sind spätestens am Folgetag sichtbar)
+# Bilder 7 Tage im Browser behalten (spart Datenvolumen bei Stammgästen; neue Fotos bitte mit neuem Dateinamen)
 /img/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=604800
 
 # Inhaber-Verwaltung: nie zwischenspeichern, nicht in Suchmaschinen, strenge Sicherheitsregeln
 /admin

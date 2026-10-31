@@ -177,8 +177,10 @@ export default async function handler(req, context) {
     }
     // Öffentlich: hochgeladene Fotos
     let pm;
-    if (method === "GET" && (pm = /^photo\/([a-f0-9]{16,40})(-480)?\.webp$/.exec(path))) {
-      const r = await store.getWithMetadata(`photo/${pm[1]}/${pm[2] ? "480" : "800"}`, { type: "arrayBuffer" });
+    if (method === "GET" && (pm = /^photo\/([a-f0-9]{16,40})(?:-(480|640))?\.webp$/.exec(path))) {
+      // 640 = Handy-Größe (fehlt sie bei älteren Fotos, wird die große Version geliefert)
+      let r = await store.getWithMetadata(`photo/${pm[1]}/${pm[2] || "800"}`, { type: "arrayBuffer" });
+      if (!r && pm[2] === "640") r = await store.getWithMetadata(`photo/${pm[1]}/800`, { type: "arrayBuffer" });
       if (!r) return new Response("Nicht gefunden", { status: 404 });
       return new Response(r.data, { headers: { "content-type": r.metadata?.type || "image/webp", "cache-control": "public, max-age=31536000, immutable" } });
     }
@@ -319,11 +321,13 @@ export default async function handler(req, context) {
     }
 
     if (path === "admin/photo" && method === "POST") {
-      const body = await readBody(req, 1600 * 1024);
+      const body = await readBody(req, 2400 * 1024);
       const large = decodeImage(body.large, "Großes Bild"), small = decodeImage(body.small, "Kleines Bild");
+      const medium = body.medium ? decodeImage(body.medium, "Mittleres Bild") : null;   // vorher prüfen, damit nichts halb gespeichert wird
       const id = randomBytes(10).toString("hex");
       await store.set(`photo/${id}/800`, large.buf, { metadata: { type: large.type, by: me } });
       await store.set(`photo/${id}/480`, small.buf, { metadata: { type: small.type, by: me } });
+      if (medium) await store.set(`photo/${id}/640`, medium.buf, { metadata: { type: medium.type, by: me } });
       return json({ ok: true, photo: `/api/photo/${id}` });
     }
 

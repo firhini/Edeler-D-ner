@@ -762,9 +762,9 @@ async function uploadPhoto(file){
     if(file.size > 25 * 1024 * 1024) throw new Error("Die Datei ist sehr groß (über 25 MB) – bitte ein kleineres Foto wählen.");
     let src;
     try{ src = await createImageBitmap(file); }catch(e){ src = await loadImage(file); }
-    const large = await encode(src, 800, 550), small = await encode(src, 480, 330);
+    const large = await encode(src, 800, 550), medium = await encode(src, 640, 440), small = await encode(src, 480, 330);
     say("Foto wird hochgeladen …");
-    const r = await api("POST", "admin/photo", {large, small});
+    const r = await api("POST", "admin/photo", {large, medium, small});
     if(i !== null && state.draft.menu[i]) state.draft.menu[i].photo = r.photo;
     if(state.editIdx === i) rerenderItem();
     updateSaveBar();
