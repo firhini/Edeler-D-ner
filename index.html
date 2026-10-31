@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b0b0d">
 <title>Edeler Döner Schwetzingen · Premium Halal Döner, Pizza & Falafel</title>
-<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Pizza, Falafel, Yufka & mehr. Online zusammenstellen und in Sekunden per WhatsApp bestellen (Abholung).">
+<meta name="description" content="Edeler Döner Schwetzingen: 100% Halal Döner, Pizza, Falafel, Yufka & mehr. Online zusammenstellen und in Sekunden per WhatsApp bestellen – zum Abholen oder mit Lieferung.">
 <meta name="keywords" content="Edeler Döner, Döner Schwetzingen, Halal Döner Schwetzingen, Dürüm, Lahmacun, Pizza Schwetzingen, Falafel, WhatsApp Bestellung, Kurfürstenstraße">
 <meta name="author" content="Edeler Döner Schwetzingen">
 <meta name="robots" content="index, follow">
@@ -95,6 +95,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
              radial-gradient(45vw 40vh at 2% 16%, rgba(255,90,44,.05), transparent 58%),
              radial-gradient(60vw 50vh at 50% 112%, rgba(231,191,99,.05), transparent 60%)}
 h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.08;font-weight:700;letter-spacing:-.01em}
+[hidden]{display:none!important}   /* hidden-Attribut gewinnt immer gegen display:flex/grid */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -490,21 +491,35 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 .ci-remove:hover{color:var(--hot)}
 .ci-remove .ic{width:14px;height:14px}
 .drawer-foot{border-top:1px solid var(--line-2);padding:20px 24px 24px;background:var(--bg-2)}
-.pickup-only{display:flex;align-items:center;gap:12px;margin-bottom:16px;background:var(--surface-2);padding:12px 14px;border-radius:14px;border:1px solid var(--line-2)}
-.pickup-only .po-ic{width:40px;height:40px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--gold-grad);color:var(--on-gold)}
-.pickup-only .po-ic .ic{width:21px;height:21px}
-.pickup-only .po-text{flex:1;min-width:0}
-.pickup-only .po-text b{display:block;font-family:'Inter',sans-serif;font-size:.95rem;color:var(--ink)}
-.pickup-only .po-text span{font-size:.76rem;color:var(--muted)}
-.pickup-only .po-badge{display:inline-flex;align-items:center;gap:5px;flex:none;font-size:.68rem;font-weight:700;letter-spacing:.3px;color:var(--c-getraenke);background:color-mix(in srgb,var(--c-getraenke) 15%,transparent);border:1px solid color-mix(in srgb,var(--c-getraenke) 35%,transparent);padding:5px 9px;border-radius:var(--pill)}
-.pickup-only .po-badge .ic{width:13px;height:13px;stroke-width:2}
+/* Abholung / Lieferung */
+.fulfil{border:0;margin:0 0 14px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;min-width:0}
+.ful-opt{position:relative;cursor:pointer;min-width:0}
+.ful-opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.ful-ui{display:flex;align-items:center;gap:10px;height:100%;padding:11px 12px;border-radius:14px;border:1px solid var(--line-2);background:var(--surface);transition:.18s}
+.ful-ic{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);color:var(--gold);transition:.18s}
+.ful-ic .ic{width:20px;height:20px}
+.ful-ui b{display:block;font-family:'Inter',sans-serif;font-size:.92rem;color:var(--ink);line-height:1.2}
+.ful-ui small{display:block;font-size:.72rem;color:var(--muted);line-height:1.3}
+.ful-opt input:checked + .ful-ui{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--surface))}
+.ful-opt input:checked + .ful-ui .ful-ic{background:var(--gold-grad);color:var(--on-gold)}
+.ful-opt input:focus-visible + .ful-ui{outline:2px solid var(--gold);outline-offset:2px}
+.pickup-info{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);margin:-4px 0 14px}
+.pickup-info .ic{width:15px;height:15px;color:var(--gold);flex:none}
+.del-hint{font-size:.76rem;color:var(--faint);line-height:1.45}
 .cart-fields{display:grid;gap:10px;margin-bottom:16px}
-.cart-fields input,.cart-fields textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;
+.cart-fields input,.cart-fields textarea,.cart-fields select{width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;
   padding:12px 14px;color:var(--ink);resize:none;transition:border-color .2s}
 .cart-fields input::placeholder,.cart-fields textarea::placeholder{color:var(--faint)}
-.cart-fields input:focus,.cart-fields textarea:focus{outline:none;border-color:var(--gold)}
-.cart-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.cart-summary .sum-label{color:var(--muted);font-size:.9rem}
+.cart-fields input:focus,.cart-fields textarea:focus,.cart-fields select:focus{outline:none;border-color:var(--gold)}
+.cart-fields select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer;
+  background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e7bf63' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat}
+.cart-fields select option,.cart-fields select optgroup{background:#15151b;color:#f9f4ea}
+.cart-fields [aria-invalid="true"]{border-color:#ff7a5c}
+.cart-summary{display:grid;gap:4px;margin-bottom:16px}
+.sum-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:.88rem;color:var(--muted)}
+.sum-row small{color:var(--faint);font-size:.76rem}
+.sum-row.sum-main{margin-top:4px;align-items:center}
+.cart-summary .sum-label{color:var(--ink);font-size:.95rem;font-weight:600}
 .cart-summary .sum-total{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--gold)}
 .cart-note{font-size:.74rem;color:var(--faint);text-align:center;margin-top:12px;line-height:1.5}
 .cart-note a{color:var(--muted);text-decoration:underline}
@@ -664,8 +679,8 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 }
 
 /* ============ DELIVERY NOTICE ============ */
-.delivery-note{display:flex;align-items:center;gap:14px;max-width:780px;margin:0 auto;background:color-mix(in srgb,var(--c-getraenke) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c-getraenke) 30%,transparent);border-radius:var(--r);padding:15px 20px}
-.delivery-note .dn-ic{width:42px;height:42px;flex:none;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--c-getraenke) 18%,transparent);color:var(--c-getraenke)}
+.delivery-note{display:flex;align-items:center;gap:14px;max-width:780px;margin:0 auto;background:color-mix(in srgb,var(--wa) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--wa) 32%,transparent);border-radius:var(--r);padding:15px 20px}
+.delivery-note .dn-ic{width:42px;height:42px;flex:none;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--wa) 18%,transparent);color:#5be08c}
 .delivery-note .dn-ic .ic{width:22px;height:22px}
 .delivery-note b{color:var(--ink);font-family:'Inter',sans-serif;font-size:.95rem}
 .delivery-note span{display:block;color:var(--muted);font-size:.86rem;margin-top:1px}
@@ -968,7 +983,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <div class="hv-disc"><img src="img/hero-doener.webp" alt="Döner im Fladenbrot mit Pommes vor der Edeler-Döner-Theke" width="900" height="900" fetchpriority="high" decoding="async"></div>
       <div class="float-card fc-1"><span class="fc-ic"><svg class="ic"><use href="#ic-flame"/></svg></span><div><b>Chili-Cheese</b><span>Neu · nur +1,50 €</span></div></div>
       <div class="float-card fc-2"><span class="fc-ic"><svg class="ic"><use href="#ic-medal"/></svg></span><div><b>100% Halal</b><span>Kalb &amp; Hähnchen</span></div></div>
-      <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-bag"/></svg></span><div><b>Abholung</b><span>Lieferung bald</span></div></div>
+      <div class="float-card fc-3"><span class="fc-ic"><svg class="ic"><use href="#ic-truck"/></svg></span><div><b>Lieferung</b><span>ab 3,00 €</span></div></div>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Entdecken</div>
@@ -1015,7 +1030,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="hl-grid">
       <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p></div>
       <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Frische Beilagen, vier Soßen zur Wahl und Pizza frisch aus dem Ofen.</p></div>
-      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3>Abholung vor Ort</h3><p>Frisch zubereitet und direkt bei uns abgeholt – Lieferung ist bald wieder für euch da.</p></div>
+      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3>Abholung &amp; Lieferung</h3><p>Frisch zubereitet – zum Abholen oder geliefert: bis 5 km für 3,00 €, bis 7 km für 6,00 €.</p></div>
       <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Karte zusammenstellen, ein Klick – deine Bestellung landet direkt bei uns.</p></div>
     </div>
   </div>
@@ -1043,7 +1058,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     </div>
     <div class="delivery-note">
       <span class="dn-ic"><svg class="ic"><use href="#ic-truck"/></svg></span>
-      <div><b>Lieferung ist aktuell pausiert</b><span>Momentan nur Abholung – wir sind bald wieder mit Lieferung für euch da! 🛵</span></div>
+      <div><b>Wir liefern! 🛵 Bis 5 km 3,00 € · 5–7 km 6,00 €</b><span>Schwetzingen, Plankstadt, Oftersheim &amp; Brühl für 3,00 € – Eppelheim, Ketsch &amp; Mannheim-Rheinau für 6,00 €. Oder einfach bei uns abholen.</span></div>
     </div>
   </div>
   <div class="menu-filter">
@@ -1083,7 +1098,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <p class="sec-intro" style="margin-bottom:8px">Kein Konto, keine App, keine Wartezeit in der Leitung. Du stellst dir deine Bestellung zusammen und schickst sie mit einem Tipp per WhatsApp direkt an unsere Theke.</p>
       <div class="order-steps">
         <div class="step reveal"><span class="n">1</span><div><h3>Gerichte auswählen</h3><p>Stöbere durch die Karte und leg deine Favoriten in den Warenkorb.</p></div></div>
-        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen und deinen Namen für die Abholung eintragen.</p></div></div>
+        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen, Abholung oder Lieferung wählen und deinen Namen eintragen.</p></div></div>
         <div class="step reveal" data-d="2"><span class="n">3</span><div><h3>Per WhatsApp senden</h3><p>Ein Klick öffnet WhatsApp mit deiner fertigen Bestellung – wir bestätigen dir alles direkt.</p></div></div>
       </div>
     </div>
@@ -1092,7 +1107,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <h3>Direkt bestellen</h3>
       <p>Öffne deinen Warenkorb und sende die Bestellung in wenigen Sekunden per WhatsApp an Edeler Döner.</p>
       <button type="button" class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
-      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Zahlung bei Abholung – keine Online-Zahlung nötig. Lieferung aktuell pausiert.</p>
+      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Zahlung bei Abholung oder Lieferung – keine Online-Zahlung nötig.</p>
     </div>
   </div>
 </section>
@@ -1163,13 +1178,17 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Kontakt &amp; Standort</span>
       <h2 class="sec-title">Besuch uns in <span class="gold-text">Schwetzingen</span></h2>
-      <p class="sec-intro">Mitten in der Kurfürstenstraße – zum Abholen, Vorbeischauen oder Anrufen.</p>
+      <p class="sec-intro">Mitten in der Kurfürstenstraße – zum Abholen, Vorbeischauen oder Anrufen. Oder wir liefern zu dir.</p>
     </div>
     <div class="visit-grid">
       <div class="info-card reveal">
         <div class="info-row">
           <div class="ir-ic"><svg class="ic"><use href="#ic-pin"/></svg></div>
           <div><h3>Adresse</h3><p>Kurfürstenstraße 18<br>68723 Schwetzingen<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener">Route planen →</a></p></div>
+        </div>
+        <div class="info-row">
+          <div class="ir-ic"><svg class="ic"><use href="#ic-truck"/></svg></div>
+          <div><h3>Liefergebiet</h3><p><b>3,00 €</b> bis 5 km: Schwetzingen, Plankstadt, Oftersheim, Brühl<br><b>6,00 €</b> 5–7 km: Eppelheim, Ketsch, Mannheim-Rheinau</p></div>
         </div>
         <div class="info-row">
           <div class="ir-ic"><svg class="ic"><use href="#ic-clock"/></svg></div>
@@ -1281,22 +1300,29 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   </div>
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-foot" id="drawerFoot" hidden>
-    <div class="pickup-only">
-      <span class="po-ic"><svg class="ic"><use href="#ic-bag"/></svg></span>
-      <div class="po-text"><b>Abholung</b><span>Kurfürstenstraße 18 · frisch &amp; warm für dich</span></div>
-      <span class="po-badge"><svg class="ic"><use href="#ic-truck"/></svg> Lieferung bald</span>
+    <fieldset class="fulfil">
+      <legend class="visually-hidden">Abholung oder Lieferung</legend>
+      <label class="ful-opt"><input type="radio" name="fulfil" value="Abholung" checked><span class="ful-ui"><span class="ful-ic"><svg class="ic"><use href="#ic-bag"/></svg></span><span><b>Abholung</b><small>im Laden</small></span></span></label>
+      <label class="ful-opt"><input type="radio" name="fulfil" value="Lieferung"><span class="ful-ui"><span class="ful-ic"><svg class="ic"><use href="#ic-truck"/></svg></span><span><b>Lieferung</b><small>ab 3,00 €</small></span></span></label>
+    </fieldset>
+    <p class="pickup-info" id="pickupInfo"><svg class="ic"><use href="#ic-pin"/></svg> Abholen bei uns: Kurfürstenstraße 18, Schwetzingen</p>
+    <div class="cart-fields" id="deliveryFields" hidden>
+      <select id="custTown" aria-label="Dein Ort im Liefergebiet"></select>
+      <input type="text" id="custStreet" maxlength="100" placeholder="Straße und Hausnummer" aria-label="Straße und Hausnummer" autocomplete="address-line1">
+      <input type="text" id="custAddrNote" maxlength="120" placeholder="Hinweis für den Fahrer (optional) – Klingel, Etage …" aria-label="Hinweis für den Fahrer">
+      <p class="del-hint">Dein Ort ist nicht dabei? Dann liegt er leider außerhalb unseres Liefergebiets – Abholung geht natürlich immer.</p>
     </div>
-    <input type="radio" name="fulfil" id="fAbholung" value="Abholung" checked hidden>
     <div class="cart-fields">
       <input type="text" id="custName" placeholder="Dein Name" aria-label="Dein Name" autocomplete="name">
-      <textarea id="custNote" rows="2" maxlength="300" placeholder="Anmerkung zur Bestellung (optional) – z. B. Abholung um 18:30" aria-label="Anmerkung zur Bestellung"></textarea>
+      <textarea id="custNote" rows="2" maxlength="300" placeholder="Anmerkung zur Bestellung (optional) – z. B. Wunschzeit" aria-label="Anmerkung zur Bestellung"></textarea>
     </div>
     <div class="cart-summary">
-      <span class="sum-label">Zwischensumme</span>
-      <span class="sum-total" id="cartTotal">0,00 €</span>
+      <div class="sum-row" id="subRow" hidden><span>Zwischensumme</span><span id="cartSubtotal">0,00 €</span></div>
+      <div class="sum-row" id="feeRow" hidden><span>Liefergebühr <small id="feeZone"></small></span><span id="cartFee">–</span></div>
+      <div class="sum-row sum-main"><span class="sum-label">Gesamt</span><span class="sum-total" id="cartTotal">0,00 €</span></div>
     </div>
     <button type="button" class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
-    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet – gesendet wird erst, wenn du dort auf Senden tippst. Zahlung bei Abholung, keine Online-Zahlung. 🛵 Lieferung aktuell pausiert. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
+    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet – gesendet wird erst, wenn du dort auf Senden tippst. Zahlung bei Abholung bzw. Lieferung, keine Online-Zahlung. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
     <button type="button" class="clear-cart" id="clearCart">Warenkorb leeren</button>
   </div>
 </div>
@@ -1338,6 +1364,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   "priceRange":"€",
   "address":{"@type":"PostalAddress","streetAddress":"Kurfürstenstraße 18","postalCode":"68723","addressLocality":"Schwetzingen","addressRegion":"Baden-Württemberg","addressCountry":"DE"},
   "menu":"https://edeler-doener.de/#menu",
+  "areaServed":["Schwetzingen","Plankstadt","Oftersheim","Brühl","Eppelheim","Ketsch","Mannheim-Rheinau"],
   "openingHoursSpecification":[
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"21:00"}
   ]
@@ -1359,6 +1386,15 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 const WHATSAPP_NUMBER = "491781804021";    // WhatsApp-Bestellungen & -Fragen
 const PHONE_NUMBER    = "01781804021";     // Anrufen (gleiche Handynummer)
 const RESTAURANT_NAME = "Edeler Döner";
+/* Lieferung: Gebühr je Ort (Fahrstrecke vom Laden zur Ortsmitte, berechnet mit OpenStreetMap).
+   Nur diese Orte werden beliefert. Ort hinzufügen = eine Zeile ergänzen. */
+const DELIVERY_ZONES = [
+  {fee:3.00, label:"bis 5 km", towns:[
+    {name:"Schwetzingen", plz:"68723"}, {name:"Plankstadt", plz:"68723"}, {name:"Oftersheim", plz:"68723"}, {name:"Brühl", plz:"68782"}]},
+  {fee:6.00, label:"5–7 km", towns:[
+    {name:"Eppelheim", plz:"69214"}, {name:"Ketsch", plz:"68775"}, {name:"Mannheim-Rheinau", plz:"68219", city:"Mannheim"}]}
+];
+const MIN_ORDER_DELIVERY = 0;   // Mindestbestellwert für Lieferung in € (0 = keiner)
 /* -------------------------------------------------------------- */
 
 /* Kategorien (Reihenfolge = Anzeige-Reihenfolge). acc = Akzentfarbe (wie Menütafel). */
@@ -1543,6 +1579,15 @@ function saveCart(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(cart));
 const lineKey = (id, opts) => id + "|" + JSON.stringify(opts);
 function cartCount(){ return cart.reduce((n,l)=> n + l.qty, 0); }
 function cartTotal(){ return cart.reduce((sum,l)=> sum + unitPrice(l.id, l.opts) * l.qty, 0); }
+/* Abholung oder Lieferung, gewählter Ort (mit Gebühr) und Endsumme */
+const fulfilMode = () => (document.querySelector('input[name="fulfil"]:checked') || {}).value || "Abholung";
+function deliveryTown(){
+  const [zi, ti] = ($("#custTown") ? $("#custTown").value : "").split("-").map(Number);
+  const z = DELIVERY_ZONES[zi], t = z && z.towns[ti];
+  return t ? {...t, city:t.city || t.name, fee:z.fee, label:z.label} : null;
+}
+function deliveryFee(){ const t = deliveryTown(); return fulfilMode() === "Lieferung" && t ? t.fee : 0; }
+function orderTotal(){ return cartTotal() + deliveryFee(); }
 
 /* --------- Render product card --------- */
 function badgesHtml(tags, popular){
@@ -1675,8 +1720,31 @@ function renderCart(){
       </div>
     </div>`;
   }).join("");
-  $("#cartTotal").textContent = fmt(cartTotal());
+  updateTotals();
   decorateIcons(body);
+}
+
+/* --------- Summen + Liefer-Felder im Warenkorb --------- */
+function updateTotals(){
+  const del = fulfilMode() === "Lieferung", t = deliveryTown();
+  $("#deliveryFields").hidden = !del;
+  $("#pickupInfo").hidden = del;
+  $("#subRow").hidden = !del; $("#feeRow").hidden = !del;
+  $("#cartSubtotal").textContent = fmt(cartTotal());
+  $("#cartFee").textContent = t ? fmt(t.fee) : "Ort wählen";
+  $("#feeZone").textContent = t ? `(${t.name}, ${t.label})` : "";
+  $("#cartTotal").textContent = fmt(orderTotal());
+}
+function initDelivery(){
+  $("#custTown").innerHTML = `<option value="">Dein Ort im Liefergebiet …</option>` + DELIVERY_ZONES.map((z, zi) =>
+    `<optgroup label="${z.label} · ${fmt(z.fee)} Liefergebühr">` +
+    z.towns.map((t, ti) => `<option value="${zi}-${ti}">${t.name} (${t.plz}) · ${fmt(z.fee)}</option>`).join("") + `</optgroup>`).join("");
+  document.querySelectorAll('input[name="fulfil"]').forEach(r => r.addEventListener("change", updateTotals));
+  $("#custTown").addEventListener("change", updateTotals);
+  // Pflichtfeld-Markierung verschwindet, sobald etwas eingetragen wird
+  ["#custName","#custTown","#custStreet"].forEach(sel => $(sel).addEventListener("input", e => e.target.removeAttribute("aria-invalid")));
+  $("#custTown").addEventListener("change", e => e.target.removeAttribute("aria-invalid"));
+  updateTotals();
 }
 
 /* --------- Update all cart-count UI --------- */
@@ -1730,15 +1798,37 @@ function buildOrderMessage(){
   let msg = `Hallo ${RESTAURANT_NAME} 👋\n\n`;
   msg += `Ich möchte folgende Bestellung aufgeben:\n\n`;
   msg += lines.join("\n\n") + "\n\n";
-  msg += `Gesamt: ${fmt(cartTotal())}\n\n`;
-  msg += `Art: Abholung\n`;
+  const t = fulfilMode() === "Lieferung" ? deliveryTown() : null;
+  if(t){
+    msg += `Zwischensumme: ${fmt(cartTotal())}\n`;
+    msg += `Liefergebühr: ${fmt(t.fee)} (${t.name}, ${t.label})\n`;
+  }
+  msg += `Gesamt: ${fmt(orderTotal())}\n\n`;
+  if(t){
+    const addr = `${$("#custStreet").value.trim()}, ${t.plz} ${t.city}`;
+    const hint = $("#custAddrNote").value.trim();
+    msg += `Art: 🛵 LIEFERUNG\n`;
+    msg += `Lieferadresse: ${addr}${t.city !== t.name ? ` (${t.name})` : ""}\n`;
+    if(hint) msg += `Hinweis für den Fahrer: ${hint}\n`;
+    // Adresse steht nur hinter dem # – wird beim Öffnen nicht an Server oder Google übertragen
+    msg += `Route für den Fahrer: https://edeler-doener.de/route#${encodeURIComponent(addr)}\n`;
+    msg += `Zahlung: bei Lieferung\n`;
+  } else {
+    msg += `Art: Abholung\n`;
+  }
   msg += `Name: ${name}\n`;
   if(note) msg += `Anmerkung: ${note}\n`;
   return msg;
 }
 function sendWhatsAppOrder(){
   if(cartCount()===0){ toast("Dein Warenkorb ist noch leer"); return; }
-  if(!$("#custName").value.trim()){ $("#custName").focus(); toast("Bitte gib deinen Namen an"); return; }
+  const need = (sel, text) => { const el = $(sel); el.setAttribute("aria-invalid","true"); el.focus(); toast(text); };
+  if(fulfilMode() === "Lieferung"){
+    if(!deliveryTown()) return need("#custTown", "Bitte wähle deinen Ort im Liefergebiet");
+    if(!$("#custStreet").value.trim()) return need("#custStreet", "Bitte gib Straße und Hausnummer an");
+    if(cartTotal() < MIN_ORDER_DELIVERY){ toast(`Mindestbestellwert für Lieferung: ${fmt(MIN_ORDER_DELIVERY)}`); return; }
+  }
+  if(!$("#custName").value.trim()) return need("#custName", "Bitte gib deinen Namen an");
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderMessage())}`;
   window.open(url, "_blank", "noopener");
 }
@@ -1883,7 +1973,7 @@ function initCfg(){
 /* Focus trap for dialogs */
 function trapFocus(box, e){
   if(e.key !== "Tab") return;
-  const foc = Array.from(box.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'))
+  const foc = Array.from(box.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
     .filter(el => !el.disabled && el.offsetParent !== null);
   if(!foc.length) return;
   const first = foc[0], last = foc[foc.length-1];
@@ -2069,6 +2159,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   updateCartUI();
   wireContact();
   initMap();
+  initDelivery();
   updateHours();
   initScroll();
   initNav();
