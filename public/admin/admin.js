@@ -998,7 +998,8 @@ document.addEventListener("DOMContentLoaded", () => {
       await api("POST", "auth/login", {user: $("#rlUser").value.trim(), password: $("#rlPass").value});
       $("#rlPass").value = "";
       $("#reloginDlg").close();
-      toast("Wieder angemeldet ✓ – bitte die letzte Aktion wiederholen");
+      state.error = ""; updateSaveBar();          // Meldung „Bitte neu anmelden“ ist erledigt – Eingaben sind noch da
+      toast("Wieder angemeldet ✓ – deine Eingaben sind noch da. Bitte nochmal „Speichern“ tippen.");
     }catch(err){ formError("#reloginErr", err.message); }
   });
   $("#logoutBtn").addEventListener("click", async () => {
