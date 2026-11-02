@@ -4,4 +4,17 @@ Disallow: /admin/
 Disallow: /api/admin/
 Disallow: /api/auth/
 
+# KI-Trainings-Crawler aussperren: verbrauchen nur Datenvolumen (Netlify-Credits), bringen keine Gäste.
+# Google, Bing und Such-Assistenten bleiben erlaubt.
+User-agent: GPTBot
+User-agent: CCBot
+User-agent: ClaudeBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: Diffbot
+User-agent: ImagesiftBot
+User-agent: cohere-training-data-crawler
+User-agent: omgili
+Disallow: /
+
 Sitemap: https://edeler-doener.de/sitemap.xml

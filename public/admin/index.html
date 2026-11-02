@@ -25,13 +25,13 @@
   <form class="auth-card" id="setupForm" novalidate>
     <img class="logo" src="/img/logo-mark.webp" alt="" width="151" height="160">
     <h1>Verwaltung einrichten</h1>
-    <p class="muted">Einmalig: Gib den Einrichtungs-Code ein, den du bekommen hast, und lege deinen eigenen Zugang an. Danach meldest du dich nur noch mit Benutzername und Passwort an.</p>
+    <p class="muted">Einmalig: Gib den Einrichtungs-Code ein, den du bekommen hast, und lege deinen eigenen Benutzer an. Danach meldest du dich nur noch mit Benutzername und Passwort an.</p>
     <label class="fld"><span class="lbl">Einrichtungs-Code</span><input type="text" id="suCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EDLR-XXXX-XXXX-XXXX-XXXX" required></label>
     <label class="fld"><span class="lbl">Dein Benutzername</span><input type="text" id="suUser" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="z. B. inhaber" required><small>3–30 Zeichen: Buchstaben, Ziffern, Punkt, Minus</small></label>
     <label class="fld"><span class="lbl">Passwort</span><input id="suPass" type="password" autocomplete="new-password" required><small>Mindestens 10 Zeichen</small></label>
     <label class="fld"><span class="lbl">Passwort wiederholen</span><input id="suPass2" type="password" autocomplete="new-password" required></label>
     <p class="form-err" id="setupErr" role="alert" hidden></p>
-    <button class="btn btn-gold btn-block" type="submit">Zugang anlegen &amp; loslegen</button>
+    <button class="btn btn-gold btn-block" type="submit">Benutzer anlegen &amp; loslegen</button>
   </form>
 </div>
 
@@ -45,7 +45,7 @@
     <label class="fld"><span class="lbl">Passwort</span><input id="liPass" type="password" autocomplete="current-password" required></label>
     <p class="form-err" id="loginErr" role="alert" hidden></p>
     <button class="btn btn-gold btn-block" type="submit">Anmelden</button>
-    <p class="muted small">Passwort vergessen? Ein anderer Inhaber kann es unter „Zugänge“ neu setzen.</p>
+    <p class="muted small">Passwort vergessen? Ein anderer Inhaber kann es unter „Benutzer“ neu setzen.</p>
   </form>
 </div>
 
@@ -81,7 +81,7 @@
   <div class="dlg-body" id="itemDlgBody"></div>
   <div class="dlg-foot">
     <button class="btn btn-danger btn-sm" type="button" id="itemDelete">Gericht löschen</button>
-    <button class="btn btn-gold" type="button" data-close-dlg>Fertig</button>
+    <button class="btn btn-gold" type="button" id="itemSave">Speichern</button>
   </div>
 </dialog>
 
