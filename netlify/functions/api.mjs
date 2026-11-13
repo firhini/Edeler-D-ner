@@ -10,6 +10,9 @@ export const config = { path: "/api/*" };
 const scrypt = promisify(scryptCb);
 // Einmal-Code für die erste Einrichtung des Admin-Bereichs. Hier steht nur der SHA-256-Hash.
 const SETUP_CODE_SHA256 = "1a0cb9437b0fce96b9a6f21e6f4a65e2c9b10af64ca38ff91a4cce2c9dc84a2e";
+// Einmaliger Notfall-Code (z. B. Passwort vergessen): legt einen Benutzer neu an bzw. setzt dessen Passwort.
+// Hier steht nur der SHA-256-Hash; jeder Code funktioniert pro Speicher genau einmal.
+const RECOVERY_CODE_SHA256 = ["b55c1eb0fd50deb764ee0acdb7ec29626a96997c365de515bb575beb17499e10"];
 const COOKIE = "__Host-edeler_admin";
 const SESSION_HOURS = 12;
 const MAX_USERS = 10;
@@ -109,7 +112,7 @@ async function currentUser(req, store) {
 // Jeder Versuch wird VOR der (langsamen) Passwort-Prüfung atomar gezählt – so helfen auch parallele Anfragen nicht.
 // Grenzen je 15-Minuten-Fenster: 5 je Name+IP, 30 je IP, 100 je Name (verteilte Angriffe). Erfolg setzt die Zähler zurück.
 const WINDOW_MIN = 15, LOCK_MIN = 10;
-const LIMIT = { userIp: 5, ip: 30, user: 100, setup: 5, confirm: 5 };
+const LIMIT = { userIp: 5, ip: 30, user: 100, setup: 5, confirm: 5, recover: 5 };
 async function countAttempt(store, key, limit) {
   const k = `auth/fail/${sha256(key)}`;
   for (let i = 0; i < 8; i++) {
@@ -237,6 +240,28 @@ export default async function handler(req, context) {
       if (!rec || !ok) return fail(401, "Benutzername oder Passwort ist falsch.");
       await clearAttempts(store, `ip:${ip}`, `userip:${lc}|${ip}`, `user:${lc}`);
       return json({ ok: true, user }, 200, { "set-cookie": sessionCookie(makeToken(await getSecret(store), user, rec.tv)) });
+    }
+
+    // Notfall-Zugang: mit einmaligem Notfall-Code einen Benutzer anlegen bzw. sein Passwort neu setzen
+    if (path === "auth/recover" && method === "POST") {
+      const lock = await countAttempt(store, `recover:${ip}`, LIMIT.recover);
+      if (lock) return fail(429, `Zu viele Versuche. Bitte in ${lock} Minuten erneut versuchen.`);
+      const body = await readBody(req, 4096);
+      const hash = sha256(String(body.code || "").trim().toUpperCase());
+      if (!RECOVERY_CODE_SHA256.some(h => safeEqual(hash, h))) return fail(403, "Der Notfall-Code ist falsch.");
+      const user = String(body.user || "").trim();
+      if (!USER_RE.test(user)) return fail(400, "Benutzername: 3–30 Zeichen, nur Buchstaben, Ziffern, Punkt, Minus oder Unterstrich.");
+      const pwErr = checkNewPassword(body.password);
+      if (pwErr) return fail(400, pwErr);
+      const used = await store.setJSON(`auth/recovery-used/${hash}`, { at: new Date().toISOString(), user }, { onlyIfNew: true });
+      if (used && used.modified === false) return fail(410, "Dieser Notfall-Code wurde schon benutzt.");
+      const { users, etag } = await loadUsers(store);
+      const old = userRec(users, user);
+      const tv = old ? old.tv + 1 : newTv();
+      users.users[user] = { ...(old || {}), hash: await hashPassword(body.password), tv, created: old?.created || new Date().toISOString(), by: "Notfall-Code" };
+      await storeUsers(store, users, etag);
+      return json({ ok: true, user, reset: !!old, users: Object.keys(users.users).sort() }, 200,
+                  { "set-cookie": sessionCookie(makeToken(await getSecret(store), user, tv)) });
     }
 
     if (path === "auth/logout" && method === "POST") return json({ ok: true }, 200, { "set-cookie": clearCookie });
