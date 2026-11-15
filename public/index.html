@@ -321,21 +321,6 @@ header.scrolled{background:rgba(11,11,13,.94);
 .p-card.hide{display:none}
 
 /* ============ ORDER BAND ============ */
-.order-band{background:linear-gradient(135deg,#131310,#0d0d0f);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.order-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50vw 50vh at 80% 50%,rgba(214,178,94,.12),transparent 60%)}
-.order-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-/* Prevent grid tracks from being inflated by nowrap descendants (mobile overflow guard) */
-.hero-grid>div,.about-grid>div,.visit-grid>div,.order-inner>div{min-width:0}
-.order-steps{display:grid;gap:18px;margin-top:6px}
-.step{display:flex;gap:16px;align-items:flex-start}
-.step .n{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(214,178,94,.1);border:1px solid var(--line);color:var(--gold);font-family:'Playfair Display',serif;font-weight:800}
-.step h3{font-size:1.05rem;margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:700;color:var(--ink)}
-.step p{font-size:.9rem;color:var(--muted)}
-.order-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;box-shadow:var(--shadow)}
-.order-card .oc-ic{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:rgba(37,211,102,.12);color:var(--wa);margin-bottom:18px}
-.order-card .oc-ic .ic{width:32px;height:32px}
-.order-card h3{font-size:1.5rem;margin-bottom:10px}
-.order-card p{color:var(--muted);font-size:.94rem;margin-bottom:22px}
 
 /* ============ ABOUT ============ */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -538,7 +523,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 .ci-opts li.no::before{background:#ff7a5c}
 .ci-opts li.chili{color:#ffc93c}
 .ci-opts li.wish{color:var(--text);font-style:italic}
-.ci-opts li.all{color:#5be08c;font-weight:700}
+.ci-opts li.all{color:#5be08c;font-weight:600}
 .ci-actions{display:flex;align-items:center;gap:14px;margin-top:9px;flex-wrap:wrap}
 .ci-edit{background:none;border:none;color:var(--gold);font-size:.8rem;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px 2px}
 .ci-edit:hover{color:var(--gold-hi)}
@@ -612,9 +597,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 .all-ui{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;border:1.5px solid color-mix(in srgb,var(--wa) 50%,transparent);
   background:color-mix(in srgb,var(--wa) 10%,var(--surface));color:var(--ink);transition:.2s}
 .all-ui::before{content:"";width:22px;height:22px;flex:none;border-radius:7px;border:1.5px solid #5be08c;background:transparent center/14px no-repeat;transition:.18s}
-.all-ui span{display:grid;gap:2px}
 .all-ui b{font-size:1.02rem;font-weight:800}
-.all-ui small{font-size:.8rem;color:var(--muted);font-weight:500}
 .all-opt input:checked + .all-ui{border-color:#5be08c;background:color-mix(in srgb,var(--wa) 22%,var(--surface));box-shadow:0 12px 34px -18px rgba(37,211,102,.8)}
 .all-opt input:checked + .all-ui::before{background-color:#5be08c;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062b14' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
@@ -826,7 +809,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   .gal-item figcaption{padding:28px 11px 10px;font-size:.8rem}
   .gal-item figcaption small{font-size:.58rem;letter-spacing:1px}
   .gal-item.tall figcaption{padding:44px 12px 12px;font-size:1.02rem}
-  .order-steps{gap:14px}
   .rev-top{flex-direction:column;gap:6px}
 }
 
@@ -1023,7 +1005,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
         <span class="line">Döner, wie er</span>
         <span class="line"><em class="gold-text">sein soll.</em></span>
       </h1>
-      <p class="lead">Saftiger Döner vom Spieß, knusprige Pizza, Falafel &amp; mehr – 100% Halal, frisch und mit Liebe gemacht mitten in Schwetzingen. In Sekunden zusammengestellt und per WhatsApp bestellt.</p>
+      <p class="lead">Döner vom Spieß, Pizza, Falafel &amp; mehr – 100% Halal, mitten in Schwetzingen.</p>
       <div class="hero-cta">
         <a href="#menu" class="btn btn-gold btn-lg">Jetzt bestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
         <a href="#menu" class="btn btn-ghost btn-lg">Speisekarte ansehen</a>
@@ -1055,13 +1037,11 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-spark"/></svg> Frisch gegrillt</span><span class="ts-sep"></span>
-    <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
     <span class="ts-item ts-hot chili-promo"><svg class="ic"><use href="#ic-flame"/></svg> NEU: Chili-Cheese-Soße 🧀</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-leaf"/></svg> Frische Zutaten</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-medal"/></svg> 100% Halal</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-flame"/></svg> Saftiges Fleisch</span><span class="ts-sep"></span>
     <span class="ts-item"><svg class="ic"><use href="#ic-spark"/></svg> Frisch gegrillt</span><span class="ts-sep"></span>
-    <span class="ts-item"><svg class="ic"><use href="#ic-star"/></svg> Mit Liebe für dich</span><span class="ts-sep"></span>
   </div>
 </div>
 
@@ -1074,7 +1054,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <div class="promo-text">
         <span class="promo-new">Neu bei uns</span>
         <h2 id="promoTitle">🔥 NEU! <span class="promo-hl">CHILI-CHEESE-SOSSE</span> – <span class="promo-price">NUR <span class="js-chili-price">1,50 €</span> EXTRA!</span> 🧀</h2>
-        <p>Cremig, würzig und mit ordentlich Feuer – auf Wunsch <b>mit Jalapeños 🌶️</b>. Einfach beim Bestellen dazubuchen: zu Döner, Yufka, Dönerbox, Dönerteller, Pommes &amp; mehr.</p>
+        <p>Auf Wunsch <b>mit Jalapeños 🌶️</b>. Zu Döner, Yufka, Dönerbox, Dönerteller, Pommes &amp; mehr.</p>
       </div>
       <a href="#menu" class="btn btn-lg promo-btn">Jetzt dazubestellen <svg class="ic"><use href="#ic-arrow"/></svg></a>
     </div>
@@ -1086,10 +1066,10 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   <div class="wrap">
     <h2 class="visually-hidden">Warum Edeler Döner</h2>
     <div class="hl-grid">
-      <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch, zuverlässig Halal – ohne Ausnahme, ohne Sternchen.</p></div>
-      <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p>Frische Beilagen, <span id="hlSauces">vier Soßen</span> zur Wahl und Pizza frisch aus dem Ofen.</p></div>
-      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3 class="del-only">Abholung &amp; Lieferung</h3><p class="del-only" id="hlDelivery">Frisch zubereitet – zum Abholen oder geliefert: bis 5 km für 3,00 €, bis 7 km für 6,00 €.</p><h3 class="pickup-only">Abholung vor Ort</h3><p class="pickup-only">Frisch zubereitet und schnell fertig – einfach vorbeikommen und mitnehmen.</p></div>
-      <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Karte zusammenstellen, ein Klick – deine Bestellung landet direkt bei uns.</p></div>
+      <div class="hl reveal"><div class="hl-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h3>100% Halal</h3><p>Kalb- und Hähnchenfleisch.</p></div>
+      <div class="hl reveal" data-d="1"><div class="hl-ic"><svg class="ic"><use href="#ic-spark"/></svg></div><h3>Frisch &amp; handgemacht</h3><p><span id="hlSauces">Vier Soßen</span> zur Wahl, Pizza aus dem Ofen.</p></div>
+      <div class="hl reveal" data-d="2"><div class="hl-ic"><svg class="ic"><use href="#ic-bag"/></svg></div><h3 class="del-only">Abholung &amp; Lieferung</h3><p class="del-only" id="hlDelivery">Bis 5 km für 3,00 €, bis 7 km für 6,00 €.</p><h3 class="pickup-only">Abholung vor Ort</h3><p class="pickup-only">Kurfürstenstraße 18, Schwetzingen.</p></div>
+      <div class="hl reveal" data-d="3"><div class="hl-ic"><svg class="ic"><use href="#ic-wa"/></svg></div><h3>Bestellen per WhatsApp</h3><p>Ohne App, ohne Konto.</p></div>
     </div>
   </div>
 </section>
@@ -1100,7 +1080,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Beliebt bei unseren Gästen</span>
       <h2 class="sec-title">Unsere <span class="gold-text">Bestseller</span></h2>
-      <p class="sec-intro">Diese Gerichte bestellen unsere Stammgäste immer wieder. Direkt in den Warenkorb legen.</p>
     </div>
     <div class="grid-cards" id="popularGrid"></div>
   </div>
@@ -1112,11 +1091,10 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Speisekarte</span>
       <h2 class="sec-title">Unsere <span class="gold-text">digitale Karte</span></h2>
-      <p class="sec-intro">Alles frisch zubereitet und fair bepreist. Wähle deine Kategorie, leg Produkte in den Warenkorb und bestelle in Sekunden per WhatsApp.</p>
     </div>
     <div class="delivery-note" id="deliveryNote">
       <span class="dn-ic"><svg class="ic"><use href="#ic-truck"/></svg></span>
-      <div><b id="dnTitle">Wir liefern! 🛵 Bis 5 km 3,00 € · 5–7 km 6,00 €</b><span id="dnText">Schwetzingen, Plankstadt, Oftersheim &amp; Brühl für 3,00 € – Eppelheim, Ketsch &amp; Mannheim-Rheinau für 6,00 €. Oder einfach bei uns abholen.</span></div>
+      <div><b id="dnTitle">Wir liefern! 🛵 Bis 5 km 3,00 € · 5–7 km 6,00 €</b><span id="dnText">Schwetzingen, Plankstadt, Oftersheim &amp; Brühl für 3,00 € – Eppelheim, Ketsch &amp; Mannheim-Rheinau für 6,00 €.</span></div>
     </div>
   </div>
   <div class="menu-filter">
@@ -1128,7 +1106,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="grid-cards" id="menuGrid"><p class="menu-msg">Speisekarte wird geladen …</p></div>
     <div class="extras reveal">
       <h3><svg class="ic"><use href="#ic-plus"/></svg> Soßen, Extras &amp; Beläge</h3>
-      <p class="extras-sub">Direkt beim Gericht wählbar – der Preis wird automatisch berechnet:</p>
       <div class="extras-list" id="exList">
         <span class="ex ex-hot">🔥 Chili-Cheese-Soße <i>Neu</i> <b>+1,50 €</b></span>
         <span class="ex">Schafskäse <b>+1,00 €</b></span>
@@ -1137,7 +1114,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       </div>
       <p class="extras-sub" id="exSauces" style="margin-top:12px">Unsere Soßen: Cocktailsoße · Scharfe Soße · Joghurt-Kräutersoße · Knoblauch-Joghurtsoße</p>
       <div id="exMoreWrap">
-        <p class="extras-sub" style="margin-top:16px">Weitere Extras – bitte unter „Besondere Wünsche" angeben, Berechnung im Laden:</p>
+        <p class="extras-sub" style="margin-top:16px">Weitere Extras – als Wunsch angeben, Berechnung im Laden:</p>
         <div class="extras-list" id="exMore">
           <span class="ex">Käse <b>+1,00 €</b></span>
           <span class="ex">Kalbfleisch <b>+2,00 €</b></span>
@@ -1145,29 +1122,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
           <span class="ex">Jede weitere Zutat <b>+1,00 €</b></span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ORDER BAND ============ -->
-<section class="order-band" id="order">
-  <div class="wrap order-inner">
-    <div>
-      <span class="eyebrow">So einfach geht's</span>
-      <h2 class="sec-title">In 3 Schritten <span class="gold-text">bestellt</span></h2>
-      <p class="sec-intro" style="margin-bottom:8px">Kein Konto, keine App, keine Wartezeit in der Leitung. Du stellst dir deine Bestellung zusammen und schickst sie mit einem Tipp per WhatsApp direkt an unsere Theke.</p>
-      <div class="order-steps">
-        <div class="step reveal"><span class="n">1</span><div><h3>Gerichte auswählen</h3><p>Stöbere durch die Karte und leg deine Favoriten in den Warenkorb.</p></div></div>
-        <div class="step reveal" data-d="1"><span class="n">2</span><div><h3>Warenkorb prüfen</h3><p>Mengen anpassen, Abholung oder Lieferung wählen und deinen Namen eintragen.</p></div></div>
-        <div class="step reveal" data-d="2"><span class="n">3</span><div><h3>Per WhatsApp senden</h3><p>Ein Klick öffnet WhatsApp mit deiner fertigen Bestellung – wir bestätigen dir alles direkt.</p></div></div>
-      </div>
-    </div>
-    <div class="order-card reveal">
-      <div class="oc-ic"><svg class="ic"><use href="#ic-wa"/></svg></div>
-      <h3>Direkt bestellen</h3>
-      <p>Öffne deinen Warenkorb und sende die Bestellung in wenigen Sekunden per WhatsApp an Edeler Döner.</p>
-      <button type="button" class="btn btn-wa btn-block btn-lg" id="orderBandBtn"><svg class="ic"><use href="#ic-wa"/></svg> Warenkorb öffnen &amp; bestellen</button>
-      <p style="margin:16px 0 0;font-size:.82rem;color:var(--faint)">Zahlung bei Abholung<span class="del-only"> oder Lieferung</span> – keine Online-Zahlung nötig.</p>
     </div>
   </div>
 </section>
@@ -1185,10 +1139,8 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="about-body">
       <span class="eyebrow">Über uns</span>
       <h2 class="sec-title">Ehrliches Essen, <span class="gold-text">keine Kompromisse</span></h2>
-      <blockquote class="about-quote">„Kardeş eliyle – von Brüdern gemacht."<small>Unser Versprechen für Schwetzingen &amp; Umgebung</small></blockquote>
-      <p class="lead-p">Edeler Döner steht in Schwetzingen für echtes Handwerk statt Fließband. Bei uns kommt zusammen, was zusammengehört: bestes Halal-Fleisch, frische Zutaten und die Zeit, die guter Geschmack braucht.</p>
-      <p>Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, jeder Döner wird frisch vor deinen Augen belegt, und unsere Pizza kommt frisch aus dem Ofen. Wir glauben: Qualität schmeckt man – bei jedem Bissen.</p>
-      <p>Ob schnell zum Mitnehmen oder gemütlich vor Ort – bei uns bekommst du ehrliches Essen zu fairen Preisen, gemacht von Menschen, die ihr Handwerk lieben.</p>
+      <blockquote class="about-quote">„Kardeş eliyle – von Brüdern gemacht."</blockquote>
+      <p class="lead-p">Unser Kalb- und Hähnchenfleisch ist zu 100% Halal, jeder Döner wird frisch vor deinen Augen belegt, und die Pizza kommt aus dem Ofen.</p>
       <div class="about-stats">
         <div class="s reveal"><b>100%</b><span>Halal-Qualität</span></div>
         <div class="s reveal" data-d="1"><b id="statDishes">30+</b><span>Gerichte auf der Karte</span></div>
@@ -1204,7 +1156,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Einblicke</span>
       <h2 class="sec-title">Frisch aus <span class="gold-text">unserer Küche</span></h2>
-      <p class="sec-intro">Echte Gerichte, echtes Handwerk – so sieht es bei uns jeden Tag aus.</p>
     </div>
     <div class="gal-grid">
       <figure class="gal-item tall reveal"><img src="img/gal-theke.webp" srcset="img/gal-theke-480.webp 480w, img/gal-theke-640.webp 640w, img/gal-theke.webp 720w" sizes="(max-width:560px) 44vw, (max-width:980px) 46vw, (max-width:1279px) 22vw, 274px" alt="Döner im gegrillten Fladenbrot vor der Salattheke von Edeler Döner" width="720" height="1080" loading="lazy" decoding="async"><figcaption><small>Von unserer Theke</small>Döner im knusprigen Fladenbrot</figcaption></figure>
@@ -1224,7 +1175,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Bewertungen</span>
       <h2 class="sec-title">Wie hat's dir <span class="gold-text">geschmeckt?</span></h2>
-      <p class="sec-intro">Deine Meinung hilft uns – und allen, die in Schwetzingen guten Döner suchen. Wir freuen uns über deine ehrliche Bewertung auf Google oder dein Feedback per WhatsApp.</p>
     </div>
     <div class="rev-cta reveal">
       <a class="btn btn-gold btn-lg" href="https://www.google.com/maps/search/?api=1&amp;query=Edeler+D%C3%B6ner+Kurf%C3%BCrstenstra%C3%9Fe+18+Schwetzingen" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-star"/></svg> Auf Google bewerten</a>
@@ -1239,7 +1189,6 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
     <div class="sec-head center">
       <span class="eyebrow center">Kontakt &amp; Standort</span>
       <h2 class="sec-title">Besuch uns in <span class="gold-text">Schwetzingen</span></h2>
-      <p class="sec-intro">Mitten in der Kurfürstenstraße – zum Abholen, Vorbeischauen oder Anrufen.<span class="del-only"> Oder wir liefern zu dir.</span></p>
     </div>
     <div class="visit-grid">
       <div class="info-card reveal">
@@ -1383,7 +1332,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
         <label class="pay-opt"><input type="radio" name="pay" value="karte"><span>Karte</span></label>
       </fieldset>
       <p class="del-hint" id="delInfo"></p>
-      <p class="del-hint">Dein Ort ist nicht dabei? Dann liegt er leider außerhalb unseres Liefergebiets – Abholung geht natürlich immer.</p>
+      <p class="del-hint">Ort nicht dabei? Dann liegt er außerhalb unseres Liefergebiets.</p>
     </div>
     <div class="cart-fields">
       <input type="text" id="custName" placeholder="Dein Name" aria-label="Dein Name" autocomplete="name">
@@ -1395,7 +1344,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
       <div class="sum-row sum-main"><span class="sum-label">Gesamt</span><span class="sum-total" id="cartTotal">0,00 €</span></div>
     </div>
     <button type="button" class="btn btn-wa btn-block btn-lg" id="waOrderBtn"><svg class="ic"><use href="#ic-wa"/></svg> Über WhatsApp bestellen</button>
-    <p class="cart-note">Deine Bestellung wird als fertige Nachricht in WhatsApp geöffnet – gesendet wird erst, wenn du dort auf Senden tippst. Zahlung bei Abholung<span class="del-only"> bzw. Lieferung</span>, keine Online-Zahlung. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
+    <p class="cart-note">Zahlung bei Abholung<span class="del-only"> bzw. Lieferung</span>. <a href="datenschutz.html#whatsapp">Datenschutz</a></p>
     <button type="button" class="clear-cart" id="clearCart">Warenkorb leeren</button>
   </div>
 </div>
@@ -1514,37 +1463,22 @@ function unitPrice(id, o){
   const it = byId(id); if(!it) return 0;
   return it.price + (o.chili ? EX.chili.price : 0) + (o.feta ? EX.feta.price : 0) + cupCount(o) * EX.cup.price;
 }
-/* „Mit allem“ = alle Zutaten + alle Soßen (+ mit Salat) – nur Gratis-Auswahl, keine Extras mit Aufpreis */
-const canAll = t => hasSauces(t);                  // Zutaten & Salat sind ohnehin schon dabei – Soßen muss man sonst einzeln tippen
-function isAll(type, o){
-  if(!canAll(type)) return false;
-  if(type === "wrap" && INGREDIENTS.some(x => !(o.ingr || []).includes(x))) return false;
-  if(type === "box" && o.salad === false) return false;
-  if(hasSauces(type) && SAUCES.some(x => !(o.sauces || []).includes(x))) return false;
-  return true;
-}
-function allText(type){
-  const parts = [];
-  if(type === "wrap" && INGREDIENTS.length) parts.push("alle Zutaten");
-  if(type === "box") parts.push("mit Salat");
-  if(hasSauces(type)) parts.push("alle Soßen");
-  return parts.join(" + ");
-}
+/* „Mit allem“ = alle Zutaten (Soßen wählt man separat) */
+const canAll = t => t === "wrap" && INGREDIENTS.length > 0;
+const isAll = (type, o) => canAll(type) && INGREDIENTS.every(x => (o.ingr || []).includes(x));
 /* Auswahl als lesbare Zeilen – für Warenkorb und WhatsApp-Nachricht.
    cls: all = mit allem, no = etwas weggelassen, chili = Chili-Cheese, wish = Kundenwunsch */
 function optSummary(type, o){
   const out = [];
-  const all = isAll(type, o);
-  if(all) out.push({txt:`MIT ALLEM (${allText(type)})`, cls:"all"});
-  if(type === "wrap" && INGREDIENTS.length && !all){
+  if(isAll(type, o)) out.push({txt:"Mit allem", cls:"all"});
+  else if(type === "wrap" && INGREDIENTS.length){
     const without = INGREDIENTS.filter(x => !o.ingr.includes(x));
-    if(!without.length) out.push({txt:`Zutaten: alle (${INGREDIENTS.join(", ")})`});
-    else if(!o.ingr.length) out.push({txt:"Zutaten: KEINE – ohne Salat & Gemüse", cls:"no"});
+    if(!o.ingr.length) out.push({txt:"Zutaten: KEINE – ohne Salat & Gemüse", cls:"no"});
     else { out.push({txt:`Zutaten: ${o.ingr.join(", ")}`}); out.push({txt:`OHNE: ${without.join(", ")}`, cls:"no"}); }
   }
   if("side" in o) out.push(o.side ? {txt:`Beilage: ${o.side}`} : {txt:`Beilage: bitte angeben (${orList(SIDES)})`, cls:"no"});
-  if(type === "box" && !all) out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
-  if(hasSauces(type) && !all) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
+  if(type === "box") out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
+  if(hasSauces(type)) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
   if(o.chili) out.push({txt:`Chili-Cheese-Soße – ${o.jala === "ohne" ? "OHNE" : "MIT"} Jalapeños`, price:EX.chili.price, cls:"chili"});
   if(o.feta) out.push({txt:"Schafskäse", price:EX.feta.price});
   const cups = Object.entries(o.cups || {});
@@ -1622,7 +1556,7 @@ function renderSettingsText(){
   if(doener.length){ setText("#trustPrice b", "ab " + fmt(Math.min(...doener)).replace(/\s/g, "")); setText("#trustPrice span", "Döner"); }
   // Soßen-Anzahl
   const ns = SAUCES.length, sw = (NUM_WORDS[ns] || String(ns)) + (ns === 1 ? " Soße" : " Soßen");
-  setText("#hlSauces", sw);
+  setText("#hlSauces", sw.charAt(0).toUpperCase() + sw.slice(1));
   setText("#statSauces", String(ns)); $("#statSaucesBox").hidden = !ns;
   const nd = MENU.length; setText("#statDishes", nd >= 10 ? `${Math.floor(nd / 5) * 5}+` : String(nd));
   // Lieferung: Hinweise auf der Seite
@@ -1634,15 +1568,15 @@ function renderSettingsText(){
     const zl = zones.map(z => `${z.label} ${feeTxt(z.fee)}`).join(" · ");
     setText("#dnTitle", "Wir liefern! 🛵 " + zl.charAt(0).toUpperCase() + zl.slice(1));
     setText("#dnText", zones.map(z => `${orList(z.towns.map(t => t.name)).replace(/ oder /, " & ")} für ${feeTxt(z.fee)}`).join(" – ") +
-      ". " + (extra ? extra + ". " : "") + "Oder einfach bei uns abholen.");
-    setText("#hlDelivery", "Frisch zubereitet – zum Abholen oder geliefert: " + zones.map(z => `${z.label} für ${feeTxt(z.fee)}`).join(", ") + ".");
+      "." + (extra ? " " + extra + "." : ""));
+    { const hd = zones.map(z => `${z.label} für ${feeTxt(z.fee)}`).join(", "); setText("#hlDelivery", hd.charAt(0).toUpperCase() + hd.slice(1) + "."); }
     $("#visitZones").innerHTML = zones.map(z => `<b>${esc(feeTxt(z.fee))}</b> ${esc(z.label)}: ${esc(z.towns.map(t => t.name).join(", "))}`).join("<br>") +
       (extra ? `<br><span style="color:var(--muted);font-size:.86rem">${esc(extra)}</span>` : "");
     setText("#fc3Price", minFee > 0 ? "ab " + fmt(minFee) : "kostenlos");
     setText("#fulDelSmall", minFee > 0 ? "ab " + fmt(minFee) : "kostenlos");
   } else {
     setText("#dnTitle", "Lieferung gerade pausiert");
-    setText("#dnText", "Abholen geht natürlich immer: Kurfürstenstraße 18, Schwetzingen.");
+    setText("#dnText", "Abholung: Kurfürstenstraße 18, Schwetzingen.");
   }
   // Extras-Kasten
   const chips = [];
@@ -1736,9 +1670,7 @@ function cardHtml(p){
     foot = `<div class="p-foot"><span class="price">${fmt(p.price)}</span>`+
       `<button type="button" class="add-btn" data-add="${esc(p.id)}" ${act(p.name)}><svg class="ic"><use href="#ic-plus"/></svg> Hinzufügen</button></div>`;
   }
-  const anyExtra = EX.chili.enabled || EX.feta.enabled || (EX.cup.enabled && SAUCES.length);
-  const hint = off ? "" : (hasSide(p.id) ? orList(SIDES) + " · " : "") +
-    ({wrap:"Zutaten & Soßen nach Wunsch", box:"Mit/ohne Salat & Soßen wählbar", plate:"Soßen nach Wunsch", extra:anyExtra ? "Extras wählbar" : ""}[t] || "");
+  const hint = !off && hasSide(p.id) ? orList(SIDES) : "", hot = !off && t && EX.chili.enabled;
   return `<article class="p-card reveal${off ? " is-off" : ""}" data-cat="${esc(p.cat)}">
     <div class="p-media${p.img ? " has-img" : ""}" style="--acc:${c.acc}">
       <div class="p-badges">${badgesHtml(p.tags,p.popular)}</div>
@@ -1749,7 +1681,7 @@ function cardHtml(p){
     <div class="p-body">
       <h3>${esc(p.name)}</h3>
       ${p.desc ? `<p>${esc(p.desc)}</p>` : ""}
-      ${hint ? `<div class="p-opt"><span><svg class="ic"><use href="#ic-check"/></svg>${esc(hint)}</span>${EX.chili.enabled ? `<span class="p-opt-hot">🔥 Chili-Cheese-Soße dazu: +${fmt(EX.chili.price)}</span>` : ""}</div>` : ""}
+      ${hint || hot ? `<div class="p-opt">${hint ? `<span><svg class="ic"><use href="#ic-check"/></svg>${esc(hint)}</span>` : ""}${hot ? `<span class="p-opt-hot">🔥 Chili-Cheese-Soße dazu: +${fmt(EX.chili.price)}</span>` : ""}</div>` : ""}
       ${foot}
     </div>
   </article>`;
@@ -1813,7 +1745,6 @@ function renderCart(){
     body.innerHTML = `<div class="cart-empty">
       <div class="ce-ic"><svg class="ic"><use href="#ic-bag"/></svg></div>
       <h4>Noch nichts drin</h4>
-      <p>Stöbere durch die Speisekarte und leg deine Favoriten in den Warenkorb.</p>
     </div>`;
     foot.hidden = true;
     decorateIcons(body);
@@ -2001,19 +1932,19 @@ function optChip(type, name, value, label, checked, extraCls=""){
 }
 function cfgBodyHtml(p, t, id, o){
   let h = "";
-  if(canAll(t)) h += `<fieldset class="cfg-sec cfg-all"><legend class="visually-hidden">Schnellauswahl</legend>
-    <label class="all-opt"><input type="checkbox" name="all"${isAll(t, o) ? " checked" : ""}><span class="all-ui"><span><b>🥙 Mit allem</b><small>${allText(t).replace(/^./, c => c.toUpperCase())} – mit einem Tipp</small></span></span></label></fieldset>`;
+  if(canAll(t)) h += `<fieldset class="cfg-sec cfg-all"><legend class="visually-hidden">Zutaten</legend>
+    <label class="all-opt"><input type="checkbox" name="all"${isAll(t, o) ? " checked" : ""}><span class="all-ui"><b>Mit allem</b></span></label></fieldset>`;
   const meat = (p.variants || []).every(v => /hähnchen|hühn|kalb|rind|lamm|pute|fleisch|chicken|sucuk/i.test(v.label));
   if(p.variants && p.variants.length) h += `<fieldset class="cfg-sec"><legend>${meat ? "Fleisch wählen" : "Bitte wählen"}</legend><div class="opt-row">` +
     p.variants.map(v => optChip("radio","variant",v.id,`${esc(v.label)} <em>${fmt(v.price)}</em>`, v.id===id)).join("") + `</div></fieldset>`;
-  if(t === "wrap" && INGREDIENTS.length) h += `<fieldset class="cfg-sec"><legend>Zutaten <small>Alles ist dabei – tippe weg, was du nicht möchtest</small></legend><div class="opt-row">` +
+  if(t === "wrap" && INGREDIENTS.length) h += `<fieldset class="cfg-sec"><legend>Zutaten</legend><div class="opt-row">` +
     INGREDIENTS.map(x => optChip("checkbox","ingr",x, `<span>${esc(x)}${own(INGREDIENT_HINT, x) ? `<small>${esc(own(INGREDIENT_HINT, x))}</small>` : ""}</span>`, o.ingr.includes(x), "opt-ingr")).join("") + `</div></fieldset>`;
   if(hasSide(p.id)) h += `<fieldset class="cfg-sec" id="cfgSide"><legend>Beilage <small>Bitte wählen</small></legend><div class="opt-row">` +
     SIDES.map(x => optChip("radio","side",x,`Mit ${esc(x)}`, o.side===x)).join("") +
     `</div><p class="cfg-err" id="errSide" role="alert" hidden>Bitte wähle deine Beilage: ${esc(orList(SIDES))}.</p></fieldset>`;
   if(t === "box") h += `<fieldset class="cfg-sec"><legend>Salat</legend><div class="opt-row">` +
     optChip("radio","salad","mit","Mit Salat", o.salad) + optChip("radio","salad","ohne","Ohne Salat", !o.salad) + `</div></fieldset>`;
-  if(hasSauces(t)) h += `<fieldset class="cfg-sec" id="cfgSauces"><legend>Soßen <small>Gratis – gerne mehrere oder alle</small></legend><div class="opt-row">` +
+  if(hasSauces(t)) h += `<fieldset class="cfg-sec" id="cfgSauces"><legend>Soßen <small>Gratis</small></legend><div class="opt-row">` +
     SAUCES.map(s => optChip("checkbox","sauce",s,esc(s), o.sauces.includes(s))).join("") +
     optChip("checkbox","noSauce","1","Ohne Soße", o.noSauce, "opt-none") +
     `</div><p class="cfg-err" id="errSauce" role="alert" hidden>Bitte wähle mindestens eine Soße – oder „Ohne Soße".</p></fieldset>`;
@@ -2023,13 +1954,13 @@ function cfgBodyHtml(p, t, id, o){
       <div class="opt-row" role="radiogroup" aria-labelledby="jalaQ">${optChip("radio","jala","mit","Mit Jalapeños 🌶️", o.jala==="mit")}${optChip("radio","jala","ohne","Ohne Jalapeños", o.jala==="ohne")}</div>
       <p class="cfg-err" id="errJala" role="alert" hidden>Bitte wähle: mit oder ohne Jalapeños.</p></div></fieldset>`;
   if(EX.feta.enabled) h += `<fieldset class="cfg-sec"><legend>Extras</legend><div class="opt-row">${optChip("checkbox","feta","1",`Schafskäse <em>+${fmt(EX.feta.price)}</em>`, o.feta)}</div></fieldset>`;
-  if(EX.cup.enabled && SAUCES.length) h += `<fieldset class="cfg-sec"><legend>Extra-Soße im Becher <small>Separat zum Mitnehmen – ${fmt(EX.cup.price)} pro Becher</small></legend><div class="cups">` +
+  if(EX.cup.enabled && SAUCES.length) h += `<fieldset class="cfg-sec"><legend>Extra-Soße im Becher <small>${fmt(EX.cup.price)} pro Becher</small></legend><div class="cups">` +
     SAUCES.map((s, i) => `<div class="cup-row" data-cup-row="${i}"><span>${esc(s)}</span><div class="stepper">
       <button type="button" data-cup="${i}" data-step="-1" aria-label="${esc(s)} im Becher: einen weniger"><svg class="ic"><use href="#ic-minus"/></svg></button>
       <span data-cup-n="${i}" aria-live="polite">0</span>
       <button type="button" data-cup="${i}" data-step="1" aria-label="${esc(s)} im Becher: einen mehr"><svg class="ic"><use href="#ic-plus"/></svg></button></div></div>`).join("") + `</div></fieldset>`;
-  h += `<div class="cfg-sec"><label class="cfg-label" for="cfgNote">Besondere Wünsche <small>Optional – z. B. extra scharf, gut durch, Brot extra knusprig</small></label>
-    <textarea id="cfgNote" rows="2" maxlength="200" placeholder="Dein Wunsch an die Küche …">${esc(o.note || "")}</textarea></div>`;
+  h += `<div class="cfg-sec"><label class="cfg-label" for="cfgNote">Besondere Wünsche <small>Optional</small></label>
+    <textarea id="cfgNote" rows="2" maxlength="200" placeholder="z. B. extra scharf">${esc(o.note || "")}</textarea></div>`;
   return h;
 }
 function readCfg(){
@@ -2114,14 +2045,7 @@ function initCfg(){
   const body = $("#cfgBody");
   body.addEventListener("change", e => {
     const i = e.target;
-    if(i.name === "all"){
-      if(i.checked){                                   // alles auswählen
-        body.querySelectorAll('input[name="ingr"], input[name="sauce"]').forEach(x => x.checked = true);
-        body.querySelectorAll('input[name="noSauce"]').forEach(x => x.checked = false);
-        const mit = body.querySelector('input[name="salad"][value="mit"]'); if(mit) mit.checked = true;
-        body.querySelectorAll(".cfg-sec.invalid").forEach(sec => { if(sec.id === "cfgSauces"){ sec.classList.remove("invalid"); sec.querySelectorAll(".cfg-err").forEach(x => x.hidden = true); } });
-      } else body.querySelectorAll('input[name="sauce"]').forEach(x => x.checked = false);   // zurück: Soßen wieder einzeln wählen
-    }
+    if(i.name === "all") body.querySelectorAll('input[name="ingr"]').forEach(x => x.checked = i.checked);   // alle Zutaten an/aus
     if(i.name === "noSauce" && i.checked) body.querySelectorAll('input[name="sauce"]').forEach(s => s.checked = false);
     if(i.name === "sauce" && i.checked) body.querySelectorAll('input[name="noSauce"]').forEach(s => s.checked = false);
     if(i.name === "variant") cfg.id = i.value;
@@ -2383,7 +2307,6 @@ function initEvents(){
   // cart open/close
   $("#cartBtnTop").addEventListener("click", openDrawer);
   $("#cartFab").addEventListener("click", openDrawer);
-  $("#orderBandBtn").addEventListener("click", openDrawer);
   $("#drawerClose").addEventListener("click", closeDrawer);
   $("#overlay").addEventListener("click", closeDrawer);
   // Escape closes the topmost dialog (Konfigurator liegt über dem Warenkorb)
