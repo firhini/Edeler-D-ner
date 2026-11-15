@@ -538,6 +538,7 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
 .ci-opts li.no::before{background:#ff7a5c}
 .ci-opts li.chili{color:#ffc93c}
 .ci-opts li.wish{color:var(--text);font-style:italic}
+.ci-opts li.all{color:#5be08c;font-weight:700}
 .ci-actions{display:flex;align-items:center;gap:14px;margin-top:9px;flex-wrap:wrap}
 .ci-edit{background:none;border:none;color:var(--gold);font-size:.8rem;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px 2px}
 .ci-edit:hover{color:var(--gold-hi)}
@@ -604,6 +605,20 @@ body:has(#nl-badge-frame) .cfg{top:calc(50% - 40px);max-height:min(calc(100vh - 
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a0c03' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
 .chili-opt input:focus-visible + .chili-ui{outline:2px solid #ffb224;outline-offset:2px}
 .jala{margin-top:12px}
+/* „Mit allem“ – Schnellauswahl ganz oben im Auswahl-Dialog */
+.cfg-all{padding-top:14px}
+.all-opt{position:relative;display:block;cursor:pointer}
+.all-opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.all-ui{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;border:1.5px solid color-mix(in srgb,var(--wa) 50%,transparent);
+  background:color-mix(in srgb,var(--wa) 10%,var(--surface));color:var(--ink);transition:.2s}
+.all-ui::before{content:"";width:22px;height:22px;flex:none;border-radius:7px;border:1.5px solid #5be08c;background:transparent center/14px no-repeat;transition:.18s}
+.all-ui span{display:grid;gap:2px}
+.all-ui b{font-size:1.02rem;font-weight:800}
+.all-ui small{font-size:.8rem;color:var(--muted);font-weight:500}
+.all-opt input:checked + .all-ui{border-color:#5be08c;background:color-mix(in srgb,var(--wa) 22%,var(--surface));box-shadow:0 12px 34px -18px rgba(37,211,102,.8)}
+.all-opt input:checked + .all-ui::before{background-color:#5be08c;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062b14' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.all-opt input:focus-visible + .all-ui{outline:2px solid #5be08c;outline-offset:2px}
 .jala-q{display:block;font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:9px}
 /* Soße im Becher */
 .cups{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -1499,19 +1514,37 @@ function unitPrice(id, o){
   const it = byId(id); if(!it) return 0;
   return it.price + (o.chili ? EX.chili.price : 0) + (o.feta ? EX.feta.price : 0) + cupCount(o) * EX.cup.price;
 }
+/* „Mit allem“ = alle Zutaten + alle Soßen (+ mit Salat) – nur Gratis-Auswahl, keine Extras mit Aufpreis */
+const canAll = t => hasSauces(t);                  // Zutaten & Salat sind ohnehin schon dabei – Soßen muss man sonst einzeln tippen
+function isAll(type, o){
+  if(!canAll(type)) return false;
+  if(type === "wrap" && INGREDIENTS.some(x => !(o.ingr || []).includes(x))) return false;
+  if(type === "box" && o.salad === false) return false;
+  if(hasSauces(type) && SAUCES.some(x => !(o.sauces || []).includes(x))) return false;
+  return true;
+}
+function allText(type){
+  const parts = [];
+  if(type === "wrap" && INGREDIENTS.length) parts.push("alle Zutaten");
+  if(type === "box") parts.push("mit Salat");
+  if(hasSauces(type)) parts.push("alle Soßen");
+  return parts.join(" + ");
+}
 /* Auswahl als lesbare Zeilen – für Warenkorb und WhatsApp-Nachricht.
-   cls: no = etwas weggelassen, chili = Chili-Cheese, wish = Kundenwunsch */
+   cls: all = mit allem, no = etwas weggelassen, chili = Chili-Cheese, wish = Kundenwunsch */
 function optSummary(type, o){
   const out = [];
-  if(type === "wrap" && INGREDIENTS.length){
+  const all = isAll(type, o);
+  if(all) out.push({txt:`MIT ALLEM (${allText(type)})`, cls:"all"});
+  if(type === "wrap" && INGREDIENTS.length && !all){
     const without = INGREDIENTS.filter(x => !o.ingr.includes(x));
     if(!without.length) out.push({txt:`Zutaten: alle (${INGREDIENTS.join(", ")})`});
     else if(!o.ingr.length) out.push({txt:"Zutaten: KEINE – ohne Salat & Gemüse", cls:"no"});
     else { out.push({txt:`Zutaten: ${o.ingr.join(", ")}`}); out.push({txt:`OHNE: ${without.join(", ")}`, cls:"no"}); }
   }
   if("side" in o) out.push(o.side ? {txt:`Beilage: ${o.side}`} : {txt:`Beilage: bitte angeben (${orList(SIDES)})`, cls:"no"});
-  if(type === "box") out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
-  if(hasSauces(type)) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
+  if(type === "box" && !all) out.push(o.salad ? {txt:"Salat: MIT Salat"} : {txt:"Salat: OHNE Salat", cls:"no"});
+  if(hasSauces(type) && !all) out.push(o.sauces.length ? {txt:`Soßen: ${o.sauces.join(", ")}`} : {txt:"Soße: OHNE Soße", cls:"no"});
   if(o.chili) out.push({txt:`Chili-Cheese-Soße – ${o.jala === "ohne" ? "OHNE" : "MIT"} Jalapeños`, price:EX.chili.price, cls:"chili"});
   if(o.feta) out.push({txt:"Schafskäse", price:EX.feta.price});
   const cups = Object.entries(o.cups || {});
@@ -1908,7 +1941,7 @@ function closeDrawer(){
 
 /* --------- Build WhatsApp message --------- */
 function buildOrderMessage(){
-  const ICON = {no:"❌", chili:"🔥", wish:"📝"};
+  const ICON = {no:"❌", chili:"🔥", wish:"📝", all:"✅"};
   const lines = cart.map((l, i)=>{
     const p = byId(l.id); if(!p) return null;         // guard against stale ids
     const c = catOf(p.cat), t = optType(prodOf(p));
@@ -1968,6 +2001,8 @@ function optChip(type, name, value, label, checked, extraCls=""){
 }
 function cfgBodyHtml(p, t, id, o){
   let h = "";
+  if(canAll(t)) h += `<fieldset class="cfg-sec cfg-all"><legend class="visually-hidden">Schnellauswahl</legend>
+    <label class="all-opt"><input type="checkbox" name="all"${isAll(t, o) ? " checked" : ""}><span class="all-ui"><span><b>🥙 Mit allem</b><small>${allText(t).replace(/^./, c => c.toUpperCase())} – mit einem Tipp</small></span></span></label></fieldset>`;
   const meat = (p.variants || []).every(v => /hähnchen|hühn|kalb|rind|lamm|pute|fleisch|chicken|sucuk/i.test(v.label));
   if(p.variants && p.variants.length) h += `<fieldset class="cfg-sec"><legend>${meat ? "Fleisch wählen" : "Bitte wählen"}</legend><div class="opt-row">` +
     p.variants.map(v => optChip("radio","variant",v.id,`${esc(v.label)} <em>${fmt(v.price)}</em>`, v.id===id)).join("") + `</div></fieldset>`;
@@ -2007,6 +2042,8 @@ function readCfg(){
 }
 function updateCfg(){
   const raw = readCfg();
+  const allBox = $("#cfgBody").querySelector('input[name="all"]');
+  if(allBox) allBox.checked = isAll(cfg.type, raw);        // „Mit allem“ zeigt immer den echten Stand
   if($("#cfgJala")) $("#cfgJala").hidden = !raw.chili;
   SAUCES.forEach((s, i) => {
     const k = own(cfg.cups, s) || 0, nEl = $("#cfgBody").querySelector(`[data-cup-n="${i}"]`);
@@ -2077,6 +2114,14 @@ function initCfg(){
   const body = $("#cfgBody");
   body.addEventListener("change", e => {
     const i = e.target;
+    if(i.name === "all"){
+      if(i.checked){                                   // alles auswählen
+        body.querySelectorAll('input[name="ingr"], input[name="sauce"]').forEach(x => x.checked = true);
+        body.querySelectorAll('input[name="noSauce"]').forEach(x => x.checked = false);
+        const mit = body.querySelector('input[name="salad"][value="mit"]'); if(mit) mit.checked = true;
+        body.querySelectorAll(".cfg-sec.invalid").forEach(sec => { if(sec.id === "cfgSauces"){ sec.classList.remove("invalid"); sec.querySelectorAll(".cfg-err").forEach(x => x.hidden = true); } });
+      } else body.querySelectorAll('input[name="sauce"]').forEach(x => x.checked = false);   // zurück: Soßen wieder einzeln wählen
+    }
     if(i.name === "noSauce" && i.checked) body.querySelectorAll('input[name="sauce"]').forEach(s => s.checked = false);
     if(i.name === "sauce" && i.checked) body.querySelectorAll('input[name="noSauce"]').forEach(s => s.checked = false);
     if(i.name === "variant") cfg.id = i.value;
